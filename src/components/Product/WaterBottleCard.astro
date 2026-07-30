@@ -1,0 +1,147 @@
+---
+/* src/components/Product/WaterBottleCard.astro */
+import { Image } from 'astro:assets';
+import defaultProductImg from '../../images/biodegradable_water.png';
+
+interface Props {
+  seriesNumber?: string;
+  category?: string;
+  title?: string;
+  productImage?: ImageMetadata | string;
+  description?: string;
+  specsHref?: string;
+}
+
+const {
+  seriesNumber = "01",
+  category = "HYDRATION",
+  title = "Eco-Friendly Water Bottles",
+  productImage = defaultProductImg,
+  description = "Plant-based polymer with 0% microplastic leaching.",
+  specsHref = "#specs",
+} = Astro.props;
+---
+
+<div class="bottle-card">
+  <!-- Top Header Metadata -->
+  <div class="card-header">
+    <span class="header-meta">{seriesNumber} // {category}</span>
+    <svg class="droplet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+    </svg>
+  </div>
+
+  <!-- Title -->
+  <h2 class="card-title">{title}</h2>
+
+  <!-- Central Product Image Container with Zoom Hover Effect -->
+  <div 
+    class="image-wrapper" 
+    style="overflow: hidden; display: flex; align-items: center; justify-content: center; width: 100%; height: 220px; cursor: pointer;"
+  >
+    {typeof productImage === 'string' ? (
+      <img 
+        src={productImage} 
+        alt={title} 
+        class="zoom-img"
+        style="max-height: 200px; width: auto; object-fit: contain; transition: transform 0.4s ease-in-out; transform-origin: center center;"
+      />
+    ) : (
+      <Image 
+        src={productImage} 
+        alt={title} 
+        class="zoom-img"
+        style="max-height: 200px; width: auto; object-fit: contain; transition: transform 0.4s ease-in-out; transform-origin: center center;" 
+      />
+    )}
+  </div>
+
+  <!-- Footer Specs & Summary -->
+  <div class="card-footer">
+    <p class="description">{description}</p>
+    <a href={specsHref} class="specs-link">VIEW SPECS</a>
+  </div>
+</div>
+
+<style>
+  .bottle-card {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .header-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #444444;
+    letter-spacing: 0.05em;
+  }
+
+  .droplet-icon {
+    width: 18px;
+    height: 18px;
+    color: #111111;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 1.5rem 0;
+    color: #111111;
+  }
+
+  .image-wrapper {
+    flex-grow: 1;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+  }
+
+  /* Direct CSS Hover Target for the image */
+  .bottle-card:hover .zoom-img,
+  .image-wrapper:hover .zoom-img {
+    transform: scale(1.15) !important;
+  }
+
+  .card-footer {
+    border-top: 1px solid #eeeeee;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #555555;
+    margin: 0;
+  }
+
+  .specs-link {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #84cc16;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    letter-spacing: 0.08em;
+  }
+</style>

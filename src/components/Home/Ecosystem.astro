@@ -1,0 +1,362 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+---
+
+<section class="ecosystem-section">
+  <div class="ecosystem-container">
+    
+    <!-- Section Header -->
+    <div class="ecosystem-header">
+      <div>
+        <span class="section-tag">COLLECTION 2024</span>
+        <h2 class="ecosystem-title">Product Ecosystem</h2>
+      </div>
+      <a href="/products" class="see-all-link">
+        <span>See All</span>
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Grid Layout matching reference design -->
+    <div class="ecosystem-grid">
+      
+      <!-- 1. Large Feature Card: Biodegradable Water Bottles -->
+      <a href="/productdetails/biodegradable-water-bottle" class="ecosystem-card card-large">
+        <div class="card-bg bottle-bg"></div>
+        <div class="card-content">
+          <div>
+            <h3>Biodegradable Water Bottles</h3>
+            <p>Redefining hydration with zero-plastic impact materials.</p>
+          </div>
+          <span class="btn-lime">View Details</span>
+        </div>
+      </a>
+
+      <!-- 2. Medium Card: Compostable Bags -->
+      <a href="/productdetails/compostable-bags" class="ecosystem-card card-medium">
+        <div class="card-bg bag-bg"></div>
+        <div class="card-content">
+          <h3>Compostable Bags</h3>
+          <span class="explore-text">
+            Explore 
+            <svg class="arrow-sm" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 3. Right Stack Column (Grow Bags & Tableware) -->
+      <div class="card-stack">
+        
+        <!-- Grow Bags Card -->
+        <a href="/productdetails/compostable-grow-bags" class="ecosystem-card card-small">
+          <div class="card-bg grow-bg"></div>
+          <div class="card-content-overlay">
+            <h3>Grow Bags</h3>
+          </div>
+        </a>
+
+        <!-- Tableware Card -->
+        <a href="/productdetails/designer-tableware" class="ecosystem-card card-small">
+          <div class="card-bg tableware-bg"></div>
+          <div class="card-content-overlay">
+            <span class="btn-lime-tag">Tableware</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap');
+
+  :root {
+    --lime-color: #d1ff26;
+    --dark-green: #0b2218;
+  }
+
+  .ecosystem-section {
+    position: relative;
+    background-color: #ffffff;
+    /* Increase top padding so content drops down below the header naturally, with no margin gap */
+    padding: 120px 24px 100px 24px; 
+    margin-top: 0; /* Remove the margin gap completely */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ecosystem-container {
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  /* Header Layout */
+  .ecosystem-header {
+   display: flex;
+    justify-content: space-between;
+    align-items: center; /* Changed from flex-end to center for better balance */
+    margin-bottom: 40px;
+  }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #888888;
+    display: block;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .ecosystem-title {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 450 !important;
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    line-height: 1.1;
+    color: var(--dark-green);
+    margin: 0;
+  }
+
+  /* See All Link with Hover-to-Button Transition */
+  .see-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--dark-green);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  .see-all-link .arrow-icon {
+    transition: transform 0.25s ease;
+  }
+
+  .see-all-link:hover {
+    background-color: var(--dark-green);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .see-all-link:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+
+  /* Asymmetric Grid */
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 0.9fr; /* Made the first column wider */
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .ecosystem-card {
+    position: relative;
+    border-radius: 21px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ecosystem-card:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Background Images with Dark/Gradient Overlays */
+  .card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: transform 0.5s ease;
+  }
+
+  .ecosystem-card:hover .card-bg {
+    transform: scale(1.03);
+  }
+
+  /* Your Image Paths */
+  .bottle-bg {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(11,34,24,0.95) 90%), url('../../images/biodegradable_water.png');
+    background-size: 101%; /* Adjust this percentage if you want the bottle smaller or larger */
+    background-repeat: no-repeat;
+    background-position: center 25%;
+  }
+
+  .bag-bg {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(11,34,24,0.9) 90%), url('../../images/sakrt_bag.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .grow-bg {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%), url('../../images/plants and trees.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #e2e4e1;
+  }
+
+  .tableware-bg {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(11,34,24,0.6) 100%), url('../../images/biodegradable_utensils.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #353d37;
+  }
+  /* Card Content Layouts */
+  .card-large {
+    min-height: 520px;
+    padding: 40px;
+  }
+
+  .card-medium {
+    min-height: 520px;
+    padding: 40px;
+  }
+
+  .card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card-small {
+    height: 248px;
+    padding: 24px;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  .card-large h3, .card-medium h3 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.15;
+    margin: 0 0 10px 0;
+  }
+
+  .card-large p {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+    margin: 0 0 24px 0;
+    max-width: 320px;
+  }
+
+  .card-content-overlay {
+    position: relative;
+    z-index: 2;
+  }
+
+  .card-small h3 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 2rem;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* Buttons & Explore Text Hover Transitions */
+  .btn-lime {
+    display: inline-block;
+    background-color: var(--lime-color);
+    color: var(--dark-green);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: max-content;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .ecosystem-card:hover .btn-lime {
+    transform: scale(1.05);
+  }
+
+  .btn-lime-tag {
+    display: inline-block;
+    background-color: var(--lime-color);
+    color: var(--dark-green);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 6px 14px;
+   
+  }
+
+  .explore-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--lime-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .explore-text .arrow-sm {
+    transition: transform 0.2s ease;
+  }
+
+  .ecosystem-card:hover .explore-text .arrow-sm {
+    transform: translateX(4px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .ecosystem-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .card-stack {
+      grid-column: span 2;
+      flex-direction: row;
+    }
+    .card-small {
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ecosystem-grid {
+      grid-template-columns: 1fr;
+    }
+    .card-stack {
+      grid-column: span 1;
+      flex-direction: column;
+    }
+  }
+</style>
+

@@ -1,0 +1,63 @@
+---
+/* src/components/Product/ProductBarrierSection.astro */
+import PouchesCard from './PouchesCard.astro';
+import FilmsCard from './FilmsCard.astro';
+---
+
+<section class="barrier-section">
+  <!-- Product Cards Grid -->
+  <div class="barrier-grid">
+    <a href="/productdetails/stand-up-pouches" class="card-link">
+      <PouchesCard />
+    </a>
+    <FilmsCard linkHref="/productdetails/compostable-films" />
+  </div>
+
+  <!-- Full-Width Bottom Grey Divider Line -->
+  <hr class="section-divider" />
+</section>
+
+<style>
+  .barrier-section {
+    padding: 1.5rem 1.4rem 3rem 1.5rem;
+    max-width: 1340px;
+    margin: 0 auto;
+    width: 600%;
+    height:450%;
+    box-sizing: border-box;
+  }
+
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Equal width 1:1 grid */
+  .barrier-grid {
+    display: grid;
+       display: grid;
+    grid-template-columns: 1.2fr 1.6fr;
+    gap: 1.66rem;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+    align-items: stretch;
+    margin-bottom: 4rem; /* Spacing between cards and the line */
+  }
+
+  /* Bottom Grey Divider Line */
+  .section-divider {
+    border: none;
+    height: 1px;
+    background-color: #e5e7eb; /* Soft subtle grey line */
+    width: 100%;
+    margin: 0;
+  }
+
+  @media (max-width: 992px) {
+    .barrier-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

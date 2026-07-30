@@ -1,0 +1,152 @@
+---
+// ContactInfoCards.astro
+
+const cards = [
+  {
+    icon: 'document',
+    title: 'Media Kit',
+    description: 'Download our brand assets and technical whitepapers.',
+    linkText: 'ACCESS PORTAL',
+    href: '#portal',
+  },
+  {
+    icon: 'users',
+    title: 'Careers',
+    description: 'Join the frontier of industrial sustainability.',
+    linkText: 'OPEN ROLES',
+    href: '#careers',
+  },
+  {
+    icon: 'headset',
+    title: 'Technical Support',
+    description: 'Existing clients and implementation assistance.',
+    linkText: 'START TICKET',
+    href: '#ticket',
+  },
+];
+---
+
+<div class="cards-container">
+  {cards.map((card) => (
+    <div class="info-card">
+      <div class="icon-circle">
+        {card.icon === 'document' && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <line x1="10" y1="9" x2="8" y2="9"/>
+          </svg>
+        )}
+        {card.icon === 'users' && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 1 0 7.75"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        )}
+        {card.icon === 'headset' && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+        )}
+      </div>
+
+      <h3 class="card-title">{card.title}</h3>
+      <p class="card-description">{card.description}</p>
+      
+      <a href={card.href} class="card-link">
+        {card.linkText}
+      </a>
+    </div>
+  ))}
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Playfair+Display:wght@700;800&family=Inter:wght@400;500&display=swap');
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .cards-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .info-card {
+    background-color: #f8faf8;
+    border: 1px solid #e2e7e3;
+    border-radius: 1rem;
+    padding: 2.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .info-card:hover {
+    border-color: #cbd3cd;
+    transform: translateY(-2px);
+  }
+
+  .icon-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #ebf0ed;
+    color: #122b20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background-color 0.2s ease;
+  }
+
+  /* Added Icon Circle Hover State */
+  .info-card:hover .icon-circle {
+    background-color: #c5ff49;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0b251a;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.825rem;
+    line-height: 1.5;
+    color: #5c6660;
+    margin: 0 0 1.5rem 0;
+    max-width: 220px;
+  }
+
+  .card-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #0b251a;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: opacity 0.2s ease;
+  }
+
+  .card-link:hover {
+    opacity: 0.7;
+  }
+</style>

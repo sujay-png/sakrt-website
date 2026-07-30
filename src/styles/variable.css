@@ -1,0 +1,12 @@
+:root {
+  --color-bg-page: #f8f9f6;
+  --color-primary-dark: #103527;
+  --color-text-body: #2c3e35;
+  --color-text-muted: #4a5d52;
+  --color-text-light: #ffffff;
+  --color-accent-lime: #a2f040;
+  --color-border-subtle: #e3e5e0;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: monospace;
+}

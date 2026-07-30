@@ -1,0 +1,145 @@
+---
+/* src/components/Product/GrowBagsCard.astro */
+interface Props {
+  badgeText?: string;
+  title?: string;
+  description?: string;
+  tags?: string[];
+  bgImage?: string;
+}
+
+const {
+  badgeText = "AGRI-TECH",
+  title = "Compostable Grow Bags",
+  description = "Industrial-strength aeration fabrics for vertical farming and commercial nurseries.",
+  tags = ["UV RESISTANT", "ROOT-PRUNING"],
+  bgImage,
+} = Astro.props;
+---
+
+<div class="grow-card">
+  {bgImage && (
+    <div class="bg-wrapper">
+      <img src={bgImage} alt={title} class="bg-img" />
+      <div class="overlay"></div>
+    </div>
+  )}
+
+  <div class="card-content">
+    <div class="bottom-section">
+      <div class="badge">{badgeText}</div>
+      <h2 class="card-title">{title}</h2>
+      <p class="description">{description}</p>
+
+      <div class="tags-row">
+        {tags.map((tag) => (
+          <span class="pill-tag">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .grow-card {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    border-radius: 20px;
+    background-color: #0b2e1b;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .bg-wrapper {
+    position: absolute;
+    inset: 0;
+  }
+
+  .bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 46, 27, 0.3) 0%, rgba(11, 46, 27, 0.95) 100%);
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    min-height: 520px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    color: #ffffff;
+  }
+
+  .bottom-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #b3f73c;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+       font-family: Playfair Display, Georgia, serif;
+    font-size: 2.50rem;
+    font-weight: 500;
+    color: #fff;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+  }
+
+  .description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #b0c4b6;
+    margin: 0 0 2rem 0;
+    max-width: 90%;
+  }
+
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .pill-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 0.5rem 0.85rem;
+    border-radius: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 640px) {
+    .card-content {
+      padding: 1.5rem;
+      min-height: 440px;
+    }
+    .card-title {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+// ContactHeading.astro
+---
+
+<div class="heading-wrapper">
+  <span class="section-tag">CONNECT WITH US</span>
+  <h1 class="main-heading">
+    Bridging the gap between <em>Earth</em><br />
+    and <span class="highlight"><i>Precision Engineering.</i></span>
+  </h1>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&display=swap');
+
+  .heading-wrapper {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    padding: 0;
+    width: 100%;
+  }
+
+  .section-tag {
+font-family: JetBrains Mono, monospace;
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    color: #b0b4ae;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 3.5rem;
+    margin-bottom: 1.1rem;
+    padding: 0;
+  }
+
+  .main-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0A2F1F;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-top: 0;        /* Removed top margin pushing it away from section tag */
+    margin-bottom: 0;
+    padding-right: 34px;
+  }
+
+  .main-heading em {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .main-heading .highlight {
+    color: #7b9c1d;
+  }
+
+  @media (min-width: 640px) {
+    .main-heading {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1224px) {
+    .main-heading {
+      font-size: 3.5rem;
+    }
+  } 
+</style>

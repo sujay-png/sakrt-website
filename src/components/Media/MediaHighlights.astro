@@ -1,0 +1,40 @@
+---
+// MediaHighlights.astro
+import WorldEnvironmentCard from './WorldEnvironmentCard.astro';
+import InstagramReelCard from './InstagramReelCard.astro';
+---
+
+<section class="media-highlights-section">
+  <div class="media-grid">
+    <div class="main-card-col">
+      <WorldEnvironmentCard />
+    </div>
+
+    <div class="side-card-col">
+      <InstagramReelCard />
+    </div>
+  </div>
+</section>
+
+<style>
+  .media-highlights-section {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr;
+    gap: 1.75rem;
+    align-items: stretch;
+  }
+
+  @media (max-width: 960px) {
+    .media-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,159 @@
+---
+/* src/components/Product/FilmsCard.astro */
+import { Image } from 'astro:assets';
+import defaultFilmsImg from '../../images/compostable_film.png'; // Update path to your image
+
+interface Props {
+  seriesNumber?: string;
+  category?: string;
+  title?: string;
+  description?: string;
+  linkHref?: string;
+  productImage?: ImageMetadata | string;
+}
+
+const {
+  seriesNumber = "05",
+  category = "INDUSTRIAL",
+  title = "Compostable Films",
+  description = "Ultra-thin, high-clarity stretch and shrink films for logistics.",
+  linkHref = "#tech-data",
+  productImage = defaultFilmsImg,
+} = Astro.props;
+---
+
+<div class="films-card">
+  <!-- Content Side -->
+  <div class="card-content">
+    <div class="card-header">
+      <span class="header-meta">{seriesNumber} // {category}</span>
+    </div>
+
+    <h2 class="card-title">{title}</h2>
+    <p class="description">{description}</p>
+
+    <a href={linkHref} class="tech-link">
+      <span>VIEW TECHNICAL DATA</span>
+      <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Image Side with Zoom Hover -->
+  <div 
+    class="image-wrapper" 
+    style="overflow: hidden; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; cursor: pointer;"
+  >
+    {typeof productImage === 'string' ? (
+      <img 
+        src={productImage} 
+        alt={title} 
+        class="zoom-img"
+        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease-in-out; transform-origin: center center;"
+      />
+    ) : (
+      <Image 
+        src={productImage} 
+        alt={title} 
+        class="zoom-img"
+        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease-in-out; transform-origin: center center;" 
+      />
+    )}
+  </div>
+</div>
+
+<style>
+  .films-card {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    border-radius: 20px;
+    background-color: #f7f7f7;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  }
+
+  .card-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .header-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #444444;
+    letter-spacing: 0.05em;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 1.5rem 0;
+    color: #0b2e1b;
+  }
+
+  .description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555555;
+    margin: 0 0 2rem 0;
+    max-width: 90%;
+  }
+
+  .tech-link {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #222222;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s ease;
+  }
+
+  .tech-link:hover {
+    color: #0b2e1b;
+  }
+
+  .external-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .image-wrapper {
+    height: 100%;
+  }
+
+  /* Direct Hover Zoom Effect */
+  .films-card:hover .zoom-img,
+  .image-wrapper:hover .zoom-img {
+    transform: scale(1.06) !important;
+  }
+
+  @media (max-width: 992px) {
+    .films-card {
+      grid-template-columns: 1fr;
+    }
+    .image-wrapper {
+      height: 260px !important;
+    }
+  }
+</style>

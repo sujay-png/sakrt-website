@@ -1,0 +1,19 @@
+---
+// src/pages/products/index.astro
+import Layout from '../../layouts/Layout.astro';
+import ProductHero from '../../components/Product/ProductHero.astro';
+import ProductCardsSection from '../../components/Product/ProductCardsSection.astro';
+import ProductDetailsSection from '../../components/Product/ProductDetailsSection.astro';
+import ProductBarrierSection from '../../components/Product/ProductBarrierSection.astro';
+import SakrtStandard from '../../components/Product/SakrtStandard.astro';
+---
+
+<Layout title="Products | SAKRT">
+  <main>
+    <ProductHero />
+    <ProductCardsSection />
+    <ProductDetailsSection/>
+    <ProductBarrierSection/>
+    <SakrtStandard/>
+  </main>
+</Layout>

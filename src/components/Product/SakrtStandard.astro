@@ -1,0 +1,253 @@
+---
+/* src/components/SakrtStandard.astro */
+---
+
+<section class="sakrt-standard">
+  <div class="standard-container">
+    
+    <!-- Left Content Column -->
+    <div class="left-content">
+      <h2 class="section-title">The SAKRT Standard</h2>
+      <p class="section-description">
+        Every product in our catalog undergoes rigorous ISO 17088 testing 
+        to ensure molecular integrity and environmental safety.
+      </p>
+
+      <!-- Feature Cards Grid -->
+      <div class="feature-cards">
+        
+        <!-- Certifications Card -->
+        <div class="feature-card">
+          <div class="card-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
+          <h3 class="card-title">Certifications</h3>
+          <p class="card-text">TUV OK COMPOST, ASTM D6400, EN 13432.</p>
+        </div>
+
+        <!-- R&D Lab Card -->
+        <div class="feature-card">
+          <div class="card-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 2v7.5M14 2v7.5M12 2v10.5M8.5 15a4.5 4.5 0 1 0 7 0H8.5z"></path>
+            </svg>
+          </div>
+          <h3 class="card-title">R&D Lab</h3>
+          <p class="card-text">In-house molecular testing for custom barrier properties.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Badge Column -->
+    <div class="right-content">
+      <!-- Outer translucent halo -->
+      <div class="halo-circle">
+        
+        <!-- Main Dark Green Circle -->
+        <div class="stat-circle">
+          <span class="badge-label">CARBON FOOTPRINT</span>
+          <div class="stat-number">-68%</div>
+          <p class="stat-description">
+            Lower emissions compared to traditional petrochemical plastics.
+          </p>
+        </div>
+
+        <!-- Extra Floating Tag (bottom left edge) -->
+        <div class="floating-tag">FREE</div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .sakrt-standard {
+    width: 100%;
+    background-color: #f7f7f5;
+    padding: 5rem 2rem;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .standard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  /* Left Column Styling */
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.25rem;
+    font-weight: 700;
+    color: #0d2818;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.1;
+  }
+
+  .section-description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #4a524d;
+    max-width: 480px;
+    margin: 0 0 3rem 0;
+  }
+
+  .feature-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  }
+
+  .card-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-icon.green {
+    color: #84cc16;
+  }
+
+  .card-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0d2818;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .card-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.725rem;
+    color: #666666;
+    line-height: 1.5;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  /* Right Column Styling - Circular Badge */
+  .right-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .halo-circle {
+    position: relative;
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background-color: rgba(235, 240, 234, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-circle {
+    position: relative;
+    z-index: 1;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background-color: #174830;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px #0d2d1d26;
+  }
+
+  .badge-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #a3e635;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 4.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .stat-description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    color: #d1e2d6;
+    line-height: 1.4;
+    margin: 0;
+    max-width: 220px;
+  }
+
+  .floating-tag {
+    position: static;
+    bottom: 28px;
+    left: 20px;
+    background-color: #fff;
+    padding: .35rem .75rem;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: .65rem;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: .08em;
+    box-shadow: 0 2px 8px #0000000d;
+  }
+
+  /* Responsive Layout */
+  @media (max-width: 900px) {
+    .standard-container {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .halo-circle {
+      width: 340px;
+      height: 340px;
+    }
+
+    .stat-circle {
+      width: 270px;
+      height: 270px;
+    }
+
+    .stat-number {
+      font-size: 3.5rem;
+    }
+  }
+</style>

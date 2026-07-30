@@ -1,0 +1,36 @@
+---
+/* src/components/Product/ProductCardsSection.astro */
+import CarrierBagCard from './CarrierBagCard.astro';
+import WaterBottleCard from './WaterBottleCard.astro';
+---
+
+<section class="cards-section">
+  <div class="cards-grid">
+    <CarrierBagCard href="/productdetails/compostable-bags" />
+    <WaterBottleCard specsHref="/productdetails/biodegradable-water-bottle" />
+  </div>
+</section>
+
+<style>
+  .cards-section {
+    padding: 3rem 1.5rem;
+    max-width: 1320px; /* Slightly wider max-width for modern feature sections */
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Asymmetric Grid: Left card ~68% width, Right card ~32% width */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 2.1fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  @media (max-width: 992px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

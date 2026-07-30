@@ -1,0 +1,260 @@
+---
+// MediaKitSection.astro
+
+export interface KitItem {
+  iconType: 'identity' | 'paper' | 'gallery';
+  title: string;
+  description: string;
+  actionText: string;
+  actionUrl: string;
+  isExternal?: boolean;
+}
+
+const defaultItems: KitItem[] = [
+  {
+    iconType: 'identity',
+    title: 'Visual Identity',
+    description: 'Official logos, color codes, and brand guidelines for publication.',
+    actionText: 'DOWNLOAD ASSETS',
+    actionUrl: '/assets/sakrt-brand-assets.zip',
+    isExternal: false
+  },
+  {
+    iconType: 'paper',
+    title: 'Technical Whitepapers',
+    description: 'Detailed certifications and compliance standards for compostable products.',
+    actionText: 'DOWNLOAD PDF',
+    actionUrl: '/docs/technical-whitepaper.pdf',
+    isExternal: false
+  },
+  {
+    iconType: 'gallery',
+    title: 'Image Bank',
+    description: 'High-resolution photography of our manufacturing process and materials.',
+    actionText: 'BROWSE GALLERY',
+    actionUrl: '/gallery',
+    isExternal: true
+  }
+];
+
+const {
+  sectionTitle = "Media Kit",
+  subtitle = "Clinical precision for press and partners.",
+  version = "VER 2.0 / 2026",
+  items = defaultItems
+} = Astro.props;
+---
+
+<section class="media-kit-section">
+  <!-- Section Header -->
+  <div class="section-header">
+    <div class="header-text">
+      <h2 class="title">{sectionTitle}</h2>
+      <p class="subtitle">{subtitle}</p>
+    </div>
+    <span class="version-tag">{version}</span>
+  </div>
+
+  <hr class="header-divider" />
+
+  <!-- 3-Column Cards Grid -->
+  <div class="cards-grid">
+    {items.map((item: KitItem) => (
+      <div class="kit-card">
+        <div class="card-top">
+          <!-- Custom SVG Icon Header -->
+          <div class="icon-wrapper">
+            {item.iconType === 'identity' && (
+              <svg class="kit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M12 3v3m0 12v3M3 12h3m12 0h3" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="5" stroke-linecap="round"/>
+                <path d="M18.364 5.636l-2.122 2.122M7.757 16.243l-2.12 2.12" stroke-linecap="round"/>
+              </svg>
+            )}
+
+            {item.iconType === 'paper' && (
+              <svg class="kit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+
+            {item.iconType === 'gallery' && (
+              <svg class="kit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/>
+                <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+          </div>
+
+          <h3 class="card-title">{item.title}</h3>
+          <p class="card-description">{item.description}</p>
+        </div>
+
+        <!-- Card Action Link Footer -->
+        <a 
+          href={item.actionUrl} 
+          target={item.isExternal ? "_blank" : "_self"} 
+          rel={item.isExternal ? "noopener noreferrer" : ""} 
+          class="action-link"
+        >
+          <span>{item.actionText}</span>
+
+          {item.isExternal ? (
+            /* External Link Icon */
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          ) : (
+            /* Download Icon */
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          )}
+        </a>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap');
+
+  .media-kit-section {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    box-sizing: border-box;
+  }
+
+  /* Section Header Styling */
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #0d2b1d;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #5a6660;
+    margin: 0;
+  }
+
+  .version-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #8a9690;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .header-divider {
+    border: none;
+    border-top: 1px solid rgba(13, 43, 29, 0.12);
+    margin: 0 0 2.5rem 0;
+  }
+
+  /* Grid Layout */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  /* Individual Card */
+  .kit-card {
+    background-color: #f7f9f6; /* Off-white container tint */
+    border-radius: 1.25rem;
+    padding: 2.25rem 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+    box-sizing: border-box;
+    border: 1px solid rgba(13, 43, 29, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .kit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(13, 43, 29, 0.05);
+  }
+
+  /* Icon Header */
+  .icon-wrapper {
+    margin-bottom: 1.5rem;
+    color: #0d2b1d;
+  }
+
+  .kit-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: #0d2b1d;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.25;
+  }
+
+  .card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #5a6660;
+    margin: 0 0 2rem 0;
+  }
+
+  /* Action Link Footer */
+  .action-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.725rem;
+    font-weight: 600;
+    color: #0d2b1d;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .action-link:hover {
+    opacity: 0.7;
+  }
+
+  .action-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 960px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+</style>

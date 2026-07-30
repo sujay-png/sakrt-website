@@ -1,0 +1,99 @@
+---
+// Certifications.astro
+import CpcbCard from './CpcbCard.astro';
+import IsoCard from './IsoCard.astro';
+import CipetCard from './CipetCard.astro';
+import BioComplianceCard from './BioComplianceCard.astro';
+import MaterialTraceabilityCard from './MaterialTraceabilityCard.astro';
+import CertificationsMarquee from './CertificationsMarquee.astro';
+import CertificationsCta from './CertificationsCta.astro';
+---
+
+<section class="certifications-section">
+  <!-- Header Area -->
+  <div class="header-container">
+    <span class="section-tag">VERIFIED ECOLOGY</span>
+    <h2 class="section-title">Government Approved & Certified</h2>
+    <p class="section-description">
+      SAKRT is a CPCB certified manufacturer and distributor of biodegradable solutions. We
+      provide full material traceability, product certifications, and eco-impact documentation to
+      ensure every fiber meets the highest global standards.
+    </p>
+  </div>
+
+  <!-- Responsive Cards Grid -->
+  <div class="cards-grid">
+    <CpcbCard />
+    <IsoCard />
+    <CipetCard />
+    <BioComplianceCard />
+    <MaterialTraceabilityCard />
+    
+    <!-- Certification Logos Marquee -->
+    <CertificationsMarquee />
+
+    <!-- Center-Aligned CTA Component -->
+    <CertificationsCta />
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Playfair+Display:wght@600&family=Inter:wght@400&display=swap');
+
+  .certifications-section {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 6.5rem 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-container {
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #4a5550;
+    display: block;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #0a2319;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .section-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: #4a5550;
+    margin: 0;
+  }
+
+  /* Side-by-side Grid Layout */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  @media (max-width: 850px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

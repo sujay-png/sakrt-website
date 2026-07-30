@@ -1,0 +1,167 @@
+---
+// WorldEnvironmentCard.astro
+
+export interface Props {
+  tag?: string;
+  date?: string;
+  title?: string;
+  description?: string;
+  imageSrc?: string;
+  readMoreLink?: string;
+}
+
+const {
+  tag = "NEWS UPDATE",
+  date = "05.06.2026",
+  title = "WORLD ENVIRONMENT DAY 2026 Celebration at ICAR-CPCRI",
+  description = "SAKRT proudly represents Envirly Innovations Pvt Ltd, delivering government-certified compostable solutions across India.",
+  imageSrc = "https://sakrt.in/wp-content/uploads/2026/06/718895738_4566882940300788_6332532306346538412_n-1024x683.webp",
+  readMoreLink = "/journal/world-environment-day-2026"
+} = Astro.props;
+---
+
+<div class="news-featured-card">
+  <!-- Background Image -->
+  <img src={imageSrc} alt={title} class="card-bg-image" loading="lazy" />
+
+  <!-- Dark Gradient Overlay -->
+  <div class="card-overlay"></div>
+
+  <!-- Content Container -->
+  <div class="card-content">
+    <div class="card-tag">
+      <span class="tag-text">{tag}</span>
+      <span class="tag-divider">—</span>
+      <span class="tag-date">{date}</span>
+    </div>
+
+    <h2 class="card-title">{title}</h2>
+
+    <p class="card-description">{description}</p>
+
+    <a href={readMoreLink} class="read-more-btn">
+      <span>Read Full Story</span>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap');
+
+  .news-featured-card {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 12px 32px rgba(10, 35, 25, 0.08);
+    box-sizing: border-box;
+  }
+
+  .card-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .news-featured-card:hover .card-bg-image {
+    transform: scale(1.03);
+  }
+
+  /* Soft dark gradient to make white text readable */
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 35, 25, 0.92) 0%,
+      rgba(10, 35, 25, 0.65) 50%,
+      rgba(10, 35, 25, 0.2) 100%
+    );
+    z-index: 2;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 3;
+    padding: 3rem 2.5rem;
+    max-width: 620px;
+  }
+
+  .card-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #c5ff49; /* SAKRT Lime Accent */
+    letter-spacing: 0.12em;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 0 2rem 0;
+  }
+
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: none;
+    transition: gap 0.25s ease;
+  }
+
+  .read-more-btn:hover {
+    gap: 0.9rem;
+    color: #c5ff49;
+  }
+
+  .arrow-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .news-featured-card {
+      min-height: 400px;
+    }
+
+    .card-content {
+      padding: 2rem 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.75rem;
+    }
+  }
+</style>

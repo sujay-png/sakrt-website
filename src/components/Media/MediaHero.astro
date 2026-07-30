@@ -1,0 +1,286 @@
+---
+// MediaHero.astro
+---
+
+<header class="media-hero-section">
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/">SAKRT</a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="/ecosystem">Ecosystem</a></li>
+      <li><a href="/materials">Materials</a></li>
+      <li><a href="/products">Products</a></li>
+      <li><a href="/journal" class="active">Journal</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="/inquire" class="btn-inquire">Inquire</a>
+    </div>
+  </nav>
+
+  <!-- Hero Main Content -->
+  <div class="hero-container">
+    <div class="hero-content">
+      <!-- Tag / Category Header -->
+      <div class="tag-wrapper">
+        <span class="category-tag">MEDIA & IMPACT</span>
+        <span class="tag-line"></span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-title">
+        Watch Our Latest Public<br />Appearance
+      </h1>
+
+      <!-- Description Paragraph -->
+      <p class="hero-description">
+        Stay connected with SAKRT's growing presence in India's sustainability
+        movement. Our media page brings together the latest press coverage,
+        public appearances, and recognitions celebrating our commitment to
+        eco-friendly polythene bags.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="hero-actions">
+        <a href="#coverage" class="btn btn-lime">
+          Explore Coverage <span class="arrow">&darr;</span>
+        </a>
+        <a href="/media-kit.pdf" download class="btn btn-outline">
+          Media Kit
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap');
+
+  /* Container Setup */
+  .media-hero-section {
+    width: 100%;
+    min-height: 80vh;
+    background-color: #f7f9f6; /* Soft light background matching your theme */
+    padding: 1.5rem 3rem 5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* --- Navbar Styles --- */
+  .navbar {
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    margin-bottom: 5rem;
+  }
+
+  .logo a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #0a2319;
+    text-decoration: none;
+    letter-spacing: 0.12em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #4a5550;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding-bottom: 4px;
+    position: relative;
+  }
+
+  .nav-links a:hover {
+    color: #0a2319;
+  }
+
+  /* Lime Underline for Active Menu item ("Journal") */
+  .nav-links a.active {
+    color: #0a2319;
+    font-weight: 500;
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #c5ff49; /* SAKRT Lime Accent */
+    border-radius: 2px;
+  }
+
+  .btn-inquire {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background-color: #0a2319;
+    color: #ffffff;
+    padding: 0.6rem 1.6rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-inquire:hover {
+    background-color: #12382a;
+  }
+
+  /* --- Hero Body Styles --- */
+  .hero-container {
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .hero-content {
+    max-width: 640px;
+  }
+
+  /* Tag Line */
+  .tag-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: #55625c;
+    text-transform: uppercase;
+  }
+
+  .tag-line {
+    width: 32px;
+    height: 1px;
+    background-color: #b0bab4;
+  }
+
+  /* Headline Header */
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.12;
+    color: #0a2319;
+    margin: 0 0 1.75rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  /* Paragraph Text */
+  .hero-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #4a5550;
+    margin: 0 0 2.5rem 0;
+  }
+
+  /* Buttons Wrapper */
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.85rem 1.75rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  /* Solid Lime Button */
+  .btn-lime {
+    background-color: #c5ff49;
+    color: #0a2319;
+    border: 1px solid #c5ff49;
+  }
+
+  .btn-lime:hover {
+    background-color: #b5f038;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(197, 255, 73, 0.3);
+  }
+
+  .arrow {
+    font-size: 0.95rem;
+  }
+
+  /* Outline Button */
+  .btn-outline {
+    background-color: transparent;
+    color: #0a2319;
+    border: 1px solid rgba(10, 35, 25, 0.25);
+  }
+
+  .btn-outline:hover {
+    background-color: rgba(10, 35, 25, 0.04);
+    border-color: #0a2319;
+    transform: translateY(-1px);
+  }
+
+  /* Responsive Queries */
+  @media (max-width: 900px) {
+    .media-hero-section {
+      padding: 1.5rem 1.5rem 3rem;
+    }
+
+    .nav-links {
+      display: none; /* Add mobile menu drawer here if required */
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,181 @@
+---
+/* src/components/Product/PouchesCard.astro */
+interface Props {
+  seriesNumber?: string;
+  category?: string;
+  isNew?: boolean;
+  title?: string;
+  availableSizes?: string;
+  barrierLevel?: string;
+}
+
+const {
+  seriesNumber = "04",
+  category = "BARRIER",
+  isNew = true,
+  title = "Stand-up Pouches",
+  availableSizes = "250g, 500g, 1kg, 5kg Custom",
+  barrierLevel = "High Moisture & Oxygen",
+} = Astro.props;
+---
+
+<div class="pouches-card">
+  <!-- Top Header with Badge -->
+  <div class="card-header">
+    <span class="header-meta">{seriesNumber} // {category}</span>
+    {isNew && <span class="new-badge">NEW</span>}
+  </div>
+
+  <!-- Main Title -->
+  <h2 class="card-title">{title}</h2>
+
+  <!-- 2-Column Specs Layout -->
+  <div class="specs-row">
+    <div class="spec-col">
+      <div class="divider-line"></div>
+      <span class="spec-label">AVAILABLE SIZES</span>
+      <p class="spec-value">{availableSizes}</p>
+    </div>
+    <div class="spec-col">
+      <div class="divider-line"></div>
+      <span class="spec-label">BARRIER LEVEL</span>
+      <p class="spec-value">{barrierLevel}</p>
+    </div>
+  </div>
+
+  <!-- Bottom Action / Category Icons -->
+  <div class="card-actions">
+    <div class="icon-box">
+      <!-- Box Icon -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <path d="M21 8L12 3L3 8V16L12 21L21 16V8Z"></path>
+        <path d="M3 8L12 13L21 8"></path>
+        <path d="M12 13V21"></path>
+      </svg>
+    </div>
+    <div class="icon-box">
+      <!-- Layers Icon -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<style>
+  .pouches-card {
+   position: relative;
+    width: 100%;
+    min-height: 200px;
+    border-radius: 20px;
+    background-color: #fcfcfc;
+    padding: 2.6rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px #00000005;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .header-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #444444;
+    letter-spacing: 0.05em;
+  }
+
+  .new-badge {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #3b6028;
+    background-color: #e4f5d4;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.08em;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 2rem 0;
+    color: #0b2e1b;
+  }
+
+  .specs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .spec-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .divider-line {
+    width: 100%;
+    height: 1px;
+    background-color: #e2e4e2;
+    margin-bottom: 1.25rem;
+  }
+
+  .spec-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #777777;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .spec-value {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #222222;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .card-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .icon-box {
+    width: 90px;
+    height: 90px;
+    border-radius: 16px; /* Slightly softer corners for the larger size */
+    background-color: #f2efe9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555555;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .icon-box:hover {
+    background-color: #e6e2d8;
+    transform: translateY(-2px);
+  }
+
+  .icon-box svg {
+   width: 36px;
+    height: 36px;
+  }
+</style>

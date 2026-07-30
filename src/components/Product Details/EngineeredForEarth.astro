@@ -1,0 +1,248 @@
+---
+// EngineeredForEarth.astro
+---
+
+<div class="efe-wrapper">
+  <!-- Google Fonts import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <div class="efe-container">
+    <h1 class="efe-heading">Engineered for Earth.</h1>
+
+    <div class="efe-grid">
+      <!-- Card 1: Large Dark Green (Spans 2 columns) -->
+      <div class="efe-card card-dark-lg">
+        <span class="efe-tag">LIFE CYCLE</span>
+        <h2 class="efe-card-title">Zero Microplastics Policy</h2>
+        <p class="efe-card-text">
+          Unlike traditional bio-plastics, our material breaks down into nutrient-rich compost without leaving any chemical traces or micro-debris in the soil.
+        </p>
+      </div>
+
+      <!-- Card 2: Light Cream (Flask Icon) -->
+      <div class="efe-card card-cream">
+        <div class="efe-card-content">
+          <!-- Flask Icon -->
+          <svg class="efe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 21a1.5 1.5 0 001.272-2.3L15 9.75V4.5h1a.75.75 0 000-1.5h-8a.75.75 0 000 1.5h1v5.25L3.228 18.7A1.5 1.5 0 004.5 21h15z" />
+          </svg>
+          <h3 class="efe-card-title">Molecular Bonding</h3>
+          <p class="efe-card-text">
+            Proprietary cellulose chains engineered to maintain structural integrity under varying temperatures while remaining highly digestible by microorganisms.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Light Gray Stat (94%) -->
+      <div class="efe-card card-gray">
+        <div class="efe-stat-number">94%</div>
+        <p class="efe-card-text">
+          Reduction in carbon footprint compared to standard PET manufacturing processes.
+        </p>
+      </div>
+
+      <!-- Card 4: Neon Green Stat (180) -->
+      <div class="efe-card card-neon">
+        <div class="efe-stat-number">180</div>
+        <p class="efe-card-text">
+          Average days for complete degradation in industrial composting environments.
+        </p>
+      </div>
+
+      <!-- Card 5: Dark Green Compliance (Check Icon) -->
+      <div class="efe-card card-dark-sm">
+        <svg class="efe-icon icon-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="efe-card-text text-bold">
+          Full compliance with global safety standards for food and beverage contact.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Base Variables */
+  :root {
+    --color-dark-green: #112d22;
+    --color-neon-green: #c1f541;
+    --color-cream: #f5efe8;
+    --color-light-gray: #ededed;
+    --color-text-dark: #112d22;
+    --color-text-muted: #666666;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  /* Container Styles */
+  .efe-wrapper {
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .efe-container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .efe-heading {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-dark-green);
+    margin-bottom: 3rem;
+  }
+
+  /* Grid Layout */
+  .efe-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .efe-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .efe-heading {
+      font-size: 3rem;
+    }
+  }
+
+  /* Generic Card Styles */
+  .efe-card {
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  /* Card Variants */
+  .card-dark-lg {
+    background-color: var(--color-dark-green);
+    color: #ffffff;
+    min-height: 320px;
+    justify-content: flex-end;
+  }
+
+  @media (min-width: 768px) {
+    .card-dark-lg {
+      grid-column: span 2;
+    }
+  }
+
+  .card-cream {
+    background-color: var(--color-cream);
+    color: var(--color-text-dark);
+    min-height: 320px;
+  }
+
+  .card-gray {
+    background-color: var(--color-light-gray);
+    color: var(--color-text-dark);
+    min-height: 220px;
+  }
+
+  .card-neon {
+    background-color: var(--color-neon-green);
+    color: var(--color-text-dark);
+    min-height: 220px;
+  }
+
+  .card-dark-sm {
+    background-color: var(--color-dark-green);
+    color: #ffffff;
+    min-height: 220px;
+  }
+
+  /* Typography & Inner Elements */
+  .efe-tag {
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-neon-green);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .efe-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .card-dark-lg .efe-card-title {
+    font-size: 1.75rem;
+  }
+
+  .efe-card-text {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .card-dark-lg .efe-card-text {
+    color: #d1d5db;
+    max-width: 32rem;
+  }
+
+  .card-cream .efe-card-text,
+  .card-gray .efe-card-text {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+
+  .card-neon .efe-card-text {
+    color: #324510;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .card-dark-sm .efe-card-text {
+    color: #e5e7eb;
+    font-size: 0.8rem;
+  }
+
+  .efe-stat-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .efe-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-dark);
+  }
+
+  .efe-icon.icon-neon {
+    color: var(--color-neon-green);
+    margin-bottom: 1rem;
+  }
+
+  .text-bold {
+    font-weight: 600;
+  }
+</style> 

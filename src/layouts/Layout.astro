@@ -1,0 +1,83 @@
+---
+// src/layouts/Layout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "SAKRT | Engineered For The Earth" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Global Header rendered at the top of every page -->
+    <Header />
+
+    <!-- Page-specific content gets rendered here -->
+    <slot />
+
+    <!-- Global Footer rendered at the bottom of every page -->
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* Brand Green Color Palette */
+    --color-primary-dark: #0f3223;       /* Deep Forest Green (Main Brand, Headings, Dark Buttons) */
+    --color-forest-medium: #163728;      /* Medium Forest Green (Hover States, Dark Cards) */
+    --color-forest-dark: #0b2218;        /* Extra Dark Forest Green (Dark Section Backgrounds) */
+    
+    /* Lime Green Accent Palette */
+    --color-accent-lime: #8ce02c;        /* Bright Lime Green (Sub-labels, Badges, Highlights) */
+    --color-accent-lime-bright: #CFF737; /* Vibrant Lime Green (Active Underlines, Callouts) */
+    
+    /* Typography Text Colors */
+    --color-text-main: #112a21;          /* Dark Greenish Black (Primary Headings) */
+    --color-text-body: #2c3e35;          /* Dark Muted Green (Body Copy) */
+    --color-text-muted: #4a5d52;         /* Medium Muted Green (Descriptions & Subtitles) */
+    --color-text-light: #ffffff;         /* White (Contrast Text) */
+
+    /* Page & Surface Backgrounds */
+    --color-bg-page: #f5f5f3;            /* Light Warm Off-White Page Background */
+    --color-bg-card: #ffffff;            /* Pure White Card Surface */
+    --color-bg-pill: #f2f3f0;            /* Pill Filter Bar Container Background */
+    --color-border-subtle: #e2e4de;      /* Subtle Light Border Color */
+
+    /* Typography Font Families */
+    --font-serif: 'Playfair Display', 'DM Serif Display', 'Georgia', serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-bg-page);
+    color: var(--color-text-body);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+</style>
