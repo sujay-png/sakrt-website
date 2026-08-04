@@ -1,0 +1,148 @@
+<div class="inquiry-card">
+    <h3 class="inquiry-title">Inquire for Bulk Supply</h3>
+
+ <form class="inquiry-form" id="inquiryForm">
+    <div class="input-group">
+        <input type="text" id="fullName" placeholder="Full Name" required class="form-input" />
+    </div>
+    <div class="input-group">
+        <input type="text" id="phoneNumber" placeholder="Phone Number" required class="form-input" />
+    </div>
+    <div class="input-group">
+        <input type="text" id="companyName" placeholder="Company Name" required class="form-input" />
+    </div>
+
+    <div class="input-group">
+        <input type="email" id="businessEmail" placeholder="Business Email" required class="form-input" />
+    </div>
+
+    <div class="input-group">
+        <input type="text" id="itemQuantity" placeholder=" item quantity" required class="form-input" />
+    </div>
+    <textarea id="message" placeholder="Message" required class="form-input"></textarea>
+
+    <button type="submit" class="submit-btn">
+        REQUEST TECHNICAL QUOTE
+    </button>
+</form>
+</div>
+
+<style>
+    .inquiry-card {
+        background-color: #0e2d1f;
+        border-radius: 14px;
+        padding: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .inquiry-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0 0 1.25rem 0;
+    }
+
+    .inquiry-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+    }
+
+    .input-group {
+        position: relative;
+        width: 100%;
+    }
+
+    .form-input,
+    .form-select {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        font-size: 0.875rem;
+        color: #ffffff;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.2s ease;
+    }
+
+    .form-input::placeholder {
+        color: #8da397;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+        border-color: #a3e635;
+    }
+
+    .form-select {
+        appearance: none;
+        -webkit-appearance: none;
+        color: #8da397;
+        cursor: pointer;
+    }
+
+    .select-arrow {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        color: #8da397;
+        pointer-events: none;
+    }
+
+    .submit-btn {
+        width: 100%;
+        background-color: #bef264;
+        color: #0e2d1f;
+        border: none;
+        border-radius: 8px;
+        padding: 1rem;
+        font-family:
+            ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        margin-top: 0.35rem;
+    }
+
+    .submit-btn:hover {
+        background-color: #a3e635;
+    }
+</style>
+<script>
+    function sendToWhatsApp(event: SubmitEvent) {
+        event.preventDefault();
+
+        const fullName = (document.getElementById('fullName') as HTMLInputElement).value;
+        const phoneNumber = (document.getElementById('phoneNumber') as HTMLInputElement).value;
+        const companyName = (document.getElementById('companyName') as HTMLInputElement).value;
+        const businessEmail = (document.getElementById('businessEmail') as HTMLInputElement).value;
+        const itemQuantity = (document.getElementById('itemQuantity') as HTMLInputElement).value;
+        const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+
+        const text =
+            `*New Bulk Supply Inquiry*%0A%0A` +
+            `*Name:* ${fullName}%0A` +
+            `*Phone:* ${phoneNumber}%0A` +
+            `*Company:* ${companyName}%0A` +
+            `*Email:* ${businessEmail}%0A` +
+            `*Quantity:* ${itemQuantity}%0A` +
+            `*Message:* ${message}`;
+
+        const whatsappNumber = "+917975310662";
+        const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+        window.open(url, "_blank");
+    }
+
+    // Attach listener directly instead of relying on inline onsubmit
+    const form = document.getElementById('inquiryForm') as HTMLFormElement;
+    form.addEventListener('submit', sendToWhatsApp);
+</script>

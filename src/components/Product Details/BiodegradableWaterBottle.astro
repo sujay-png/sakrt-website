@@ -1,22 +1,22 @@
 ---
 /* src/components/BiodegradableWaterBottle.astro */
+import EnquiryForm from "../EnquiryForm.astro";
 ---
 
 <section class="product-detail-section">
   <div class="product-container">
-
     <!-- LEFT COLUMN: Product Gallery & Schematics -->
     <div class="left-column">
-      
       <!-- Main Featured Image Showcase -->
       <div class="main-image-card">
         <!-- Replace src with your real product image path -->
-        <img 
-          src="/src/images/biodegradable_water.png" 
-          alt="Biodegradable Water Bottle" 
-          class="product-image" 
+         
+        <img
+          src="/src/images/biodegradable_water.png"
+          alt="Biodegradable Water Bottle"
+          class="product-image"
         />
-        
+
         <!-- Floating Material Focus Tag -->
         <div class="floating-material-card">
           <span class="tag-label">MATERIAL FOCUS</span>
@@ -26,7 +26,6 @@
 
       <!-- Secondary Info Cards Grid -->
       <div class="schematics-grid">
-        
         <!-- Technical Schematic Card -->
         <div class="spec-card schematic-card">
           <div class="schematic-diagram">
@@ -41,22 +40,26 @@
         <!-- Total Capacity Card -->
         <div class="spec-card capacity-card">
           <div class="leaf-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"></path>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"
+              ></path>
             </svg>
           </div>
           <h3 class="capacity-number">650ml</h3>
           <p class="card-caption">TOTAL CAPACITY</p>
         </div>
-
       </div>
-
     </div>
 
     <!-- RIGHT COLUMN: Details, Specs, & Inquire Form -->
     <div class="right-column">
       <div class="product-info-card">
-        
         <!-- Badges -->
         <div class="badge-group">
           <span class="badge lime-badge">CPCB CERTIFIED</span>
@@ -66,7 +69,7 @@
         <!-- Title & Description -->
         <h1 class="product-title">Biodegradable<br />Water Bottles</h1>
         <p class="product-description">
-          Engineering the future of hydration. A bottle designed by nature, 
+          Engineering the future of hydration. A bottle designed by nature,
           refined by technology, and returned to the earth in 180 days.
         </p>
 
@@ -74,7 +77,6 @@
         <div class="tech-specs-container">
           <h2 class="specs-section-title">TECHNICAL SPECIFICATIONS</h2>
           <div class="specs-grid">
-            
             <div class="spec-item">
               <span class="spec-label">COMPOSITION</span>
               <span class="spec-value">100% Bio-Polymer</span>
@@ -97,50 +99,24 @@
 
           </div>
         </div>
-
-        <!-- Dark Bulk Supply Form Card -->
-        <div class="inquiry-card">
-          <h3 class="inquiry-title">Inquire for Bulk Supply</h3>
-          
-          <form class="inquiry-form" onsubmit="event.preventDefault();">
-            <div class="input-group">
-              <input type="text" placeholder="Full Name" required class="form-input" />
-            </div>
-
-            <div class="input-group">
-              <input type="email" placeholder="Business Email" required class="form-input" />
-            </div>
-
-            <div class="input-group">
-              <select class="form-select" required>
-                <option value="" disabled selected>Quantity: 1k - 5k units</option>
-                <option value="1k-5k">1k - 5k units</option>
-                <option value="5k-10k">5k - 10k units</option>
-                <option value="10k+">10k+ units</option>
-              </select>
-              <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </div>
-
-            <button type="submit" class="submit-btn">
-              REQUEST TECHNICAL QUOTE
-            </button>
-          </form>
-        </div>
+       <EnquiryForm/>
 
         <!-- Footer Verification Tag -->
         <div class="verified-footer">
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg
+            class="check-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
           <span>VERIFIED CIRCULAR ECONOMY ASSET</span>
         </div>
-
       </div>
     </div>
-
   </div>
 </section>
 
@@ -151,7 +127,11 @@
     background-color: #f3f4f1;
     padding: 3rem 1.5rem;
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
   }
 
   .product-container {
@@ -204,7 +184,8 @@
 
   .tag-label {
     display: block;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.65rem;
     font-weight: 700;
     color: #cff737;
@@ -213,7 +194,7 @@
   }
 
   .tag-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: "Playfair Display", Georgia, serif;
     font-size: 1.15rem;
     font-weight: 600;
     color: #ffffff;
@@ -239,7 +220,8 @@
   }
 
   .card-caption {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.68rem;
     font-weight: 700;
     color: #727a75;
@@ -264,7 +246,8 @@
   .height-indicator {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.625rem;
     font-weight: 700;
     color: #2b332e;
@@ -295,7 +278,7 @@
   }
 
   .capacity-number {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: "Playfair Display", Georgia, serif;
     font-size: 2.25rem;
     font-weight: 600;
     color: #0e2d1f;
@@ -320,7 +303,8 @@
   .badge {
     padding: 0.35rem 0.65rem;
     border-radius: 4px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.625rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -338,7 +322,7 @@
 
   /* Product Title & Info */
   .product-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: "Playfair Display", Georgia, serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: #0e2d1f;
@@ -362,7 +346,8 @@
   }
 
   .specs-section-title {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.725rem;
     font-weight: 700;
     color: #374151;
@@ -383,7 +368,8 @@
   }
 
   .spec-label {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.625rem;
     font-weight: 700;
     color: #9ca3af;
@@ -396,100 +382,13 @@
     color: #1f2937;
   }
 
-  /* Bulk Supply Form Box */
-  .inquiry-card {
-    background-color: #0e2d1f;
-    border-radius: 14px;
-    padding: 1.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .inquiry-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 0 0 1.25rem 0;
-  }
-
-  .inquiry-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-
-  .input-group {
-    position: relative;
-    width: 100%;
-  }
-
-  .form-input,
-  .form-select {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    padding: 0.85rem 1rem;
-    font-size: 0.875rem;
-    color: #ffffff;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-input::placeholder {
-    color: #8da397;
-  }
-
-  .form-input:focus,
-  .form-select:focus {
-    border-color: #a3e635;
-  }
-
-  .form-select {
-    appearance: none;
-    -webkit-appearance: none;
-    color: #8da397;
-    cursor: pointer;
-  }
-
-  .select-arrow {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
-    color: #8da397;
-    pointer-events: none;
-  }
-
-  .submit-btn {
-    width: 100%;
-    background-color: #bef264;
-    color: #0e2d1f;
-    border: none;
-    border-radius: 8px;
-    padding: 1rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 0.35rem;
-  }
-
-  .submit-btn:hover {
-    background-color: #a3e635;
-  }
-
   /* Verified Footer Tag */
   .verified-footer {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.65rem;
     font-weight: 700;
     color: #6b7280;

@@ -1,6 +1,5 @@
 ---
-/* src/components/Product Details/Films.astro */
-import productImg from '../../images/compostable_film.png';
+/* src/components/CompostableBag.astro */
 ---
 
 <section class="product-detail-section">
@@ -8,45 +7,46 @@ import productImg from '../../images/compostable_film.png';
 
     <!-- LEFT COLUMN: Product Gallery & Schematics -->
     <div class="left-column">
-
+      
       <!-- Main Featured Image Showcase -->
       <div class="main-image-card">
-        <img
-          src={productImg.src}
-          alt="Compostable Films"
-          class="product-image"
+        <!-- Replace src with your real product image path -->
+        <img 
+          src="/src/images/compostable-bag.webp" 
+          alt="Compostable Bags" 
+          class="product-image" 
         />
-
+        
         <!-- Floating Material Focus Tag -->
         <div class="floating-material-card">
           <span class="tag-label">MATERIAL FOCUS</span>
-          <h4 class="tag-title">Bio-Polymer Film</h4>
+          <h4 class="tag-title">100% Plant-Based Polymer</h4>
         </div>
       </div>
 
       <!-- Secondary Info Cards Grid -->
       <div class="schematics-grid">
-
+        
         <!-- Technical Schematic Card -->
         <div class="spec-card schematic-card">
           <div class="schematic-diagram">
             <div class="height-indicator">
-              <span>15&ndash;50 MICRONS</span>
+              <span>240MM HEIGHT</span>
             </div>
             <div class="bottle-outline"></div>
           </div>
           <p class="card-caption">TECHNICAL SCHEMATIC 01</p>
         </div>
 
-        <!-- Size Range Card -->
+        <!-- Total Capacity Card -->
         <div class="spec-card capacity-card">
           <div class="leaf-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"></path>
             </svg>
           </div>
-          <h3 class="capacity-number">15&ndash;50&micro;</h3>
-          <p class="card-caption">THICKNESS RANGE</p>
+          <h3 class="capacity-number">650ml</h3>
+          <p class="card-caption">TOTAL CAPACITY</p>
         </div>
 
       </div>
@@ -56,7 +56,7 @@ import productImg from '../../images/compostable_film.png';
     <!-- RIGHT COLUMN: Details, Specs, & Inquire Form -->
     <div class="right-column">
       <div class="product-info-card">
-
+        
         <!-- Badges -->
         <div class="badge-group">
           <span class="badge lime-badge">CPCB CERTIFIED</span>
@@ -64,25 +64,25 @@ import productImg from '../../images/compostable_film.png';
         </div>
 
         <!-- Title & Description -->
-        <h1 class="product-title">Compostable Films for Packaging,<br />Wrapping &amp; Lamination</h1>
+        <h1 class="product-title">Eco-Friendly carry bag for Shopping,<br />Food, and Everyday Use</h1>
         <p class="product-description">
-          1) Made from 100% biodegradable, plant-based bio-polymers.
-          2) Transparent and opaque options with heat-sealable finish.
-          3) Custom thickness from 15 to 50 microns for any application.
-          4) Certified safe for direct food contact.
-          5) Ideal for wrapping, laminating, and converting into bags.
-          6) Breaks down naturally without leaving microplastics behind.
-          7) Packaging film.
+          1)Made from 100% biodegradable, plant-based resources.
+          2)Supports custom photo printing for vibrant, attention-grabbing designs.
+         3)Breaks down naturally without polluting soil or water.
+         4)Strong enough for everyday shopping and handling.
+         5)Ideal for eco-conscious brands, events, and retail stores.
+          6)A clean, sustainable replacement for traditional plastic bags.
+         7)Carry bag.
         </p>
 
         <!-- Technical Specifications Grid -->
         <div class="tech-specs-container">
           <h2 class="specs-section-title">TECHNICAL SPECIFICATIONS</h2>
           <div class="specs-grid">
-
+            
             <div class="spec-item">
               <span class="spec-label">COMPOSITION</span>
-              <span class="spec-value">Bio-Polymer Film</span>
+              <span class="spec-value">100% Bio-Polymer</span>
             </div>
 
             <div class="spec-item">
@@ -91,8 +91,8 @@ import productImg from '../../images/compostable_film.png';
             </div>
 
             <div class="spec-item">
-              <span class="spec-label">THICKNESS</span>
-              <span class="spec-value">15&ndash;50 Microns</span>
+              <span class="spec-label">TOXICITY</span>
+              <span class="spec-value">Zero-BPA / Non-Toxic</span>
             </div>
 
             <div class="spec-item">
@@ -106,7 +106,7 @@ import productImg from '../../images/compostable_film.png';
         <!-- Dark Bulk Supply Form Card -->
         <div class="inquiry-card">
           <h3 class="inquiry-title">Inquire for Bulk Supply</h3>
-
+          
           <form class="inquiry-form" onsubmit="event.preventDefault();">
             <div class="input-group">
               <input type="text" placeholder="Full Name" required class="form-input" />
@@ -189,8 +189,8 @@ import productImg from '../../images/compostable_film.png';
   }
 
   .product-image {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 120%;
     object-fit: cover;
     object-position: center;
   }

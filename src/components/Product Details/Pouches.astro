@@ -1,6 +1,7 @@
 ---
 /* src/components/Product Details/Pouches.astro */
 import productImg from '../../images/biodegradable_greybags.png';
+import EnquiryForm from '../EnquiryForm.astro';
 ---
 
 <section class="product-detail-section">
@@ -103,36 +104,15 @@ import productImg from '../../images/biodegradable_greybags.png';
           </div>
         </div>
 
-        <!-- Dark Bulk Supply Form Card -->
-        <div class="inquiry-card">
-          <h3 class="inquiry-title">Inquire for Bulk Supply</h3>
-
-          <form class="inquiry-form" onsubmit="event.preventDefault();">
-            <div class="input-group">
-              <input type="text" placeholder="Full Name" required class="form-input" />
-            </div>
-
-            <div class="input-group">
-              <input type="email" placeholder="Business Email" required class="form-input" />
-            </div>
-
-            <div class="input-group">
-              <select class="form-select" required>
-                <option value="" disabled selected>Quantity: 1k - 5k units</option>
-                <option value="1k-5k">1k - 5k units</option>
-                <option value="5k-10k">5k - 10k units</option>
-                <option value="10k+">10k+ units</option>
-              </select>
-              <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </div>
-
-            <button type="submit" class="submit-btn">
-              REQUEST TECHNICAL QUOTE
-            </button>
-          </form>
-        </div>
+      <EnquiryForm  title="Biodegradable<br />Water Bottles"
+  description="Engineering the future of hydration. A bottle designed by nature, refined by technology, and returned to the earth in 180 days."
+  specs={[
+    { label: 'COMPOSITION', value: '100% Bio-Polymer' },
+    { label: 'CERTIFICATION', value: 'ISO 17088 / CPCB' },
+    { label: 'TOXICITY', value: 'Zero-BPA / Non-Toxic' },
+    { label: 'DEGRADATION', value: '180 Days (Industrial)' },
+  ]}
+  whatsappNumber="917975310662" />
 
         <!-- Footer Verification Tag -->
         <div class="verified-footer">
