@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../../layouts/Layout.astro';
+import { wpquery } from '../../lib/wordpress';
+
+// 1. Tell Astro which paths (slugs) to build
+export async function getStaticPaths() {
+  const data = await wpquery({
+    query: `
+      query GetAllSlugs {
+        posts(first: 100) {
+          nodes {
+            slug
+            title
+            content
+            date
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            categories {
+              nodes {
+                name
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+
+  // Return the paths and pass the post data as a prop
+  return data.posts.nodes.map((post: any) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+// 2. Define the Props interface to clear TypeScript errors
+interface Props {
+  post: any;
+}
+
+// 3. Access the post data passed from getStaticPaths
+const { post } = Astro.props;
+
+// 4. Format Date
+const date = new Date(post.date);
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout title={`${post.title} | Sakrt`}>
+  <main class="single-post-container">
+    <article>
+      <header class="post-header">
+        <div class="post-meta">
+          {post.categories.nodes.map((category: any) => (
+            <span class="category-badge">{category.name}</span>
+          ))}
+          <span class="date">{formattedDate}</span>
+        </div>
+        
+        <h1 class="post-title">{post.title}</h1>
+      </header>
+
+      {post.featuredImage?.node && (
+        <div class="hero-image">
+          <img 
+            src={post.featuredImage.node.sourceUrl} 
+            alt={post.featuredImage.node.altText || post.title} 
+          />
+        </div>
+      )}
+
+      <!-- Render the WordPress HTML content safely with closing tag -->
+      <div class="post-content wp-content" set:html={post.content}></div>
+    </article>
+    
+    <div class="back-link">
+      <a href="/blogs">← Back to all Journals</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .single-post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10rem 2rem 4rem; /* Padding for fixed header */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .post-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-badge {
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .date {
+    color: #666;
+    font-size: 0.875rem;
+  }
+
+  .post-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: #111;
+  }
+
+  .hero-image {
+    width: 100%;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .back-link {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+
+  .back-link a {
+    color: #1b3d2f;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: #a3d200;
+  }
+</style>
+
+<!-- Use is:global to allow these styles to penetrate the injected WordPress HTML -->
+<style is:global>
+  .wp-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .wp-content h2, 
+  .wp-content h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #1b3d2f;
+  }
+
+  .wp-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .wp-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  /* ==============================================
+     FAQ / ACCORDION STYLES FOR WORDPRESS BLOCKS
+     ============================================== */
+  
+  /* Target standard HTML5 details/summary blocks */
+  .wp-content details,
+  .wp-content .wp-block-yoast-faq-block {
+    background-color: #f9f9f9;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .wp-content summary,
+  .wp-content .schema-faq-question {
+    padding: 1.25rem 1.5rem;
+    font-weight: bold;
+    color: #1b3d2f;
+    cursor: pointer;
+    font-size: 1.1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+  }
+
+  /* Add custom plus/minus arrow for details blocks */
+  .wp-content summary::after {
+    content: "+";
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1;
+    color: #1b3d2f;
+    transition: transform 0.3s ease;
+  }
+
+  .wp-content details[open] summary::after {
+    content: "−";
+    transform: rotate(180deg);
+  }
+
+  .wp-content summary:hover {
+    background-color: #f0f0f0;
+  }
+
+  /* Hide the default browser arrow */
+  .wp-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .wp-content details p,
+  .wp-content .schema-faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    margin-bottom: 0;
+    color: #555;
+    font-size: 1rem;
+  }
+</style>
