@@ -40,9 +40,7 @@ import ContactInfoCards from '../../components/ContactUs/ContactInfoCards.astro'
   .contact-container {
     max-width: 1340px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
-    padding-left: 1.75rem;
-    padding-right: 6.5rem;
+    padding: 8rem 1.5rem 3rem;
     font-family: Inter, sans-serif;
   }
 
@@ -54,6 +52,10 @@ import ContactInfoCards from '../../components/ContactUs/ContactInfoCards.astro'
   }
 
   @media (min-width: 900px) {
+    .contact-container {
+      padding-right: 6.5rem;
+    }
+    
     .cards-grid {
       grid-template-columns: 1.4fr 1fr;
       grid-template-rows: auto auto;

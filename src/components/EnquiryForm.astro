@@ -17,41 +17,108 @@
     </div>
 
     <div class="input-group">
-        <input type="text" id="itemQuantity" placeholder=" item quantity" required class="form-input" />
+        <div class="number-wrapper">
+            <input type="number" id="itemQuantity" placeholder="Item Quantity" required class="form-input no-spin" min="1" value="1" />
+            <div class="spin-arrows">
+                <button type="button" class="spin-up" aria-label="Increase" onclick="document.getElementById('itemQuantity').stepUp()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                </button>
+                <button type="button" class="spin-down" aria-label="Decrease" onclick="document.getElementById('itemQuantity').stepDown()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+            </div>
+        </div>
     </div>
-    <textarea id="message" placeholder="Message" required class="form-input"></textarea>
+    <div class="input-group full-width">
+        <textarea id="message" placeholder="Message" required class="form-input"></textarea>
+    </div>
 
-    <button type="submit" class="submit-btn">
-        REQUEST TECHNICAL QUOTE
-    </button>
+    <div class="full-width">
+        <button type="submit" class="submit-btn">
+            REQUEST TECHNICAL QUOTE
+        </button>
+    </div>
 </form>
 </div>
 
 <style>
     .inquiry-card {
-        background-color: #0e2d1f;
-        border-radius: 14px;
-        padding: 1.75rem;
-        margin-bottom: 1.5rem;
+        background-color: #0d3d26;
+        border-radius: 20px;
+        padding: 3rem 4rem;
     }
 
     .inquiry-title {
         font-family: "Playfair Display", Georgia, serif;
-        font-size: 1.35rem;
+        font-size: 2rem;
         font-weight: 600;
         color: #ffffff;
-        margin: 0 0 1.25rem 0;
+        margin: 0 0 2rem 0;
+        text-align: center;
     }
 
     .inquiry-form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.85rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .full-width {
+        grid-column: 1 / -1;
     }
 
     .input-group {
         position: relative;
         width: 100%;
+    }
+
+    /* Custom Number Input Spinners */
+    .number-wrapper {
+        position: relative;
+        width: 100%;
+    }
+    
+    .no-spin::-webkit-inner-spin-button,
+    .no-spin::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .no-spin {
+        -moz-appearance: textfield;
+        padding-right: 2.5rem;
+    }
+
+    .spin-arrows {
+        position: absolute;
+        right: 0.5rem;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .spin-arrows button {
+        background: transparent;
+        border: none;
+        color: #bef264;
+        cursor: pointer;
+        padding: 0;
+        height: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .spin-arrows button svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.1s;
+    }
+    
+    .spin-arrows button:hover svg {
+        transform: scale(1.2);
     }
 
     .form-input,
@@ -114,6 +181,15 @@
 
     .submit-btn:hover {
         background-color: #a3e635;
+    }
+
+    @media (max-width: 768px) {
+        .inquiry-form {
+            grid-template-columns: 1fr;
+        }
+        .inquiry-card {
+            padding: 2rem 1.5rem;
+        }
     }
 </style>
 <script>

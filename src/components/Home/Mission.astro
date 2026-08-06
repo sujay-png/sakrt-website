@@ -1,0 +1,143 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+---
+
+
+
+  <section class="mission-section">
+    <div class="mission-container">
+      
+      <!-- Left Column: Heading, Subtitle & Description -->
+      <div class="mission-left">
+        <span class="section-tag">OUR MISSION</span>
+        <h2 class="mission-title">Let's Get Back To<br />Nature.</h2>
+        <p class="mission-desc">
+          SAKRT is a CPCB certified manufacturer and distributor of biodegradable solutions. From water bottles to agricultural products, we help businesses replace plastic with high-performance, earth-friendly alternatives.
+        </p>
+      </div>
+
+      <!-- Right Column: Certification Info -->
+      <div class="mission-right">
+        <span class="cert-tag">Certification</span>
+        <div class="cert-value">CPCB 100%</div>
+        <div class="cert-sub">Government Approved Bio-Plastics</div>
+      </div>
+
+    </div>
+  </section>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Space+Mono:wght@400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --dark-green: #0b2218;
+  }
+
+  .mission-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 40px 24px;
+    z-index: 10;
+    box-sizing: border-box;
+  }
+
+  /* 2. Content Grid Container */
+  .mission-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 180px;
+  }
+
+  /* 3. Left Column Content */
+  .section-tag {
+     font-family:'Space Mono', monospace;
+    font-size:14px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#8a9892;
+    display:block;
+    margin-bottom:34px;
+  }
+
+  .mission-title {
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-weight:540;
+    line-height:.98;
+    letter-spacing:-0.03em;
+    color:#0d3426;
+    margin:0 0 48px;
+  }
+
+  .mission-desc {
+     max-width:650px;
+    font-family:system-ui,sans-serif;
+    font-size:20px;
+    line-height:1.9;
+    color:#50695f;
+    font-weight:400;
+  }
+
+  .mission-left{
+    flex:0 0 58%;
+    max-width:720px;
+}
+  /* 4. Right Column Certification Box */
+  .mission-right {
+      flex:0 0 26%;
+    padding-top:48px;
+    text-align:left; 
+  }
+
+   
+  .cert-tag {
+    font-family:'Space Mono', monospace;
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#9aa7a0;
+    margin-bottom:18px;
+    display:block;
+  }
+
+  .cert-value {
+     font-family:'Cormorant Garamond', serif;
+    font-size:4rem;
+    font-weight:300;
+    line-height:1;
+    color:#163728;
+    margin-bottom:12px;
+  }
+
+  .cert-sub {
+   font-family:'Space Mono', monospace;
+    font-size:15px;
+    color:#8e9d95;
+    line-height:1.6;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .mission-container {
+      flex-direction: column;
+      padding: 0 24px;
+      gap: 40px;
+    }
+    .mission-right {
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      width: 100%;
+    }
+  }
+</style>
+

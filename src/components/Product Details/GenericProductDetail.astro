@@ -1,0 +1,531 @@
+---
+import EnquiryForm from '../EnquiryForm.astro';
+
+export interface Props {
+  productName?: string;
+  productImage?: string;
+}
+
+const { 
+  productName = "Designer Tableware for Dining, Events & Takeaway",
+  productImage = "/images/Tableware.png" // Fallback to an existing image
+} = Astro.props;
+---
+
+<section class="product-detail-section">
+  <div class="product-container">
+
+    <!-- LEFT COLUMN: Product Gallery & Schematics -->
+    <div class="left-column">
+
+      <!-- Main Featured Image Showcase -->
+      <div class="main-image-card">
+        <img
+          src={productImage}
+          alt={productName}
+          class="product-image"
+        />
+
+        <!-- Floating Material Focus Tag -->
+        <div class="floating-material-card">
+          <span class="tag-label">MATERIAL FOCUS</span>
+          <h4 class="tag-title">Eco-Friendly Compostable Material</h4>
+        </div>
+      </div>
+
+      <!-- Secondary Info Cards Grid -->
+      <div class="schematics-grid">
+
+        <!-- Technical Schematic Card -->
+        <div class="spec-card schematic-card">
+          <div class="schematic-diagram">
+            <div class="height-indicator">
+              <span>CERTIFIED</span>
+            </div>
+            <div class="bottle-outline"></div>
+          </div>
+          <p class="card-caption">TECHNICAL SCHEMATIC 01</p>
+        </div>
+
+        <!-- Size Range Card -->
+        <div class="spec-card capacity-card">
+          <div class="leaf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"></path>
+            </svg>
+          </div>
+          <h3 class="capacity-number">100%</h3>
+          <p class="card-caption">COMPOSTABLE</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: Details, Specs, & Inquire Form -->
+    <div class="right-column">
+      <div class="product-info-card">
+
+        <!-- Badges -->
+        <div class="badge-group">
+          <span class="badge lime-badge">ECO SAFE</span>
+          <span class="badge muted-badge">COMPOSTABLE</span>
+        </div>
+
+        <!-- Title & Description -->
+        <h1 class="product-title">{productName}</h1>
+        <p class="product-description">
+          1) Molded from 100% renewable, earth-friendly materials.<br/>
+          2) Sturdy enough for high-performance usage.<br/>
+          3) Completely safe with no chemical leaching.<br/>
+          4) Elegant designer finish suitable for all applications.<br/>
+          5) Composts fully within 90-180 days, leaving zero waste behind.
+        </p>
+
+        <!-- Technical Specifications Grid -->
+        <div class="tech-specs-container">
+          <h2 class="specs-section-title">TECHNICAL SPECIFICATIONS</h2>
+          <div class="specs-grid">
+
+            <div class="spec-item">
+              <span class="spec-label">COMPOSITION</span>
+              <span class="spec-value">Plant-based materials</span>
+            </div>
+
+            <div class="spec-item">
+              <span class="spec-label">CERTIFICATION</span>
+              <span class="spec-value">ISO 17088 / CPCB</span>
+            </div>
+
+            <div class="spec-item">
+              <span class="spec-label">PERFORMANCE</span>
+              <span class="spec-value">High Durability</span>
+            </div>
+
+            <div class="spec-item">
+              <span class="spec-label">DEGRADATION</span>
+              <span class="spec-value">90-180 Days (Industrial)</span>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- Footer Verification Tag -->
+        <div class="verified-footer">
+          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <span>VERIFIED CIRCULAR ECONOMY ASSET</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-wrapper">
+    <EnquiryForm />
+  </div>
+</section>
+
+<style>
+  .form-wrapper {
+    max-width: 1240px;
+    margin: 3rem auto 0;
+  }
+  /* Base Layout */
+  .product-detail-section {
+    width: 100%;
+    background-color: #f3f4f1;
+    padding: 8rem 1.5rem 3rem;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .product-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  /* LEFT COLUMN STYLES */
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Main Featured Image Card */
+  .main-image-card {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background-color: #ebece8;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Floating Tag inside Main Image */
+  .floating-material-card {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background-color: #0d3d26;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    max-width: 260px;
+  }
+
+  .tag-label {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #cff737;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.4rem;
+  }
+
+  .tag-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  /* Schematics & Spec Cards Grid */
+  .schematics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .spec-card {
+    height: 220px;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .card-caption {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #727a75;
+    letter-spacing: 0.12em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* Schematic Card Specifics */
+  .schematic-card {
+    background-color: #eeebe6;
+  }
+
+  .schematic-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1.25rem;
+  }
+
+  .height-indicator {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #2b332e;
+    letter-spacing: 0.1em;
+  }
+
+  .bottle-outline {
+    width: 65px;
+    height: 110px;
+    border: 1.5px dashed rgba(43, 51, 46, 0.4);
+    border-radius: 6px;
+    position: relative;
+  }
+
+  /* Capacity Card Specifics */
+  .capacity-card {
+    background-color: #ebece8;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .leaf-icon {
+    width: 32px;
+    height: 32px;
+    color: #0d3d26;
+    margin-bottom: 0.5rem;
+  }
+
+  .capacity-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #0d3d26;
+    margin: 0 0 0.25rem 0;
+  }
+
+  /* RIGHT COLUMN STYLES */
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .product-info-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 3rem 2.5rem 2.5rem 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Badges */
+  .badge-group {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .badge {
+    padding: 0.35rem 0.65rem;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .lime-badge {
+    background-color: #d9f99d;
+    color: #365314;
+  }
+
+  .muted-badge {
+    background-color: #e5e7eb;
+    color: #4b5563;
+  }
+
+  /* Product Title & Info */
+  .product-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #0d3d26;
+    line-height: 1.05;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .product-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #525a55;
+    margin: 0 0 2.25rem 0;
+  }
+
+  /* Specifications Grid */
+  .tech-specs-container {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .specs-section-title {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.725rem;
+    font-weight: 700;
+    color: #374151;
+    letter-spacing: 0.12em;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .spec-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 0.08em;
+  }
+
+  .spec-value {
+    font-size: 0.925rem;
+    font-weight: 700;
+    color: #1f2937;
+  }
+
+  /* Bulk Supply Form Box */
+  .inquiry-card {
+    background-color: #0d3d26;
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .inquiry-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .input-group {
+    position: relative;
+    width: 100%;
+  }
+
+  .form-input,
+  .form-select {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.875rem;
+    color: #ffffff;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-input::placeholder {
+    color: #8da397;
+  }
+
+  .form-input:focus,
+  .form-select:focus {
+    border-color: #a3e635;
+  }
+
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    color: #8da397;
+    cursor: pointer;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #8da397;
+    pointer-events: none;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background-color: #bef264;
+    color: #0d3d26;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 0.35rem;
+  }
+
+  .submit-btn:hover {
+    background-color: #a3e635;
+  }
+
+  /* Verified Footer Tag */
+  .verified-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #6b7280;
+    letter-spacing: 0.08em;
+    padding-left: 0.25rem;
+    margin-top: auto;
+  }
+
+  .check-icon {
+    width: 14px;
+    height: 14px;
+    color: #6b7280;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .product-container {
+      grid-template-columns: 1fr;
+    }
+
+    .main-image-card {
+      height: 420px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .product-title {
+      font-size: 2.5rem;
+    }
+
+    .schematics-grid,
+    .specs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-info-card {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>

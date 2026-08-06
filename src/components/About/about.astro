@@ -93,8 +93,8 @@
             <circle cx="100" cy="100" r="55" class="wheel-ring ring-mid" />
             <circle cx="100" cy="100" r="28" class="wheel-ring ring-inner" />
 
-            <!-- Spiral Sweep Line -->
-            <path d="M 100 100 A 20 20 0 0 1 120 100 A 40 40 0 0 1 80 100 A 60 60 0 0 1 160 100 A 85 85 0 0 1 15 100" class="wheel-spiral" />
+            <!-- Dotted Leaf Outline -->
+            <path d="M 30 100 C 70 40 130 40 170 100 C 130 160 70 160 30 100 Z" class="wheel-spiral" />
 
             <!-- Spoke Axis Lines (Animate sequentially) -->
             <line x1="100" y1="15" x2="100" y2="185" class="wheel-spoke spoke-1" />
@@ -102,10 +102,7 @@
             <line x1="40" y1="40" x2="160" y2="160" class="wheel-spoke spoke-3" />
             <line x1="40" y1="160" x2="160" y2="40" class="wheel-spoke spoke-4" />
 
-            <!-- Rotating Needle Hand -->
-            <g class="wheel-rotate-layer">
-              <line x1="100" y1="100" x2="185" y2="100" class="wheel-sweep-hand" />
-            </g>
+
           </svg>
         </div>
       </div>
@@ -240,7 +237,7 @@
   /* Main Title Styling */
   h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(3.8rem, 7.5vw, 6.2rem);
+    font-size: clamp(3rem, 5vw, 5.2rem);
     line-height: 0.98;
     font-weight: 400;
     color: #0f3223;
@@ -465,6 +462,12 @@
     box-sizing: border-box;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: transform 0.35s ease;
+  }
+  
+  @media (max-width: 900px) {
+    .protocol-card {
+      width: 100%;
+    }
   }
 
   .protocol-card:hover {
@@ -726,7 +729,7 @@
   /* Matching Heavy Serif Title Styling */
   .cta-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-size: clamp(3rem, 5vw, 5.2rem);
     font-weight: 800; /* Bold/Heavy weight to match image */
     color: #ffffff;
     margin: 0;

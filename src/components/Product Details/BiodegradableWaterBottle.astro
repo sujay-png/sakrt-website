@@ -1,430 +1,401 @@
 ---
-/* src/components/BiodegradableWaterBottle.astro */
-import EnquiryForm from "../EnquiryForm.astro";
+import productImg from '../../images/biodegradable_water.png';
+import CategoryGrid from '../Shared/CategoryGrid.astro';
+import ModernFAQ from '../Shared/ModernFAQ.astro';
+import CallToAction from '../../components/Home/CallToAction.astro';
+
+const relatedProducts = [
+  { name: "Compostable Wrapping Film", slug: "compostable-wrapping-film", category: "compostable-films", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
+  { name: "Compostable Medical Waste Bag", slug: "compostable-medical-waste-bags", category: "compostable-bags", image: "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp" },
+  { name: "Compostable Custom Made Bag", slug: "compostable-custom-made-bag", category: "compostable-bags", image: "/compostable-bags/imgi_6_biodegradable-bags-compostable-products-eco-product.-3.webp" },
+  { name: "Compostable Mulch Films", slug: "compostable-mulch-films", category: "compostable-films", image: "/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp" }
+];
+
+const faqs = [
+  { question: "Do biodegradable plastic water bottles does not contain plastic content?", answer: "Our biodegradable water bottles are 100% free of traditional petroleum-based plastics. They are made from plant-based bioplastics like PLA which break down naturally." },
+  { question: "How biodegradable plastic bottles are made?", answer: "They are manufactured using plant starches (like corn or sugarcane) which are processed into biopolymers that mimic the strength and clarity of plastic but remain compostable." },
+  { question: "What material is 100% biodegradable?", answer: "Materials such as PLA (Polylactic Acid) and PHA are fully biodegradable when placed in the correct composting environment." },
+  { question: "What is the best eco-friendly water bottle?", answer: "Our biodegradable bottles offer the convenience of single-use bottles without the environmental guilt, making them perfect for events, hotels, and corporate use." },
+  { question: "What materials are used to make biodegradable bottles?", answer: "We use high-quality, food-safe plant-based resins and bagasse derivatives to ensure strength, clarity, and complete compostability." }
+];
 ---
 
-<section class="product-detail-section">
-  <div class="product-container">
-    <!-- LEFT COLUMN: Product Gallery & Schematics -->
-    <div class="left-column">
-      <!-- Main Featured Image Showcase -->
-      <div class="main-image-card">
-        <!-- Replace src with your real product image path -->
-         
-        <img
-          src="/src/images/biodegradable_water.png"
-          alt="Biodegradable Water Bottle"
-          class="product-image"
-        />
-
-        <!-- Floating Material Focus Tag -->
-        <div class="floating-material-card">
-          <span class="tag-label">MATERIAL FOCUS</span>
-          <h4 class="tag-title">100% Plant-Based Polymer</h4>
-        </div>
+<section class="bottle-page">
+  <div class="content-container">
+    
+    <!-- Hero Section -->
+    <div class="hero-grid">
+      <div class="hero-image">
+        <img src={productImg.src} alt="Eco Friendly Biodegradable Bottle" />
       </div>
-
-      <!-- Secondary Info Cards Grid -->
-      <div class="schematics-grid">
-        <!-- Technical Schematic Card -->
-        <div class="spec-card schematic-card">
-          <div class="schematic-diagram">
-            <div class="height-indicator">
-              <span>240MM HEIGHT</span>
-            </div>
-            <div class="bottle-outline"></div>
+      
+      <div class="hero-content">
+        <h1 class="hero-title">Eco Friendly Biodegradable Bottles</h1>
+        
+        <div class="feature-icons">
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Certified Product</span>
           </div>
-          <p class="card-caption">TECHNICAL SCHEMATIC 01</p>
-        </div>
-
-        <!-- Total Capacity Card -->
-        <div class="spec-card capacity-card">
-          <div class="leaf-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-            >
-              <path
-                d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"
-              ></path>
-            </svg>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Secure Delivery</span>
           </div>
-          <h3 class="capacity-number">650ml</h3>
-          <p class="card-caption">TOTAL CAPACITY</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT COLUMN: Details, Specs, & Inquire Form -->
-    <div class="right-column">
-      <div class="product-info-card">
-        <!-- Badges -->
-        <div class="badge-group">
-          <span class="badge lime-badge">CPCB CERTIFIED</span>
-          <span class="badge muted-badge">COMPOSTABLE</span>
-        </div>
-
-        <!-- Title & Description -->
-        <h1 class="product-title">Biodegradable<br />Water Bottles</h1>
-        <p class="product-description">
-          Engineering the future of hydration. A bottle designed by nature,
-          refined by technology, and returned to the earth in 180 days.
-        </p>
-
-        <!-- Technical Specifications Grid -->
-        <div class="tech-specs-container">
-          <h2 class="specs-section-title">TECHNICAL SPECIFICATIONS</h2>
-          <div class="specs-grid">
-            <div class="spec-item">
-              <span class="spec-label">COMPOSITION</span>
-              <span class="spec-value">100% Bio-Polymer</span>
-            </div>
-
-            <div class="spec-item">
-              <span class="spec-label">CERTIFICATION</span>
-              <span class="spec-value">ISO 17088 / CPCB</span>
-            </div>
-
-            <div class="spec-item">
-              <span class="spec-label">TOXICITY</span>
-              <span class="spec-value">Zero-BPA / Non-Toxic</span>
-            </div>
-
-            <div class="spec-item">
-              <span class="spec-label">DEGRADATION</span>
-              <span class="spec-value">180 Days (Industrial)</span>
-            </div>
-
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+            <span>Custom Orders</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M21.5 22v-6h-6M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2"></path></svg>
+            <span>Easy Returns</span>
           </div>
         </div>
-       <EnquiryForm/>
 
-        <!-- Footer Verification Tag -->
-        <div class="verified-footer">
-          <svg
-            class="check-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          <span>VERIFIED CIRCULAR ECONOMY ASSET</span>
+        <h3 class="section-subtitle">About Our Biodegradable Bottles</h3>
+        <ul class="bullet-list">
+          <li>These biodegradable water bottles are made from plant-based materials that break down naturally without harming the environment.</li>
+          <li>Designed as an eco-friendly alternative to single-use plastic bottles.</li>
+          <li>Helps reduce plastic pollution and landfill waste.</li>
+          <li>Strong, durable, and suitable for daily water storage and transport.</li>
+          <li>Lightweight and easy to carry for travel, events, offices, and outdoor use.</li>
+          <li>Supports businesses and individuals moving toward sustainable packaging solutions.</li>
+          <li>Ideal for corporate events, hospitals, educational institutions, and eco-conscious brands.</li>
+          <li>Standard sizes available.</li>
+        </ul>
+
+        <div class="cpcb-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <span>CPCB CERTIFIED</span>
+        </div>
+
+        <div class="rating-row">
+          <span class="rating-text">5.0 / 5.0 from verified buyers & rating websites</span>
+          <div class="stars">
+            ★★★★★
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <a href="/contactus" class="btn btn-primary">ENQUIRE NOW</a>
+          <a href="/contactus" class="btn btn-outline">ORDER IN BULK</a>
         </div>
       </div>
     </div>
+
+    <!-- Why Choose Section -->
+    <div class="why-choose">
+      <h2>Why Choose Biodegradable Water Bottles</h2>
+      <p>Biodegradable water bottles are a smart step toward reducing plastic pollution without compromising convenience. Unlike traditional plastic bottles that remain in landfills and oceans for hundreds of years, these bottles are designed to break down naturally under the right conditions, leaving a much smaller environmental footprint.</p>
+      <p>One of the biggest advantages of biodegradable water bottles is their eco-friendly composition. Made from plant-based or compostable materials, they help lower dependence on fossil fuels and reduce harmful carbon emissions. This makes them an ideal solution for businesses, events, hospitals, and environmentally conscious consumers looking to adopt sustainable alternatives.</p>
+    </div>
+
+    <!-- Additional Details Grid -->
+    <div class="details-grid">
+      <div class="details-box">
+        <h3>Additional Product Details</h3>
+        <ul class="bullet-list">
+          <li>Made from plant-based, biodegradable materials instead of petroleum plastics.</li>
+          <li>Designed to break down naturally under proper composting or disposal conditions.</li>
+          <li>Strong, durable structure with leak-resistant design.</li>
+          <li>Lightweight and easy to carry.</li>
+          <li>Helps reduce plastic waste and carbon footprint.</li>
+          <li>Manufactured following eco-friendly production practices.</li>
+          <li>Available in multiple sizes and capacities.</li>
+        </ul>
+      </div>
+      <div class="details-box usage-box">
+        <h3>Usage Applications:</h3>
+        <ul class="bullet-list">
+          <li>Corporate offices promoting eco-friendly initiatives.</li>
+          <li>Hospitals & healthcare facilities reducing plastic waste.</li>
+          <li>Events, exhibitions & conferences as sustainable giveaway bottles.</li>
+          <li>Schools & colleges encouraging green habits among students.</li>
+          <li>Hotels & resorts offering eco-conscious guest amenities.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+      <div class="banner-tag">SAKRT - A brand of Innovy Innovations PVT LTD</div>
+      <h2>Choose SAKRT's Biodegradable<br/>Water Bottles</h2>
+      <p>Join the sustainability revolution today!<br/>Choose SAKRT's biodegradable products for your home, business, or event and make waste disposal environmentally responsible.</p>
+      <div class="action-buttons banner-buttons">
+        <a href="/contactus" class="btn btn-primary-light">ENQUIRE NOW</a>
+        <a href="/contactus" class="btn btn-outline-light">ORDER IN BULK</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <style>
-  /* Base Layout */
-  .product-detail-section {
-    width: 100%;
-    background-color: #f3f4f1;
-    padding: 3rem 1.5rem;
-    box-sizing: border-box;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      sans-serif;
+  .bottle-page {
+    background-color: var(--color-bg-page);
+    padding-top: 120px;
+    font-family: system-ui, -apple-system, sans-serif;
   }
 
-  .product-container {
+  .content-container {
     max-width: 1240px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 2rem;
-    align-items: start;
+    padding: 0 1.5rem;
   }
 
-  /* LEFT COLUMN STYLES */
-  .left-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  /* Main Featured Image Card */
-  .main-image-card {
-    position: relative;
-    width: 100%;
-    height: 520px;
-    background-color: #ebece8;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .product-image {
-    width: 50%;
-    height: 120%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  /* Floating Tag inside Main Image */
-  .floating-material-card {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background-color: #0e2d1f;
-    padding: 1.25rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    max-width: 260px;
-  }
-
-  .tag-label {
-    display: block;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #cff737;
-    letter-spacing: 0.12em;
-    margin-bottom: 0.4rem;
-  }
-
-  .tag-title {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 0;
-    line-height: 1.25;
-  }
-
-  /* Schematics & Spec Cards Grid */
-  .schematics-grid {
+  /* Hero Section */
+  .hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: 4rem;
+    margin-bottom: 4rem;
   }
 
-  .spec-card {
-    height: 220px;
-    border-radius: 16px;
-    padding: 1.5rem;
+  .hero-image {
+    background-color: #f7f8f6;
+    border-radius: 12px;
+    padding: 2rem;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-  }
-
-  .card-caption {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: #727a75;
-    letter-spacing: 0.12em;
-    margin: 0;
-    text-transform: uppercase;
-  }
-
-  /* Schematic Card Specifics */
-  .schematic-card {
-    background-color: #eeebe6;
-  }
-
-  .schematic-diagram {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100%;
-    gap: 1.25rem;
-  }
-
-  .height-indicator {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
-    font-weight: 700;
-    color: #2b332e;
-    letter-spacing: 0.1em;
-  }
-
-  .bottle-outline {
-    width: 65px;
-    height: 110px;
-    border: 1.5px dashed rgba(43, 51, 46, 0.4);
-    border-radius: 6px;
-    position: relative;
-  }
-
-  /* Capacity Card Specifics */
-  .capacity-card {
-    background-color: #ebece8;
     align-items: center;
-    justify-content: center;
-    text-align: center;
   }
 
-  .leaf-icon {
-    width: 32px;
-    height: 32px;
-    color: #0e2d1f;
-    margin-bottom: 0.5rem;
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
   }
 
-  .capacity-number {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 2.25rem;
-    font-weight: 600;
-    color: #0e2d1f;
-    margin: 0 0 0.25rem 0;
-  }
-
-  /* RIGHT COLUMN STYLES */
-  .product-info-card {
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 3rem 2.5rem 2.5rem 2.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  }
-
-  /* Badges */
-  .badge-group {
-    display: flex;
-    gap: 0.6rem;
-    margin-bottom: 1.75rem;
-  }
-
-  .badge {
-    padding: 0.35rem 0.65rem;
-    border-radius: 4px;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
     font-weight: 700;
-    letter-spacing: 0.08em;
-  }
-
-  .lime-badge {
-    background-color: #d9f99d;
-    color: #365314;
-  }
-
-  .muted-badge {
-    background-color: #e5e7eb;
-    color: #4b5563;
-  }
-
-  /* Product Title & Info */
-  .product-title {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #0e2d1f;
-    line-height: 1.05;
-    margin: 0 0 1.25rem 0;
-    letter-spacing: -0.02em;
-  }
-
-  .product-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #525a55;
-    margin: 0 0 2.25rem 0;
-  }
-
-  /* Specifications Grid */
-  .tech-specs-container {
-    border-top: 1px solid #e5e7eb;
-    padding-top: 1.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .specs-section-title {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.725rem;
-    font-weight: 700;
-    color: #374151;
-    letter-spacing: 0.12em;
+    color: #0b2218;
     margin: 0 0 1.5rem 0;
   }
 
-  .specs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 2rem;
+  .feature-icons {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1.5rem;
   }
 
-  .spec-item {
+  .icon-item {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .spec-label {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
-    font-weight: 700;
-    color: #9ca3af;
-    letter-spacing: 0.08em;
-  }
-
-  .spec-value {
-    font-size: 0.925rem;
-    font-weight: 700;
-    color: #1f2937;
-  }
-
-  /* Verified Footer Tag */
-  .verified-footer {
-    display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: center;
+  }
+
+  .icon-item svg {
+    width: 24px;
+    height: 24px;
+    color: #3b5f4c;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #6b7280;
-    letter-spacing: 0.08em;
-    padding-left: 0.25rem;
+    color: #0b2218;
+    margin: 0 0 1rem 0;
   }
 
-  .check-icon {
-    width: 14px;
-    height: 14px;
-    color: #6b7280;
+  .bullet-list {
+    margin: 0 0 2rem 0;
+    padding-left: 1.2rem;
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
-  /* Responsive Adjustments */
-  @media (max-width: 1024px) {
-    .product-container {
+  .bullet-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .cpcb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f1f5f9;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #3b5f4c;
+    margin-bottom: 1.5rem;
+  }
+
+  .cpcb-badge svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  .stars {
+    color: #fbbf24;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.8rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-primary {
+    background-color: #0d3d26;
+    color: white;
+    border: 1px solid #0d3d26;
+  }
+
+  .btn-primary:hover {
+    background-color: #173b2a;
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+  }
+
+  .btn-outline:hover {
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+
+  /* Why Choose */
+  .why-choose {
+    margin-bottom: 4rem;
+  }
+
+  .why-choose h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.75rem;
+    color: #0b2218;
+    margin-bottom: 1rem;
+  }
+
+  .why-choose p {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  /* Details Grid */
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .details-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .details-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .details-box h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0b2218;
+    margin-bottom: 1rem;
+  }
+
+  /* Banner */
+  .banner {
+    background-color: #0d3d26;
+    border-radius: 16px;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+    margin-bottom: 4rem;
+  }
+
+  .banner-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .banner h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    margin: 0 0 1rem 0;
+  }
+
+  .banner p {
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .banner-buttons {
+    justify-content: center;
+  }
+
+  .btn-primary-light {
+    background-color: #ffffff;
+    color: #0d3d26;
+    border: 1px solid #ffffff;
+  }
+
+  .btn-outline-light {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+
+  .btn-primary-light:hover {
+    background-color: #f1f5f9;
+  }
+
+  .btn-outline-light:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  /* Related Products */
+  .related-products h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.75rem;
+    color: #0b2218;
+    margin-bottom: -1rem; /* Grid adds top padding */
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid, .details-grid {
       grid-template-columns: 1fr;
-    }
-
-    .main-image-card {
-      height: 420px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .product-title {
-      font-size: 2.5rem;
-    }
-
-    .schematics-grid,
-    .specs-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .product-info-card {
-      padding: 1.75rem 1.25rem;
     }
   }
 </style>

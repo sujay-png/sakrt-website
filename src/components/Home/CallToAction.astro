@@ -1,0 +1,148 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+---
+
+<section class="cta-section">
+  <div class="cta-container">
+    <div class="cta-card">
+      <span class="cta-subtitle">ALL YOU NEED TO KNOW</span>
+      <h2 class="cta-title">Ready to Go Green?</h2>
+      <p class="cta-description">
+        Join hundreds of businesses making the switch to eco-friendly packaging solutions.
+      </p>
+      
+      <div class="cta-buttons">
+        <a href="/contactus" class="btn-primary">Get In Touch</a>
+        <a href="#catalogue" class="btn-secondary">Explore Catalogue</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --accent-lime: #b5e800;
+  }
+
+  .cta-section {
+    position: relative;
+    padding: 10px 24px 100px 24px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-container {
+   max-width: 1240px;
+    width: 100%;
+  }
+
+  .cta-card {
+    background-color: #0d3d26;
+    border-radius: 40px;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent-lime);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .cta-title {
+    font-family: "Bodoni Moda", serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    color: #ffffff;
+    margin: 0 0 24px 0;
+    line-height: 1.08;
+  }
+
+  .cta-description {
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    color: var(--color-border-subtle);
+    max-width: 480px;
+    margin: 0 0 40px 0;
+    line-height: 1.6;
+    letter-spacing: 0.2px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Buttons Styling */
+  .btn-primary {
+    background-color: var(--accent-lime);
+    color: var(--color-forest-dark);
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    /* Added scale to transition properties */
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+  }
+
+  /* Zoom-in hover effect for the primary green button */
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.06); /* Zooms in and slightly lifts */
+    background-color: #c4f514;
+  }
+
+  .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: var(--color-bg-card);
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px) scale(1.03);
+    background-color: rgba(255, 255, 255, 0.28);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .cta-card {
+      padding: 60px 20px;
+      border-radius: 28px;
+    }
+    .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+      max-width: 280px;
+    }
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+  }
+</style>

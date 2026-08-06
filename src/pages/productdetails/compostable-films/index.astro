@@ -1,13 +1,55 @@
 ---
-// src/pages/productdetails/compostable-films/index.astro
 import Layout from '../../../layouts/Layout.astro';
-import Films from '../../../components/Product Details/Films.astro';
-import EngineeredForEarth from '../../../components/Product Details/EngineeredForEarth.astro';
+import CategoryGrid from '../../../components/Shared/CategoryGrid.astro';
+import ModernFAQ from '../../../components/Shared/ModernFAQ.astro';
+import CallToAction from '../../../components/Home/CallToAction.astro';
+
+const filmProducts = [
+  { name: "Compostable Wrapping Film", slug: "compostable-wrapping-film", category: "compostable-films", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
+  { name: "Compostable Mulch Films", slug: "compostable-mulch-films", category: "compostable-films", image: "/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp" },
+  { name: "Compostable Heat Shrink Films", slug: "compostable-heat-shrink-films", category: "compostable-films", image: "/compostable-films/imgi_6_Shirnk-films.webp" }
+];
+
+const faqs = [
+  { question: "What are compostable films", answer: "Compostable films are thin, flexible packaging materials designed to perform like traditional plastic wrap but break down completely into compost under industrial or home conditions." },
+  { question: "What are the difference between biodegradable and compostable plates", answer: "This FAQ seems to refer to plates, but for films, compostable films break down into nutrient-rich organic matter at a rate similar to other organic materials, whereas biodegradable simply means it will break down eventually, sometimes leaving microplastics." },
+  { question: "What material is 100% biodegradable?", answer: "Materials like PLA (Polylactic Acid), PBAT, and starch-based bioplastics are 100% biodegradable and compostable." },
+  { question: "What are compostable plates made of?", answer: "While this section is about films, our compostable products are generally made from sugarcane bagasse, corn starch, or PLA." },
+  { question: "Is stretch film eco-friendly?", answer: "Traditional stretch film is not eco-friendly, but our compostable stretch/wrapping films offer the same cling and protection while being 100% environmentally safe and compostable." }
+];
 ---
 
 <Layout title="Compostable Films | SAKRT">
-  <main>
-    <Films/>
-    <EngineeredForEarth/>
+  <main class="category-page">
+    <div class="category-header">
+      <h1 class="category-title">Compostable Films</h1>
+    </div>
+
+    <CategoryGrid products={filmProducts} />
+    
+    <ModernFAQ title="FAQs on compostable Films" faqs={faqs} />
+
+    <CallToAction />
   </main>
 </Layout>
+
+<style>
+  .category-page {
+    background-color: #f3f4f1;
+    min-height: 100vh;
+  }
+
+  .category-header {
+    background: linear-gradient(180deg, #e6e9e4 0%, #f3f4f1 100%);
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
+  }
+
+  .category-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #0d3d26;
+    margin: 0;
+  }
+</style>

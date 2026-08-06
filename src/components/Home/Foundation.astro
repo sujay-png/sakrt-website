@@ -1,0 +1,170 @@
+---
+// src/pages/Home/Foundations.astro
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+---
+
+<section class="foundations-section">
+  <div class="foundations-container">
+    
+    <!-- Left Column: Title Block -->
+    <div class="foundations-left">
+      <span class="foundations-tag">FOUNDATIONS</span>
+      <h2 class="foundations-title">
+        Built on<br />
+        Trust &<br />
+        Quality
+      </h2>
+    </div>
+
+    <!-- Right Column: 2x2 Grid of Feature Items -->
+    <div class="foundations-grid">
+      
+      <!-- Item 01 -->
+      <div class="foundation-item">
+        <span class="item-tag">01 // EFFICIENCY</span>
+        <h3>Fast Fulfillment</h3>
+        <p>We stock and deliver in bulk perfect for retailers and restaurants.</p>
+      </div>
+
+      <!-- Item 02 -->
+      <div class="foundation-item">
+        <span class="item-tag">02 // ETHICS</span>
+        <h3>Eco-Conscious</h3>
+        <p>Manufacturers committed to sustainable agriculture and fair labor.</p>
+      </div>
+
+      <!-- Item 03 -->
+      <div class="foundation-item">
+        <span class="item-tag">03 // PROOF</span>
+        <h3>Tested Quality</h3>
+        <p>Full material traceability and govt certification on all products.</p>
+      </div>
+
+      <!-- Item 04 -->
+      <div class="foundation-item">
+        <span class="item-tag">04 // NETWORK</span>
+        <h3>Scalable Chain</h3>
+        <p>Flexible supply chain that adapts and grows with your business.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400&display=swap');
+
+  :root {
+    --lime-color: #d1ff26;
+    --dark-green: #0b2218;
+  }
+
+  .foundations-section {
+    position: relative;
+    padding: 100px 24px 120px 24px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+
+  .foundations-container {
+    max-width: 1240px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* Left Column Styles */
+  .foundations-left {
+    position: sticky;
+    top: 140px;
+  }
+
+  .foundations-tag {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #999999;
+    display: block;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .foundations-title {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    line-height: 1.02;
+    color: var(--dark-green);
+    margin: 0;
+  }
+
+  /* Right Grid Styles */
+  .foundations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px 40px;
+  }
+
+  .foundation-item {
+    position: relative;
+    padding-top: 24px;
+    border-top: 1px solid rgba(11, 34, 24, 0.12);
+  }
+
+  .item-tag {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #b5e800;
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .foundation-item h3 {
+  font-family: 'Playfair Display', Georgia, serif; /* Updated to match Cormorant Garamond */
+    font-size: 2.1rem; /* Adjusted size for balanced proportion */
+    font-weight: 500;
+    color: var(--dark-green);
+    margin: 0 0 10px 0;
+    line-height: 1.15;
+    letter-spacing: -0.1px;
+  }
+
+  .foundation-item p {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    color: rgba(11, 34, 24, 0.65);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 320px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .foundations-container {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+    .foundations-left {
+      position: relative;
+      top: 0;
+    }
+    .foundations-title br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .foundations-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

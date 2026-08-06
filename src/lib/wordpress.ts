@@ -6,28 +6,33 @@ interface WPGraphQLParams {
 export async function wpquery({ query, variables = {} }: WPGraphQLParams) {
   const wpUrl = "https://sakrt.in/graphql";
 
-  const response = await fetch(wpUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
+  try {
+    const response = await fetch(wpUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+    });
 
-  if (!response.ok) {
-    console.error(await response.text());
-    throw new Error("Failed to fetch API");
+    if (!response.ok) {
+      console.error(await response.text());
+      return { posts: { nodes: [] } };
+    }
+
+    const json = await response.json();
+    
+    if (json.errors) {
+      console.error(json.errors);
+      return { posts: { nodes: [] } };
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Fetch API Error:", error);
+    return { posts: { nodes: [] } };
   }
-
-  const json = await response.json();
-  
-  if (json.errors) {
-    console.error(json.errors);
-    throw new Error("Failed to fetch API");
-  }
-
-  return json.data;
 }

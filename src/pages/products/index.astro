@@ -1,19 +1,245 @@
 ---
 // src/pages/products/index.astro
 import Layout from '../../layouts/Layout.astro';
-import ProductHero from '../../components/Product/ProductHero.astro';
-import ProductCardsSection from '../../components/Product/ProductCardsSection.astro';
-import ProductDetailsSection from '../../components/Product/ProductDetailsSection.astro';
-import ProductBarrierSection from '../../components/Product/ProductBarrierSection.astro';
-import SakrtStandard from '../../components/Product/SakrtStandard.astro';
+import AllProductsGrid from '../../components/Product/AllProductsGrid.astro';
+import CallToAction from '../../components/Home/CallToAction.astro';
 ---
 
-<Layout title="Products | SAKRT">
-  <main>
-    <ProductHero />
-    <ProductCardsSection />
-    <ProductDetailsSection/>
-    <ProductBarrierSection/>
-    <SakrtStandard/>
+<Layout title="Products Catalog | SAKRT">
+  <main class="products-page">
+    
+    <!-- New Header Section -->
+    <section class="products-header">
+      <div class="header-container">
+        <h1 class="main-title">
+          Govt Approved Certified <br />
+          Compostable / Biodegradable Products Manufacturer In India
+        </h1>
+        <p class="subtitle">
+          SAKRT is one of India, Bangalore's fastest-growing Supplier in Products Compostable in Nature and Premium quality distribution.
+        </p>
+        <div class="tag-line">
+          <span class="tag-line-text">Eco-Friendly Solutions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unified Product Grid -->
+    <AllProductsGrid />
+
+    <!-- Information Sections -->
+    <section class="info-section">
+      <div class="info-container">
+        
+        <div class="info-block">
+          <h2>What Are Bioplastic Products?</h2>
+          <p>
+            Bioplastics include a diverse family of materials with differing properties. There are three main types of bioplastics: biobased or partially biobased, biodegradable, and those that are both biobased and biodegradable. Our materials focus on the latter, ensuring that they return to the earth without leaving microplastics.
+          </p>
+          <p>
+            Compared to conventional plastics which are made from fossil fuels, bioplastics are made from renewable resources such as corn starch, sugarcane, or cellulose. They offer a sustainable alternative to traditional plastics, significantly reducing greenhouse gas emissions and fossil fuel consumption during the manufacturing process.
+          </p>
+          <p>
+            As environmental awareness grows, both consumers and businesses are increasingly seeking out bioplastic solutions. At SAKRT, we are committed to providing high-quality, durable, and fully compostable products that meet the rigorous demands of modern supply chains while protecting the environment for future generations. Our biological matrix is engineered to degrade quickly in composting environments.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <h2>What Are Compostable Products?</h2>
+          <p>
+            Compostable products are items that break down completely in a composting environment, leaving no toxic residue behind. Unlike regular biodegradable items, which can take decades to decompose, compostable materials transform into nutrient-rich soil at a much faster rate.
+          </p>
+          <p>
+            True compostability requires specific conditions, including the right balance of heat, moisture, and microorganisms. All SAKRT products are certified to decompose fully within 180 days in industrial composting facilities, complying strictly with global environmental standards. This ensures a true closed-loop lifecycle for packaging and single-use items, preventing long-term pollution in our oceans and landfills.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <h2>Advantages and Disadvantages</h2>
+          <p class="sub-heading">Advantages of bioplastics and compostable products:</p>
+          <ul class="styled-list">
+            <li>Lower carbon footprint compared to traditional petroleum-based plastics.</li>
+            <li>Reduces reliance on non-renewable fossil fuels by utilizing agricultural byproducts.</li>
+            <li>Breaks down into non-toxic, organic matter that enriches the soil.</li>
+            <li>Helps companies meet their sustainability and ESG goals while appealing to eco-conscious consumers.</li>
+            <li>Fully compliant with recent government regulations banning single-use plastics.</li>
+          </ul>
+
+          <p class="sub-heading">Disadvantages:</p>
+          <ul class="styled-list">
+            <li>Currently more expensive to manufacture than conventional plastics.</li>
+            <li>Requires specific industrial composting facilities for optimal degradation.</li>
+            <li>Can cause issues if mistakenly placed into standard plastic recycling streams.</li>
+            <li>Slightly lower shelf-life for certain highly sensitive perishable goods.</li>
+          </ul>
+        </div>
+
+        <div class="info-block">
+          <h2>Conclusion</h2>
+          <p>
+            Compostable and bio-based products are a critical component of the global shift towards a circular economy. While challenges exist regarding infrastructure and cost, the environmental benefits far outweigh the drawbacks. By transitioning to certified compostable solutions, businesses can dramatically reduce their environmental impact. SAKRT is dedicated to leading this transition, providing innovative, reliable, and truly sustainable alternatives to conventional plastics.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Call To Action -->
+    <div class="cta-wrapper">
+      <CallToAction />
+    </div>
+
   </main>
 </Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --color-bg-page: #f8f9f6;
+    --color-primary-dark: #0d3d26;
+    --color-text-body: #3c4c42;
+    --color-accent-lime: #c5ff49;
+    --color-bg-light-green: #e9efe4;
+  }
+
+  .products-page {
+    background-color: var(--color-bg-page);
+    min-height: 100vh;
+  }
+
+  /* Header Styles */
+  .products-header {
+    background: linear-gradient(to bottom, #e2eccf 0%, var(--color-bg-page) 100%);
+    padding: 7rem 24px 3rem 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-container {
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    line-height: 1.15;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .tag-line {
+    display: flex;
+    justify-content: center;
+  }
+
+  .tag-line-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #4a7559;
+    text-transform: uppercase;
+    background-color: rgba(13, 61, 38, 0.08);
+    padding: 6px 16px;
+    border-radius: 20px;
+  }
+
+  /* Information Section Styles */
+  .info-section {
+    padding: 40px 24px 80px 24px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-bg-page);
+  }
+
+  .info-container {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .info-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin: 0 0 1rem 0;
+  }
+
+  .info-block p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-body);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .sub-heading {
+    font-weight: 600;
+    margin-bottom: 0.5rem !important;
+    color: var(--color-primary-dark) !important;
+  }
+
+  .styled-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-body);
+  }
+
+  .styled-list li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 8px;
+  }
+
+  .styled-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: #8cbe22; /* Accented bullet point */
+    font-weight: bold;
+    font-size: 1.2rem;
+    top: -2px;
+  }
+
+  .cta-wrapper {
+    padding-bottom: 80px;
+    background-color: var(--color-bg-page);
+  }
+
+  @media (max-width: 768px) {
+    .products-header {
+      padding: 6rem 16px 2rem 16px;
+    }
+    
+    .info-section {
+      padding: 20px 16px 60px 16px;
+    }
+
+    .info-block h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

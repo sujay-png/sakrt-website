@@ -88,8 +88,6 @@ import Header from '../../components/Header.astro';
 
   .ecosystem-section {
     position: relative;
-    background-color: #ffffff;
-    /* Increase top padding so content drops down below the header naturally, with no margin gap */
     padding: 120px 24px 100px 24px; 
     margin-top: 0; /* Remove the margin gap completely */
     box-sizing: border-box;
@@ -111,7 +109,7 @@ import Header from '../../components/Header.astro';
   }
 
   .section-tag {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
     font-size: 11px;
     letter-spacing: 2.5px;
     color: #888888;
@@ -123,7 +121,7 @@ import Header from '../../components/Header.astro';
   .ecosystem-title {
     font-family: "Cormorant Garamond", serif;
     font-weight: 450 !important;
-    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    font-size: clamp(3rem, 5vw, 5.2rem);
     line-height: 1.1;
     color: var(--dark-green);
     margin: 0;
@@ -136,13 +134,14 @@ import Header from '../../components/Header.astro';
     gap: 8px;
     background-color: transparent;
     color: var(--dark-green);
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
     font-size: 13px;
     font-weight: 700;
     padding: 10px 18px;
     border-radius: 30px;
     text-decoration: none;
     letter-spacing: 0.5px;
+    white-space: nowrap;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
   }
 
@@ -320,7 +319,7 @@ import Header from '../../components/Header.astro';
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
     font-size: 12px;
     color: var(--lime-color);
     letter-spacing: 1px;

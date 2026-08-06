@@ -1,0 +1,143 @@
+---
+export interface Product {
+  name: string;
+  image: string;
+  slug: string;
+  category: string; // The category slug used in the URL, e.g. "designer-tableware"
+}
+
+interface Props {
+  products: Product[];
+}
+
+const { products } = Astro.props;
+---
+
+<div class="category-grid-container">
+  <div class="category-grid">
+    {products.map((product) => (
+      <div class="product-card">
+        <div class="image-wrapper">
+          <img src={product.image} alt={product.name} loading="lazy" />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{product.name}</h3>
+          <a href={`/productdetails/${product.category}/${product.slug}`} class="view-details-btn">
+            View Details
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .category-grid-container {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  @media (min-width: 600px) {
+    .category-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .category-grid {
+      grid-template-columns: repeat(4, 1fr);
+      row-gap: 4rem;
+      column-gap: 2rem;
+    }
+  }
+
+  /* Product Card Styling */
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Image Area */
+  .image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f7f8f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Helps white background images blend into light grey container */
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .image-wrapper img {
+    transform: scale(1.05);
+  }
+
+  /* Info Area */
+  .product-info {
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .product-name {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0b2218;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* View Details Button */
+  .view-details-btn {
+    display: inline-block;
+    background-color: #3b5f4c;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .view-details-btn:hover {
+    background-color: #0b2218;
+  }
+</style>

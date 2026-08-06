@@ -16,9 +16,9 @@
             SAKRT is the reliable partner in Manufacturing & Distributing Govt certified compostable products for retailers and industrial enterprises.
           </p>
           <div class="social-links">
-            <a href="#" class="footer-link">Facebook</a>
-            <a href="#" class="footer-link">Linkedin</a>
-            <a href="#" class="footer-link">Instagram</a>
+            <a href="https://www.facebook.com/people/Sakrt-India/pfbid02P6xVxSQAayJhvjzSmpCpmhmvuBF5NQRbJMZq2iRG23dFoxiWooBHy6BuVm1tDDmfl/" target="_blank" rel="noopener noreferrer" class="footer-link">Facebook</a>
+            <a href="https://www.linkedin.com/company/sakrt/" target="_blank" rel="noopener noreferrer" class="footer-link">Linkedin</a>
+            <a href="https://www.instagram.com/sakrt.in/" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
           </div>
         </div>
 
@@ -26,10 +26,10 @@
         <div class="footer-col">
           <h3 class="col-title">Solutions</h3>
           <ul class="footer-menu">
-            <li><a href="#" class="footer-link">Tablewares</a></li>
-            <li><a href="#" class="footer-link">Pouches</a></li>
-            <li><a href="#" class="footer-link">Films</a></li>
-            <li><a href="#" class="footer-link">Carry Bags</a></li>
+            <li><a href="/productdetails/designer-tableware" class="footer-link">Tablewares</a></li>
+            <li><a href="/productdetails/stand-up-pouches" class="footer-link">Pouches</a></li>
+            <li><a href="/productdetails/compostable-films" class="footer-link">Films</a></li>
+            <li><a href="/productdetails/compostable-bags" class="footer-link">Carry Bags</a></li>
           </ul>
         </div>
 
@@ -37,10 +37,9 @@
         <div class="footer-col">
           <h3 class="col-title">Connect</h3>
           <ul class="footer-menu">
-            <li><a href="#" class="footer-link">Contact Us</a></li>
-            <li><a href="#" class="footer-link">Certifications</a></li>
-            <li><a href="#" class="footer-link">Our Blog</a></li>
-            <li><a href="#" class="footer-link">Sitemaps</a></li>
+            <li><a href="/contactus" class="footer-link">Contact Us</a></li>
+            <li><a href="/certifications" class="footer-link">Certifications</a></li>
+            <li><a href="/blogs" class="footer-link">Our Blog</a></li>
           </ul>
         </div>
 
@@ -48,11 +47,7 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p class="copyright">© 2024 SAKRT. BACK TO NATURE.</p>
-        <div class="pagination-dots">
-          <span class="dot active"></span>
-          <span class="dot"></span>
-        </div>
+        <p class="copyright">&copy; 2024 SAKRT. All rights reserved.</p>
       </div>
 
     </div>
@@ -121,7 +116,7 @@
   }
 
   .footer-desc {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
     font-size: 15px;
     color: #d0d7d3;
     line-height: 1.9;
@@ -130,10 +125,10 @@
   }
 
   .col-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
     color: var(--hover-lime);
     text-transform: uppercase;
     margin: 0 0 24px 0;
@@ -154,11 +149,11 @@
   }
 
   .footer-link {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 14px;
     color: #d0d7d3;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
   }
 
   /* Hover color requested (#b1d867) */
@@ -177,30 +172,14 @@
   }
 
   .copyright {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 13px;
+    letter-spacing: 1px;
     color: #d0d7d3;
     margin: 0;
-    text-transform: uppercase;
   }
 
-  .pagination-dots {
-    display: flex;
-    gap: 8px;
-    margin-top: 4px;
-  }
 
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.35);
-  }
-
-  .dot.active {
-    background-color: var(--hover-lime);
-  }
 
   /* Responsive Layout */
   @media (max-width: 768px) {
@@ -212,9 +191,12 @@
       border-bottom-right-radius: 28px;
     }
     .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 20px;
       margin-bottom: 50px;
+    }
+    .brand-col {
+      grid-column: 1 / -1;
     }
     .social-links {
       gap: 16px;
