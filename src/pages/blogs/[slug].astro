@@ -59,7 +59,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
     <article>
       <header class="post-header">
         <div class="post-meta">
-          {post.categories.nodes.map((category: any) => (
+          {post.categories?.nodes?.map((category: any) => (
             <span class="category-badge">{category.name}</span>
           ))}
           <span class="date">{formattedDate}</span>
@@ -188,12 +188,12 @@ const formattedDate = date.toLocaleDateString('en-US', {
   }
 
   /* ==============================================
-     FAQ / ACCORDION STYLES FOR WORDPRESS BLOCKS
+     FAQ / ACCORDION STYLES (NATIVE & PLUGIN BLOCKS)
      ============================================== */
   
-  /* Target standard HTML5 details/summary blocks */
+  /* Container styling for both native details and Yoast divs */
   .wp-content details,
-  .wp-content .wp-block-yoast-faq-block {
+  .wp-content .schema-faq-section {
     background-color: #f9f9f9;
     border: 1px solid #eaeaea;
     border-radius: 8px;
@@ -201,6 +201,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
     overflow: hidden;
   }
 
+  /* Header styling for both */
   .wp-content summary,
   .wp-content .schema-faq-question {
     padding: 1.25rem 1.5rem;
@@ -213,10 +214,12 @@ const formattedDate = date.toLocaleDateString('en-US', {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.2s ease;
+    margin-bottom: 0;
   }
 
-  /* Add custom plus/minus arrow for details blocks */
-  .wp-content summary::after {
+  /* Add the "+" icon to BOTH native summary and custom div questions */
+  .wp-content summary::after,
+  .wp-content .schema-faq-question::after {
     content: "+";
     font-size: 1.5rem;
     font-weight: 300;
@@ -225,12 +228,20 @@ const formattedDate = date.toLocaleDateString('en-US', {
     transition: transform 0.3s ease;
   }
 
+  /* Change to "-" when open (Native details logic) */
   .wp-content details[open] summary::after {
     content: "−";
     transform: rotate(180deg);
   }
 
-  .wp-content summary:hover {
+  /* Change to "-" when open (JS toggle logic for divs) */
+  .wp-content .schema-faq-question.is-open::after {
+    content: "−";
+    transform: rotate(180deg);
+  }
+
+  .wp-content summary:hover,
+  .wp-content .schema-faq-question:hover {
     background-color: #f0f0f0;
   }
 
@@ -239,11 +250,59 @@ const formattedDate = date.toLocaleDateString('en-US', {
     display: none;
   }
 
-  .wp-content details p,
+  /* Hide custom answers by default, let JS toggle them */
   .wp-content .schema-faq-answer {
+    display: none;
+    padding: 0 1.5rem 1.25rem;
+    margin-bottom: 0;
+    color: #555;
+    font-size: 1rem;
+  }
+
+  /* Show answer when JS adds the class */
+  .wp-content .schema-faq-answer.is-open {
+    display: block;
+  }
+
+  /* Native details paragraph spacing */
+  .wp-content details p {
     padding: 0 1.5rem 1.25rem;
     margin-bottom: 0;
     color: #555;
     font-size: 1rem;
   }
 </style>
+
+<!-- Add this script to make third-party div blocks interactive -->
+<script>
+  function initAccordions() {
+    // Find all third-party FAQ questions
+    const questions = document.querySelectorAll('.schema-faq-question');
+    
+    questions.forEach(question => {
+      // Remove old listeners to prevent duplication on route changes
+      const newQuestion = question.cloneNode(true) as Element;
+      if (question.parentNode) {
+        question.parentNode.replaceChild(newQuestion, question);
+      }
+      
+      // Add the click toggle
+      (newQuestion as Element).addEventListener('click', () => {
+        // Toggle the question icon
+        newQuestion.classList.toggle('is-open');
+        
+        // Find the adjacent answer div and toggle it
+        const answer = newQuestion.nextElementSibling;
+        if (answer && answer.classList.contains('schema-faq-answer')) {
+          answer.classList.toggle('is-open');
+        }
+      });
+    });
+  }
+
+  // Run on initial load
+  initAccordions();
+  
+  // Run on Astro View Transition navigation
+  document.addEventListener('astro:page-load', initAccordions);
+</script>
