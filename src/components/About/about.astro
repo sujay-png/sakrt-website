@@ -1,6 +1,7 @@
 
 ---
 // src/components/About.astro
+import CallToAction from '../Home/CallToAction.astro';
 ---
 
 <section class="about-hero">
@@ -178,17 +179,8 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         JOIN THE EVOLUTION CTA BANNER SECTION
-         ============================================================ -->
-    <div class="join-evolution-banner">
-      <h2 class="cta-title">Join the Evolution.</h2>
-      
-      <div class="cta-button-group">
-        <button class="btn-primary">DOWNLOAD CATALOG</button>
-        <button class="btn-secondary">REQUEST SAMPLE KIT</button>
-      </div>
-    </div>
+    <!-- CTA Component from Home -->
+    <CallToAction />
 
   </div>
 </section>
@@ -236,8 +228,8 @@
 
   /* Main Title Styling */
   h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 5vw, 4.42rem);
     line-height: 0.98;
     font-weight: 400;
     color: #0f3223;
@@ -297,8 +289,8 @@
   }
 
   .story-card h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
+    font-family: var(--font-serif);
+    font-size: 1.87rem;
     font-weight: 400;
     color: #0f3223;
     margin-bottom: 1rem;
@@ -406,8 +398,8 @@
   }
 
   .mission-card h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.35rem;
+    font-family: var(--font-serif);
+    font-size: 2.00rem;
     font-weight: 400;
     color: #0f3223;
     margin-bottom: 1.25rem;
@@ -617,8 +609,8 @@
   }
 
   .why-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
+    font-family: var(--font-serif);
+    font-size: 1.87rem;
     font-weight: 400;
     color: #0f3223;
     margin-bottom: 2.8rem;
@@ -709,83 +701,6 @@
     font-weight: 400;
   }
 
-  /* ============================================================
-     JOIN THE EVOLUTION BANNER STYLES
-     ============================================================ */
-  .join-evolution-banner {
-    background: radial-gradient(circle at 50% 50%, #0d3d26 0%, #0d3d26 100%);
-    border-radius: 20px;
-    padding: 4.5rem 2rem;
-    text-align: center;
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    box-shadow: 0 16px 40px rgba(6, 28, 19, 0.15);
-  }
 
-  /* Matching Heavy Serif Title Styling */
-  .cta-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(3rem, 5vw, 5.2rem);
-    font-weight: 800; /* Bold/Heavy weight to match image */
-    color: #ffffff;
-    margin: 0;
-    letter-spacing: -0.025em; /* Slightly tighter tracking */
-    line-height: 1.05;
-  }
-
-  .cta-button-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  /* Primary Button (Bright Lime #c5ff49 with exact font) */
-  .btn-primary {
-    background-color: #c5ff49;
-    color: #082318;
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 0.95rem 1.8rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(197, 255, 73, 0.4);
-    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .btn-primary:hover {
-    background-color: #d2ff6b;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(197, 255, 73, 0.55);
-  }
-
-  /* Secondary Button (Outlined Dark Green) */
-  .btn-secondary {
-    background-color: transparent;
-    color: #ffffff;
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 0.9rem 1.8rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    cursor: pointer;
-    transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
-  }
-
-  .btn-secondary:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.05);
-    transform: translateY(-2px);
-  }
 </style>
 

@@ -14,7 +14,7 @@ import Header from '../../components/Header.astro';
       
       <div class="cta-buttons">
         <a href="/contactus" class="btn-primary">Get In Touch</a>
-        <a href="#catalogue" class="btn-secondary">Explore Catalogue</a>
+        <a href="/products" class="btn-secondary">Explore Catalogue</a>
       </div>
     </div>
   </div>
@@ -36,14 +36,14 @@ import Header from '../../components/Header.astro';
   }
 
   .cta-container {
-   max-width: 1240px;
+   max-width: 960px;
     width: 100%;
   }
 
   .cta-card {
     background-color: #0d3d26;
-    border-radius: 40px;
-    padding: 80px 20px;
+    border-radius: 10px;
+    padding: 32px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,24 +59,24 @@ import Header from '../../components/Header.astro';
     letter-spacing: 3px;
     color: var(--accent-lime);
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
   }
 
   .cta-title {
-    font-family: "Bodoni Moda", serif;
+    font-family: var(--font-serif);
     font-weight: 400;
-    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.72rem);
     color: #ffffff;
-    margin: 0 0 24px 0;
+    margin: 0 0 16px 0;
     line-height: 1.08;
   }
 
   .cta-description {
     font-family: 'Space Mono', monospace;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--color-border-subtle);
     max-width: 480px;
-    margin: 0 0 40px 0;
+    margin: 0 0 24px 0;
     line-height: 1.6;
     letter-spacing: 0.2px;
   }
@@ -93,10 +93,10 @@ import Header from '../../components/Header.astro';
     background-color: var(--accent-lime);
     color: var(--color-forest-dark);
     font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    padding: 16px 32px;
-    border-radius: 50px;
+    padding: 12px 24px;
+    border-radius: 10px;
     text-decoration: none;
     display: inline-block;
     /* Added scale to transition properties */
@@ -113,10 +113,10 @@ import Header from '../../components/Header.astro';
     background-color: rgba(255, 255, 255, 0.18);
     color: var(--color-bg-card);
     font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    padding: 16px 32px;
-    border-radius: 50px;
+    padding: 12px 24px;
+    border-radius: 10px;
     text-decoration: none;
     display: inline-block;
     backdrop-filter: blur(8px);
@@ -131,8 +131,8 @@ import Header from '../../components/Header.astro';
   /* Responsive Adjustments */
   @media (max-width: 768px) {
     .cta-card {
-      padding: 60px 20px;
-      border-radius: 28px;
+      padding: 24px 16px;
+      border-radius: 10px;
     }
     .cta-buttons {
       flex-direction: column;

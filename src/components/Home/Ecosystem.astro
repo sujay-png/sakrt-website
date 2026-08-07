@@ -67,7 +67,7 @@ import Header from '../../components/Header.astro';
         <a href="/productdetails/designer-tableware" class="ecosystem-card card-small">
           <div class="card-bg tableware-bg"></div>
           <div class="card-content-overlay">
-            <span class="btn-lime-tag">Tableware</span>
+            <h3>Tableware</h3>
           </div>
         </a>
 
@@ -119,9 +119,9 @@ import Header from '../../components/Header.astro';
   }
 
   .ecosystem-title {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 450 !important;
-    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-family: var(--font-serif);
+    font-weight: 300 !important;
+    font-size: clamp(3rem, 5vw, 4.42rem);
     line-height: 1.1;
     color: var(--dark-green);
     margin: 0;
@@ -256,8 +256,8 @@ import Header from '../../components/Header.astro';
   }
 
   .card-large h3, .card-medium h3 {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3vw, 2.21rem);
     font-weight: 400;
     color: #ffffff;
     line-height: 1.15;
@@ -279,8 +279,8 @@ import Header from '../../components/Header.astro';
   }
 
   .card-small h3 {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: 2rem;
+    font-family: var(--font-serif);
+    font-size: 1.70rem;
     color: #ffffff;
     margin: 0;
     font-weight: 400;

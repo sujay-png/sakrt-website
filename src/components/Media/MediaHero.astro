@@ -17,22 +17,12 @@
         Watch Our Latest Public<br />Appearance
       </h1>
 
-      <!-- Description Paragraph -->
-      <p class="hero-description">
-        Stay connected with SAKRT's growing presence in India's sustainability
-        movement. Our media page brings together the latest press coverage,
-        public appearances, and recognitions celebrating our commitment to
-        eco-friendly polythene bags.
-      </p>
-
-      <!-- Action Buttons -->
-      <div class="hero-actions">
-        <a href="#coverage" class="btn btn-lime">
-          Explore Coverage <span class="arrow">&darr;</span>
-        </a>
-        <a href="/media-kit.pdf" download class="btn btn-outline">
-          Media Kit
-        </a>
+      <!-- Description Paragraphs -->
+      <div class="hero-description">
+        <p>Stay connected with SAKRT's growing presence in India's sustainability movement. Our media page brings together the latest press coverage, public appearances, and recognitions celebrating our commitment to eco-friendly polythene bags. From industry events to state-level sustainability awards, SAKRT continues to be recognized as a trusted name in <a href="/blogs/food-packaging/compostable-cutlery-the-sustainable-shift">compostable packaging</a> manufacturing.</p>
+        <p>Based in Mangalore, Karnataka, SAKRT proudly represents Envirly Innovations Pvt Ltd, delivering government-certified compostable bags, polythene bagsfilms, pouches, and tableware to retailers and industrial enterprises across India. Our media features highlight the milestones that matter — from participation in World Environment Day celebrations at ICAR-CPCRI to being honored at eco-awareness events for our contribution to reducing plastic pollution.</p>
+        <p>Each feature reflects our core mission: helping businesses transition away from single-use plastics through certified, biodegradable alternatives that meet CPCB compliance standards. Whether it's a news article, a social media spotlight, or an award recognition, this page keeps you informed about SAKRT's expanding impact in sustainable packaging.</p>
+        <p>Follow our journey as we continue building partnerships with businesses ready to make the switch to eco-friendly solutions. Explore our latest media coverage below, and connect with us to learn how SAKRT's compostable products can support your sustainability&nbsp;goals.</p>
       </div>
     </div>
   </div>
@@ -63,9 +53,9 @@
   }
 
   .logo a {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 700;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
     color: #0a2319;
     text-decoration: none;
     letter-spacing: 0.12em;
@@ -132,17 +122,21 @@
     width: 100%;
     max-width: 1240px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .hero-content {
-    max-width: 640px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   /* Tag Line */
   .tag-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
   }
@@ -164,22 +158,45 @@
 
   /* Headline Header */
   .hero-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 3.5rem;
-    font-weight: 600;
+    font-family: var(--font-serif);
+    font-size: 2.98rem;
+    font-weight: 400;
     line-height: 1.12;
     color: #0a2319;
     margin: 0 0 1.75rem 0;
     letter-spacing: -0.02em;
+    text-align: center;
   }
 
   /* Paragraph Text */
   .hero-description {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
-    line-height: 1.65;
+    line-height: 1.8;
     color: #4a5550;
-    margin: 0 0 2.5rem 0;
+    max-width: 100%;
+    text-align: center;
+    margin: 0 0 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .hero-description p {
+    margin: 0;
+  }
+  
+  .hero-description a {
+    color: #3b8c66;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(59, 140, 102, 0.4);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .hero-description a:hover {
+    text-decoration-color: rgba(59, 140, 102, 1);
   }
 
   /* Buttons Wrapper */

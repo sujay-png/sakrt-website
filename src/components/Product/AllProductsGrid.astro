@@ -31,9 +31,9 @@ const products = [
     <div class="product-grid" id="productGrid">
       {products.map((product, index) => (
         <div class="product-card" data-index={index}>
-          <div class="card-image-box">
+          <a href={product.url} class="card-image-box">
             <img src={product.image} alt={product.title} loading="lazy" />
-          </div>
+          </a>
           <div class="card-content">
             <h3 class="product-title">{product.title}</h3>
             <a href={product.url} class="view-details-btn">View Details</a>

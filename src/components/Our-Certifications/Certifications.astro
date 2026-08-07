@@ -4,9 +4,7 @@ import CpcbCard from './CpcbCard.astro';
 import IsoCard from './IsoCard.astro';
 import CipetCard from './CipetCard.astro';
 import BioComplianceCard from './BioComplianceCard.astro';
-import MaterialTraceabilityCard from './MaterialTraceabilityCard.astro';
 import CertificationsMarquee from './CertificationsMarquee.astro';
-import CertificationsCta from './CertificationsCta.astro';
 import CertificatePreviewModal from './CertificatePreviewModal.astro';
 ---
 
@@ -28,13 +26,9 @@ import CertificatePreviewModal from './CertificatePreviewModal.astro';
     <IsoCard />
     <CipetCard />
     <BioComplianceCard />
-    <MaterialTraceabilityCard />
     
     <!-- Certification Logos Marquee -->
     <CertificationsMarquee />
-
-    <!-- Center-Aligned CTA Component -->
-    <CertificationsCta />
 
     <!-- Certificate Preview Modal -->
     <CertificatePreviewModal />
@@ -71,9 +65,9 @@ import CertificatePreviewModal from './CertificatePreviewModal.astro';
   }
 
   .section-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
     color: #0a2319;
     margin: 0 0 1.25rem 0;
   }

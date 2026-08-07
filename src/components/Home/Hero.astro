@@ -111,9 +111,9 @@ import Header from '../../components/Header.astro';
 
   /* 5. Main Title & Subtitle */
   h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 10vw, 6.80rem);
+  font-weight: 300;
   line-height: 0.9;
   letter-spacing: -0.03em;
 
@@ -128,10 +128,10 @@ import Header from '../../components/Header.astro';
   }
 
   h1 em {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: var(--font-serif);
     font-style: italic;
     color: var(--lime-color);
-    font-weight: 400;
+    font-weight: 300;
       margin: 2px auto 28px;
   }
 
