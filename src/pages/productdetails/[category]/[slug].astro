@@ -3,6 +3,8 @@ import Layout from "../../../layouts/Layout.astro";
 import GenericProductDetail from "../../../components/Product Details/GenericProductDetail.astro";
 import pouchImg from "../../../images/biodegradable_greybags.png";
 
+export const prerender = true;
+
 export function getStaticPaths() {
   const tablewareProducts = [
     {

@@ -193,32 +193,38 @@
     }
 </style>
 <script>
-    function sendToWhatsApp(event: SubmitEvent) {
-        event.preventDefault();
+  function sendToWhatsApp(event: SubmitEvent) {
+    event.preventDefault();
 
-        const fullName = (document.getElementById('fullName') as HTMLInputElement).value;
-        const phoneNumber = (document.getElementById('phoneNumber') as HTMLInputElement).value;
-        const companyName = (document.getElementById('companyName') as HTMLInputElement).value;
-        const businessEmail = (document.getElementById('businessEmail') as HTMLInputElement).value;
-        const itemQuantity = (document.getElementById('itemQuantity') as HTMLInputElement).value;
-        const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+    const fullName = (document.getElementById('fullName') as HTMLInputElement).value;
+    const phoneNumber = (document.getElementById('phoneNumber') as HTMLInputElement).value;
+    const companyName = (document.getElementById('companyName') as HTMLInputElement).value;
+    const businessEmail = (document.getElementById('businessEmail') as HTMLInputElement).value;
+    const itemQuantity = (document.getElementById('itemQuantity') as HTMLInputElement).value;
+    const message = (document.getElementById('message') as HTMLTextAreaElement).value;
 
-        const text =
-            `*New Bulk Supply Inquiry*%0A%0A` +
-            `*Name:* ${fullName}%0A` +
-            `*Phone:* ${phoneNumber}%0A` +
-            `*Company:* ${companyName}%0A` +
-            `*Email:* ${businessEmail}%0A` +
-            `*Quantity:* ${itemQuantity}%0A` +
-            `*Message:* ${message}`;
+    const rawText = 
+        `*New Bulk Supply Inquiry*\n\n` +
+        `*Name:* ${fullName}\n` +
+        `*Phone:* ${phoneNumber}\n` +
+        `*Company:* ${companyName}\n` +
+        `*Email:* ${businessEmail}\n` +
+        `*Quantity:* ${itemQuantity}\n` +
+        `*Message:* ${message}`;
 
-        const whatsappNumber = "+917975310662";
-        const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+    const text = encodeURIComponent(rawText);
+    const whatsappNumbers = ["+917975310662", ""];
 
-        window.open(url, "_blank");
-    }
+    // Opens a WhatsApp tab for each recipient number
+    whatsappNumbers.forEach((num, index) => {
+        setTimeout(() => {
+            window.open(`https://wa.me/${num}?text=${text}`, '_blank');
+        }, index * 500);
+    });
+}
 
-    // Attach listener directly instead of relying on inline onsubmit
-    const form = document.getElementById('inquiryForm') as HTMLFormElement;
+const form = document.getElementById('inquiryForm') as HTMLFormElement;
+if (form) {
     form.addEventListener('submit', sendToWhatsApp);
+}
 </script>
