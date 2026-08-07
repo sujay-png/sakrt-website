@@ -14,7 +14,7 @@ const {
   title = "SAKRT Wins Public Praise for Commitment to Eco-Friendly Innovation",
   description = "Helping businesses transition away from single-use plastics through certified, biodegradable alternatives that meet CPCB compliance standards.",
   buttonText = "View Public Recognition",
-  buttonLink = "/blogs"
+  buttonLink = "https://www.instagram.com/reel/DTrm_4QgLCf/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
 } = Astro.props;
 ---
 
@@ -25,7 +25,7 @@ const {
     <p class="card-description">{description}</p>
   </div>
 
-  <a href={buttonLink} class="outlined-btn">
+  <a href={buttonLink} target="_blank" rel="noopener noreferrer" class="outlined-btn">
     {buttonText}
   </a>
 </div>

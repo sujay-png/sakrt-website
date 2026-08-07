@@ -1,6 +1,11 @@
 ---
 // CertificationsMarquee.astro
 
+import cipetImg from '../../images/CIPET.webp';
+import isoImg from '../../images/iso.png';
+import cpcbImg from '../../images/cpcb.png';
+import bioComplianceImg from '../../images/bio-compliance.png';
+
 // 1. TypeScript Interface for Logo Data
 export interface CertificateLogo {
   id: string;
@@ -22,25 +27,25 @@ const {
     {
       id: 'cipet',
       name: 'CIPET Certificate',
-      src: 'src/images/CIPET.webp',
-     href: 'https://sakrt.in/wp-content/uploads/2025/10/CIPET.png',
+      src: cipetImg.src,
+      href: 'https://sakrt.in/wp-content/uploads/2025/10/CIPET.png',
     },
     {
       id: 'iso',
       name: 'ISO Certification',
-      src: 'src/images/iso.png',
+      src: isoImg.src,
       href: 'https://sakrt.in/wp-content/uploads/2025/10/certificate.png',
     },
     {
       id: 'cpcb',
       name: 'CPCB Certificate',
-      src: 'src/images/cpcb.png',
-     href: 'https://sakrt.in/wp-content/uploads/2026/07/Final-compostable-certificate.pdf',
+      src: cpcbImg.src,
+      href: 'https://sakrt.in/wp-content/uploads/2026/07/Final-compostable-certificate.pdf',
     },
     {
       id: 'bio-compliance',
       name: 'Bio-Compliance Certificate',
-      src: 'src/images/bio-compliance.png',
+      src: bioComplianceImg.src,
       href: 'https://sakrt.in/wp-content/uploads/2026/07/DocScanner-23-Aug-2023-16-22-1.pdf',
     },
   ],
