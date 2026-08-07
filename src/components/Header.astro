@@ -374,13 +374,13 @@ const isProductsActive = pathname.startsWith('/products') ||
     color: #ffffff;
   }
 
+  .nav-menu a::after {
+    display: none;
+  }
+
   .nav-menu a:hover,
   .nav-menu a.active {
     color: #a3d200;
-  }
-
-  .nav-menu:hover a:not(:hover).active::after {
-    width: 100%;
   }
 
   /* Mobile Dropdown Customization */
@@ -393,31 +393,53 @@ const isProductsActive = pathname.startsWith('/products') ||
   .dropdown-menu {
     position: static;
     transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    background: transparent;
+    border: none;
     box-shadow: none;
     width: 100%;
     text-align: center;
-    margin-top: 8px;
-    padding: 8px 0;
-    border-radius: 12px;
+    margin-top: 0;
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  /* Override desktop hover on mobile */
   .dropdown-container:hover .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
     transform: none;
+    pointer-events: none;
+  }
+
+  /* Open state on mobile */
+  .dropdown-container.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 350px;
+    pointer-events: auto;
+    margin-top: 8px;
+    padding: 4px 0;
+  }
+
+  .dropdown-container.open .dropdown-arrow {
+    transform: rotate(180deg);
   }
 
   .dropdown-menu li a {
-    color: rgba(255, 255, 255, 0.85);
-    padding: 8px 12px;
-    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    padding: 10px 12px;
+    font-size: 14px;
+    display: block;
+    transition: color 0.3s ease;
   }
 
   .dropdown-menu li a:hover {
-    background: rgba(163, 210, 0, 0.15);
+    background: transparent;
     color: #a3d200;
   }
 
@@ -449,3 +471,19 @@ const isProductsActive = pathname.startsWith('/products') ||
   }
 }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdownTrigger = document.querySelector('.dropdown-trigger');
+    const dropdownContainer = document.querySelector('.dropdown-container');
+
+    if (dropdownTrigger && dropdownContainer) {
+      dropdownTrigger.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1000) {
+          e.preventDefault();
+          dropdownContainer.classList.toggle('open');
+        }
+      });
+    }
+  });
+</script>

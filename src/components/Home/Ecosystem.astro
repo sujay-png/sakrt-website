@@ -200,9 +200,9 @@ import Header from '../../components/Header.astro';
   /* Your Image Paths */
   .bottle-bg {
     background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(11,34,24,0.95) 90%), url('../../images/biodegradable_water.png');
-    background-size: 101%; /* Adjust this percentage if you want the bottle smaller or larger */
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: center 25%;
+    background-position: center;
   }
 
   .bag-bg {
@@ -356,6 +356,84 @@ import Header from '../../components/Header.astro';
       grid-column: span 1;
       flex-direction: column;
     }
+
+    /* Mobile Scroll Accordion */
+    .ecosystem-card {
+      min-height: 220px !important;
+      height: 220px !important;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .ecosystem-card.scrolled-focus {
+      min-height: 480px !important;
+      height: 480px !important;
+    }
+
+    /* Hide descriptions and buttons when collapsed */
+    .ecosystem-card p, 
+    .ecosystem-card .btn-lime, 
+    .ecosystem-card .explore-text {
+      opacity: 0;
+      max-height: 0;
+      margin: 0;
+      overflow: hidden;
+      transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Reveal when focused */
+    .ecosystem-card.scrolled-focus p {
+      opacity: 1;
+      max-height: 100px;
+      margin-bottom: 24px;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+    
+    .ecosystem-card.scrolled-focus .btn-lime, 
+    .ecosystem-card.scrolled-focus .explore-text {
+      opacity: 1;
+      max-height: 50px;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
   }
 </style>
+
+<script>
+  declare global {
+    interface Window {
+      ecosystemObserver: IntersectionObserver | undefined;
+    }
+  }
+
+  function setupEcosystemAccordion() {
+    const cards = document.querySelectorAll('.ecosystem-card');
+    if (cards.length === 0) return;
+    
+    cards[0].classList.add('scrolled-focus');
+
+    const observer = new IntersectionObserver((entries) => {
+      const intersectingEntry = entries.find(e => e.isIntersecting);
+      if (intersectingEntry) {
+        cards.forEach(c => c.classList.remove('scrolled-focus'));
+        intersectingEntry.target.classList.add('scrolled-focus');
+      }
+    }, {
+      rootMargin: '-35% 0px -35% 0px',
+      threshold: 0
+    });
+
+    // Disconnect old observer if re-running
+    if (window.ecosystemObserver) {
+      window.ecosystemObserver.disconnect();
+    }
+    window.ecosystemObserver = observer;
+
+    cards.forEach(card => observer.observe(card));
+  }
+
+  setupEcosystemAccordion();
+  document.addEventListener('astro:page-load', setupEcosystemAccordion);
+</script>
 
