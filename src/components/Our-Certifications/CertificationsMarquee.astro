@@ -1,0 +1,216 @@
+---
+// CertificationsMarquee.astro
+
+import cipetImg from '../../images/CIPET.webp';
+import isoImg from '../../images/iso.png';
+import cpcbImg from '../../images/cpcb.png';
+import bioComplianceImg from '../../images/bio-compliance.png';
+
+// 1. TypeScript Interface for Logo Data
+export interface CertificateLogo {
+  id: string;
+  name: string;
+  src: string;
+  href: string; // URL destination for modal preview
+  certType: 'image' | 'pdf';
+  openInNewTab?: boolean;
+}
+
+// 2. TypeScript Props Definition
+interface Props {
+  logos?: CertificateLogo[];
+  speedInSeconds?: number;
+}
+
+const {
+  speedInSeconds = 22,
+  logos = [
+    {
+      id: 'cipet',
+      name: 'CIPET Certificate',
+      src: cipetImg.src,
+      href: '/certificates/CIPET.webp',
+      certType: 'image',
+    },
+    {
+      id: 'iso',
+      name: 'ISO Certification',
+      src: isoImg.src,
+      href: '/certificates/ISO.webp',
+      certType: 'image',
+    },
+    {
+      id: 'cpcb',
+      name: 'CPCB Certificate',
+      src: cpcbImg.src,
+      href: '/certificates/CPCB.pdf',
+      certType: 'pdf',
+    },
+    {
+      id: 'bio-compliance',
+      name: 'Bio-Compliance Certificate',
+      src: bioComplianceImg.src,
+      href: '/certificates/global.pdf',
+      certType: 'pdf',
+    },
+  ],
+} = Astro.props;
+---
+
+<div class="marquee-section">
+  <p class="marquee-hint">Tap the icons to view the certificates</p>
+
+  <div class="marquee-container">
+    <div class="marquee-track" style={`--marquee-speed: ${speedInSeconds}s;`}>
+      <!-- Set 1 -->
+      {
+        logos.map((logo) => (
+          <button
+            type="button"
+            class="logo-card cert-preview-trigger"
+            data-cert-url={logo.href}
+            data-cert-type={logo.certType}
+            aria-label={`Preview ${logo.name}`}
+          >
+            <img src={logo.src} alt={logo.name} loading="lazy" />
+          </button>
+        ))
+      }
+
+      <!-- Duplicate Set 2 for Infinite Scrolling Loop -->
+      {
+        logos.map((logo) => (
+          <button
+            type="button"
+            class="logo-card cert-preview-trigger"
+            data-cert-url={logo.href}
+            data-cert-type={logo.certType}
+            aria-label={`Preview ${logo.name}`}
+          >
+            <img src={logo.src} alt={logo.name} loading="lazy" />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Navigation handled by CertificatePreviewModal.astro -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap');
+
+  .marquee-section {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 3rem;
+    overflow: hidden;
+  }
+
+  .marquee-hint {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #2e6247;
+    margin: 0 0 2rem 0;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+
+  .marquee-container {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 12%,
+      rgba(0, 0, 0, 1) 88%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 12%,
+      rgba(0, 0, 0, 1) 88%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: max-content;
+    animation: marquee-scroll var(--marquee-speed, 22s) linear infinite;
+  }
+
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .logo-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 110px;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(10, 35, 25, 0.08);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 20px rgba(10, 35, 25, 0.03);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .logo-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(15%) opacity(0.9);
+    transition: filter 0.3s ease;
+    pointer-events: none; /* Prevents image dragging */
+  }
+
+  .logo-card:hover {
+    background: #ffffff;
+    border-color: rgba(197, 255, 73, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(10, 35, 25, 0.08);
+  }
+
+  .logo-card:hover img {
+    filter: grayscale(0%) opacity(1);
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .logo-card {
+      width: 140px;
+      height: 90px;
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+
+    .marquee-track {
+      gap: 1.25rem;
+    }
+  }
+</style>

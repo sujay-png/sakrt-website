@@ -10,7 +10,9 @@ const isProductsActive = pathname.startsWith('/products') ||
 
     <!-- Left: Logo -->
     <div class="nav-left">
-      <a href="/" class="logo">SAKRT</a>
+      <a href="/" class="logo" aria-label="SAKRT Home">
+        <img src="/logo/footer-logo.webp" alt="SAKRT Logo" />
+      </a>
     </div>
 
     <!-- Mobile Menu Toggle (Checkbox Hack) -->
@@ -45,7 +47,7 @@ const isProductsActive = pathname.startsWith('/products') ||
         </ul>
       </div>
 
-      <a href="/certifications" class={pathname === "/certifications" ? "active" : ""}>Certifications</a>
+      <a href="/our-certifications" class={pathname === "/our-certifications" ? "active" : ""}>Certifications</a>
       <a href="/blogs" class={pathname.startsWith("/blogs") ? "active" : ""}>Blogs</a>
       <a href="/media" class={pathname === "/media" ? "active" : ""}>Media</a>
         
@@ -89,7 +91,7 @@ const isProductsActive = pathname.startsWith('/products') ||
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px; /* Perfect pill shape */
+  border-radius: 20px; /* Slightly rounded corners */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 
   display: flex;
@@ -115,13 +117,21 @@ const isProductsActive = pathname.startsWith('/products') ||
 
 /* Logo Style */
 .logo {
-  font-family: var(--font-serif, 'Playfair Display', serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1b3d2f; /* Dark green from image */
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  letter-spacing: 1px;
-  white-space: nowrap;
+}
+
+.logo img {
+  height: 48px; 
+  width: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.02);
 }
 
 /* Navigation Menu Container */
@@ -284,7 +294,7 @@ const isProductsActive = pathname.startsWith('/products') ||
   background: #0b2218; /* Very dark green from image */
   color: #ffffff;
   padding: 12px 28px;
-  border-radius: 30px;
+  border-radius: 15px;
   text-decoration: none;
   font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
   font-size: 15px;
@@ -329,7 +339,12 @@ const isProductsActive = pathname.startsWith('/products') ||
 @media (max-width: 1000px) {
   .glass-navbar {
     height: 56px;
-    padding: 0 16px 0 24px;
+    padding: 0 16px 0 12px;
+  }
+
+  .logo img {
+    height: 38px;
+    width: 38px;
   }
 
   .nav-left, .nav-right {

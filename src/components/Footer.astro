@@ -11,7 +11,9 @@
         
         <!-- Column 1: Brand & Bio -->
         <div class="footer-col brand-col">
-          <h2 class="footer-logo">SAKRT</h2>
+          <a href="/" class="footer-logo-link" aria-label="SAKRT Home">
+            <img src="/logo/footer-logo.webp" alt="SAKRT Logo" class="footer-logo" />
+          </a>
           <p class="footer-desc">
             SAKRT is the reliable partner in Manufacturing & Distributing Govt certified compostable products for retailers and industrial enterprises.
           </p>
@@ -38,7 +40,7 @@
           <h3 class="col-title">Connect</h3>
           <ul class="footer-menu">
             <li><a href="/contactus" class="footer-link">Contact Us</a></li>
-            <li><a href="/certifications" class="footer-link">Certifications</a></li>
+            <li><a href="/our-certifications" class="footer-link">Certifications</a></li>
             <li><a href="/blogs" class="footer-link">Our Blog</a></li>
           </ul>
         </div>
@@ -107,12 +109,21 @@
   }
 
   /* Typography & Links */
+  .footer-logo-link {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
   .footer-logo {
-    font-family: "Bodoni Moda", serif;
-    font-size: 2rem;
-    color: #ffffff88;
-    margin: 0 0 20px 0;
-    letter-spacing: 1px;
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .footer-logo:hover {
+    transform: scale(1.02);
   }
 
   .footer-desc {

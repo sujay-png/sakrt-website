@@ -3,6 +3,7 @@ import productImg from '../../images/biodegradable_water.png';
 import CategoryGrid from '../Shared/CategoryGrid.astro';
 import ModernFAQ from '../Shared/ModernFAQ.astro';
 import CallToAction from '../../components/Home/CallToAction.astro';
+import EnquiryForm from '../EnquiryForm.astro';
 
 const relatedProducts = [
   { name: "Compostable Wrapping Film", slug: "compostable-wrapping-film", category: "compostable-films", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
@@ -116,14 +117,8 @@ const faqs = [
     </div>
 
     <!-- Banner -->
-    <div class="banner">
-      <div class="banner-tag">SAKRT - A brand of Innovy Innovations PVT LTD</div>
-      <h2>Choose SAKRT's Biodegradable<br/>Water Bottles</h2>
-      <p>Join the sustainability revolution today!<br/>Choose SAKRT's biodegradable products for your home, business, or event and make waste disposal environmentally responsible.</p>
-      <div class="action-buttons banner-buttons">
-        <a href="/contactus" class="btn btn-primary-light">ENQUIRE NOW</a>
-        <a href="/contactus" class="btn btn-outline-light">ORDER IN BULK</a>
-      </div>
+    <div class="banner-wrapper" style="margin-top: 4rem; margin-bottom: 2rem;">
+      <EnquiryForm />
     </div>
 
   </div>
