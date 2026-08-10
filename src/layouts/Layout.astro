@@ -5,9 +5,23 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  ogType?: string;
+  schema?: any;
 }
 
-const { title = "SAKRT | Engineered For The Earth" } = Astro.props;
+const { 
+  title = "SAKRT | Govt Approved & Certified Compostable Products Manufacturer",
+  description = "SAKRT is a leading manufacturer of certified compostable packaging, bags, and tableware in India. Eco-friendly, sustainable alternatives to plastic.",
+  image = "/logo/footer-logo.webp",
+  canonical,
+  ogType = "website",
+  schema
+} = Astro.props;
+
+const canonicalURL = canonical ? new URL(canonical, Astro.site || Astro.url) : new URL(Astro.url.pathname, Astro.site || Astro.url);
 ---
 
 <!doctype html>
@@ -18,7 +32,31 @@ const { title = "SAKRT | Engineered For The Earth" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site || Astro.url).href} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL.href} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site || Astro.url).href} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL.href} />
+
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

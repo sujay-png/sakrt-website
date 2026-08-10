@@ -188,13 +188,26 @@
             grid-template-columns: 1fr;
         }
         .inquiry-card {
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1.25rem;
+            border-radius: 16px;
+        }
+        .inquiry-title {
+            font-size: 1.35rem;
+            margin-bottom: 1.5rem;
         }
     }
 </style>
 <script>
-    function sendToWhatsApp(event: SubmitEvent) {
+    async function handleFormSubmit(event: SubmitEvent) {
         event.preventDefault();
+
+        const form = event.target as HTMLFormElement;
+        const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+        
+        if (submitBtn) {
+            submitBtn.textContent = 'TRANSMITTING...';
+            submitBtn.disabled = true;
+        }
 
         const fullName = (document.getElementById('fullName') as HTMLInputElement).value;
         const phoneNumber = (document.getElementById('phoneNumber') as HTMLInputElement).value;
@@ -202,6 +215,15 @@
         const businessEmail = (document.getElementById('businessEmail') as HTMLInputElement).value;
         const itemQuantity = (document.getElementById('itemQuantity') as HTMLInputElement).value;
         const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+
+        const payload = {
+            fullName,
+            phoneNumber,
+            companyName,
+            businessEmail,
+            itemQuantity,
+            message
+        };
 
         const text =
             `*New Bulk Supply Inquiry*%0A%0A` +
@@ -215,10 +237,34 @@
         const whatsappNumber = "+917975310662";
         const url = `https://wa.me/${whatsappNumber}?text=${text}`;
 
-        window.open(url, "_blank");
+        try {
+            // Option B: Run both API call (Sheets) and WhatsApp popup in parallel
+            await Promise.all([
+                fetch('/api/enquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }),
+                new Promise<void>((resolve) => {
+                    window.open(url, "_blank");
+                    resolve();
+                })
+            ]);
+            
+            form.reset();
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Something went wrong submitting to the backend, but WhatsApp should have opened.');
+        } finally {
+            if (submitBtn) {
+                submitBtn.textContent = 'REQUEST TECHNICAL QUOTE';
+                submitBtn.disabled = false;
+            }
+        }
     }
 
-    // Attach listener directly instead of relying on inline onsubmit
     const form = document.getElementById('inquiryForm') as HTMLFormElement;
-    form.addEventListener('submit', sendToWhatsApp);
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
 </script>

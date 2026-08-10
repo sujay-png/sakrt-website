@@ -4,528 +4,459 @@ import EnquiryForm from '../EnquiryForm.astro';
 export interface Props {
   productName?: string;
   productImage?: string;
+  relatedProducts?: any[];
+  productData?: any;
 }
 
 const { 
-  productName = "Designer Tableware for Dining, Events & Takeaway",
-  productImage = "/images/Tableware.png" // Fallback to an existing image
+  productName = "Compostable Product",
+  productImage = "",
+  relatedProducts = [],
+  productData = {}
 } = Astro.props;
+
+const longTitle = productData?.longTitle || productName;
+const aboutTitle = productData?.aboutTitle || "About This Item";
+const aboutBullets = productData?.aboutBullets || [
+  "Made from 100% biodegradable, plant-based resources.",
+  "Supports custom photo printing for vibrant, attention-grabbing designs.",
+  "Breaks down naturally without polluting soil or water.",
+  "Strong enough for everyday shopping and handling.",
+  "Ideal for eco-conscious brands, events, and retail stores.",
+  "A clean, sustainable replacement for traditional plastic bags."
+];
+const ratingText = productData?.ratingText || "BPA-free and non-toxic, safe for daily use.";
+const whyChooseTitle = productData?.whyChooseTitle || `Why Choose ${productName}?`;
+const whyChooseText = productData?.whyChooseText || [
+  "Compostable products are a great eco-friendly option instead of plastic. They help cut down on pollution, help the environment in a sustainable way, and turn into harmless organic material on their own. Using compostable bags means businesses and people are helping to make the planet cleaner, while also getting strong, good-looking, and safe packaging options.",
+  "Compostable products help the environment by using materials made from plants, like cornstarch, which break down completely into nutrients, water, and carbon dioxide without leaving harmful microplastics. These products cut down on carbon emissions, lessen the need for fossil fuels, improve soil health, and provide a strong, eco-friendly alternative to plastic. They make waste management easier and help support efforts to create a circular economy."
+];
+const additionalDetailsTitle = productData?.additionalDetailsTitle || "Additional Product Details";
+const additionalDetails = productData?.additionalDetails || [
+  "<strong>Material:</strong> Made from 100% plant-based, biodegradable materials.",
+  "<strong>Sizes & Shapes:</strong> Available in multiple sizes to suit groceries, retail items, and takeaway food.",
+  "<strong>Durability:</strong> Strong and tear-resistant for everyday use.",
+  "<strong>Design Options:</strong> Can be custom printed with logos or vibrant images for branding purposes.",
+  "<strong>Safety:</strong> Non-toxic, food-safe, and environmentally friendly."
+];
+const usageApplications = productData?.usageApplications || [
+  "Perfect for groceries, boutiques, and eco-conscious stores.",
+  "Ideal for takeaway, catering, or bakery items.",
+  "Great for giveaways, exhibitions, and eco-friendly campaigns.",
+  "Convenient for carrying personal items, books, or small household goods."
+];
 ---
 
-<section class="product-detail-section">
-  <div class="product-container">
-
-    <!-- LEFT COLUMN: Product Gallery & Schematics -->
-    <div class="left-column">
-
-      <!-- Main Featured Image Showcase -->
-      <div class="main-image-card">
-        <img
-          src={productImage}
-          alt={productName}
-          class="product-image"
-        />
-
-        <!-- Floating Material Focus Tag -->
-        <div class="floating-material-card">
-          <span class="tag-label">MATERIAL FOCUS</span>
-          <h4 class="tag-title">Eco-Friendly Compostable Material</h4>
+<section class="product-detail-page">
+  <div class="container">
+    
+    <!-- Top Section: Image and Title/Bullets -->
+    <div class="top-section">
+      <div class="image-column">
+        <div class="image-wrapper">
+          <img src={productImage} alt={productName} class="main-image" />
         </div>
       </div>
-
-      <!-- Secondary Info Cards Grid -->
-      <div class="schematics-grid">
-
-        <!-- Technical Schematic Card -->
-        <div class="spec-card schematic-card">
-          <div class="schematic-diagram">
-            <div class="height-indicator">
-              <span>CERTIFIED</span>
-            </div>
-            <div class="bottle-outline"></div>
+      
+      <div class="info-column">
+        <h1 class="product-title">{longTitle}</h1>
+        
+        <div class="badges-row">
+          <div class="badge-item">
+            <img class="badge-icon" src="/products-icon/imgi_5_product.png" alt="Certified Product" />
+            <span>Certified<br/>Product</span>
           </div>
-          <p class="card-caption">TECHNICAL SCHEMATIC 01</p>
-        </div>
-
-        <!-- Size Range Card -->
-        <div class="spec-card capacity-card">
-          <div class="leaf-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"></path>
-            </svg>
+          <div class="badge-item">
+            <img class="badge-icon" src="/products-icon/imgi_6_order.png" alt="Ontime Delivery" />
+            <span>Ontime<br/>Delivery</span>
           </div>
-          <h3 class="capacity-number">100%</h3>
-          <p class="card-caption">COMPOSTABLE</p>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- RIGHT COLUMN: Details, Specs, & Inquire Form -->
-    <div class="right-column">
-      <div class="product-info-card">
-
-        <!-- Badges -->
-        <div class="badge-group">
-          <span class="badge lime-badge">ECO SAFE</span>
-          <span class="badge muted-badge">COMPOSTABLE</span>
-        </div>
-
-        <!-- Title & Description -->
-        <h1 class="product-title">{productName}</h1>
-        <p class="product-description">
-          1) Molded from 100% renewable, earth-friendly materials.<br/>
-          2) Sturdy enough for high-performance usage.<br/>
-          3) Completely safe with no chemical leaching.<br/>
-          4) Elegant designer finish suitable for all applications.<br/>
-          5) Composts fully within 90-180 days, leaving zero waste behind.
-        </p>
-
-        <!-- Technical Specifications Grid -->
-        <div class="tech-specs-container">
-          <h2 class="specs-section-title">TECHNICAL SPECIFICATIONS</h2>
-          <div class="specs-grid">
-
-            <div class="spec-item">
-              <span class="spec-label">COMPOSITION</span>
-              <span class="spec-value">Plant-based materials</span>
-            </div>
-
-            <div class="spec-item">
-              <span class="spec-label">CERTIFICATION</span>
-              <span class="spec-value">ISO 17088 / CPCB</span>
-            </div>
-
-            <div class="spec-item">
-              <span class="spec-label">PERFORMANCE</span>
-              <span class="spec-value">High Durability</span>
-            </div>
-
-            <div class="spec-item">
-              <span class="spec-label">DEGRADATION</span>
-              <span class="spec-value">90-180 Days (Industrial)</span>
-            </div>
-
+          <div class="badge-item">
+            <img class="badge-icon" src="/products-icon/imgi_7_bag.png" alt="Custom Orders" />
+            <span>Custom<br/>Orders</span>
+          </div>
+          <div class="badge-item">
+            <img class="badge-icon" src="/products-icon/imgi_8_exchange.png" alt="Easy Returns" />
+            <span>Easy<br/>Returns</span>
           </div>
         </div>
+        
+        <h3 class="about-title">{aboutTitle}</h3>
+        <ul class="feature-list">
+          {aboutBullets.map((bullet: string) => (
+            <li><Fragment set:html={bullet} /></li>
+          ))}
+        </ul>
 
-
-        <!-- Footer Verification Tag -->
-        <div class="verified-footer">
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          <span>VERIFIED CIRCULAR ECONOMY ASSET</span>
+        <div class="certification-block">
+          <div class="cpcb-tag">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>CPCB CERTIFIED</span>
+          </div>
+          <div class="rating-text">
+            {ratingText} <span class="stars">★★★★★</span>
+          </div>
         </div>
-
       </div>
     </div>
 
-  </div>
+    <!-- Why Choose Section -->
+    <div class="why-choose-section">
+      <h2 class="section-title">{whyChooseTitle}</h2>
+      {whyChooseText.map((text: string) => (
+        <p class="description-text">{text}</p>
+      ))}
+    </div>
 
-  <div class="form-wrapper">
-    <EnquiryForm />
+    <!-- Additional Details & Usage Grid -->
+    <div class="details-usage-grid">
+      <div class="additional-details">
+        <h3 class="sub-section-title">{additionalDetailsTitle}</h3>
+        <ul class="details-list">
+          {additionalDetails.map((detail: string) => (
+            <li><Fragment set:html={detail} /></li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="usage-applications">
+        <h3 class="sub-section-title">Usage Applications:</h3>
+        <ul class="usage-list">
+          {usageApplications.map((app: string) => (
+            <li><Fragment set:html={app} /></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    {relatedProducts && relatedProducts.length > 0 && (
+      <div class="related-products-section">
+        <h2 class="section-title">Related Products</h2>
+        <div class="related-grid">
+          {relatedProducts.map((rp: any) => (
+            <div class="related-card">
+              <a href={`/compostable-product/${rp.category}/${rp.slug}`} class="related-img-wrapper">
+                <img src={rp.image} alt={rp.name} />
+              </a>
+              <h4 class="related-title">{rp.name}</h4>
+              <a href={`/compostable-product/${rp.category}/${rp.slug}`} class="view-details-btn">View Details</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Enquiry Form Section -->
+    <div class="enquiry-section">
+      <h2 class="section-title text-center">Ready to Go Green?</h2>
+      <p class="section-subtitle text-center">Reach out for bulk orders, custom branding, or distribution partnerships.</p>
+      
+      <div class="form-wrapper">
+        <EnquiryForm />
+      </div>
+    </div>
+
   </div>
 </section>
 
 <style>
-  .form-wrapper {
-    max-width: 1240px;
-    margin: 3rem auto 0;
-  }
-  /* Base Layout */
-  .product-detail-section {
-    width: 100%;
-    background-color: #f3f4f1;
-    padding: 8rem 1.5rem 3rem;
-    box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  .product-detail-page {
+    background-color: #ffffff;
+    padding: 8rem 1.5rem 4rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333;
   }
 
-  .product-container {
-    max-width: 1240px;
+  .container {
+    max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 2rem;
-    align-items: stretch;
   }
 
-  /* LEFT COLUMN STYLES */
-  .left-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  /* Main Featured Image Card */
-  .main-image-card {
-    position: relative;
-    width: 100%;
-    height: 520px;
-    background-color: #ebece8;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  /* Floating Tag inside Main Image */
-  .floating-material-card {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background-color: #0d3d26;
-    padding: 1.25rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    max-width: 260px;
-  }
-
-  .tag-label {
-    display: block;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
+  /* Typography */
+  .section-title {
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #cff737;
-    letter-spacing: 0.12em;
-    margin-bottom: 0.4rem;
+    color: #111;
+    margin-bottom: 1.25rem;
   }
 
-  .tag-title {
-    font-family: var(--font-serif);
-    font-size: 0.98rem;
-    font-weight: 400;
-    color: #ffffff;
-    margin: 0;
-    line-height: 1.25;
-  }
-
-  /* Schematics & Spec Cards Grid */
-  .schematics-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .spec-card {
-    height: 220px;
-    border-radius: 16px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-  }
-
-  .card-caption {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.68rem;
+  .sub-section-title {
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #727a75;
-    letter-spacing: 0.12em;
-    margin: 0;
-    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 1rem;
+  }
+  
+  .description-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1.25rem;
   }
 
-  /* Schematic Card Specifics */
-  .schematic-card {
-    background-color: #eeebe6;
-  }
-
-  .schematic-diagram {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    gap: 1.25rem;
-  }
-
-  .height-indicator {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
-    font-weight: 700;
-    color: #2b332e;
-    letter-spacing: 0.1em;
-  }
-
-  .bottle-outline {
-    width: 65px;
-    height: 110px;
-    border: 1.5px dashed rgba(43, 51, 46, 0.4);
-    border-radius: 6px;
-    position: relative;
-  }
-
-  /* Capacity Card Specifics */
-  .capacity-card {
-    background-color: #ebece8;
-    align-items: center;
-    justify-content: center;
+  .text-center {
     text-align: center;
   }
 
-  .leaf-icon {
-    width: 32px;
-    height: 32px;
-    color: #0d3d26;
-    margin-bottom: 0.5rem;
+  /* Top Section */
+  .top-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
   }
 
-  .capacity-number {
-    font-family: var(--font-serif);
-    font-size: 1.91rem;
-    font-weight: 400;
-    color: #0d3d26;
-    margin: 0 0 0.25rem 0;
+  @media (min-width: 768px) {
+    .top-section {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
   }
 
-  /* RIGHT COLUMN STYLES */
-  .right-column {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .product-info-card {
+  .image-wrapper {
+    width: 100%;
+    border-radius: 12px;
     background-color: #ffffff;
-    border-radius: 20px;
-    padding: 3rem 2.5rem 2.5rem 2.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    flex-grow: 1;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* Badges */
-  .badge-group {
-    display: flex;
-    gap: 0.6rem;
-    margin-bottom: 1.75rem;
+  .main-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
-  .badge {
-    padding: 0.35rem 0.65rem;
-    border-radius: 4px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-  }
-
-  .lime-badge {
-    background-color: #d9f99d;
-    color: #365314;
-  }
-
-  .muted-badge {
-    background-color: #e5e7eb;
-    color: #4b5563;
-  }
-
-  /* Product Title & Info */
   .product-title {
-    font-family: var(--font-serif);
-    font-size: 2.98rem;
-    font-weight: 400;
-    color: #0d3d26;
-    line-height: 1.05;
-    margin: 0 0 1.25rem 0;
-    letter-spacing: -0.02em;
-  }
-
-  .product-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #525a55;
-    margin: 0 0 2.25rem 0;
-  }
-
-  /* Specifications Grid */
-  .tech-specs-container {
-    border-top: 1px solid #e5e7eb;
-    padding-top: 1.75rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #111;
     margin-bottom: 2rem;
   }
 
-  .specs-section-title {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.725rem;
-    font-weight: 700;
-    color: #374151;
-    letter-spacing: 0.12em;
-    margin: 0 0 1.5rem 0;
-  }
-
-  .specs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 2rem;
-  }
-
-  .spec-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .spec-label {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
-    font-weight: 700;
-    color: #9ca3af;
-    letter-spacing: 0.08em;
-  }
-
-  .spec-value {
-    font-size: 0.925rem;
-    font-weight: 700;
-    color: #1f2937;
-  }
-
-  /* Bulk Supply Form Box */
-  .inquiry-card {
-    background-color: #0d3d26;
-    border-radius: 14px;
-    padding: 1.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .inquiry-title {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: #ffffff;
-    margin: 0 0 1.25rem 0;
-  }
-
-  .inquiry-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-
-  .input-group {
-    position: relative;
-    width: 100%;
-  }
-
-  .form-input,
-  .form-select {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    padding: 0.85rem 1rem;
-    font-size: 0.875rem;
-    color: #ffffff;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-input::placeholder {
-    color: #8da397;
-  }
-
-  .form-input:focus,
-  .form-select:focus {
-    border-color: #a3e635;
-  }
-
-  .form-select {
-    appearance: none;
-    -webkit-appearance: none;
-    color: #8da397;
-    cursor: pointer;
-  }
-
-  .select-arrow {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
-    color: #8da397;
-    pointer-events: none;
-  }
-
-  .submit-btn {
-    width: 100%;
-    background-color: #bef264;
-    color: #0d3d26;
-    border: none;
-    border-radius: 8px;
-    padding: 1rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 0.35rem;
-  }
-
-  .submit-btn:hover {
-    background-color: #a3e635;
-  }
-
-  /* Verified Footer Tag */
-  .verified-footer {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #6b7280;
-    letter-spacing: 0.08em;
-    padding-left: 0.25rem;
-    margin-top: auto;
-  }
-
-  .check-icon {
-    width: 14px;
-    height: 14px;
-    color: #6b7280;
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 1024px) {
-    .product-container {
-      grid-template-columns: 1fr;
-    }
-
-    .main-image-card {
-      height: 420px;
-    }
-  }
-
-  @media (max-width: 640px) {
+  @media (min-width: 768px) {
     .product-title {
       font-size: 2.5rem;
     }
+  }
 
-    .schematics-grid,
-    .specs-grid {
-      grid-template-columns: 1fr;
-    }
+  /* Badges Row */
+  .badges-row {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
 
-    .product-info-card {
-      padding: 1.75rem 1.25rem;
+  .badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #4da674;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+  }
+
+  /* Features List */
+  .about-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 1rem;
+  }
+
+  .feature-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-list li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+
+  /* CPCB Certification Block */
+  .certification-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cpcb-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4da674;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .rating-text {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .stars {
+    color: #fbbf24;
+    font-size: 1rem;
+    margin-left: 0.25rem;
+  }
+
+  /* Why Choose Section */
+  .why-choose-section {
+    margin-bottom: 4rem;
+  }
+
+  /* Details and Usage Grid */
+  .details-usage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .details-usage-grid {
+      grid-template-columns: 6fr 4fr;
+      gap: 3rem;
     }
+  }
+
+  .details-list, .usage-list {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .details-list li, .usage-list li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+
+  .details-list strong {
+    color: #111;
+  }
+
+  .usage-applications {
+    background-color: #f3f4f6; /* Light grey box */
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  /* Related Products */
+  .related-products-section {
+    margin-bottom: 5rem;
+    border-top: 1px solid #eee;
+    padding-top: 3rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .related-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .related-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .related-img-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .related-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .related-img-wrapper:hover img {
+    transform: scale(1.05);
+  }
+
+  .related-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 1rem;
+    height: 2.4em; /* clamp height to align buttons */
+    overflow: hidden;
+  }
+
+  .view-details-btn {
+    background-color: #2b7a4b;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+  }
+
+  .view-details-btn:hover {
+    background-color: #1e5c37;
+  }
+
+  /* Enquiry Section */
+  .enquiry-section {
+    padding: 2rem 0;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2.5rem;
+  }
+
+  .form-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
   }
 </style>

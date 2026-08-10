@@ -1,6 +1,6 @@
 ---
-import BaseLayout from '../../../layouts/Layout.astro';
-import { wpquery } from '../../../lib/wordpress';
+import BaseLayout from '../../layouts/Layout.astro';
+import { wpquery } from '../../lib/wordpress';
 
 // 1. Tell Astro which paths (slugs) to build
 export async function getStaticPaths() {
@@ -12,6 +12,7 @@ export async function getStaticPaths() {
             slug
             title
             content
+            excerpt
             date
             featuredImage {
               node {
@@ -31,15 +32,10 @@ export async function getStaticPaths() {
   });
 
   // Return the paths and pass the post data as a prop
-  return data.posts.nodes.map((post: any) => {
-    const catName = post.categories?.nodes?.[0]?.name || "general";
-    const category = encodeURIComponent(catName.toLowerCase().replace(/\s+/g, '-'));
-    
-    return {
-      params: { category, slug: post.slug },
-      props: { post },
-    };
-  });
+  return data.posts.nodes.map((post: any) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
 // 2. Define the Props interface to clear TypeScript errors
@@ -57,9 +53,17 @@ const formattedDate = date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 });
+
+// Strip HTML tags from excerpt for the meta description
+const cleanExcerpt = post.excerpt ? post.excerpt.replace(/<[^>]*>?/gm, '').substring(0, 155) + '...' : `Read about ${post.title} on SAKRT's blog.`;
 ---
 
-<BaseLayout title={`${post.title} | Sakrt`}>
+<BaseLayout 
+  title={`${post.title} | Sakrt`}
+  description={cleanExcerpt}
+  image={post.featuredImage?.node?.sourceUrl}
+  ogType="article"
+>
   <main class="single-post-container">
     <article>
       <header class="post-header">
@@ -87,7 +91,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
     </article>
     
     <div class="back-link">
-      <a href="/blogs">← Back to all Journals</a>
+      <a href="/blog">← Back to all Journals</a>
     </div>
   </main>
 </BaseLayout>

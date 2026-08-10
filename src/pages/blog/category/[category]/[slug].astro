@@ -1,0 +1,615 @@
+---
+import BaseLayout from '../../../../layouts/Layout.astro';
+import { wpquery } from '../../../../lib/wordpress';
+import CallToAction from '../../../../components/Home/CallToAction.astro';
+
+// 1. Tell Astro which paths (slugs) to build
+export async function getStaticPaths() {
+  const data = await wpquery({
+    query: `
+      query GetAllSlugs {
+        posts(first: 100) {
+          nodes {
+            slug
+            title
+            content
+            excerpt
+            date
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            categories {
+              nodes {
+                name
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+
+  // Return the paths and pass the post data as a prop
+  return data.posts.nodes.map((post: any) => {
+    const catName = post.categories?.nodes?.[0]?.name || "general";
+    const category = encodeURIComponent(catName.toLowerCase().replace(/\s+/g, '-'));
+    
+    return {
+      params: { category, slug: post.slug },
+      props: { 
+        post,
+        recentPosts: data.posts.nodes.slice(0, 5)
+      },
+    };
+  });
+}
+
+// 2. Define the Props interface to clear TypeScript errors
+interface Props {
+  post: any;
+  recentPosts: any[];
+}
+
+// 3. Access the post data passed from getStaticPaths
+const { post, recentPosts } = Astro.props as Props;
+const { category } = Astro.params as { category: string; slug: string };
+
+// 4. Format Date
+const date = new Date(post.date);
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// Strip HTML tags from excerpt for the meta description
+const cleanExcerpt = post.excerpt ? post.excerpt.replace(/<[^>]*>?/gm, '').substring(0, 155) + '...' : `Read about ${post.title} on SAKRT's blog.`;
+
+// Clean the content to remove the hardcoded "Choose SAKRT" CTA
+let processedContent = post.content || '';
+processedContent = processedContent.replace(/<h[1-6][^>]*>Choose SAKRT.*?<\/h[1-6]>[\s\S]*?(?=<div class="wp-block-yoast-faq-block"|<div class="schema-faq"|<div class="schema-faq-section"|<details|$)/i, '');
+
+// If FAQs exist but don't have a main wrapper, wrap them so we can style the container
+if (processedContent.includes('schema-faq-section') && !processedContent.includes('wp-block-yoast-faq-block')) {
+  const firstFaqIndex = processedContent.indexOf('<div class="schema-faq-section"');
+  if (firstFaqIndex !== -1) {
+    processedContent = processedContent.slice(0, firstFaqIndex) + 
+                       '<div class="custom-faq-container">' + 
+                       processedContent.slice(firstFaqIndex) + 
+                       '</div>';
+  }
+}
+
+// Rewrite internal WordPress links to point to Astro frontend routes
+processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, url: string) => {
+  // If it's an external link not containing sakrt.in, leave it alone
+  if (url.startsWith('http') && !url.includes('sakrt.in')) return match;
+  
+  // Ignore anchors, mailto, tel, and media files
+  if (url.startsWith('#') || url.startsWith('mailto:') || url.startsWith('tel:')) return match;
+  if (url.includes('wp-content') || url.match(/\.(jpg|jpeg|png|webp|pdf|zip)$/i)) return match;
+  
+  // Parse path
+  let path = url;
+  if (url.startsWith('http')) {
+    try { path = new URL(url).pathname; } catch(e) { return match; }
+  } else {
+    path = path.split('?')[0].split('#')[0]; // strip query strings/hashes from relative paths
+  }
+  
+  const segments = path.split('/').filter(Boolean);
+  if (segments.length === 0) return match;
+  const slug = segments[segments.length - 1];
+  
+  const mainPages = ['about', 'contact', 'shop', 'products', 'faq', 'home'];
+  if (mainPages.includes(slug)) return `href="/${slug}"`;
+  if (path.includes('category/')) return `href="/blog/category/${slug}"`;
+  
+  // By default, assume it's a blog post and point to /blog/[slug]
+  return `href="/blog/${slug}"`;
+});
+---
+
+<BaseLayout 
+  title={`${post.title} | Sakrt`}
+  description={cleanExcerpt}
+  image={post.featuredImage?.node?.sourceUrl}
+  ogType="article"
+>
+  <main class="single-post-container">
+    <div class="blog-grid">
+      <div class="blog-content-area">
+        <article>
+          <header class="post-header">
+            <div class="post-meta">
+              {post.categories?.nodes?.map((category: any) => (
+                <span class="category-badge">{category.name}</span>
+              ))}
+              <span class="date">{formattedDate}</span>
+            </div>
+            
+            <h1 class="post-title">{post.title}</h1>
+          </header>
+
+          {post.featuredImage?.node && (
+            <div class="hero-image">
+              <img 
+                src={post.featuredImage.node.sourceUrl} 
+                alt={post.featuredImage.node.altText || post.title} 
+              />
+            </div>
+          )}
+
+          <!-- Render the WordPress HTML content safely with closing tag -->
+          <div class="post-content wp-content" set:html={processedContent}></div>
+        </article>
+      </div>
+
+      <aside class="blog-sidebar">
+        <h3 class="sidebar-title">Read Next</h3>
+        <div class="recent-posts-list">
+          {recentPosts.filter((p: any) => p.slug !== post.slug).slice(0, 4).map((rp: any) => {
+            const rpCat = rp.categories?.nodes?.[0]?.name || "general";
+            const rpCatSlug = encodeURIComponent(rpCat.toLowerCase().replace(/\s+/g, '-'));
+            const rpDate = new Date(rp.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            
+            return (
+              <a href={`/blog/category/${rpCatSlug}/${rp.slug}`} class="recent-post-card">
+                {rp.featuredImage?.node?.sourceUrl && (
+                  <div class="rp-img-wrapper">
+                    <img src={rp.featuredImage.node.sourceUrl} alt={rp.title} />
+                  </div>
+                )}
+                <div class="rp-info">
+                  <span class="rp-meta">{rpCat} &bull; {rpDate}</span>
+                  <h4 class="rp-title">{rp.title}</h4>
+                  <span class="rp-read-more">Read More &rarr;</span>
+                </div>
+              </a>
+            )
+          })}
+        </div>
+      </aside>
+    </div>
+  </main>
+  <CallToAction />
+  <div class="back-link">
+    <a href={`/blog/category/${category}`}>← Back to Category</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .single-post-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10rem 2rem 4rem; /* Padding for fixed header */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .back-link {
+    text-align: center;
+    padding-bottom: 4rem;
+  }
+
+  .back-link a {
+    color: #1b3d2f;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: #a3d200;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 992px) {
+    .blog-grid {
+      grid-template-columns: 7fr 3fr;
+      gap: 4rem;
+    }
+  }
+
+  /* Sidebar Styles */
+  .blog-sidebar {
+    position: sticky;
+    top: 6rem;
+    height: fit-content;
+  }
+  
+  .sidebar-title {
+    font-size: 1.5rem;
+    color: #111;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #a3d200;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  .recent-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .recent-post-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .recent-post-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .recent-post-card:hover .rp-title {
+    color: #a3d200;
+  }
+
+  .rp-img-wrapper {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .rp-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .recent-post-card:hover .rp-img-wrapper img {
+    transform: scale(1.05);
+  }
+
+  .rp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rp-meta {
+    font-size: 0.75rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .rp-title {
+    font-size: 1.1rem;
+    color: #1b3d2f;
+    line-height: 1.4;
+    margin: 0;
+    transition: color 0.2s ease;
+  }
+
+  .rp-read-more {
+    font-size: 0.875rem;
+    color: #1b3d2f;
+    font-weight: bold;
+    margin-top: 0.25rem;
+  }
+
+  .post-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-badge {
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .date {
+    color: #666;
+    font-size: 0.875rem;
+  }
+
+  .post-title {
+    font-size: clamp(1.75rem, 5vw, 2.75rem); /* Responsive font size */
+    line-height: 1.2;
+    color: #111;
+  }
+
+  .hero-image {
+    width: 100%;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .back-link {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+
+  .back-link a {
+    color: #1b3d2f;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: #a3d200;
+  }
+</style>
+
+<!-- Use is:global to allow these styles to penetrate the injected WordPress HTML -->
+<style is:global>
+  .wp-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .wp-content a {
+    color: #a3d200;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 500;
+  }
+
+  .wp-content a:hover {
+    color: #8bb300;
+  }
+
+  .wp-content h2, 
+  .wp-content h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #1b3d2f;
+  }
+
+  .wp-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .wp-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  /* Add margin to any text that appears after the FAQ blocks */
+  .wp-content .schema-faq-section ~ p,
+  .wp-content details ~ p {
+    margin-top: 2rem;
+    color: #555;
+  }
+
+  /* Add space below the final accordion item so trailing text doesn't hug the border */
+  .wp-content .schema-faq-section:last-of-type,
+  .wp-content details:last-of-type {
+    margin-bottom: 2rem !important;
+  }
+
+  /* ==============================================
+     FAQ / ACCORDION STYLES (NATIVE & PLUGIN BLOCKS)
+     ============================================== */
+
+  /* Main FAQ container background */
+  .wp-content .wp-block-yoast-faq-block,
+  .wp-content .schema-faq,
+  .wp-content .custom-faq-container {
+    background-color: #f7faf3; /* Light mint green */
+    padding: 1.5rem 1.25rem; /* Tighter padding for mobile */
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+  
+  @media (min-width: 768px) {
+    .wp-content .wp-block-yoast-faq-block,
+    .wp-content .schema-faq,
+    .wp-content .custom-faq-container {
+      padding: 2.5rem;
+      margin: 3rem 0;
+    }
+  }
+  
+  /* Container styling for both native details and Yoast divs */
+  .wp-content details,
+  .wp-content .schema-faq-section {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  /* Header styling for both */
+  .wp-content summary,
+  .wp-content .schema-faq-question {
+    padding: 1rem 0;
+    font-weight: 500;
+    color: #111;
+    cursor: pointer;
+    font-size: 1.05rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    margin-bottom: 0;
+    gap: 1rem; /* Keep text away from chevron */
+  }
+
+  .wp-content summary:hover,
+  .wp-content .schema-faq-question:hover {
+    text-decoration: underline;
+    background-color: transparent;
+  }
+
+  /* Hide potential icon wrappers from other WP plugins that might be injecting the stacked + and - */
+  .wp-content .schema-faq-question [class*="icon"],
+  .wp-content .schema-faq-question [class*="toggle"],
+  .wp-content .schema-faq-question [class*="expand"],
+  .wp-content summary [class*="icon"],
+  .wp-content summary [class*="toggle"],
+  .wp-content summary [class*="expand"] {
+    display: none !important;
+  }
+
+  /* Clear any rogue global pseudo-elements that might add a + or - */
+  .wp-content .schema-faq-question::before,
+  .wp-content summary::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  /* Add the Chevron icon to BOTH native summary and custom div questions */
+  .wp-content summary::after,
+  .wp-content .schema-faq-question::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid #111;
+    border-bottom: 2px solid #111;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    flex-shrink: 0; /* Prevent chevron from shrinking on mobile */
+  }
+
+  /* Change rotation when open (Native details logic) */
+  .wp-content details[open] summary::after {
+    transform: rotate(-135deg);
+    margin-bottom: -4px;
+  }
+
+  /* Change rotation when open (JS toggle logic for divs) */
+  .wp-content .schema-faq-question.is-open::after {
+    transform: rotate(-135deg);
+    margin-bottom: -4px;
+  }
+
+  /* Hide the default browser arrow */
+  .wp-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Hide custom answers by default, let JS toggle them */
+  .wp-content .schema-faq-answer {
+    display: none;
+    padding: 0 0 1.25rem 0;
+    margin-bottom: 0;
+    color: #555;
+    font-size: 1rem;
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  /* Show answer when JS adds the class */
+  .wp-content .schema-faq-answer.is-open {
+    display: block;
+  }
+
+  /* Native details paragraph spacing */
+  .wp-content details p {
+    padding: 0 0 1.25rem 0;
+    margin-bottom: 0;
+    color: #555;
+    font-size: 1rem;
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  @keyframes accordion-down {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<!-- Add this script to make third-party div blocks interactive -->
+<script>
+  function initAccordions() {
+    // Find all third-party FAQ questions
+    const questions = document.querySelectorAll('.schema-faq-question');
+    
+    questions.forEach(question => {
+      // Remove old listeners to prevent duplication on route changes
+      const newQuestion = question.cloneNode(true) as Element;
+      if (question.parentNode) {
+        question.parentNode.replaceChild(newQuestion, question);
+      }
+      
+      // Add the click toggle
+      (newQuestion as Element).addEventListener('click', () => {
+        const isCurrentlyOpen = newQuestion.classList.contains('is-open');
+
+        // First, close ALL questions and answers
+        document.querySelectorAll('.schema-faq-question.is-open').forEach(q => {
+          q.classList.remove('is-open');
+        });
+        document.querySelectorAll('.schema-faq-answer.is-open').forEach(a => {
+          a.classList.remove('is-open');
+        });
+
+        // If it wasn't open before we clicked, open it now
+        if (!isCurrentlyOpen) {
+          newQuestion.classList.add('is-open');
+          const answer = newQuestion.nextElementSibling;
+          if (answer && answer.classList.contains('schema-faq-answer')) {
+            answer.classList.add('is-open');
+          }
+        }
+      });
+    });
+
+    // Also add mutually exclusive toggle logic to any native <details> elements if present
+    const detailElements = document.querySelectorAll<HTMLDetailsElement>('.wp-content details');
+    detailElements.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          detailElements.forEach(other => {
+            if (other !== details && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      });
+    });
+  }
+
+  // Run on initial load
+  initAccordions();
+  
+  // Run on Astro View Transition navigation
+  document.addEventListener('astro:page-load', initAccordions);
+</script>

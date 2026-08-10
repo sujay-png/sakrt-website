@@ -232,7 +232,7 @@
     });
 
     // Handle Form Submission with Validation
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       let isFormValid = true;
 
@@ -249,9 +249,57 @@
       });
 
       if (isFormValid) {
-        // Success handling
-        alert('Message transmitted successfully!');
-        form.reset();
+        const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+        const submitBtnText = submitBtn?.querySelector('span');
+        
+        if (submitBtnText) submitBtnText.textContent = 'TRANSMITTING...';
+        if (submitBtn) submitBtn.disabled = true;
+
+        const name = (document.getElementById('name') as HTMLInputElement).value;
+        const phone = (document.getElementById('phone') as HTMLInputElement).value;
+        const company = (document.getElementById('company') as HTMLInputElement).value;
+        const email = (document.getElementById('email') as HTMLInputElement).value;
+        const product_type = (document.getElementById('product_type') as HTMLInputElement).value;
+        const item_quality = (document.getElementById('item_quality') as HTMLInputElement).value;
+        const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+
+        const payload = { name, phone, company, email, product_type, item_quality, message };
+
+        const text =
+            `*New Contact Inquiry*%0A%0A` +
+            `*Name:* ${name}%0A` +
+            `*Phone:* ${phone}%0A` +
+            `*Company:* ${company}%0A` +
+            `*Email:* ${email}%0A` +
+            `*Product Type:* ${product_type}%0A` +
+            `*Item Quality:* ${item_quality}%0A` +
+            `*Message:* ${message}`;
+
+        const whatsappNumber = "+917975310662";
+        const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+        try {
+            await Promise.all([
+                fetch('/api/enquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }),
+                new Promise<void>((resolve) => {
+                    window.open(url, "_blank");
+                    resolve();
+                })
+            ]);
+            
+            alert('Message transmitted successfully!');
+            form.reset();
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Something went wrong submitting to the backend, but WhatsApp should have opened.');
+        } finally {
+            if (submitBtnText) submitBtnText.textContent = 'TRANSMIT MESSAGE';
+            if (submitBtn) submitBtn.disabled = false;
+        }
       }
     });
   });

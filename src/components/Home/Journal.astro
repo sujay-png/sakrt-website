@@ -45,8 +45,8 @@ const formatDate = (dateString: string) => {
     
     <!-- Section Header -->
     <div class="journal-header">
-      <h2 class="journal-title">Latest Journal</h2>
-      <a href="/blogs" class="see-all-link">
+      <h2 class="journal-title">Our Blogs</h2>
+      <a href="/blog" class="see-all-link">
         <span>See All</span>
         <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -61,7 +61,7 @@ const formatDate = (dateString: string) => {
         const catName = post.categories?.nodes?.[0]?.name || "general";
         const catSlug = encodeURIComponent(catName.toLowerCase().replace(/\s+/g, '-'));
         return (
-        <a href={`/blogs/${catSlug}/${post.slug}`} class="journal-card">
+        <a href={`/blog/${catSlug}/${post.slug}`} class="journal-card">
           <div class="image-wrapper">
             {post.featuredImage?.node?.sourceUrl ? (
               <div class="card-bg" style={`background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url('${post.featuredImage.node.sourceUrl}');`}></div>

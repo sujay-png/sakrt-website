@@ -52,17 +52,31 @@ posts.forEach((post: any) => {
   }
 });
 const categories = Array.from(allCategories);
+
+const slugify = (text: string) => 
+  text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
 ---
 
-<BaseLayout title="Recent Engineering Journals | Sakrt">
+<BaseLayout 
+  title="Sustainability & Eco-Packaging Blog | SAKRT Journals"
+  description="Read SAKRT's latest journals and articles on sustainability, compostable materials, and the shift towards eco-friendly packaging in India."
+>
   <main class="blog-container">
     
+    <!-- Top Level Header -->
+    <header class="blog-main-header">
+      <h1 class="main-title">Blog Articles</h1>
+      <p class="main-desc">
+        Explore how biodegradable product blogs can transform your lifestyle, support zero-waste initiatives, and contribute to a healthier planet. Make the switch today and be a part of the movement towards sustainability.
+      </p>
+    </header>
+
     <header class="blog-section-header">
-      <h2 class="section-title">Recent Engineering Journals</h2>
+      <h2 class="section-title">Sustainability & Compostable Packaging Insights</h2>
       <div class="filters">
-        <a href="?category=all" class="filter-btn active" data-filter="all">All</a>
+        <a href="/blog" class="filter-btn active">All</a>
         {categories.map((cat: any) => (
-          <a href={`?category=${encodeURIComponent(cat)}`} class="filter-btn" data-filter={cat}>{cat}</a>
+          <a href={`/blog/category/${slugify(cat)}`} class="filter-btn">{cat}</a>
         ))}
       </div>
     </header>
@@ -90,7 +104,7 @@ const categories = Array.from(allCategories);
                 ))}
               </div>
               
-              <a href={`/blogs/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`} class="post-link">
+              <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`} class="post-link">
                 <h3 class="post-title" set:html={post.title}></h3>
               </a>
               
@@ -100,7 +114,7 @@ const categories = Array.from(allCategories);
             {/* Right Column: Image */}
             <div class="post-image-wrapper">
               {post.featuredImage?.node ? (
-                <a href={`/blogs/${post.slug}`}>
+                <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`}>
                   <img 
                     src={post.featuredImage.node.sourceUrl} 
                     alt={post.featuredImage.node.altText || post.title} 
@@ -108,7 +122,7 @@ const categories = Array.from(allCategories);
                   />
                 </a>
               ) : (
-                <a href={`/blogs/${post.slug}`} class="placeholder-image">
+                <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`} class="placeholder-image">
                   <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1" fill="none">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                     <circle cx="8.5" cy="8.5" r="1.5"></circle>
@@ -123,64 +137,7 @@ const categories = Array.from(allCategories);
       })}
     </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll('.filter-btn');
-    const posts = document.querySelectorAll('.post-item');
 
-    // Apply the filter logic
-    const applyFilter = (filterValue: string) => {
-      tabs.forEach(t => t.classList.remove('active'));
-      const activeTab = Array.from(tabs).find(t => t.getAttribute('data-filter') === filterValue) || tabs[0];
-      if (activeTab) activeTab.classList.add('active');
-
-      posts.forEach(post => {
-        if (filterValue === 'all') {
-          (post as HTMLElement).style.display = 'flex';
-        } else {
-          const postCategories = post.getAttribute('data-categories')?.split(',') || [];
-          if (postCategories.includes(filterValue)) {
-            (post as HTMLElement).style.display = 'flex';
-          } else {
-            (post as HTMLElement).style.display = 'none';
-          }
-        }
-      });
-    };
-
-    // 1. Initial Load based on URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const initialCategory = urlParams.get('category') || 'all';
-    applyFilter(initialCategory);
-
-    // 2. Handle Clicks
-    tabs.forEach(tab => {
-      tab.addEventListener('click', (e) => {
-        e.preventDefault();
-        const selectedFilter = tab.getAttribute('data-filter');
-        
-        if (!selectedFilter) return;
-
-        // Update URL
-        const url = new URL(window.location.href);
-        if (selectedFilter === 'all') {
-          url.searchParams.delete('category');
-        } else {
-          url.searchParams.set('category', selectedFilter);
-        }
-        window.history.pushState({}, '', url);
-
-        applyFilter(selectedFilter);
-      });
-    });
-
-    // 3. Handle Back/Forward Browser Navigation
-    window.addEventListener('popstate', () => {
-      const params = new URLSearchParams(window.location.search);
-      applyFilter(params.get('category') || 'all');
-    });
-  });
-</script>
 
   </main>
 </BaseLayout>
@@ -209,6 +166,41 @@ const categories = Array.from(allCategories);
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Main Header */
+  .blog-main-header {
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: var(--color-dark);
+    margin: 0 0 1rem 0;
+  }
+
+  .main-desc {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Section Header */
+  .blog-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
@@ -448,10 +440,18 @@ const categories = Array.from(allCategories);
       margin-bottom: 1rem;
     }
     
+    .blog-main-header {
+      text-align: left;
+    }
+
+    .main-title {
+      font-size: 2.5rem;
+    }
+
     .blog-section-header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.5rem;
     }
     
     .filters button.active::after {

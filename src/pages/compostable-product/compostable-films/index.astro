@@ -1,0 +1,92 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CategoryGrid from "../../../components/Shared/CategoryGrid.astro";
+import ModernFAQ from "../../../components/Shared/ModernFAQ.astro";
+import CallToAction from "../../../components/Home/CallToAction.astro";
+
+const filmProducts = [
+  {
+    name: "Compostable Wrapping Film",
+    slug: "compostable-wrapping-film",
+    category: "compostable-films",
+    image: "/compostable-films/imgi_4_compostable-strecth-films.webp",
+  },
+  {
+    name: "Compostable Mulch Films",
+    slug: "compostable-mulch-films",
+    category: "compostable-films",
+    image:
+      "/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp",
+  },
+  {
+    name: "Compostable Heat Shrink Films",
+    slug: "compostable-heat-shrink-films",
+    category: "compostable-films",
+    image: "/compostable-films/imgi_6_Shirnk-films.webp",
+  },
+];
+
+const faqs = [
+  {
+    question: "What are compostable films",
+    answer:
+      "Compostable films are made from materials that come from plants or are bio–based, like PLA (polylactic acid), PBAT (polybutylene adipate terephthalate), or cellulose. These materials are created to decompose into harmless organic in a composting setup, especially in industrial composting plant",
+  },
+  {
+    question:
+      "What are the difference between biodegradable and compostable plates",
+    answer:
+      "The key difference between biodegradable and compostable materials is the time it takes for them to break down. Biodegradable materials can take varying amounts of time to decompose, while compostable materials are designed to break down into natural elements within a specific timeframe. However, for compostable materials to decompose properly, they require specific conditions, such as those found in industrial composting facilities.",
+  },
+  {
+    question: "What material is 100% biodegradable?",
+    answer:
+      "Materials like PLA (Polylactic Acid), PBAT, and starch-based bioplastics are 100% biodegradable and compostable.",
+  },
+  {
+    question: "What are compostable plates made of?",
+    answer:
+      "Compostable plates offer a more sustainable alternative to disposable plates. Made from materials such as sugarcane bagasse, bamboo, or palm leaves, these plates are designed to break down naturally and quickly, without leaving harmful residues behind.",
+  },
+  {
+    question: "Is stretch film eco-friendly?",
+    answer:
+      "One of the downsides of traditional stretch film is its environmental impact. As it is made from non-renewable resources, it is not biodegradable and can take hundreds of years to decompose in landfills. Additionally, its production and disposal can release harmful chemicals and greenhouse gases into the environment.",
+  },
+];
+---
+
+<Layout title="Compostable Films | SAKRT">
+  <main class="category-page">
+    <div class="category-header">
+      <h1 class="category-title">Compostable Films</h1>
+    </div>
+
+    <CategoryGrid products={filmProducts} />
+
+    <ModernFAQ title="FAQs on compostable Films" faqs={faqs} />
+
+    <CallToAction />
+  </main>
+</Layout>
+
+<style>
+  .category-page {
+    background-color: #f3f4f1;
+    min-height: 100vh;
+  }
+
+  .category-header {
+    background: linear-gradient(180deg, #e6e9e4 0%, #f3f4f1 100%);
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
+  }
+
+  .category-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 2.98rem);
+    font-weight: 400;
+    color: #0d3d26;
+    margin: 0;
+  }
+</style>

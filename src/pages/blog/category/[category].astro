@@ -1,0 +1,421 @@
+---
+import BaseLayout from '../../../layouts/Layout.astro';
+import { wpquery } from '../../../lib/wordpress.ts';
+
+export async function getStaticPaths() {
+  const data = await wpquery({
+    query: `
+      query GetBlogs {
+        posts(first: 100) {
+          nodes {
+            id
+            title
+            slug
+            date
+            excerpt
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            categories {
+              nodes {
+                name
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+
+  const allPosts = data.posts.nodes;
+  
+  const allCategories = new Set<string>();
+  allPosts.forEach((post: any) => {
+    if (post.categories && post.categories.nodes) {
+      post.categories.nodes.forEach((cat: any) => {
+        allCategories.add(cat.name);
+      });
+    }
+  });
+
+  const slugify = (text: string) => 
+    text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+
+  return Array.from(allCategories).map(categoryName => {
+    const categoryPosts = allPosts.filter((post: any) => {
+      const postCategories = post.categories?.nodes.map((c: any) => c.name) || [];
+      return postCategories.includes(categoryName);
+    });
+
+    return {
+      params: { category: slugify(categoryName) },
+      props: { 
+        categoryName,
+        posts: categoryPosts,
+        allCategories: Array.from(allCategories)
+      }
+    };
+  });
+}
+
+const { categoryName, posts, allCategories } = Astro.props;
+
+const slugify = (text: string) => 
+  text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
+  const year = date.getFullYear().toString().slice(-2);
+  
+  return { day, monthYear: `${month} '${year}` };
+};
+---
+
+<BaseLayout 
+  title={`${categoryName} Blog Articles | SAKRT Journals`}
+  description={`Read SAKRT's latest journals and articles on ${categoryName}. Explore how biodegradable products can transform your lifestyle.`}
+>
+  <main class="blog-container">
+    
+    <!-- Top Level Header -->
+    <header class="blog-main-header">
+      <h1 class="main-title">Blog Articles</h1>
+      <p class="main-desc">
+        Explore how biodegradable product blogs can transform your lifestyle, support zero-waste initiatives, and contribute to a healthier planet. Make the switch today and be a part of the movement towards sustainability.
+      </p>
+    </header>
+
+    <header class="blog-section-header">
+      <h2 class="section-title">Sustainability & Compostable Packaging Insights</h2>
+      <div class="filters">
+        <a href="/blog" class="filter-btn">All</a>
+        {allCategories.map((cat: any) => (
+          <a href={`/blog/category/${slugify(cat)}`} class={`filter-btn ${cat === categoryName ? 'active' : ''}`}>{cat}</a>
+        ))}
+      </div>
+    </header>
+
+    <section class="post-list">
+      {posts.map((post: any) => {
+        const { day, monthYear } = formatDate(post.date);
+        
+        return (
+          <article class="post-item">
+            
+            {/* Left Column: Date */}
+            <div class="post-date">
+              <span class="day">{day}</span>
+              <span class="month-year">{monthYear}</span>
+            </div>
+            
+            {/* Middle Column: Content */}
+            <div class="post-content">
+              <div class="post-categories">
+                {post.categories.nodes.map((category: any, index: number) => (
+                  <span class={`category-badge ${index === 1 ? 'badge-filled' : ''}`}>
+                    {category.name}
+                  </span>
+                ))}
+              </div>
+              
+              <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`} class="post-link">
+                <h3 class="post-title" set:html={post.title}></h3>
+              </a>
+              
+              <div class="post-excerpt" set:html={post.excerpt}></div>
+            </div>
+
+            {/* Right Column: Image */}
+            <div class="post-image-wrapper">
+              {post.featuredImage?.node ? (
+                <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`}>
+                  <img 
+                    src={post.featuredImage.node.sourceUrl} 
+                    alt={post.featuredImage.node.altText || post.title} 
+                    class="post-thumbnail"
+                  />
+                </a>
+              ) : (
+                <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`} class="placeholder-image">
+                  <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                </a>
+              )}
+            </div>
+            
+          </article>
+        );
+      })}
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* Base Variables matching the design system */
+  :root {
+    --font-serif: 'Playfair Display', serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --color-dark: #1b3d2f;
+    --color-text: #555555;
+    --color-light-gray: #e5e5e5;
+    --color-border: #f0f0f0;
+    --color-accent: #CFF737;
+  }
+
+  .blog-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10rem 2rem 6rem; /* Account for fixed header */
+  }
+
+  /* Main Header */
+  .blog-main-header {
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: var(--color-dark);
+    margin: 0 0 1rem 0;
+  }
+
+  .main-desc {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Section Header */
+  .blog-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 1.06rem;
+    font-weight: 400;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  .filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .filters a {
+    background: #f0f0f0;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text);
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+
+  .filters a:hover {
+    background: #e5e5e5;
+    color: var(--color-dark);
+  }
+
+  .filters a.active {
+    background: var(--color-dark);
+    color: var(--color-accent);
+  }
+
+  /* Post List Items */
+  .post-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--color-border);
+    gap: 3rem;
+  }
+
+  /* Date Styling */
+  .post-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  .post-date .day {
+    font-family: var(--font-serif);
+    font-size: 2.98rem;
+    font-weight: 400;
+    line-height: 0.8;
+    color: #e2e2e2;
+  }
+
+  .post-date .month-year {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    letter-spacing: 0.1em;
+    margin-top: 0.75rem;
+  }
+
+  /* Content Styling */
+  .post-content {
+    flex-grow: 1;
+    max-width: 600px;
+  }
+
+  .post-categories {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .category-badge {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid #dcdcdc;
+    color: #666;
+    background: transparent;
+  }
+
+  .category-badge.badge-filled {
+    background-color: var(--color-dark);
+    color: var(--color-accent);
+    border-color: var(--color-dark);
+    font-weight: 700;
+  }
+
+  .post-link {
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .post-title {
+    font-family: var(--font-serif);
+    font-size: 1.19rem;
+    font-weight: 400;
+    color: var(--color-dark);
+    line-height: 1.3;
+    margin: 0 0 0.75rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .post-link:hover .post-title {
+    color: #3b735b;
+  }
+
+  .post-excerpt :global(p) {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* Image Styling */
+  .post-image-wrapper {
+    width: 240px;
+    height: 130px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .post-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .post-image-wrapper:hover .post-thumbnail {
+    transform: scale(1.05);
+  }
+
+  .placeholder-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    color: #dcdcdc;
+    border: 1px solid #eee;
+    border-radius: 6px;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .post-item {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 2.5rem 0;
+    }
+    
+    .post-date {
+      flex-direction: row;
+      align-items: baseline;
+      width: 100%;
+      gap: 1rem;
+    }
+    
+    .post-date .day {
+      font-size: 2.5rem;
+    }
+    
+    .post-image-wrapper {
+      width: 100%;
+      height: 200px;
+      order: -1;
+      margin-bottom: 1rem;
+    }
+    
+    .blog-main-header {
+      text-align: left;
+    }
+
+    .main-title {
+      font-size: 2.5rem;
+    }
+
+    .blog-section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+  }
+</style>

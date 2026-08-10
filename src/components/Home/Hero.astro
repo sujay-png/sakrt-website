@@ -18,18 +18,20 @@ import Header from '../../components/Header.astro';
     </h1>
   
     <p>
-      Switch to planet-friendly enterprise by choosing reliable, government<br class="desktop-br" />
-      certified biodegradable solutions that leave no trace.
+      Switch To Planet-friendly Enterprise by Choosing Reliable, Government Certified<br class="desktop-br" />
+      Biodegradable Food Containers Biodegradable Poly Bags & Packaging Solutions
     </p>
 
     <div class="hero-buttons">
-      <a href="contactus" class="btn btn-primary">
+      <a href="/contact-us" id="hero-get-in-touch-btn" class="btn btn-primary">
         Get in Touch <span class="arrow">→</span>
       </a>
-      <a href="/products" class="btn btn-secondary">
+      <a href="/compostable-product" id="hero-explore-products-btn" class="btn btn-secondary">
         Explore Products
       </a>
     </div>
+
+
   </div>
 </section>
 
@@ -189,7 +191,7 @@ import Header from '../../components/Header.astro';
   }
 
   .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.32);
+    background: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
   }
 
@@ -201,10 +203,15 @@ import Header from '../../components/Header.astro';
     transform: translateX(4px);
   }
 
-  /* Mobile Tweaks */
+
+
+  /* Responsive Adjustments */
   @media (max-width: 768px) {
-    .hero-section {
-      padding-top: 100px;
+    .h1 {
+      font-size: clamp(3rem, 10vw, 4rem);
+    }
+    .hero-section p {
+      font-size: 1.1rem;
     }
     .desktop-br {
       display: none;
@@ -215,6 +222,7 @@ import Header from '../../components/Header.astro';
       max-width: 300px;
       margin: 0 auto;
     }
+
     .btn {
       width: 100%;
     }

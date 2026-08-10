@@ -2,6 +2,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+
+import cipetImg from '../../images/CIPET.webp';
+import isoImg from '../../images/iso.png';
+import cpcbImg from '../../images/cpcb.png';
+import bioComplianceImg from '../../images/bio-compliance.png';
 ---
 
 
@@ -9,20 +14,38 @@ import Header from '../../components/Header.astro';
   <section class="mission-section">
     <div class="mission-container">
       
-      <!-- Left Column: Heading, Subtitle & Description -->
       <div class="mission-left">
         <span class="section-tag">OUR MISSION</span>
-        <h2 class="mission-title">Let's Get Back To<br />Nature.</h2>
+        <h2 class="mission-title">Let's Get Back To Nature</h2>
         <p class="mission-desc">
-          SAKRT is a CPCB certified manufacturer and distributor of biodegradable solutions. From water bottles to agricultural products, we help businesses replace plastic with high-performance, earth-friendly alternatives.
+          SAKRT is a CPCB certified manufacturer and distributor of biodegradable poly bags. We supply a wide range of biodegradable solutions from water bottles, carry bags, food packaging, to tableware and agricultural products.
         </p>
+        <p class="mission-desc mission-desc-secondary" style="margin-top: 1rem;">
+          Our mission is to help businesses seamlessly replace plastic with high-performance, earth-friendly biodegradable poly bags alternatives that support global climate goals.
+        </p>
+        <a href="/about" class="mission-btn" style="margin-top: 2rem; display: inline-block;">
+          More About SAKRT
+        </a>
       </div>
 
       <!-- Right Column: Certification Info -->
       <div class="mission-right">
-        <span class="cert-tag">Certification</span>
-        <div class="cert-value">CPCB 100%</div>
-        <div class="cert-sub">Government Approved Bio-Plastics</div>
+        <h3 class="cert-heading">Government Approved Product</h3>
+        <div class="cert-underline"></div>
+        <div class="cert-grid">
+          <a href="/our-certifications" class="cert-logo-link">
+            <img src={cipetImg.src} alt="CIPET Certificate" class="cert-logo" />
+          </a>
+          <a href="/our-certifications" class="cert-logo-link">
+            <img src={isoImg.src} alt="ISO Certificate" class="cert-logo" />
+          </a>
+          <a href="/our-certifications" class="cert-logo-link">
+            <img src={cpcbImg.src} alt="CPCB Certificate" class="cert-logo" />
+          </a>
+          <a href="/our-certifications" class="cert-logo-link">
+            <img src={bioComplianceImg.src} alt="Bio Compliance Certificate" class="cert-logo" />
+          </a>
+        </div>
       </div>
 
     </div>
@@ -88,42 +111,82 @@ import Header from '../../components/Header.astro';
     font-weight:400;
   }
 
-  .mission-left{
-    flex:0 0 58%;
-    max-width:720px;
-}
+  .mission-left {
+    flex: 0 0 58%;
+    max-width: 720px;
+  }
+
+  .mission-btn {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #0b2219;
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 14px rgba(11, 34, 25, 0.25);
+  }
+
+  .mission-btn:hover {
+    background-color: #123528;
+    transform: translateY(-2px);
+  }
+
   /* 4. Right Column Certification Box */
   .mission-right {
-      flex:0 0 26%;
-    padding-top:48px;
-    text-align:left; 
+    flex: 0 0 26%;
+    padding-top: 48px;
+    text-align: left; 
   }
 
    
-  .cert-tag {
-    font-family:'Space Mono', monospace;
-    font-size:14px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    color:#9aa7a0;
-    margin-bottom:18px;
-    display:block;
+  .cert-heading {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #163728;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
   }
 
-  .cert-value {
-     font-family: var(--font-serif);
-    font-size:3.40rem;
-    font-weight:300;
-    line-height:1;
-    color:#163728;
-    margin-bottom:12px;
+  .cert-underline {
+    width: 60px;
+    height: 3px;
+    background-color: #EBB13B;
+    margin-bottom: 24px;
   }
 
-  .cert-sub {
-   font-family:'Space Mono', monospace;
-    font-size:15px;
-    color:#8e9d95;
-    line-height:1.6;
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 250px;
+  }
+
+  .cert-logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .cert-logo-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  }
+
+  .cert-logo {
+    max-width: 100%;
+    max-height: 60px;
+    object-fit: contain;
   }
 
   /* Responsive Adjustments */
@@ -133,10 +196,31 @@ import Header from '../../components/Header.astro';
       padding: 0 24px;
       gap: 40px;
     }
+    .mission-desc-secondary {
+      display: none;
+    }
     .mission-right {
-      padding-top: 20px;
+      padding-top: 30px;
       border-top: 1px solid rgba(0, 0, 0, 0.08);
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .cert-grid {
+      max-width: 100%;
+      width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .cert-logo {
+      max-height: 50px;
+    }
+  }
+  @media (max-width: 500px) {
+    .cert-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 280px;
     }
   }
 </style>
