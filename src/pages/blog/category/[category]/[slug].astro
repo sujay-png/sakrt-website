@@ -3,6 +3,8 @@ import BaseLayout from '../../../../layouts/Layout.astro';
 import { wpquery } from '../../../../lib/wordpress';
 import CallToAction from '../../../../components/Home/CallToAction.astro';
 
+export const prerender = true;
+
 // 1. Tell Astro which paths (slugs) to build
 export async function getStaticPaths() {
   const data = await wpquery({

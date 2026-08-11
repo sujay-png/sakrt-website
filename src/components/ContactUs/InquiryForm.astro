@@ -17,7 +17,13 @@
 
       <div class="form-group">
         <label for="phone">PHONE NUMBER</label>
-        <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9+\s-]{7,15}" required />
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Phone Number"
+          pattern="[0-9+\s-]{7,15}"
+          required
+        />
       </div>
     </div>
 
@@ -35,26 +41,61 @@
 
     <div class="form-row">
       <div class="form-group">
-        <label for="product_type">PRODUCT TYPE</label>
-        <input type="text" id="product_type" placeholder="Product Type" required />
+        <label for="product_category">PRODUCT TYPE / CATEGORY</label>
+        <input
+          type="text"
+          id="product_category"
+          placeholder="Product Type / Category"
+          required
+        />
       </div>
 
       <div class="form-group">
-        <label for="item_quality">ITEM QUALITY</label>
-        <input type="text" id="item_quality" placeholder="Item Quality" required />
+        <label for="product_name">PRODUCT NAME</label>
+        <input
+          type="text"
+          id="product_name"
+          placeholder="Product Name"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="item_quantity">ITEM QUANTITY</label>
+        <input
+          type="number"
+          id="item_quantity"
+          placeholder="Item Quantity (e.g., 100)"
+          min="1"
+          required
+        />
       </div>
     </div>
 
     <div class="form-group">
       <label for="message">YOUR MESSAGE</label>
-      <textarea id="message" rows="3" placeholder="How can we advance together?" required></textarea>
+      <textarea
+        id="message"
+        rows="3"
+        placeholder="How can we advance together?"
+        required></textarea>
     </div>
 
     <div class="form-action">
       <button type="submit" class="submit-btn">
-        <span>TRANSMIT MESSAGE</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        <span>SUBMIT INQUIRY</span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
         </svg>
       </button>
     </div>
@@ -95,7 +136,7 @@
   }
 
   .watermark-at {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 4.5rem;
     font-weight: 300;
     color: #f0ece7;
@@ -133,7 +174,7 @@
   }
 
   .form-group label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -147,7 +188,7 @@
     border: none;
     border-bottom: 1px solid #e2ded8;
     padding: 0.5rem 0;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 0.9rem;
     color: #0a2319;
     background: transparent;
@@ -180,7 +221,7 @@
     border: none;
     border-radius: 0.5rem;
     padding: 0.85rem 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -211,94 +252,124 @@
   }
 </style>
 
-
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('inquiryForm') as HTMLFormElement | null;
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById(
+      "inquiryForm",
+    ) as HTMLFormElement | null;
     if (!form) return;
 
     // Cast NodeList items to HTMLInputElement | HTMLTextAreaElement
-    const inputs = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea');
+    const inputs = form.querySelectorAll<
+      HTMLInputElement | HTMLTextAreaElement
+    >("input, textarea");
 
     // Real-time cleanup on input
     inputs.forEach((input) => {
-      input.addEventListener('input', () => {
+      input.addEventListener("input", () => {
         if (input.checkValidity()) {
-          input.classList.remove('invalid');
-          const label = input.parentElement?.querySelector('label');
-          if (label) label.classList.remove('invalid-label');
+          input.classList.remove("invalid");
+          const label = input.parentElement?.querySelector("label");
+          if (label) label.classList.remove("invalid-label");
         }
       });
     });
 
     // Handle Form Submission with Validation
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       let isFormValid = true;
 
       inputs.forEach((input) => {
-        const label = input.parentElement?.querySelector('label');
+        const label = input.parentElement?.querySelector("label");
         if (!input.checkValidity()) {
           isFormValid = false;
-          input.classList.add('invalid');
-          if (label) label.classList.add('invalid-label');
+          input.classList.add("invalid");
+          if (label) label.classList.add("invalid-label");
         } else {
-          input.classList.remove('invalid');
-          if (label) label.classList.remove('invalid-label');
+          input.classList.remove("invalid");
+          if (label) label.classList.remove("invalid-label");
         }
       });
 
       if (isFormValid) {
-        const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
-        const submitBtnText = submitBtn?.querySelector('span');
-        
-        if (submitBtnText) submitBtnText.textContent = 'TRANSMITTING...';
+        const submitBtn = form.querySelector(
+          ".submit-btn",
+        ) as HTMLButtonElement;
+        const submitBtnText = submitBtn?.querySelector("span");
+
+        if (submitBtnText) submitBtnText.textContent = "TRANSMITTING...";
         if (submitBtn) submitBtn.disabled = true;
 
-        const name = (document.getElementById('name') as HTMLInputElement).value;
-        const phone = (document.getElementById('phone') as HTMLInputElement).value;
-        const company = (document.getElementById('company') as HTMLInputElement).value;
-        const email = (document.getElementById('email') as HTMLInputElement).value;
-        const product_type = (document.getElementById('product_type') as HTMLInputElement).value;
-        const item_quality = (document.getElementById('item_quality') as HTMLInputElement).value;
-        const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+        const name = (document.getElementById("name") as HTMLInputElement)
+          .value;
+        const phone = (document.getElementById("phone") as HTMLInputElement)
+          .value;
+        const company = (document.getElementById("company") as HTMLInputElement)
+          .value;
+        const email = (document.getElementById("email") as HTMLInputElement)
+          .value;
+        const product_category = (
+          document.getElementById("product_category") as HTMLInputElement
+        ).value;
+        const product_name = (
+          document.getElementById("product_name") as HTMLInputElement
+        ).value;
+        const item_quantity = (
+          document.getElementById("item_quantity") as HTMLInputElement
+        ).value;
+        const message = (
+          document.getElementById("message") as HTMLTextAreaElement
+        ).value;
 
-        const payload = { name, phone, company, email, product_type, item_quality, message };
+        const payload = {
+          name,
+          phone,
+          company,
+          email,
+          product_category,
+          product_name,
+          item_quantity,
+          message,
+        };
 
         const text =
-            `*New Contact Inquiry*%0A%0A` +
-            `*Name:* ${name}%0A` +
-            `*Phone:* ${phone}%0A` +
-            `*Company:* ${company}%0A` +
-            `*Email:* ${email}%0A` +
-            `*Product Type:* ${product_type}%0A` +
-            `*Item Quality:* ${item_quality}%0A` +
-            `*Message:* ${message}`;
+          `*New Contact Inquiry*%0A%0A` +
+          `*Name:* ${name}%0A` +
+          `*Phone:* ${phone}%0A` +
+          `*Company:* ${company}%0A` +
+          `*Email:* ${email}%0A` +
+          `*Category:* ${product_category}%0A` +
+          `*Product:* ${product_name}%0A` +
+          `*Quantity:* ${item_quantity}%0A` +
+          `*Message:* ${message}`;
 
         const whatsappNumber = "+917975310662";
         const url = `https://wa.me/${whatsappNumber}?text=${text}`;
 
         try {
-            await Promise.all([
-                fetch('/api/enquiry', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                }),
-                new Promise<void>((resolve) => {
-                    window.open(url, "_blank");
-                    resolve();
-                })
-            ]);
-            
-            alert('Message transmitted successfully!');
-            form.reset();
+          await Promise.all([
+            fetch("/api/enquiry", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            }),
+            new Promise<void>((resolve) => {
+              window.open(url, "_blank");
+              resolve();
+            }),
+          ]);
+
+          alert("Message transmitted successfully!");
+          form.reset();
         } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('Something went wrong submitting to the backend, but WhatsApp should have opened.');
+          console.error("Error submitting form:", error);
+          alert(
+            "Something went wrong submitting to the backend, but WhatsApp should have opened.",
+          );
         } finally {
-            if (submitBtnText) submitBtnText.textContent = 'TRANSMIT MESSAGE';
-            if (submitBtn) submitBtn.disabled = false;
+          if (submitBtnText) submitBtnText.textContent = "SUBMIT INQUIRY";
+          if (submitBtn) submitBtn.disabled = false;
         }
       }
     });

@@ -2,9 +2,9 @@ import { google } from 'googleapis';
 
 export async function appendToGoogleSheet(payload: any) {
   try {
-    const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY;
-    const sheetId = process.env.GOOGLE_SHEET_ID;
+    const serviceAccountEmail = import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+    const privateKey = import.meta.env.GOOGLE_PRIVATE_KEY;
+    const sheetId = import.meta.env.GOOGLE_SHEET_ID;
 
     if (!serviceAccountEmail || !privateKey || !sheetId) {
       console.error('Google Sheets credentials not fully set. Skipping sheets append.');
@@ -31,11 +31,12 @@ export async function appendToGoogleSheet(payload: any) {
           [
             new Date().toISOString(),
             payload.name || payload.fullName || '',
-            payload.phone || payload.phoneNumber || '',
+            (payload.phone || payload.phoneNumber) ? `'${payload.phone || payload.phoneNumber}` : '',
             payload.company || payload.companyName || '',
             payload.email || payload.businessEmail || '',
-            payload.product_type || '',
-            payload.item_quality || payload.itemQuantity || '',
+            payload.product_category || payload.productCategory || '',
+            payload.product_name || payload.productName || '',
+            payload.item_quantity || payload.itemQuantity || '',
             payload.message || ''
           ]
         ],
