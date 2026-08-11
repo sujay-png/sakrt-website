@@ -1,0 +1,115 @@
+---
+// BioComplianceCard.astro
+---
+
+<div class="dark-card bio-card cert-preview-trigger" data-cert-url="/certificates/global.pdf" data-cert-type="pdf">
+  <div class="card-top">
+    <h3 class="card-title">CIPET Lab Test Report</h3>
+  </div>
+
+  <div class="standards-grid">
+    <div class="standard-item">
+      <span class="standard-label">MATERIAL ID</span>
+      <span class="standard-val">PLA & PBAT</span>
+    </div>
+
+    <div class="standard-item">
+      <span class="standard-label">FILLER CONTENT</span>
+      <span class="standard-val">42.94%</span>
+    </div>
+  </div>
+
+  <!-- Decorative Leaf Background Watermark -->
+  <div class="leaf-watermark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="currentColor">
+      <path d="M100 20C40 20 20 80 20 180c100 0 160-20 160-80S160 20 100 20zm0 140C60 160 40 120 40 80c40 0 80 20 80 60 0 13.33-6.67 20-20 20z" opacity="0.08"/>
+    </svg>
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600&display=swap');
+
+  .dark-card {
+background-color: #0f3f2d;
+    border-radius: 1.5rem;
+    padding: 1.35rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .dark-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .card-top {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2rem;
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 1.06rem;
+    font-weight: 400;
+    color: #c5ff49; /* SAKRT Lime Accent */
+    margin: 0;
+  }
+
+  .standards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .standard-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .standard-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #8fa89b;
+  }
+
+  .standard-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+
+  /* Bottom-Right Leaf Watermark */
+  .leaf-watermark {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 220px;
+    height: 220px;
+    color: #ffffff;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @media (max-width: 480px) {
+    .standards-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+</style>

@@ -3,6 +3,7 @@ import productImg from '../../images/biodegradable_water.png';
 import CategoryGrid from '../Shared/CategoryGrid.astro';
 import ModernFAQ from '../Shared/ModernFAQ.astro';
 import CallToAction from '../../components/Home/CallToAction.astro';
+import EnquiryForm from '../EnquiryForm.astro';
 
 const relatedProducts = [
   { name: "Compostable Wrapping Film", slug: "compostable-wrapping-film", category: "compostable-films", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
@@ -12,10 +13,10 @@ const relatedProducts = [
 ];
 
 const faqs = [
-  { question: "Do biodegradable plastic water bottles does not contain plastic content?", answer: "Our biodegradable water bottles are 100% free of traditional petroleum-based plastics. They are made from plant-based bioplastics like PLA which break down naturally." },
-  { question: "How biodegradable plastic bottles are made?", answer: "They are manufactured using plant starches (like corn or sugarcane) which are processed into biopolymers that mimic the strength and clarity of plastic but remain compostable." },
+  { question: "Do biodegradable plastic water bottles does not contain plastic content?", answer: "yes, biodegradable plastic water bottles don’t contain plastic materials. Biodegradable plastic water bottles are made from pla based compostable materials. Sugarcane bagasse and corn starch are the main two raw materials used to manufacture biodegradable plastic bottles. Biodegradable plastic is 100% compostable in nature. They are made from Sugarcane bagasse and corn starch which are the main two raw materials used to manufacture biodegradable plastic bottles and other biodegradable material." },
+  { question: "How biodegradable plastic bottles are made?", answer: "Right now, they are mostly made from things like corn, beets, sugar cane, wood, potatoes, tapioca roots, or even nuts. But in the future, they will probably be made from leftover materials and waste. The word “renewable” usually means something that can be used again within 10 years. Biobased plastics can either be compostable or recyclable, depending on what they are made from." },
   { question: "What material is 100% biodegradable?", answer: "Materials such as PLA (Polylactic Acid) and PHA are fully biodegradable when placed in the correct composting environment." },
-  { question: "What is the best eco-friendly water bottle?", answer: "Our biodegradable bottles offer the convenience of single-use bottles without the environmental guilt, making them perfect for events, hotels, and corporate use." },
+  { question: "What is the best eco-friendly water bottle?", answer: "Bottles made from recycled aluminum have the smallest effect on the environment among single–use containers. Recycling aluminum uses less energy and makes a smaller impact on the climate than making new aluminum from scratch." },
   { question: "What materials are used to make biodegradable bottles?", answer: "We use high-quality, food-safe plant-based resins and bagasse derivatives to ensure strength, clarity, and complete compostability." }
 ];
 ---
@@ -76,8 +77,8 @@ const faqs = [
         </div>
 
         <div class="action-buttons">
-          <a href="/contactus" class="btn btn-primary">ENQUIRE NOW</a>
-          <a href="/contactus" class="btn btn-outline">ORDER IN BULK</a>
+          <a href="/contact-us" class="btn btn-primary">ENQUIRE NOW</a>
+          <a href="/contact-us" class="btn btn-outline">ORDER IN BULK</a>
         </div>
       </div>
     </div>
@@ -115,15 +116,14 @@ const faqs = [
       </div>
     </div>
 
+    <!-- FAQ Section -->
+    <div style="margin-top: 4rem;">
+      <ModernFAQ title="Frequently Asked Questions" faqs={faqs} />
+    </div>
+
     <!-- Banner -->
-    <div class="banner">
-      <div class="banner-tag">SAKRT - A brand of Innovy Innovations PVT LTD</div>
-      <h2>Choose SAKRT's Biodegradable<br/>Water Bottles</h2>
-      <p>Join the sustainability revolution today!<br/>Choose SAKRT's biodegradable products for your home, business, or event and make waste disposal environmentally responsible.</p>
-      <div class="action-buttons banner-buttons">
-        <a href="/contactus" class="btn btn-primary-light">ENQUIRE NOW</a>
-        <a href="/contactus" class="btn btn-outline-light">ORDER IN BULK</a>
-      </div>
+    <div class="banner-wrapper" style="margin-top: 4rem; margin-bottom: 2rem;">
+      <EnquiryForm />
     </div>
 
   </div>
@@ -166,9 +166,9 @@ const faqs = [
   }
 
   .hero-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2rem, 3.5vw, 2.5rem);
-    font-weight: 700;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 2.13rem);
+    font-weight: 400;
     color: #0b2218;
     margin: 0 0 1.5rem 0;
   }
@@ -292,8 +292,8 @@ const faqs = [
   }
 
   .why-choose h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.75rem;
+    font-family: var(--font-serif);
+    font-size: 1.49rem;
     color: #0b2218;
     margin-bottom: 1rem;
   }
@@ -350,8 +350,8 @@ const faqs = [
   }
 
   .banner h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 2.55rem);
     margin: 0 0 1rem 0;
   }
 
@@ -387,8 +387,8 @@ const faqs = [
 
   /* Related Products */
   .related-products h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.75rem;
+    font-family: var(--font-serif);
+    font-size: 1.49rem;
     color: #0b2218;
     margin-bottom: -1rem; /* Grid adds top padding */
   }

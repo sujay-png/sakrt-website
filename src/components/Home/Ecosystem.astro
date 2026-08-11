@@ -10,10 +10,9 @@ import Header from '../../components/Header.astro';
     <!-- Section Header -->
     <div class="ecosystem-header">
       <div>
-        <span class="section-tag">COLLECTION 2024</span>
-        <h2 class="ecosystem-title">Product Ecosystem</h2>
+        <h2 class="ecosystem-title">Most Enquired Products</h2>
       </div>
-      <a href="/products" class="see-all-link">
+      <a href="/compostable-product" class="see-all-link">
         <span>See All</span>
         <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -26,7 +25,7 @@ import Header from '../../components/Header.astro';
     <div class="ecosystem-grid">
       
       <!-- 1. Large Feature Card: Biodegradable Water Bottles -->
-      <a href="/productdetails/biodegradable-water-bottle" class="ecosystem-card card-large">
+      <a href="/compostable-product/biodegradable-water-bottles" class="ecosystem-card card-large">
         <div class="card-bg bottle-bg"></div>
         <div class="card-content">
           <div>
@@ -38,7 +37,7 @@ import Header from '../../components/Header.astro';
       </a>
 
       <!-- 2. Medium Card: Compostable Bags -->
-      <a href="/productdetails/compostable-bags" class="ecosystem-card card-medium">
+      <a href="/compostable-product/carry-bags" class="ecosystem-card card-medium">
         <div class="card-bg bag-bg"></div>
         <div class="card-content">
           <h3>Compostable Bags</h3>
@@ -56,7 +55,7 @@ import Header from '../../components/Header.astro';
       <div class="card-stack">
         
         <!-- Grow Bags Card -->
-        <a href="/productdetails/compostable-grow-bags" class="ecosystem-card card-small">
+        <a href="/compostable-product/compostable-grow-bags" class="ecosystem-card card-small">
           <div class="card-bg grow-bg"></div>
           <div class="card-content-overlay">
             <h3>Grow Bags</h3>
@@ -64,10 +63,10 @@ import Header from '../../components/Header.astro';
         </a>
 
         <!-- Tableware Card -->
-        <a href="/productdetails/designer-tableware" class="ecosystem-card card-small">
+        <a href="/compostable-product/food-packaging-boxes" class="ecosystem-card card-small">
           <div class="card-bg tableware-bg"></div>
           <div class="card-content-overlay">
-            <span class="btn-lime-tag">Tableware</span>
+            <h3>Tableware</h3>
           </div>
         </a>
 
@@ -119,9 +118,9 @@ import Header from '../../components/Header.astro';
   }
 
   .ecosystem-title {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 450 !important;
-    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-family: var(--font-serif);
+    font-weight: 300 !important;
+    font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.1;
     color: var(--dark-green);
     margin: 0;
@@ -256,8 +255,8 @@ import Header from '../../components/Header.astro';
   }
 
   .card-large h3, .card-medium h3 {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3vw, 2.21rem);
     font-weight: 400;
     color: #ffffff;
     line-height: 1.15;
@@ -279,8 +278,8 @@ import Header from '../../components/Header.astro';
   }
 
   .card-small h3 {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: 2rem;
+    font-family: var(--font-serif);
+    font-size: 1.70rem;
     color: #ffffff;
     margin: 0;
     font-weight: 400;

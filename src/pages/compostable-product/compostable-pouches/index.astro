@@ -1,0 +1,52 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CategoryGrid from '../../../components/Shared/CategoryGrid.astro';
+import ModernFAQ from '../../../components/Shared/ModernFAQ.astro';
+import CallToAction from '../../../components/Home/CallToAction.astro';
+import pouchImg from '../../../images/biodegradable_greybags.png';
+
+const pouchProducts = [
+  { name: "Stand-up Pouch", slug: "stand-up-pouch", category: "compostable-pouches", image: pouchImg.src }
+];
+
+const faqs = [
+  { question: "What makes these pouches compostable?", answer: "Our pouches are made from plant-based barrier laminates that break down fully under industrial composting conditions without leaving toxic residues." },
+  { question: "Are they safe for food packaging?", answer: "Yes, they are 100% food-safe and maintain a high moisture and oxygen barrier to keep contents like coffee, dry goods, and snacks fresh." },
+  { question: "Can I customize the printing?", answer: "Absolutely. We offer custom branding and printing options using eco-friendly compostable inks." }
+];
+---
+
+<Layout title="Stand-up Pouches | SAKRT">
+  <main class="category-page">
+    <div class="category-header">
+      <h1 class="category-title">Stand-up Pouches</h1>
+    </div>
+
+    <CategoryGrid products={pouchProducts} />
+    
+    <ModernFAQ title="FAQs on compostable Pouches" faqs={faqs} />
+
+    <CallToAction />
+  </main>
+</Layout>
+
+<style>
+  .category-page {
+    background-color: #f3f4f1;
+    min-height: 100vh;
+  }
+
+  .category-header {
+    background: linear-gradient(180deg, #e6e9e4 0%, #f3f4f1 100%);
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
+  }
+
+  .category-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 2.98rem);
+    font-weight: 400;
+    color: #0d3d26;
+    margin: 0;
+  }
+</style>

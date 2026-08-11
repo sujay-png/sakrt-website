@@ -1,0 +1,95 @@
+---
+// Certifications.astro
+import CpcbCard from './CpcbCard.astro';
+import IsoCard from './IsoCard.astro';
+import CipetCard from './CipetCard.astro';
+import BioComplianceCard from './BioComplianceCard.astro';
+import CertificationsMarquee from './CertificationsMarquee.astro';
+import CertificatePreviewModal from './CertificatePreviewModal.astro';
+---
+
+<section class="certifications-section">
+  <!-- Header Area -->
+  <div class="header-container">
+    <span class="section-tag">VERIFIED ECOLOGY</span>
+    <h2 class="section-title">Government-Certified Compostable Packaging Manufacturer in India</h2>
+    <p class="section-description">
+      SAKRT is a CPCB-certified manufacturer and distributor of compostable bags, pouches, films, and tableware made from PLA, PBAT, cornstarch, and sugarcane bagasse. Every product we make is backed by verified lab testing, full material traceability, and government-approved certifications — so your business can switch from plastic with complete confidence and compliance.
+    </p>
+  </div>
+
+  <!-- Responsive Cards Grid -->
+  <div class="cards-grid">
+    <CpcbCard />
+    <IsoCard />
+    <CipetCard />
+    <BioComplianceCard />
+    
+    <!-- Certification Logos Marquee -->
+    <CertificationsMarquee />
+
+    <!-- Certificate Preview Modal -->
+    <CertificatePreviewModal />
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Playfair+Display:wght@600&family=Inter:wght@400&display=swap');
+
+  .certifications-section {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 6.5rem 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-container {
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #4a5550;
+    display: block;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: #0a2319;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .section-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: #4a5550;
+    margin: 0;
+  }
+
+  /* Side-by-side Grid Layout */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  @media (max-width: 850px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,44 +1,123 @@
 <div class="inquiry-card">
     <h3 class="inquiry-title">Inquire for Bulk Supply</h3>
 
- <form class="inquiry-form" id="inquiryForm">
-    <div class="input-group">
-        <input type="text" id="fullName" placeholder="Full Name" required class="form-input" />
-    </div>
-    <div class="input-group">
-        <input type="text" id="phoneNumber" placeholder="Phone Number" required class="form-input" />
-    </div>
-    <div class="input-group">
-        <input type="text" id="companyName" placeholder="Company Name" required class="form-input" />
-    </div>
+    <form class="inquiry-form" id="inquiryForm">
+        <div class="input-group">
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Full Name"
+                required
+                class="form-input"
+            />
+        </div>
+        <div class="input-group">
+            <input
+                type="text"
+                id="phoneNumber"
+                placeholder="Phone Number"
+                required
+                class="form-input"
+            />
+        </div>
+        <div class="input-group">
+            <input
+                type="text"
+                id="companyName"
+                placeholder="Company Name"
+                required
+                class="form-input"
+            />
+        </div>
 
-    <div class="input-group">
-        <input type="email" id="businessEmail" placeholder="Business Email" required class="form-input" />
-    </div>
+        <div class="input-group">
+            <input
+                type="email"
+                id="businessEmail"
+                placeholder="Business Email"
+                required
+                class="form-input"
+            />
+        </div>
 
-    <div class="input-group">
-        <div class="number-wrapper">
-            <input type="number" id="itemQuantity" placeholder="Item Quantity" required class="form-input no-spin" min="1" value="1" />
-            <div class="spin-arrows">
-                <button type="button" class="spin-up" aria-label="Increase" onclick="document.getElementById('itemQuantity').stepUp()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                </button>
-                <button type="button" class="spin-down" aria-label="Decrease" onclick="document.getElementById('itemQuantity').stepDown()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </button>
+        <div class="input-group">
+            <input
+                type="text"
+                id="productCategory"
+                placeholder="Product Type / Category"
+                required
+                class="form-input"
+            />
+        </div>
+        <div class="input-group">
+            <input
+                type="text"
+                id="productName"
+                placeholder="Product Name"
+                required
+                class="form-input"
+            />
+        </div>
+
+        <div class="input-group">
+            <div class="number-wrapper">
+                <input
+                    type="number"
+                    id="itemQuantity"
+                    placeholder="Item Quantity"
+                    required
+                    class="form-input no-spin"
+                    min="1"
+                    value="1"
+                />
+                <div class="spin-arrows">
+                    <button
+                        type="button"
+                        class="spin-up"
+                        aria-label="Increase"
+                        onclick="document.getElementById('itemQuantity').stepUp()"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><polyline points="18 15 12 9 6 15"></polyline></svg
+                        >
+                    </button>
+                    <button
+                        type="button"
+                        class="spin-down"
+                        aria-label="Decrease"
+                        onclick="document.getElementById('itemQuantity').stepDown()"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><polyline points="6 9 12 15 18 9"></polyline></svg
+                        >
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="input-group full-width">
-        <textarea id="message" placeholder="Message" required class="form-input"></textarea>
-    </div>
+        <div class="input-group full-width">
+            <textarea
+                id="message"
+                placeholder="Message"
+                required
+                class="form-input"></textarea>
+        </div>
 
-    <div class="full-width">
-        <button type="submit" class="submit-btn">
-            REQUEST TECHNICAL QUOTE
-        </button>
-    </div>
-</form>
+        <div class="full-width">
+            <button type="submit" class="submit-btn"> REQUEST A QUOTE </button>
+        </div>
+    </form>
 </div>
 
 <style>
@@ -49,9 +128,9 @@
     }
 
     .inquiry-title {
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: 2rem;
-        font-weight: 600;
+        font-family: var(--font-serif);
+        font-size: 1.7rem;
+        font-weight: 400;
         color: #ffffff;
         margin: 0 0 2rem 0;
         text-align: center;
@@ -77,7 +156,7 @@
         position: relative;
         width: 100%;
     }
-    
+
     .no-spin::-webkit-inner-spin-button,
     .no-spin::-webkit-outer-spin-button {
         -webkit-appearance: none;
@@ -116,7 +195,7 @@
         height: 16px;
         transition: transform 0.1s;
     }
-    
+
     .spin-arrows button:hover svg {
         transform: scale(1.2);
     }
@@ -188,20 +267,64 @@
             grid-template-columns: 1fr;
         }
         .inquiry-card {
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1.25rem;
+            border-radius: 16px;
+        }
+        .inquiry-title {
+            font-size: 1.35rem;
+            margin-bottom: 1.5rem;
         }
     }
 </style>
 <script>
-    function sendToWhatsApp(event: SubmitEvent) {
+    async function handleFormSubmit(event: SubmitEvent) {
         event.preventDefault();
 
-        const fullName = (document.getElementById('fullName') as HTMLInputElement).value;
-        const phoneNumber = (document.getElementById('phoneNumber') as HTMLInputElement).value;
-        const companyName = (document.getElementById('companyName') as HTMLInputElement).value;
-        const businessEmail = (document.getElementById('businessEmail') as HTMLInputElement).value;
-        const itemQuantity = (document.getElementById('itemQuantity') as HTMLInputElement).value;
-        const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+        const form = event.target as HTMLFormElement;
+        const submitBtn = form.querySelector(
+            ".submit-btn",
+        ) as HTMLButtonElement;
+
+        if (submitBtn) {
+            submitBtn.textContent = "TRANSMITTING...";
+            submitBtn.disabled = true;
+        }
+
+        const fullName = (
+            document.getElementById("fullName") as HTMLInputElement
+        ).value;
+        const phoneNumber = (
+            document.getElementById("phoneNumber") as HTMLInputElement
+        ).value;
+        const companyName = (
+            document.getElementById("companyName") as HTMLInputElement
+        ).value;
+        const businessEmail = (
+            document.getElementById("businessEmail") as HTMLInputElement
+        ).value;
+        const productCategory = (
+            document.getElementById("productCategory") as HTMLInputElement
+        ).value;
+        const productName = (
+            document.getElementById("productName") as HTMLInputElement
+        ).value;
+        const itemQuantity = (
+            document.getElementById("itemQuantity") as HTMLInputElement
+        ).value;
+        const message = (
+            document.getElementById("message") as HTMLTextAreaElement
+        ).value;
+
+        const payload = {
+            fullName,
+            phoneNumber,
+            companyName,
+            businessEmail,
+            productCategory,
+            productName,
+            itemQuantity,
+            message,
+        };
 
         const text =
             `*New Bulk Supply Inquiry*%0A%0A` +
@@ -209,16 +332,44 @@
             `*Phone:* ${phoneNumber}%0A` +
             `*Company:* ${companyName}%0A` +
             `*Email:* ${businessEmail}%0A` +
+            `*Category:* ${productCategory}%0A` +
+            `*Product:* ${productName}%0A` +
             `*Quantity:* ${itemQuantity}%0A` +
             `*Message:* ${message}`;
 
         const whatsappNumber = "+917975310662";
         const url = `https://wa.me/${whatsappNumber}?text=${text}`;
 
-        window.open(url, "_blank");
+        try {
+            // Option B: Run both API call (Sheets) and WhatsApp popup in parallel
+            await Promise.all([
+                fetch("/api/enquiry", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                }),
+                new Promise<void>((resolve) => {
+                    window.open(url, "_blank");
+                    resolve();
+                }),
+            ]);
+
+            form.reset();
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            alert(
+                "Something went wrong submitting to the backend, but WhatsApp should have opened.",
+            );
+        } finally {
+            if (submitBtn) {
+                submitBtn.textContent = "REQUEST A QUOTE";
+                submitBtn.disabled = false;
+            }
+        }
     }
 
-    // Attach listener directly instead of relying on inline onsubmit
-    const form = document.getElementById('inquiryForm') as HTMLFormElement;
-    form.addEventListener('submit', sendToWhatsApp);
+    const form = document.getElementById("inquiryForm") as HTMLFormElement;
+    if (form) {
+        form.addEventListener("submit", handleFormSubmit);
+    }
 </script>

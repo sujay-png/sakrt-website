@@ -3,11 +3,14 @@
 ---
 
 <div class="heading-wrapper">
-  <span class="section-tag">CONNECT WITH US</span>
+  <span class="section-tag">Get in touch</span>
   <h1 class="main-heading">
-    Bridging the gap between <em>Earth</em><br />
-    and <span class="highlight"><i>Precision Engineering.</i></span>
+    Contact Us
   </h1>
+  <br>
+  <p class="sub-heading">
+    Ready to go green? We partner with retailers and enterprises to bring certified compostable products to market.
+  </p>
 </div>
 
 <style>
@@ -34,35 +37,31 @@ font-family: JetBrains Mono, monospace;
   }
 
   .main-heading {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.25rem;
-    font-weight: 800;
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
     color: #0A2F1F;
     line-height: 1.1;
     letter-spacing: -0.01em;
-    margin-top: 0;        /* Removed top margin pushing it away from section tag */
-    margin-bottom: 0;
-    padding-right: 34px;
+    margin-top: 0;
+    margin-bottom: 1rem;
   }
 
-  .main-heading em {
-    font-style: italic;
-    font-weight: 700;
+  .sub-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #4a514d;
+    line-height: 1.5;
+    margin-top: 0;
+    max-width: 600px;
   }
 
-  .main-heading .highlight {
-    color: #7b9c1d;
-  }
-
-  @media (min-width: 640px) {
-    .main-heading {
-      font-size: 3rem;
-    }
-  }
-
-  @media (min-width: 1224px) {
+  @media (min-width: 768px) {
     .main-heading {
       font-size: 3.5rem;
     }
-  } 
+    .sub-heading {
+      font-size: 1.25rem;
+    }
+  }
 </style>

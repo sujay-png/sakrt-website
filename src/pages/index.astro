@@ -3,16 +3,35 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Home/Hero.astro';
 import Mission from '../components/Home/Mission.astro';
+import PublicAppearance from '../components/Home/PublicAppearance.astro';
 import Ecosystem from '../components/Home/Ecosystem.astro';
 import Foundation from '../components/Home/Foundation.astro';
 import Journal from '../components/Home/Journal.astro';
 import CallToAction from '../components/Home/CallToAction.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SAKRT",
+  "url": "https://www.sakrt.in",
+  "logo": "https://www.sakrt.in/logo/footer-logo.webp",
+  "description": "SAKRT is a leading manufacturer of certified compostable packaging, bags, and tableware in India.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN"
+  }
+};
 ---
 
-<Layout title="SAKRT | Engineered For The Earth">
+<Layout 
+  title="SAKRT | Govt Approved & Certified Compostable Products Manufacturer"
+  description="SAKRT is a leading manufacturer of certified compostable packaging, bags, and tableware in India. Eco-friendly, sustainable alternatives to plastic."
+  schema={schema}
+>
 
   <Hero/>
   <Mission/>
+  <PublicAppearance/>
   <Ecosystem/>
   <Foundation/>
   <Journal/>

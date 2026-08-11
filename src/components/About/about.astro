@@ -1,207 +1,235 @@
-
 ---
 // src/components/About.astro
+import CallToAction from '../Home/CallToAction.astro';
+import biodegradableWaterImg from '../../images/biodegradable_water.png';
+import greyBagsImg from '../../images/biodegradable_greybags.png';
+
+const products = [
+  { title: "Biodegradable Water Bottle", url: "/compostable-product/biodegradable-water-bottles", image: biodegradableWaterImg.src },
+  { title: "Compostable Bag", url: "/compostable-product/carry-bags/compostable-bag", image: "/compostable-bags/imgi_4_biodegradable-bags-compostable-products-ecofriendly-bags-1-1.webp" },
+  { title: "Compostable Nursery Bags", url: "/compostable-product/carry-bags/compostable-nursery-bags", image: "/compostable-bags/imgi_7_Compostable-grow-bags-e1780576071172.webp"},
+  { title: "Compostable Grocery Bag", url: "/compostable-product/carry-bags/compostable-grocery-bag", image: "/compostable-bags/imgi_12_biodegradable-bags-compostable-products-eco-products-3.webp" },
+  
+  { title: "Compostable Medical Waste Bags", url: "/compostable-product/carry-bags/compostable-medical-waste-bags", image: "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp" },
+  { title: "Compostable Mailer Bags", url: "/compostable-product/carry-bags/compostable-mailer-bags", image: "/compostable-bags/imgi_11_courier-bags.webp" },
+  { title: "Stand-up Pouches", url: "/compostable-product/compostable-pouches/stand-up-pouch", image: greyBagsImg.src },
+  { title: "Compostable Garment Bags", url: "/compostable-product/carry-bags/compostable-garment-bags", image: "/compostable-bags/imgi_9_biodegradable-bags-compostable-products-ecofriendly-bags-2-1.webp" },
+  
+  { title: "Compostable Dona Bowl", url: "/compostable-product/food-packaging-boxes/compostable-dona-bowl", image: "/tableware/imgi_12_biodegradable-bags-compostable-products-eco-product-1.webp" },
+  { title: "Compostable Plates", url: "/compostable-product/food-packaging-boxes/compostable-food-plates", image: "/tableware/imgi_7_biodegradable-bags-compostable-products-eco-product.-1.webp" },
+  { title: "Compostable Bowls", url: "/compostable-product/food-packaging-boxes/compostable-bowl", image: "/tableware/imgi_6_biodegradable-bags-compostable-products-eco-product.webp" },
+  { title: "Compostable Round Cup", url: "/compostable-product/food-packaging-boxes/compostable-round-cup", image: "/tableware/imgi_5_biodegradable-bags-compostable-products-eco-products.webp" }
+];
+
+const whyChoose = [
+  {
+    title: "We Vet Every Product",
+    desc: "Only globally certified compostable products make it into our catalog (EN 13432, ASTM D6400, OK Compost).",
+    icon: "/about/imgi_4_biodegradable_carry_bags-biodegradable_bags__compostable-products-ecofriendly-bags.-1.webp"
+  },
+  {
+    title: "Fast Fulfillment",
+    desc: "We stock and deliver in bulk perfect for retailers, supermarkets, restaurants, and event suppliers.",
+    icon: "/about/imgi_5_biodegradable_carry_bags_biodegradable_bags-compostable-products-ecofriendly-bags.webp"
+  },
+  {
+    title: "Personalized B2B Support",
+    desc: "A dedicated account manager ensures smooth ordering, consistent supply, and custom packaging options.",
+    icon: "/about/imgi_6_biodegradable_carry_bags-biodegradable_bags_compostable-products-ecofriendly-bags.webp"
+  },
+  {
+    title: "Full Transparency",
+    desc: "We provide full material traceability, product certifications, and eco-impact documentation.",
+    icon: "/about/imgi_7_biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly_bags.webp"
+  },
+  {
+    title: "Eco-Conscious Partnerships",
+    desc: "We work only with manufacturers committed to sustainable agriculture, fair labor, and carbon neutrality.",
+    icon: "/about/imgi_8_Biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly-bags.webp"
+  },
+  {
+    title: "Field-Tested Quality",
+    desc: "We provide full material traceability, product certifications, and eco-impact documentation.",
+    icon: "/about/imgi_9_server-check.png"
+  },
+  {
+    title: "Scalable Supply Chain",
+    desc: "From local shops to national distributors, our inventory and logistics are built to grow with you.",
+    icon: "/about/imgi_10_supply-chain.png"
+  }
+];
 ---
 
 <section class="about-hero">
   <div class="container">
-    <!-- Top small label -->
-    <div class="tag">
-      <span class="line"></span>
-      <span>ENGINEERING ECOLOGY</span>
+    
+    <!-- Hero Heading (New Theme Style) -->
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 1rem; color: #0f3223;">ABOUT US</h1>
+        <div class="tag" style="justify-content: center;">
+          <span class="line"></span>
+          <span>SAKRT BIOPLASTIC MANUFACTURERS</span>
+          <span class="line"></span>
+        </div>
     </div>
 
-    <!-- Main Heading with High-Contrast Editorial Serif -->
-    <h1>
-      Architecture for the <br />
-      <em>Post-Plastic</em> Era.
-    </h1>
-
-    <!-- Subtitle description -->
-    <p class="description">
-      SAKRT represents a convergence of biological heritage and industrial precision. We are redefining durability through compostable high-performance materials.
-    </p>
-
-    <!-- Content Grid (Our Story + Image) -->
-    <div class="content-grid">
-      <!-- Left Card: Our Story -->
-      <div class="story-card">
-        <div>
-          <h2>Our Story</h2>
-          <p>
-            Born from a radical laboratory experiment in material science, SAKRT emerged to solve the paradox of industrial permanence. We believe that products should last exactly as long as they are needed—and not a second longer in the biosphere. Our journey began with the simple question: "Can we build a bridge that breathes?"
-          </p>
-        </div>
-        
-        <div class="card-footer">
-          <span class="est">EST. 2026 / INDUSTRIAL LABS</span>
-          <span class="arrow-icon">→</span>
-        </div>
+    <!-- About SAKRT Content -->
+    <div class="content-block">
+      <h2>About SAKRT</h2>
+      <p>
+        SAKRT is a trusted bioplastic manufacturer and distributor. We help retailers, food service providers, and eco-conscious brands replace plastic with sustainable alternatives. Our range includes compostable bags, plant-based tableware, and other eco friendly essentials. Every product is designed to deliver high performance while reducing environmental impact. We support modern business needs and contribute to global climate goals.
+      </p>
+      <div class="about-text-more">
+        <p>
+          SAKRT delivers 100% bioplastic manufacturers, plates, and tableware. We are the trusted partner for modern businesses committed to protecting the environment. More than just a supplier, SAKRT is your trusted partner in sustainability. We work closely with modern businesses and individuals committed to protecting the environment. Together, we can reduce plastic pollution, safeguard our oceans, and create a future where bioplastic manufacturers’ choices are the norm.
+        </p>
+        <p>
+          As one of India’s leading bioplastic manufacturers, SAKRT combines quality, compliance, and innovation to help businesses transition away from single-use plastics with confidence. Our manufacturing process adheres to CPCB certification standards, ensuring every product meets India’s regulatory requirements for compostability and environmental safety. From packaging suppliers to hospitality chains, we partner with businesses across industries to source reliable, cost-effective alternatives that don’t compromise on durability or performance. Our team continuously invests in research and development, exploring new plant-based materials and production techniques to stay ahead of evolving sustainability standards. From carry bags to compostable food packaging, biodegradable water bottles to wrapping films we manufacture and maintain the quality of the product which is eco-friendly for the planet. Whether you’re a small retailer or a large-scale distributor, SAKRT’s bioplastic solutions are built to scale with your business while keeping the planet’s future in focus.
+        </p>
       </div>
-
-      <!-- Right Card: Visual / Image -->
-      <div class="image-card">
-        <img src="src/images/aboutimage1.png" alt="Bio-material texture" />
-        <div class="image-card2"></div>
-      </div>
+      <button id="about-text-toggle" class="products-toggle-link text-toggle-link">View More <span class="arrow">↓</span></button>
     </div>
 
-    <!-- Bottom Grid -->
-    <div class="bottom-grid">
-
-      <!-- CARD 1: The Mission -->
-      <div class="mission-card">
-        <div class="mission-card-content">
-          <h2>The Mission</h2>
-          <p class="mission-quote">
-            "To decouple industrial growth from environmental degradation by engineering materials that return to the earth as nutrients, not waste."
-          </p>
-        </div>
-        
-        <div class="mission-icon-group">
-          <div class="mission-icon-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.12 2 7 0 6-5 11-10 11z"/>
-              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
-            </svg>
-          </div>
-          <div class="mission-icon-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 2: The Circular Protocol -->
-      <div class="protocol-card">
-        <div class="protocol-text-box">
-          <span class="protocol-label">THE CIRCULAR PROTOCOL</span>
-          <p class="protocol-description">
-            Our closed-loop system utilizes mycelium-based polymers and reclaimed cellulose to create a structural matrix that rivals carbon fiber in tensile strength.
-          </p>
-        </div>
-
-        <!-- Wheel / Radar Graphic Container -->
-        <div class="protocol-wheel-wrapper">
-          <svg class="protocol-wheel-svg" viewBox="0 0 200 200">
-            <!-- Pulse Ring -->
-            <circle cx="100" cy="100" class="wheel-pulse-ring" />
-
-            <!-- Concentric Rings (Outer to Inner sequentially) -->
-            <circle cx="100" cy="100" r="85" class="wheel-ring ring-outer" />
-            <circle cx="100" cy="100" r="55" class="wheel-ring ring-mid" />
-            <circle cx="100" cy="100" r="28" class="wheel-ring ring-inner" />
-
-            <!-- Dotted Leaf Outline -->
-            <path d="M 30 100 C 70 40 130 40 170 100 C 130 160 70 160 30 100 Z" class="wheel-spiral" />
-
-            <!-- Spoke Axis Lines (Animate sequentially) -->
-            <line x1="100" y1="15" x2="100" y2="185" class="wheel-spoke spoke-1" />
-            <line x1="15" y1="100" x2="185" y2="100" class="wheel-spoke spoke-2" />
-            <line x1="40" y1="40" x2="160" y2="160" class="wheel-spoke spoke-3" />
-            <line x1="40" y1="160" x2="160" y2="40" class="wheel-spoke spoke-4" />
-
-
-          </svg>
-        </div>
-      </div>
-
+    <!-- What We Do? -->
+    <div class="content-block">
+      <h2>What We Do?</h2>
+      <p style="margin-bottom: 1.5rem; color: #4a5247; font-size: 1.05rem;">We offer a wide range of certified compostable and sustainable packaging solutions for:</p>
+      <ul class="do-list">
+        <li>Retail stores</li>
+        <li>E-commerce brands</li>
+        <li>Hospitality & food service industries</li>
+        <li>Corporates & institutions</li>
+        <li>Municipal and waste management bodies</li>
+      </ul>
     </div>
 
-    <!-- ============================================================
-         WHY SAKRT SECTION (4-COLUMN FEATURE GRID)
-         ============================================================ -->
+    <!-- Why Choose SAKRT -->
     <div class="why-sakrt-section">
-      <h2 class="why-title">Why SAKRT?</h2>
-
+      <h2 class="why-title">Why Choose SAKRT Bioplastic Manufacturers?</h2>
       <div class="why-grid">
-        <!-- Feature 1: Fast Fulfillment -->
-        <div class="why-card">
-          <div class="why-icon-box">
-            <svg class="why-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f3223" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
+        {whyChoose.map((item) => (
+          <div class="why-card">
+            <div class="why-icon-box">
+              <img src={item.icon} alt={item.title} class="why-icon-img" loading="lazy" />
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
           </div>
-          <h3>FAST FULFILLMENT</h3>
-          <p>
-            Distributed manufacturing nodes ensure your materials arrive in 48 hours or less.
-          </p>
-        </div>
-
-        <!-- Feature 2: Eco-Conscious -->
-        <div class="why-card">
-          <div class="why-icon-box">
-            <svg class="why-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f3223" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.12 2 7 0 6-5 11-10 11z"/>
-              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
-            </svg>
-          </div>
-          <h3>ECO-CONSCIOUS</h3>
-          <p>
-            100% biological origin. Zero microplastics. Fully home-compostable certification.
-          </p>
-        </div>
-
-        <!-- Feature 3: Advanced Specs -->
-        <div class="why-card">
-          <div class="why-icon-box">
-            <svg class="why-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f3223" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 18h12"></path>
-              <path d="M3 22h18"></path>
-              <path d="M14 22a7 7 0 1 0-4 0"></path>
-              <path d="M9 14h6"></path>
-              <path d="M12 6V3"></path>
-              <path d="M12 6a3 3 0 0 0-3 3v5h6V9a3 3 0 0 0-3-3z"></path>
-            </svg>
-          </div>
-          <h3>ADVANCED SPECS</h3>
-          <p>
-            Laboratory-tested for heat resistance, moisture barrier, and impact durability.
-          </p>
-        </div>
-
-        <!-- Feature 4: Global Impact -->
-        <div class="why-card">
-          <div class="why-icon-box">
-            <svg class="why-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f3223" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-          </div>
-          <h3>GLOBAL IMPACT</h3>
-          <p>
-            Every SAKRT order removes 2.4kg of atmospheric carbon from the supply chain.
-          </p>
-        </div>
+        ))}
       </div>
     </div>
 
-    <!-- ============================================================
-         JOIN THE EVOLUTION CTA BANNER SECTION
-         ============================================================ -->
-    <div class="join-evolution-banner">
-      <h2 class="cta-title">Join the Evolution.</h2>
+    <!-- Most Enquired Products -->
+    <div class="products-section" style="margin-top: 5rem; margin-bottom: 4rem; text-align: center;">
+      <h2 class="why-title" style="margin-bottom: 1rem;">Most Enquired Products</h2>
+      <p style="color: #6b7368; margin-bottom: 3.5rem; font-family: 'Plus Jakarta Sans', sans-serif;">Browse Our Highest-Selling Products That Continue To Be The Preferred Choice Among Customers.</p>
       
-      <div class="cta-button-group">
-        <button class="btn-primary">DOWNLOAD CATALOG</button>
-        <button class="btn-secondary">REQUEST SAMPLE KIT</button>
+      <div class="product-grid">
+        {products.map((product, index) => (
+          <div class="product-card" data-index={index}>
+            <a href={product.url} class="card-image-box">
+              <img src={product.image} alt={product.title} loading="lazy" />
+            </a>
+            <div class="card-content">
+              <h3 class="product-title">{product.title}</h3>
+              <a href={product.url} class="view-details-btn">View Details</a>
+            </div>
+          </div>
+        ))}
       </div>
+      
+      <button id="about-products-toggle" class="products-toggle-link">View More <span class="arrow">↓</span></button>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const isMobile = window.innerWidth <= 768;
+
+        // Products Toggle
+        const toggleProductsBtn = document.getElementById('about-products-toggle');
+        const cards = document.querySelectorAll('.product-grid .product-card');
+        let isProductsExpanded = false;
+
+        const updateProductsVisibility = () => {
+          cards.forEach((card, index) => {
+            if (isMobile && !isProductsExpanded && index >= 4) {
+              card.classList.add('mobile-hidden');
+            } else {
+              card.classList.remove('mobile-hidden');
+            }
+          });
+          if (toggleProductsBtn) {
+            toggleProductsBtn.style.display = isMobile ? 'inline-flex' : 'none';
+            toggleProductsBtn.innerHTML = isProductsExpanded ? 'View Less <span class="arrow">↑</span>' : 'View More <span class="arrow">↓</span>';
+          }
+        };
+
+        updateProductsVisibility();
+
+        if (toggleProductsBtn) {
+          toggleProductsBtn.addEventListener('click', () => {
+            isProductsExpanded = !isProductsExpanded;
+            updateProductsVisibility();
+          });
+        }
+
+        // Text Toggle
+        const toggleTextBtn = document.getElementById('about-text-toggle');
+        const textMoreContent = document.querySelector('.about-text-more');
+        let isTextExpanded = false;
+
+        const updateTextVisibility = () => {
+          if (isMobile && !isTextExpanded) {
+            textMoreContent?.classList.add('mobile-hidden');
+          } else {
+            textMoreContent?.classList.remove('mobile-hidden');
+          }
+          if (toggleTextBtn) {
+            toggleTextBtn.style.display = isMobile ? 'inline-flex' : 'none';
+            toggleTextBtn.innerHTML = isTextExpanded ? 'View Less <span class="arrow">↑</span>' : 'View More <span class="arrow">↓</span>';
+          }
+        };
+
+        updateTextVisibility();
+
+        if (toggleTextBtn) {
+          toggleTextBtn.addEventListener('click', () => {
+            isTextExpanded = !isTextExpanded;
+            updateTextVisibility();
+          });
+        }
+
+        window.addEventListener('resize', () => {
+          const newIsMobile = window.innerWidth <= 768;
+          if (newIsMobile !== isMobile) {
+             location.reload(); // simple way to re-evaluate isMobile on resize
+          }
+        });
+      });
+    </script>
 
   </div>
 </section>
 
+<!-- CTA Component from Home -->
+<CallToAction />
+
 <style>
-  /* Google Fonts import */
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap');
-   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
-   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --color-bg: #f8f8f6;
+    --color-card-bg: #ffffff;
+    --color-text-dark: #0f3223;
+    --color-btn-green: #256449;
+  }
+
   .about-hero {
     width: 100%;
     padding: 7rem 2rem 5rem 2rem;
-    background: #f8f8f6;
+    background: var(--color-bg);
     color: #111111;
     display: flex;
     justify-content: center;
@@ -215,7 +243,15 @@
     gap: 1.75rem;
   }
 
-  /* Tag styling */
+  h1 {
+    font-family: var(--font-serif, 'DM Serif Display', serif);
+    font-size: clamp(3rem, 5vw, 4.42rem);
+    line-height: 0.98;
+    font-weight: 400;
+    color: #0f3223;
+    letter-spacing: -0.01em;
+  }
+
   .tag {
     display: flex;
     align-items: center;
@@ -234,406 +270,102 @@
     background-color: #8c9383;
   }
 
-  /* Main Title Styling */
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 5vw, 5.2rem);
-    line-height: 0.98;
-    font-weight: 400;
-    color: #0f3223;
-    max-width: 950px;
-    letter-spacing: -0.01em;
+  .content-block {
+    background-color: transparent;
+    padding: 1.5rem 0 2.5rem 0;
   }
 
-  h1 em {
-    font-style: italic;
+  .content-block h2 {
+    font-family: var(--font-serif, 'DM Serif Display', serif);
+    font-size: 2.2rem;
     font-weight: 400;
-    color: #315b3d;
-  }
-
-  /* Description paragraph */
-  .description {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: #4a5247;
-    max-width: 520px;
+    color: var(--color-text-dark);
     margin-bottom: 1.5rem;
   }
 
-  /* Content Grid (Top Row) */
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 2rem;
-    margin-top: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .content-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* Story Card */
-  .story-card {
-    background-color: #ffffff;
-    border: 1px solid #e5e7e2;
-    border-radius: 16px;
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.3s ease;
-    cursor: pointer;
-  }
-
-  .story-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 16px 36px rgba(15, 50, 35, 0.12);
-    border-color: rgba(15, 50, 35, 0.2);
-  }
-
-  .story-card h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #0f3223;
-    margin-bottom: 1rem;
-  }
-
-  .story-card p {
+  .content-block p {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: #5d665b;
-    font-weight: 400;
-  }
-
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-  }
-
-  .est {
-    margin: 2px;
-    padding: 0;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    color: #7a8275;
-  }
-
-  .arrow-icon {
-    font-size: 1.25rem;
-    color: #0f3223;
-    font-weight: 300;
-    transition: transform 0.3s ease;
-  }
-
-  .story-card:hover .arrow-icon {
-    transform: translateX(6px);
-  }
-
-  /* Image Card */
-  .image-card {
-    border-radius: 16px;
-    overflow: hidden;
-    background-color: #0f3223;
-    min-height: 320px;
-  }
-
-  .image-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* ============================================================
-     BOTTOM GRID
-     ============================================================ */
-  .bottom-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    gap: 2rem;
-    margin-top: 0.5rem;
-    align-items: start;
-  }
-
-  @media (max-width: 768px) {
-    .bottom-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* ============================================================
-     MISSION CARD
-     ============================================================ */
-  .mission-card {
-    background-color: #cbfb45;
-    border-radius: 20px;
-    padding: 3rem 2.5rem 2.5rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 490px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: background-color 0.4s ease, 
-                border-color 0.4s ease, 
-                box-shadow 0.4s ease, 
-                transform 0.35s ease;
-  }
-
-  .mission-card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-
-  .mission-card:hover {
-    background-color: #ffffff;
-    border: 1px solid #e1e7de;
-    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
-  }
-
-  .mission-card h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.35rem;
-    font-weight: 400;
-    color: #0f3223;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
-  }
-
-  .mission-quote {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-style: italic;
-    font-size: 1.02rem;
-    line-height: 1.65;
-    color: #173d2a;
-    max-width: 96%;
-  }
-
-  .mission-icon-group {
-    display: flex;
-    gap: 0.75rem;
-  }
-
-  .mission-icon-circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid rgba(15, 50, 35, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #0f3223;
-    transition: border-color 0.3s ease, transform 0.3s ease;
-  }
-
-  .mission-card:hover .mission-icon-circle {
-    border-color: rgba(15, 50, 35, 0.5);
-    transform: scale(1.05);
-  }
-
-  /* ============================================================
-     PROTOCOL CARD
-     ============================================================ */
-  .protocol-card {
-    background-color: #082318;
-    border-radius: 20px;
-    padding: 3rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-    height: 420px;
-    width: 120%;
-    box-sizing: border-box;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.35s ease;
-  }
-  
-  @media (max-width: 900px) {
-    .protocol-card {
-      width: 100%;
-    }
-  }
-
-  .protocol-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .protocol-text-box {
-    max-width: 58%;
-    z-index: 2;
-  }
-
-  .protocol-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    color: #cbfb45;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 1.25rem;
-    font-weight: 700;
-  }
-
-  .protocol-description {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.89rem; 
+    font-size: 1.05rem;
     line-height: 1.7;
-    color: #b9c5bc;
+    color: #4a5247;
     font-weight: 400;
+    margin-bottom: 1.25rem;
   }
 
-  /* Protocol Wheel Animation Styles */
-  .protocol-wheel-wrapper {
-    width: 270px;
-    height: 270px;
+  .do-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .do-list li {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    color: #0f3223;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .do-list li::before {
+    content: "•";
     position: absolute;
-    right: -9px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
+    left: 0;
+    color: #0f3223;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
   }
 
-  .protocol-wheel-svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .wheel-ring,
-  .wheel-spoke,
-  .wheel-spiral,
-  .wheel-sweep-hand {
-    stroke: #cbfb45;
-    fill: none;
-    stroke-linecap: round;
-  }
-
-  .wheel-ring {
-    stroke-width: 0.5;
-    stroke-opacity: 0.35;
-    stroke-dasharray: 600;
-    stroke-dashoffset: 600;
-    animation: drawIn 2s ease-out forwards;
-  }
-
-  .ring-outer  { animation-delay: 0.2s; }
-  .ring-mid    { animation-delay: 0.6s; }
-  .ring-inner  { animation-delay: 1.0s; }
-
-  .wheel-spoke {
-    stroke-width: 0.5;
-    stroke-opacity: 0.25;
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: drawIn 1.5s ease-out forwards;
-  }
-
-  .spoke-1 { animation-delay: 1.2s; }
-  .spoke-2 { animation-delay: 1.4s; }
-  .spoke-3 { animation-delay: 1.6s; }
-  .spoke-4 { animation-delay: 1.8s; }
-
-  .wheel-spiral {
-    stroke-width: 0.6;
-    stroke-opacity: 0.45;
-    stroke-dasharray: 12 8;
-    animation: drawIn 2s ease-out forwards, rotateWheel 8s linear infinite;
-    transform-origin: 100px 100px;
-    animation-delay: 0.8s, 0s;
-  }
-
-  .wheel-rotate-layer {
-    transform-origin: 100px 100px;
-    animation: rotateWheel 10s linear infinite;
-  }
-
-  .wheel-sweep-hand {
-    stroke-width: 0.8;
-    stroke-opacity: 0.8;
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    animation: drawIn 1.2s ease-out forwards;
-    animation-delay: 2.0s;
-  }
-
-  .wheel-pulse-ring {
-    fill: none;
-    stroke: #cbfb45;
-    stroke-width: 0.6;
-    stroke-opacity: 0.35;
-    animation: pulseWheelRing 3.5s ease-out infinite;
-    transform-origin: 100px 100px;
-  }
-
-  @keyframes drawIn {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  @keyframes rotateWheel {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes pulseWheelRing {
-    0% {
-      r: 5;
-      opacity: 0.8;
-    }
-    100% {
-      r: 85;
-      opacity: 0;
-    }
-  }
-
-  /* ============================================================
-     WHY SAKRT? SECTION STYLES
-     ============================================================ */
+  /* WHY SAKRT GRID */
   .why-sakrt-section {
-    margin-top: 5.5rem;
-    margin-bottom: 5.5rem;
-    padding-top: 1.15rem;
-    text-align: center;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
   }
 
   .why-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-serif, 'DM Serif Display', serif);
     font-size: 2.2rem;
     font-weight: 400;
-    color: #0f3223;
-    margin-bottom: 2.8rem;
+    color: var(--color-text-dark);
     letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
   }
 
   .why-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
+    justify-content: center;
+  }
+  
+  /* Make the last row center aligned if there's 7 items */
+  .why-card:nth-child(5) {
+    grid-column: 1 / 2;
+  }
+  
+  @media (min-width: 901px) {
+    .why-card:nth-child(5) {
+      grid-column-start: 2; /* offset to center 3 items in 4 columns grid, or 2 items? 7 items = 4 top, 3 bottom. To center 3 items in a 4-col grid: It's hard without flex. Let's just let it flow, or we can use flex for the grid wrapper */
+    }
+    .why-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .why-card {
+      width: calc(25% - 1rem); /* 4 per row */
+    }
   }
 
   @media (max-width: 900px) {
     .why-grid {
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
+    }
+    .why-card {
+      width: 100%;
     }
   }
 
@@ -647,145 +379,199 @@
     background-color: #f3f4f1;
     border-radius: 14px;
     padding: 2.2rem 1.6rem;
-    text-align: left;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
-    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   }
 
   .why-icon-box {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    background-color: #e2f89d;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.6rem;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .why-icon {
+    margin-bottom: 1.2rem;
     transition: transform 0.3s ease;
   }
 
-  .why-card:hover,
-  .why-card:active {
+  .why-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .why-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(15, 50, 35, 0.08);
     background-color: #ffffff;
   }
 
-  .why-card:hover .why-icon-box,
-  .why-card:active .why-icon-box {
-    background-color: #c5ff49 !important;
+  .why-card:hover .why-icon-img {
     transform: scale(1.1);
-    box-shadow: 0 4px 14px rgba(197, 255, 73, 0.5);
-  }
-
-  .why-card:hover .why-icon,
-  .why-card:active .why-icon {
-    transform: rotate(6deg) scale(1.05);
   }
 
   .why-card h3 {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.78rem;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #0f3223;
-    text-transform: uppercase;
+    color: var(--color-text-dark);
     margin-bottom: 0.9rem;
+    line-height: 1.3;
   }
 
   .why-card p {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     line-height: 1.6;
     color: #6b7368;
     font-weight: 400;
   }
 
-  /* ============================================================
-     JOIN THE EVOLUTION BANNER STYLES
-     ============================================================ */
-  .join-evolution-banner {
-    background: radial-gradient(circle at 50% 50%, #0d3d26 0%, #0d3d26 100%);
-    border-radius: 20px;
-    padding: 4.5rem 2rem;
-    text-align: center;
-    margin-top: 4rem;
+  /* PRODUCTS SECTION */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px 24px;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .product-card {
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    box-shadow: 0 16px 40px rgba(6, 28, 19, 0.15);
+    text-align: center;
   }
 
-  /* Matching Heavy Serif Title Styling */
-  .cta-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(3rem, 5vw, 5.2rem);
-    font-weight: 800; /* Bold/Heavy weight to match image */
-    color: #ffffff;
-    margin: 0;
-    letter-spacing: -0.025em; /* Slightly tighter tracking */
-    line-height: 1.05;
-  }
-
-  .cta-button-group {
+  .card-image-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid #e2e8e4;
+    transition: box-shadow 0.3s ease;
   }
 
-  /* Primary Button (Bright Lime #c5ff49 with exact font) */
-  .btn-primary {
-    background-color: #c5ff49;
-    color: #082318;
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    font-size: 0.72rem;
+  .card-image-box img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .card-image-box {
+    box-shadow: 0 12px 24px rgba(13, 61, 38, 0.08);
+  }
+
+  .product-card:hover .card-image-box img {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .product-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+    min-height: 44px;
+  }
+
+  .view-details-btn {
+    background-color: var(--color-btn-green);
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 28px;
+    border-radius: 30px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .view-details-btn:hover {
+    background-color: #17422f;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .products-toggle-link {
+    display: none;
+    margin-top: 2rem;
+    background-color: transparent;
+    color: var(--color-btn-green);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 0.95rem 1.8rem;
-    border-radius: 8px;
+    letter-spacing: 0.12em;
+    padding: 10px;
     border: none;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(197, 255, 73, 0.4);
-    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
   }
 
-  .btn-primary:hover {
-    background-color: #d2ff6b;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(197, 255, 73, 0.55);
+  .products-toggle-link.text-toggle-link {
+    margin-top: 0.5rem;
+    padding-left: 0;
+    justify-content: flex-start;
   }
 
-  /* Secondary Button (Outlined Dark Green) */
-  .btn-secondary {
-    background-color: transparent;
-    color: #ffffff;
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 0.9rem 1.8rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    cursor: pointer;
-    transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+  .products-toggle-link:hover {
+    opacity: 0.7;
   }
 
-  .btn-secondary:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.05);
-    transform: translateY(-2px);
+  .products-toggle-link .arrow {
+    transition: transform 0.2s ease;
+    display: inline-block;
   }
+
+  .products-toggle-link:hover .arrow {
+    transform: translateY(2px);
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 16px;
+    }
+    
+    .product-card.mobile-hidden,
+    .about-text-more.mobile-hidden {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
 </style>
 

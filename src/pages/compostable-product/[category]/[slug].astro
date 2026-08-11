@@ -1,0 +1,1006 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import GenericProductDetail from "../../../components/Product Details/GenericProductDetail.astro";
+import pouchImg from "../../../images/biodegradable_greybags.png";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const tablewareProducts = [
+    {
+      name: "Compostable Food Plates",
+      slug: "compostable-food-plates",
+      category: "food-packaging-boxes",
+      image:
+        "/tableware/imgi_4_biodegradable-bags-compostable-products-eco-product-1-2.webp",
+      longTitle: "Eco-Friendly Compostable Round Plates For Sustainable Everyday",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Made from natural sugarcane residue, making each compostable round plate renewable, plastic-free, and earth-friendly.",
+        "Designed to handle gravies, curries, oils, and sauces without bending or leaking.",
+        "Ideal for serving steaming meals as well as chilled or frozen foods.",
+        "Safe for reheating and storing food across temperature ranges.",
+        "Maintains shape and strength even under heavy portions.",
+        "No washing required—use once and dispose responsibly.",
+        "Breaks down in composting conditions without leaving toxic residue.",
+        "Safe for direct food contact with no harmful coatings.",
+        "Easy to carry, stack, and transport.",
+        "Replaces plastic and wooden disposable plates effectively."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for serving meals.",
+      whyChooseTitle: "Why Choose a Compostable Round Plate?",
+      whyChooseText: [
+        "A compostable round plate is a great option for people and companies who want to cut down on plastic waste. It's made from sugarcane bagasse, which is a leftover part of the sugarcane plant, not from new raw materials. These plates break down naturally when thrown away, which helps keep landfills cleaner and lowers the amount of greenhouse gases released. They are strong and can handle hot food, just like plastic plates, but they don't harm the environment. Choosing these plates helps create a more eco-friendly and responsible way to serve food."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Manufactured from 100% sugarcane bagasse.",
+        "Fully compostable and biodegradable.",
+        "No plastic, wax, or chemical lining.",
+        "Oil- and moisture-resistant surface.",
+        "Microwave-safe for reheating food.",
+        "Freezer-safe for cold storage.",
+        "Odorless and tasteless material.",
+        "Lightweight and stackable design.",
+        "Suitable for home and commercial use."
+      ],
+      usageApplications: [
+        "Serving meals at parties, weddings, and functions.",
+        "Use in cafes, restaurants, and food trucks.",
+        "Ideal for takeaways and food delivery services.",
+        "Perfect for picnics, outdoor events, and catering.",
+        "Everyday use at homes and offices."
+      ]
+    },
+    {
+      name: "Compostable Round Cup",
+      slug: "compostable-round-cup",
+      category: "food-packaging-boxes",
+      image:
+        "/tableware/imgi_5_biodegradable-bags-compostable-products-eco-products.webp",
+      longTitle: "Disposable Cups, Eco-Friendly Beverage Solutions",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Made from renewable, responsibly sourced disposable materials.",
+        "Break down naturally in composting conditions, enriching the soil.",
+        "Suitable for both hot and cold beverages without leakage or deformation.",
+        "Free from harmful plastics and toxic coatings, ensuring user safety.",
+        "Lower carbon footprint compared to conventional plastic cups.",
+        "Provides the same usability and comfort as regular disposable cups.",
+        "Maintains strength and structure during use.",
+        "Affordable pricing suitable for businesses and individual consumers.",
+        "Helps reduce landfill waste and plastic pollution.",
+        "Encourages eco-conscious habits among users."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for drinking.",
+      whyChooseTitle: "Why Choose Disposable Cups?",
+      whyChooseText: [
+        "Disposable Cups are the ideal alternative to plastic cups for environmentally conscious consumers and businesses. Made from renewable resources, these cups decompose naturally after use, reducing environmental impact and landfill waste. They are safe, durable, and versatile perfect for serving both hot and cold beverages without compromising quality. By choosing Disposable Cups, you actively support sustainability while offering a practical, cost-effective solution for everyday beverage needs."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Manufactured using sustainably sourced biodegradable materials.",
+        "Fully compostable under industrial composting conditions.",
+        "Leak-resistant inner lining for reliable performance.",
+        "Smooth rim for comfortable drinking experience.",
+        "Lightweight yet durable construction.",
+        "Available in multiple sizes and capacities.",
+        "Neutral, clean appearance suitable for branding.",
+        "Odor-free and taste-neutral material.",
+        "Complies with eco-friendly packaging standards.",
+        "Designed for single-use convenience with minimal environmental impact."
+      ],
+      usageApplications: [
+        "Cafés, coffee shops, and tea stalls.",
+        "Offices and corporate pantries.",
+        "Events, exhibitions, and conferences.",
+        "Takeaway and food delivery services.",
+        "Homes, parties, and outdoor gatherings."
+      ]
+    },
+    {
+      name: "Compostable Bowl",
+      slug: "compostable-bowl",
+      category: "food-packaging-boxes",
+      image: "/tableware/imgi_6_biodegradable-bags-compostable-products-eco-product.webp",
+      longTitle: "Eco Friendly Disposable Bowls For Plastic-Free Dining",
+      aboutTitle: "About This Product",
+      aboutBullets: [
+        "Eco friendly disposable bowls are made from natural, bio-based materials, these eco friendly Bowls are safe, non-toxic, and food-grade.",
+        "100% chemical-free and hygienic, ensuring safe contact with all types of food.",
+        "Designed to biodegrade within 3–6 months under proper composting conditions.",
+        "Strong and durable construction makes them ideal for both hot and cold foods.",
+        "Leak-resistant and sturdy, suitable for liquids, gravies, and sauces.",
+        "Free from wax coatings, plastic layers, or synthetic linings.",
+        "Offers a clean, sustainable alternative to plastic and laminated paper bowls.",
+        "Maintains food taste and quality without chemical transfer.",
+        "Lightweight yet robust for everyday and bulk usage.",
+        "Supports eco-conscious lifestyles and responsible waste management."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for serving food.",
+      whyChooseTitle: "Why Choose Eco friendly Bowls",
+      whyChooseText: [
+        "Eco friendly Bowls are designed to reduce plastic pollution and environmental damage. Made from renewable resources, these bowls naturally decompose without leaving toxic residues behind. They help minimize landfill waste, support sustainable living, and offer a safer option for food service. By choosing compostable paper bowls, you contribute to a cleaner planet while enjoying convenience, strength, and food safety all in one sustainable product."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Crafted from renewable, plant-based raw materials.",
+        "Food-safe and compliant with hygiene standards.",
+        "Naturally compostable and biodegradable.",
+        "Heat-resistant for hot meals and soups.",
+        "Suitable for cold foods like salads and desserts.",
+        "No plastic, wax, or chemical coatings.",
+        "Odor-free and tasteless material.",
+        "Lightweight for easy storage and transport.",
+        "Strong base prevents bending and spills.",
+        "Ideal for single-use with zero environmental guilt."
+      ],
+      usageApplications: [
+        "Parties, weddings, and celebrations.",
+        "Catering services and food stalls.",
+        "Restaurants, cafés, and takeaways.",
+        "Picnics, camping, and outdoor events.",
+        "Corporate events and eco-friendly gatherings."
+      ]
+    },
+    {
+      name: "Compostable Square Plate",
+      slug: "compostable-square-plate",
+      category: "food-packaging-boxes",
+      image: "/tableware/imgi_7_biodegradable-bags-compostable-products-eco-product.-1.webp",
+      longTitle: "Compostable Plates Made From 100% Sugarcane Fiber",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Our compostable plates are made from natural sugarcane bagasse, a renewable and sustainable resource.",
+        "Designed to hold full meals with ease no bending, leaking, or breaking.",
+        "A perfect replacement for plastic and foam plates without harming the environment.",
+        "Safely reheat food without releasing toxins or chemicals.",
+        "Decomposes naturally within 3–6 months under proper composting conditions.",
+        "Made from bio-based materials and free from harmful chemicals.",
+        "No plastic lining or wax coatings 100% natural and safe.",
+        "Clean, modern look suitable for both casual and premium events.",
+        "Meets trusted standards for sustainability and safety."
+      ],
+      ratingText: "BPA-free and non-toxic, safe to serve food.",
+      whyChooseTitle: "Why Choose Compostable Plates?",
+      whyChooseText: [
+        "Compostable plates are a smart and eco-friendly choice that helps cut down on single-use plastic waste. They are made from natural plant-based materials that break down on their own without leaving harmful stuff behind. Using compostable plates helps reduce the amount of carbon we put into the air, keeps animals safe, and makes the planet cleaner and healthier. They are strong, safe, and easy to use, so you don't have to give up quality or convenience. These plates work well for homes and events that care about the environment, making it simple to live more sustainably."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Compostable Plates are made from agricultural waste (sugarcane bagasse).",
+        "Fully biodegradable and compostable.",
+        "Oil- and grease-resistant surface.",
+        "Heat-resistant for hot and cold foods.",
+        "Suitable for wet, dry, and oily meals.",
+        "Non-toxic and BPA-free.",
+        "Lightweight yet durable construction.",
+        "Smooth finish with natural texture.",
+        "Odorless and tasteless material.",
+        "Safe for home and commercial use."
+      ],
+      usageApplications: [
+        "Parties, birthdays, and family gatherings.",
+        "Weddings and eco-friendly events.",
+        "Catering services and restaurants.",
+        "Outdoor activities like camping and picnics.",
+        "Corporate events, festivals, and food stalls."
+      ]
+    },
+    {
+      name: "Compostable Drinking Straws",
+      slug: "compostable-drinking-straws",
+      category: "food-packaging-boxes",
+      image: "/tableware/drinking-straws.jpg",
+      longTitle: "Eco Friendly Straws",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Made from 100% eco friendly and sustainably sourced Natural materials.",
+        "A planet-friendly alternative to single-use plastic straws.",
+        "Toxin-free, taste-free, and odor-free for a pure drinking experience.",
+        "Non-bendable and sturdy design that holds shape during use.",
+        "Safe for both hot and cold drinks.",
+        "Smooth finish ensures comfortable sipping.",
+        "Stylish and colorful design for an enhanced presentation.",
+        "Suitable for homes, cafés, and events.",
+        "Supports a zero-waste and plastic-free lifestyle.",
+        "Eco friendly straws"
+      ],
+      ratingText: "BPA-free and non-toxic, safe for drinking.",
+      whyChooseTitle: "Why Choose Eco friendly straws",
+      whyChooseText: [
+        "Eco-Friendly Straws are a simple yet impactful choice for reducing plastic pollution and protecting the environment. Unlike conventional plastic straws that can take hundreds of years to decompose, eco-friendly straws are made from biodegradable or compostable materials that naturally break down without leaving harmful residues. They are ideal for homes, restaurants, cafés, parties, and takeaway services, offering the same convenience while minimizing environmental impact. By switching to compostable straws, you help reduce landfill waste, protect marine life from plastic pollution, and promote sustainable living. Every small change matters, and choosing eco-friendly straws is an easy step toward creating a cleaner, healthier, and greener future for generations to come."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from high-quality compostable materials.",
+        "Free from chemicals, toxins, and harmful coatings.",
+        "Designed to maintain strength throughout use.",
+        "Safe for food and beverage contact.",
+        "Lightweight yet durable construction.",
+        "Suitable for commercial and personal use.",
+        "Naturally decomposes after disposal."
+      ],
+      usageApplications: [
+        "Ideal for cafés, restaurants, and juice bars.",
+        "Perfect for parties, weddings, and events.",
+        "Suitable for home use and daily beverages.",
+        "Great for picnics and outdoor gatherings.",
+        "Recommended for eco-friendly businesses and brands."
+      ]
+    },
+    {
+      name: "Compostable Clam Shell",
+      slug: "compostable-clam-shell",
+      category: "food-packaging-boxes",
+      image: "/tableware/imgi_9_biodegradable-bags-compostable-products-eco-product-2-1.webp",
+      longTitle: "Compostable Clam Shell",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Compostable Clam Shells containers are designed to securely hold liquids and semi-liquids, preventing leaks while serving soups, gravies, desserts, and hot meals.",
+        "These Compostable Clam Shells containers perform well with both hot and cold foods without losing shape or strength.",
+        "Made from plant-based, compostable materials, Compostable Clam Shells containers support sustainable and responsible food packaging.",
+        "Each Compostable Clam Shells offers a generous 1000 ml capacity, perfect for full meals, desserts, snacks, and combo servings.",
+        "Designed to be sturdy for heavy portions while remaining lightweight for easy handling and transport"
+      ],
+      ratingText: "BPA-free and non-toxic, safe for carrying food parcels.",
+      whyChooseTitle: "Why Choose Compostable Clam Shell?",
+      whyChooseText: [
+        "Compostable Clam Shells containers are the ideal solution for businesses and individuals seeking sustainable food packaging without compromising performance. Made from renewable resources, they help reduce plastic waste while offering excellent strength, heat resistance, and leak protection. Choosing Compostable Clam Shells products supports eco-conscious dining, enhances brand responsibility, and meets the growing demand for environmentally friendly food packaging solutions."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from natural, renewable, and compostable materials.",
+        "Safe for hot, cold, and oily food items.",
+        "Strong hinge design for secure closing.",
+        "Suitable for takeaway and delivery packaging.",
+        "Microwave-safe for short reheating.",
+        "Odor-free and food-safe construction.",
+        "Smooth finish for premium food presentation.",
+        "Stackable design for easy storage.",
+        "Lightweight yet durable for transport.",
+        "Helps to reduce single-use plastic consumption."
+      ],
+      usageApplications: [
+        "Restaurants and cafés for dine-in and takeaway.",
+        "Food delivery and cloud kitchens.",
+        "Events, catering services, and food stalls.",
+        "Meal prep and packed lunches.",
+        "Desserts, snacks, and combo meal packaging."
+      ]
+    },
+    {
+      name: "Compostable Cutleries",
+      slug: "compostable-cutleries",
+      category: "food-packaging-boxes",
+      image:
+        "/tableware/imgi_10_biodegradable-bags-compostable-products-eco-product.-2.webp",
+    },
+    {
+      name: "Compostable Packaging",
+      slug: "compostable-packaging",
+      category: "food-packaging-boxes",
+      image: "/tableware/imgi_11_biodegradable-bags-compostable-products-ecofriendly-bags-2.webp",
+      longTitle: "Eco-Friendly Compostable Food Packaging Containers for Safe Sustainable Food Storage",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Designed as food container box for eco-conscious businesses.",
+        "Safe for hot and cold foods without altering taste or quality.",
+        "Microwave- and freezer-safe for convenient food handling.",
+        "Fully compostable, ensuring easy and eco-friendly disposal.",
+        "Bio-seal coating compliant with ISO 17088 standards.",
+        "Hygienic clamshell design for secure food protection.",
+        "Leak-resistant structure ideal for gravies and sauces.",
+        "Odor-free and non-toxic for safe food contact.",
+        "Perfect for takeaway, delivery, and on-the-go meals."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for food delivering.",
+      whyChooseTitle: "Why Compostable Food Packaging Containers?",
+      whyChooseText: [
+        "Food container boxes are the sustainable alternative to plastic-based packaging, offering businesses a practical way to reduce their environmental footprint without sacrificing quality. Made from renewable plant fibers such as bagasse, cornstarch, and areca leaf, these containers naturally decompose after use, breaking down into organic matter instead of lingering in landfills for centuries like conventional plastic. This significantly reduces landfill waste, ocean pollution, and the harmful microplastics that enter our food chain and ecosystems.",
+        "These containers support a circular economy by returning to the soil as compost rather than accumulating as waste, closing the loop between production, use, and disposal. They meet global composability standards, including CPCB certification and international benchmarks such, giving food businesses the assurance that their packaging is genuinely biodegradable and not just labeled \"eco-friendly\" as a marketing claim.",
+        "As governments across India and worldwide tighten regulations around single-use plastics, compostable food container boxes help food businesses stay compliant with evolving environmental laws while avoiding penalties and reputational risk."
+      ],
+      additionalDetailsTitle: "Additional Product Details - Compostable Food Containers",
+      additionalDetails: [
+        "Manufactured from renewable agricultural by-products.",
+        "Certified compostable under industrial composting conditions.",
+        "Free from plastic, BPA, and harmful chemicals.",
+        "Strong, sturdy, and resistant to deformation",
+        "Maintains food freshness and temperature.",
+        "Grease- and moisture-resistant coating.",
+        "Lightweight yet durable construction.",
+        "Stackable design for efficient storage.",
+        "Meets food safety and environmental compliance standards."
+      ],
+      usageApplications: [
+        "Restaurants, cafés, and cloud kitchens.",
+        "Food delivery and takeaway services.",
+        "Corporate catering and bulk food supply.",
+        "Events, exhibitions, and outdoor catering.",
+        "Eco-friendly packaging for festivals and public gatherings."
+      ]
+    },
+    {
+      name: "Compostable Dona Bowl",
+      slug: "compostable-dona-bowl",
+      category: "food-packaging-boxes",
+      image: "/tableware/imgi_12_biodegradable-bags-compostable-products-eco-product-1.webp",
+      longTitle: "Eco-Friendly biodegradable bowl",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Sterilized compostable bowls provide a clean, germ-free surface for safe food serving.",
+        "Made from renewable corn-starch and sugarcane waste materials, these bowls support a sustainable lifestyle.",
+        "Designed to combine natural aesthetics with everyday convenience.",
+        "Strong construction prevents leakage while remaining easy to handle.",
+        "Suitable for both dry and semi-liquid food items.",
+        "Replaces plastic and foam bowls with an eco-friendly option.",
+        "biodegradable bowl."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for serving food.",
+      whyChooseTitle: "Why Choose biodegradable bowl?",
+      whyChooseText: [
+        "Biodegradable bowl are an eco-friendly solution designed to reduce plastic pollution and environmental damage. Made from renewable resources, these bowls naturally decompose without leaving toxic residues behind. They help minimize landfill waste, support sustainable living, and offer a safer option for food service. By choosing biodegradable bowl, you contribute to a cleaner planet while enjoying convenience, strength, and food safety all in one sustainable product."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from cornstarch.",
+        "150 ml ideal portion size. Natural white finish for premium presentation.",
+        "Smooth inner surface for easy food serving",
+        "Odor-free and food-safe material.",
+        "Heat-resistant for warm food items.",
+        "Stackable design for easy storage.",
+        "Leak-resistant construction.",
+        "Suitable for single-use applications.",
+        "Environmentally responsible disposable solution."
+      ],
+      usageApplications: [
+        "Serving snacks, desserts, and sweets.",
+        "Ideal for parties, weddings, and events.",
+        "Perfect for takeaway and food stalls.",
+        "Suitable for eco-friendly catering services.",
+        "Great for festivals, picnics, and office use."
+      ]
+    },
+    {
+      name: "Compostable Compartment Plate",
+      slug: "compostable-compartment-plate",
+      category: "food-packaging-boxes",
+      image: "/tableware/imgi_13_biodegradable-bags-compostable-products-eco-products-1.webp",
+      longTitle: "Compostable Paper Plates Made From Sugarcane Fiber For Every Occasion",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "100% Compostable Meal Plates are made from natural sugarcane bagasse fibre.",
+        "Plastic-free & eco-friendly, a sustainable alternative to harmful plastic plates.",
+        "Sturdy and heavy-duty, ideal for serving full meals, gravies, and oily foods.",
+        "Microwave-safe plates for easy reheating without warping or leaking.",
+        "Elegant compartment design perfect for appetizers, mains, and sides.",
+        "Chemical-free & food-safe, made from bio-based materials only.",
+        "Biodegradable within 3-6 months under ideal composting conditions.",
+        "Wax lining & plastic-free, ensuring strength without environmental harm.",
+        "Safe for indoor and outdoor use, from homes to large gatherings.",
+        "Meal plates."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for daily use.",
+      whyChooseTitle: "Why Choose Compostable Meal Plates?",
+      whyChooseText: [
+        "Compostable Meal Plates are a great choice for a cleaner and greener future. They are made from renewable sugarcane fiber, which helps reduce the use of plastic, lowers the amount of waste in landfills, and breaks down naturally without leaving harmful chemicals behind. These eco-friendly plates are strong, safe, and sustainable, making them perfect for homes, businesses, and events that want to care for the environment."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from agricultural waste (sugarcane bagasse).",
+        "100% biodegradable and compostable.",
+        "Free from plastic, bleach, and harmful chemicals.",
+        "Bio Preferred Certified for sustainable sourcing.",
+        "Leak-resistant and oil-resistant design.",
+        "Suitable for hot, cold, wet, and dry foods.",
+        "Strong enough for heavy servings.",
+        "Safe to dispose of with organic waste.",
+        "Odorless and tasteless for pure food experience.",
+        "Supports zero-waste and plastic-free living."
+      ],
+      usageApplications: [
+        "Parties, birthdays, and family gatherings.",
+        "Weddings and large-scale events.",
+        "Restaurants, cafés, and food stalls.",
+        "Camping, picnics, and outdoor dining.",
+        "Daily home use for sustainable living."
+      ]
+    },
+  ];
+
+  const bagProducts = [
+    {
+      name: "Compostable Bag",
+      slug: "compostable-bag",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_4_biodegradable-bags-compostable-products-ecofriendly-bags-1-1.webp",
+    },
+    {
+      name: "Compostable Pet Poop Bags",
+      slug: "compostable-pet-poop-bags",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_5_compostable-table-wares-Biodegradable-bag-biodegradable-bag-carry-bags-2.webp",
+      longTitle: "Pet Poop Bags For Clean, Green, Responsible Pet Care",
+      aboutBullets: [
+        "Extra-strong & leak-proof Compostable Pet Poop Bag is designed for mess-free cleanup.",
+        "Easy-to-tie handles ensure quick, hygienic disposal every time.",
+        "Made from 100% compostable, plant-based materials with 0% plastic content.",
+        "Tough, rip-resistant seams safely contain even large amounts of pet waste.",
+        "Leak-proof design protects hands and wrists from direct contact.",
+        "Breaks down completely under proper composting conditions."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for disposing animal waste.",
+      whyChooseTitle: "Why Compostable Pet Poop Bag?",
+      whyChooseText: [
+        "Compostable Pet Poop Bags are a responsible alternative to traditional plastic waste bags. Unlike conventional plastic bags that take hundreds of years to degrade, compostable bags are made from renewable, plant-based materials that break down naturally under the right conditions, leaving no harmful microplastics behind. By choosing Compostable Pet Poop Bags, you reduce plastic pollution, protect soil and water quality, and contribute to a healthier planet for future generations, without a compromising on strength, durability, or hygiene. It's a small daily change that creates a big environmental impact."
+      ],
+      additionalDetails: [
+        "Fully compostable under industrial composting conditions.",
+        "Made from renewable, plant-derived raw materials.",
+        "Strong enough for large dog breeds.",
+        "Leak-proof construction for safe handling.",
+        "Tear-resistant seams for reliable use.",
+        "Odour-locking design for cleaner disposal.",
+        "Lightweight yet durable material.",
+        "Suitable for eco-conscious households.",
+        "Helps reduce dependency on single-use plastics.",
+        "Designed for convenient, everyday pet waste management."
+      ],
+      usageApplications: [
+        "Daily dog walks and outdoor activities.",
+        "Pet waste collection at home or in gardens.",
+        "Parks, sidewalks, and public spaces.",
+        "Travel, camping, and road trips with pets.",
+        "Ideal for pet owners, shelters, and pet care services."
+      ]
+    },
+    {
+      name: "Compostable Custom Made Bag",
+      slug: "compostable-custom-made-bag",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_6_biodegradable-bags-compostable-products-eco-product.-3.webp",
+      longTitle: "Compostable PLA Bags For Safe & Hygienic",
+      aboutBullets: [
+        "Perforated roll packaging ensures quick, smooth access to each compostable PLA bag.",
+        "Comes with a detachable tie-tape for easy sealing after use.",
+        "Star-sealed bottom design offers enhanced durability and prevents leakage.",
+        "Designed for clean, safe, and odor-free waste management.",
+        "Made from compostable PLA derived from renewable plant-based resources.",
+        "Strong construction suitable for daily waste disposal needs.",
+        "Free from harmful plastics, ideal for sensitive environments.",
+        "Lightweight yet sturdy for hassle-free use.",
+        "Reduces dependence on conventional plastic waste bags.",
+        "Supports eco-friendly and compostable waste management practices."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for food service areas.",
+      whyChooseTitle: "Why Choose a Compostable PLA Bag?",
+      whyChooseText: [
+        "Compostable PLA bags are the future of sustainable waste disposal. Made from plant-based materials, these bags break down naturally under composting conditions, leaving no toxic residue behind. Unlike traditional plastic bags, compostable PLA bags help reduce environmental pollution while maintaining strength, hygiene, and performance. They are ideal for organizations and individuals committed to responsible waste management, cleanliness, and a greener planet."
+      ],
+      additionalDetails: [
+        "Manufactured using certified compostable PLA material.",
+        "Suitable for both dry and semi-wet waste.",
+        "Tear-resistant and puncture-resistant design.",
+        "Smooth surface for easy opening and sealing.",
+        "Odor-control properties for improved hygiene.",
+        "Uniform thickness for consistent performance.",
+        "Safe for indoor and outdoor use.",
+        "Roll format for organized storage.",
+        "Compatible with standard waste bins.",
+        "Designed to meet eco-friendly disposal standards."
+      ],
+      usageApplications: [
+        "Hospitals, clinics, and healthcare facilities.",
+        "Laboratories and diagnostic centers.",
+        "Pharmacies and medical offices.",
+        "Commercial kitchens and food service areas.",
+        "Homes, offices, and eco-conscious workplaces."
+      ]
+    },
+    {
+      name: "Compostable Nursery Bags",
+      slug: "compostable-nursery-bags",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_7_Compostable-grow-bags-e1780576071172.webp",
+      longTitle: "Compostable Grow Bags for Healthy Roots and Plant Growth",
+      aboutTitle: "About Our Grow Bags",
+      aboutBullets: [
+        "Made from Eco friendly, breathable, and biodegradable in nature.",
+        "No need to remove the grow bag while transplanting, reducing plant shock.",
+        "Enhances plant survival rate by allowing natural root penetration.",
+        "Lightweight yet durable, easy to handle, stack, and store.",
+        "Strong enough to hold soil and water,yet soft enough to decompose naturally.",
+        "Excellent water absorption and air permeability for healthier root systems.",
+        "Allows nutrients and moisture to reach roots efficiently.",
+        "Prevents root circling, entanglement, and root decay.",
+        "Supports faster growth and stronger seedlings.",
+        "Ideal for organic farming, nurseries, home gardening, and plantations."
+      ],
+      ratingText: "BPA-free and non-toxic, safe to grow plants.",
+      whyChooseTitle: "Why Choose Compostable Nursery Grow Bags?",
+      whyChooseText: [
+        "Compostable grow bags are a better choice than plastic planting bags because they break down naturally in the soil, helping to reduce plastic waste and pollution. These bags promote healthier plant growth by allowing better air circulation to the roots,retaining moisture,and improving nutrient absorption. They also minimize transplant shock and protect roots from damage,resulting in stronger plants and higher survival rates. By using compostable grow bags,gardeners can support more sustainable and environmentally friendly gardening practices."
+      ],
+      additionalDetailsTitle: "Additional Details of Grow Bags",
+      additionalDetails: [
+        "100% biodegradable and compostable material.",
+        "Breathable structure for optimal root aeration.",
+        "High water-holding capacity without waterlogging.",
+        "Suitable for direct planting into soil.",
+        "Helps maintain soil structure and moisture balance.",
+        "Promotes uniform root development.",
+        "Resistant to tearing during handling.",
+        "Safe for organic and sustainable farming."
+      ],
+      usageApplications: [
+        "Nursery seedling production.",
+        "Home gardening and terrace gardens.",
+        "Vegetable and flower cultivation.",
+        "Sapling growth for plantations and forestry.",
+        "Organic farms and greenhouse farming."
+      ]
+    },
+    {
+      name: "Compostable Medical Waste Bags",
+      slug: "compostable-medical-waste-bags",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp",
+      longTitle: "Compostable Bio Medical Waste Bags For Safe, Leak-Proof Disposal",
+      aboutTitle: "About This Product",
+      aboutBullets: [
+        "Bio medical waste bags are supplied in perforated rolls for quick, hassle-free access.",
+        "Easy tear-off design allows smooth handling in high-use environments.",
+        "Integrated detachable tie-tape ensures tight sealing after waste collection.",
+        "Star-sealed bottom prevents leakage and contamination.",
+        "Designed to handle medical waste without tearing or bursting.",
+        "Minimizes direct contact with hazardous waste materials.",
+        "Uniform strength across the bag for reliable performance.",
+        "Suitable for color-coded biomedical waste segregation."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for hospitals and clinic waste.",
+      whyChooseTitle: "Why Choose Compostable Bio Medical Waste Bags?",
+      whyChooseText: [
+        "Compostable bio medical waste bags offer a responsible and sustainable solution for managing hazardous healthcare waste. Unlike conventional plastic bags, these bags decompose naturally under composting conditions, reducing long-term environmental impact. They help healthcare facilities comply with waste management regulations while supporting eco-friendly practices. By choosing compostable bio medical waste bags, hospitals and clinics can ensure safe disposal without contributing to plastic pollution."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from certified compostable materials.",
+        "Suitable for biomedical waste segregation standards.",
+        "Tear-resistant and puncture-proof design.",
+        "Odor-containing structure for hygienic handling.",
+        "Moisture-resistant for wet and dry waste.",
+        "Smooth surface for easy tying and handling.",
+        "Compatible with standard biomedical waste bins.",
+        "Designed for single-use medical waste disposal.",
+        "Helps meet sustainability and compliance goals.",
+        "Reduces environmental footprint of healthcare waste."
+      ],
+      usageApplications: [
+        "Hospitals and multi-specialty healthcare facilities.",
+        "Clinics, nursing homes, and diagnostic centers.",
+        "Laboratories and research facilities.",
+        "Dental clinics and veterinary hospitals.",
+        "Medical camps and healthcare outreach programs."
+      ]
+    },
+    {
+      name: "Compostable Garment Bags",
+      slug: "compostable-garment-bags",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_9_biodegradable-bags-compostable-products-ecofriendly-bags-2-1.webp",
+      longTitle: "Compostable Garment Bags For, Plastic-Free Clothing",
+      aboutTitle: "About This Product",
+      aboutBullets: [
+        "100% compostable & biodegradable, designed for a cleaner planet.",
+        "CIPET tested and approved, ensuring quality and safety standards.",
+        "Made from plant-based extracts, completely plastic-free.",
+        "Composts naturally within 60-180 days under composting conditions.",
+        "Derived from renewable resources like cornstarch, sugarcane, and vegetable oils.",
+        "Eliminates microplastics, breaking down into organic matter.",
+        "Strong and durable, suitable for holding garments securely.",
+        "High tear resistance, without compromising eco-friendliness.",
+        "Transparent design for easy identification and organization.",
+        "Eco-conscious alternative to conventional plastic garment packaging."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for packing garment items.",
+      whyChooseTitle: "Why Choose Compostable Garment Bags?",
+      whyChooseText: [
+        "Compostable garment bags offer a sustainable solution for clothing packaging without harming the environment. Made from renewable, plant-based materials, they reduce dependence on fossil fuels while maintaining strength and usability. Unlike plastic bags, they decompose naturally without leaving toxic residue or microplastics. By choosing compostable garment bags, businesses and consumers actively support eco-friendly practices and contribute to a circular, waste-reducing economy."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "100% plastic-free and non-toxic composition.",
+        "Safe for industrial and home composting environments.",
+        "Odor-free and hygienic packaging solution.",
+        "Smooth finish for premium garment presentation.",
+        "Lightweight yet sturdy material structure.",
+        "Moisture-resistant for short-term garment storage.",
+        "Suitable for branding and labeling.",
+        "Complies with eco-packaging regulations.",
+        "Reduces landfill waste significantly.",
+        "Supports sustainable and green business initiatives."
+      ],
+      usageApplications: [
+        "Apparel and garment retail packaging.",
+        "Fashion boutiques and clothing brands.",
+        "Laundry and dry-cleaning services.",
+        "E-commerce clothing shipments.",
+        "Sustainable fashion and eco-conscious brands."
+      ]
+    },
+    {
+      name: "Bio Compostable Garbage Bags",
+      slug: "bio-compostable-garbage-bags",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_10_biodegradable-bags-compostable-products-ecofriendly-bags-1-2.webp",
+      longTitle: "Biodegradable Garbage Bag, Strong, Leak-Proof For Clean, Easy Waste Disposal",
+      aboutTitle: "About This Product",
+      aboutBullets: [
+        "These biodegradable garbage bag come with a reinforced bottom seal to prevent leaks and spills.",
+        "Designed to securely hold liquids for a clean, mess-free disposal experience.",
+        "Easy-to-use detachable drawstrings allow quick tying, lifting, and carrying.",
+        "Durable and flexible material ensures these garbage bags handle heavy loads safely.",
+        "Tear-resistant design prevents breakage during daily waste disposal.",
+        "Suitable for both wet and dry waste including food scraps and liquids.",
+        "Ideal for hygienic handling of diapers, pet litter, and kitchen waste.",
+        "Available in Small, Medium, and Large sizes for versatile use.",
+        "Perfect for homes, offices, kitchens, and commercial environments.",
+        "Packed in easy-tear rolls for neat storage and convenient usage."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for waste disposal.",
+      whyChooseTitle: "Why Choose Biodegradable Garbage Bags?",
+      whyChooseText: [
+        "Biodegradable Garbage Bags play a vital role in maintaining cleanliness while supporting a healthier environment. Made from eco-friendly materials, these bags decompose naturally over time, reducing plastic pollution and landfill waste. They securely contain household and commercial waste, preventing leaks, unpleasant odors, and spills for safer handling. Ideal for homes, offices, restaurants, and public spaces, biodegradable garbage bags offer a practical and sustainable alternative to conventional plastic bags. By choosing biodegradable garbage bags, you contribute to improved sanitation, responsible waste management, and a cleaner, greener future for generations to come."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from eco-conscious, biodegradable material.",
+        "Strong bottom seal for enhanced leak protection.",
+        "Smooth texture for easy bin placement.",
+        "Odor-resistant design for better hygiene.",
+        "Easy-tie drawstrings for quick disposal.",
+        "Compatible with standard trash bins.",
+        "Flexible material adapts to different waste types.",
+        "Space-saving roll packaging.",
+        "Designed for daily, heavy-duty usage."
+      ],
+      usageApplications: [
+        "Household kitchen and bathroom waste disposal.",
+        "Office and workplace trash management.",
+        "Food waste handling in restaurants and cafes.",
+        "Diaper and sanitary waste disposal."
+      ]
+    },
+    {
+      name: "Compostable Mailer Bags",
+      slug: "compostable-mailer-bags",
+      category: "carry-bags",
+      image: "/compostable-bags/imgi_11_courier-bags.webp",
+      longTitle: "Compostable Courier Bag",
+      aboutTitle: "About This Product",
+      aboutBullets: [
+        "Compostable courier bag made from starch-based polymers, completely free from conventional plastic.",
+        "Approved for use Pan India under all Government of India regulations.",
+        "Naturally decomposes in soil within 6-8 months, leaving no toxic residue.",
+        "Reduces plastic waste and supports a circular economy.",
+        "Designed to handle daily logistics and shipping needs.",
+        "Keeps contents safe from rain, moisture, and dust.",
+        "Withstands rough handling during transit.",
+        "Dual-layer design ensures complete content concealment."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for delivering couriers.",
+      whyChooseTitle: "Why Compostable Courier bag?",
+      whyChooseText: [
+        "Compostable courier bag are the future of responsible packaging. Unlike traditional plastic mailers that pollute land and oceans for hundreds of years, compostable mailer bags break down naturally within months. They help businesses reduce their environmental footprint while staying compliant with Indian plastic regulations. Choosing compostable courier bag reflects your brand's commitment to sustainability, builds trust with eco-conscious customers, and contributes to a cleaner, greener planet without compromising on strength, safety, or performance."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from renewable, plant-based starch polymers.",
+        "Free from polyethylene and microplastics.",
+        "Suitable for both dry and non-fragile items.",
+        "Lightweight to reduce shipping costs.",
+        "Heat-sealable and tamper-resistant design.",
+        "Smooth surface suitable for labeling and printing.",
+        "Odor-free and non-toxic material.",
+        "Resistant to punctures and stretching.",
+        "Maintains integrity in varied Indian weather conditions.",
+        "Ideal alternative to traditional plastic courier bags."
+      ],
+      usageApplications: [
+        "Sustainability That Performs.",
+        "Better Than Paper Mailers.",
+        "Certified & Compliant.",
+        "Trusted by Leading D2C Brands.",
+        "Engineered for Modern Brands."
+      ]
+    },
+    {
+      name: "Compostable Grocery Bag",
+      slug: "compostable-grocery-bag",
+      category: "carry-bags",
+      image:
+        "/compostable-bags/imgi_12_biodegradable-bags-compostable-products-eco-products-3.webp",
+      longTitle: "Compostable Grocery Bag",
+      aboutTitle: "About This Products",
+      aboutBullets: [
+        "Made from biodegradable materials that decompose naturally, making this grocery bag an eco-conscious alternative to plastic.",
+        "Equipped with sturdy handles for comfortable carrying during daily grocery runs.",
+        "Lightweight and foldable design allows compact storage when not in use.",
+        "Durable construction supports regular grocery loads while remaining compostable.",
+        "Suitable for groceries, vegetables, fruits, and everyday carrying needs."
+      ],
+      ratingText: "BPA-free and non-toxic, safe to store grocery items.",
+      whyChooseTitle: "Why Compostable Grocery Bag?",
+      whyChooseText: [
+        "A compostable grocery bag helps reduce plastic waste and supports a cleaner, greener environment. Unlike conventional plastic bags, it breaks down naturally without leaving harmful residues. Choosing a compostable grocery bag is a simple yet impactful step toward sustainable living, responsible shopping, and protecting the planet for future generations."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from plant-based, biodegradable materials.",
+        "100% compostable under natural composting conditions.",
+        "Lightweight yet strong build.",
+        "Tear-resistant for everyday grocery use.",
+        "Smooth finish with a clean white appearance.",
+        "Comfortable grip handles.",
+        "Safe for carrying food items.",
+        "Non-toxic and eco-friendly.",
+        "Suitable for home and retail use.",
+        "Designed for repeated short-term usage before composting."
+      ],
+      usageApplications: [
+        "Daily grocery shopping.",
+        "Carrying fruits and vegetables.",
+        "Retail and supermarket packaging.",
+        "Household storage and carrying needs.",
+        "Eco-friendly alternative for plastic carry bags."
+      ]
+    },
+  ];
+
+  const filmProducts = [
+    {
+      name: "Compostable Wrapping Film",
+      slug: "compostable-wrapping-film",
+      category: "compostable-films",
+      image: "/compostable-films/imgi_4_compostable-strecth-films.webp",
+      longTitle: "Compostable Wrapping Films– 100% Home Compostable, Eco-Friendly, Tear-Resistant & High-Stretch",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Eco-friendly wrapping films that is 100% compostable.",
+        "Ideal wrapping film for safe furniture moving and protection.",
+        "High-quality transparency ensures clear visibility and easy usability.",
+        "2.5X elongation provides superior flexibility and advanced tensile strength.",
+        "Home compostable wrapping film for sustainable and responsible packaging.",
+        "Tear-resistant wrapping film suitable for heavy and bulky goods.",
+        "Food-safe certified wrapping film approved by the prestigious TÜV."
+      ],
+      ratingText: "BPA-free and non-toxic, safe to cover materials.",
+      whyChooseTitle: "Why Wrapping Films?",
+      whyChooseText: [
+        "Wrapping film is a key packaging option that gives good protection, is easy to use, and is better for the environment all at once. Whether you're moving furniture, holding down heavy items, or wrapping food-safe products, wrapping film is strong and reliable without hurting the planet.",
+        "This type of film is made to be tough and not easy to tear, so it holds things tightly during shipping and when they're stored. It's clear, so you can quickly see what's inside. Plus, it can be broken down at home or recycled, making it a better choice than regular plastic films.",
+        "By using compostable wrapping film, you help cut down on plastic waste, keep your goods safe, and help make the world a cleaner place. It's a smart choice for both businesses and families."
+      ],
+      additionalDetailsTitle: "Additional Product Details - Compostable Wrapping Film",
+      additionalDetails: [
+        "Product Type: Compostable Stretch / Wrapping Film.",
+        "Material Composition: Plant-based, biodegradable polymers.",
+        "Compostability: 100% home compostable under natural conditions.",
+        "Tensile Strength: High tensile strength for reliable load holding.",
+        "Tear Resistance: Excellent tear resistance, suitable for heavy and bulky items.",
+        "Transparency: Crystal-clear clarity for easy content identification.",
+        "Food Contact Safety: TÜV certified, safe for direct and indirect food contact.",
+        "Chemical Safety: BPA-free, non-toxic, and plasticizer-free.",
+        "Odour & Taste: Odourless and taste-neutral.",
+        "Environmental Impact: Reduces plastic waste and carbon footprint.",
+        "Disposal Method: Can be composted at home or disposed of in organic waste.",
+        "Shelf Life: Stable under recommended storage conditions.",
+        "Storage Conditions: Store in a cool, dry place away from direct sunlight."
+      ],
+      usageApplications: [
+        "Furniture moving & storage.",
+        "Pallet wrapping & logistics.",
+        "Food packaging & protection.",
+        "Industrial and household use."
+      ]
+    },
+    {
+      name: "Compostable Mulch Films",
+      slug: "compostable-mulch-films",
+      category: "compostable-films",
+      image: "/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp",
+      longTitle: "Eco-Friendly Mulch Film Rolls for High-Yield Farming",
+      aboutTitle: "About Our Mulch Film Rolls",
+      aboutBullets: [
+        "Mulch film roll are essential for crop protection and advanced soil management techniques.",
+        "Made from 100% natural, plant-based biodegradable materials.",
+        "Supports soil health while naturally decomposing after use.",
+        "Regulates soil temperature for improved crop growth.",
+        "Helps retain soil moisture and reduce water consumption.",
+        "Prevents weed growth without chemical herbicides.",
+        "Safe for organic and conventional farming practices.",
+        "Leaves no harmful plastic residue in soil.",
+        "Complies with global composability standards (ISO 17088 compliant).",
+        "Easy to install and compatible with standard mulching equipment.",
+        "Environment-friendly alternative to plastic mulch film roll.",
+        "Mulch film roll"
+      ],
+      ratingText: "BPA-free and non-toxic, safe for plants and soil.",
+      whyChooseTitle: "Why Compostable Mulch Films?",
+      whyChooseText: [
+        "Compostable Mulch Films are a sustainable agricultural solution designed to replace traditional plastic mulches. They enhance crop productivity while protecting the environment. Unlike plastic films that require removal and disposal, compostable mulch films naturally break down into the soil, reducing labor, waste, and long-term soil pollution. They promote healthier crops, conserve water, and support eco-friendly farming practices – making them ideal for the future of sustainable agriculture."
+      ],
+      additionalDetailsTitle: "Additional Product Details - Compostable Mulch Films",
+      additionalDetails: [
+        "Manufactured from renewable, bio-based raw materials.",
+        "Fully biodegradable under soil composting conditions.",
+        "Improves soil structure and microbial activity.",
+        "Reduces dependency on plastic waste management.",
+        "Enhances crop yield and quality.",
+        "Suitable for short-term and seasonal crops.",
+        "Available in multiple thickness options.",
+        "UV-stabilized for optimal crop cycle performance.",
+        "Safe for soil, plants, and beneficial organisms.",
+        "Supports compliance with sustainable and organic farming standards."
+      ],
+      usageApplications: [
+        "Vegetable farming and horticulture.",
+        "Organic and sustainable agriculture practices.",
+        "Greenhouses and nursery cultivation.",
+        "Fruit plantations and row crops.",
+        "Landscaping and soil protection projects."
+      ]
+    },
+    {
+      name: "Compostable Heat Shrink Films",
+      slug: "compostable-heat-shrink-films",
+      category: "compostable-films",
+      image: "/compostable-films/imgi_6_Shirnk-films.webp",
+      longTitle: "Compostable Heat Shrink Films",
+      aboutTitle: "About This Item",
+      aboutBullets: [
+        "Shrink films are available in roll and bag formats with multiple dimensions to meet diverse industrial packaging needs.",
+        "Made from industrial-grade shrink films that deliver excellent clarity, strength, and long-lasting performance.",
+        "Shrink films tightly conform to products when heat is applied, ensuring a secure and professional finish.",
+        "Acts as a reliable barrier against dust, moisture, and external damage during storage and transportation.",
+        "Compatible with standard heat shrink machines and heat guns for smooth and efficient application.",
+        "Maintains integrity even under handling stress, stacking, and long-distance shipping.",
+        "High transparency enhances product visibility and shelf appeal.",
+        "Easily wraps products of various shapes and sizes without tearing.",
+        "Reduces material waste while delivering maximum protection.",
+        "Environment-friendly shrink films that are compostable."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for food wrapping.",
+      whyChooseTitle: "Why Shrink Films?",
+      whyChooseText: [
+        "Shrink films are a smart and efficient packaging solution designed to protect, secure, and enhance the presentation of products across industries. By shrinking tightly around items when heat is applied, shrink films provide tamper resistance, reduce movement during transport, and extend product life. Their versatility, durability, and eco-friendly nature make shrink films an ideal choice for businesses seeking reliable and sustainable packaging solutions."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Tear-resistant and puncture-proof structure.",
+        "Lightweight material reduces shipping costs.",
+        "Suitable for manual and automated packaging lines.",
+        "Maintains clarity even after shrinking.",
+        "Consistent thickness for uniform wrapping.",
+        "Excellent sealing performance.",
+        "Helps improve product shelf life.",
+        "Safe for packaging food and non-food items.",
+        "Designed for high-volume industrial use."
+      ],
+      usageApplications: [
+        "Packaging of consumer goods and retail products.",
+        "Industrial bundling and pallet wrapping.",
+        "Food and beverage packaging.",
+        "Electronics and hardware protection.",
+        "Pharmaceutical and cosmetic product wrapping."
+      ]
+    },
+  ];
+
+  const pouchProducts = [
+    {
+      name: "Stand-up Pouch",
+      slug: "stand-up-pouch",
+      category: "compostable-pouches",
+      image: pouchImg.src,
+      longTitle: "Eco Friendly Pouches",
+      aboutTitle: "About Our Biodegradable Pouches",
+      aboutBullets: [
+        "These are made from renewable corn starch, ensuring zero plastic usage.",
+        "100% compostable that naturally decompose within 3–6 months.",
+        "Break down into manure, water, and CO₂ without leaving toxic residue.",
+        "Eco friendly pouches designed for a cleaner and greener future.",
+        "CPCB-certified Biodegradable Pouches, compliant with Indian environmental regulations.",
+        "Food-contact safe Biodegradable Pouches, approved under FSSAI standards.",
+        "Non-toxic material safe for soil, animals, plants, and the ecosystem.",
+        "Government-recognized Biodegradable Pouches, recommended for sustainable packaging.",
+        "Strong, durable, and reliable alternative to conventional plastic pouches.",
+        "Ideal solution for brands committed to responsible and sustainable packaging."
+      ],
+      ratingText: "BPA-free and non-toxic, safe for packing.",
+      whyChooseTitle: "Why Choose Biodegradable Pouches?",
+      whyChooseText: [
+        "Biodegradable Pouches or pla pouches are the future of sustainable packaging. Unlike plastic, they are made from renewable plant-based materials and naturally decompose without harming the environment. By choosing Biodegradable pouches, you reduce plastic pollution, support eco-conscious manufacturing, and comply with government sustainability norms. These pouches help businesses meet environmental regulations while offering safe, high-quality packaging for consumers who care about the planet."
+      ],
+      additionalDetailsTitle: "Additional Product Details",
+      additionalDetails: [
+        "Made from plant-based pla material, renewable in nature.",
+        "Completely plastic-free and compostable.",
+        "Decomposition time: 3–6 months under composting conditions.",
+        "CPCB and FSSAI certified for safe usage.",
+        "Moisture-resistant and leak-proof structure.",
+        "Odour-free and hygienic packaging solution.",
+        "Suitable for hot and cold contents.",
+        "Customizable sizes and thickness available.",
+        "Lightweight yet strong material composition.",
+        "Supports circular economy and zero-waste goals."
+      ],
+      usageApplications: [
+        "Food packaging for dry and semi-wet products.",
+        "Grocery, grains, pulses, and organic product packaging.",
+        "Takeaway and delivery packaging for eco-conscious brands.",
+        "Agricultural and nursery product packaging.",
+        "Retail and e-commerce sustainable packaging solutions."
+      ]
+    },
+  ];
+
+  const allProducts = [
+    ...tablewareProducts,
+    ...bagProducts,
+    ...filmProducts,
+    ...pouchProducts,
+  ];
+
+  return allProducts.map((product) => {
+    // Find related products in the same category, excluding the current product, max 4
+    const relatedProducts = allProducts
+      .filter((p) => p.category === product.category && p.slug !== product.slug)
+      .slice(0, 4);
+
+    return {
+      params: { category: product.category, slug: product.slug },
+      props: { product, relatedProducts },
+    };
+  });
+}
+
+const { product, relatedProducts = [] } = Astro.props;
+
+const productSchema = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": product.name,
+  "image": `https://www.sakrt.in${product.image.startsWith('/') ? product.image : '/' + product.image}`,
+  "description": `High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`,
+  "brand": {
+    "@type": "Brand",
+    "name": "SAKRT"
+  }
+};
+---
+
+<Layout 
+  title={`${product.name} | Certified Compostable | SAKRT`}
+  description={`High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`}
+  image={product.image}
+  ogType="product"
+  schema={productSchema}
+>
+  <main>
+    <GenericProductDetail
+      productName={product.name}
+      productImage={product.image}
+      relatedProducts={relatedProducts}
+      productData={product}
+    />
+  </main>
+</Layout>

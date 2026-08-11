@@ -1,8 +1,43 @@
 
 ---
-// src/pages/Home/Journal.astro
+// src/components/Home/Journal.astro
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+import { wpquery } from '../../lib/wordpress.ts';
+
+const data = await wpquery({
+  query: `
+    query GetLatestJournals {
+      posts(first: 3) {
+        nodes {
+          title
+          slug
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          categories {
+            nodes {
+              name
+            }
+          }
+        }
+      }
+    }
+  `,
+});
+
+const posts = data.posts.nodes;
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const month = date.toLocaleString('default', { month: 'long' });
+  const day = date.getDate();
+  const year = date.getFullYear();
+  return `${month} ${day}, ${year}`;
+};
 ---
 
 <section class="journal-section">
@@ -10,48 +45,39 @@ import Header from '../../components/Header.astro';
     
     <!-- Section Header -->
     <div class="journal-header">
-      <h2 class="journal-title">Latest Journal</h2>
-      <span class="scroll-prompt">SCROLL TO EXPLORE →</span>
+      <h2 class="journal-title">Our Blogs</h2>
+      <a href="/blog" class="see-all-link">
+        <span>See All</span>
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
     </div>
 
     <!-- Journal Cards Grid -->
     <div class="journal-grid">
-      
-      <!-- Card 1 -->
-      <a href="/blogs" class="journal-card">
-        <div class="image-wrapper">
-          <div class="card-bg img-1"></div>
-        </div>
-        <div class="card-content">
-          <span class="journal-date">July 21, 2026</span>
-          <h3>Wholesale Carry Bags Manufacturer & Supplier in India</h3>
-        </div>
-      </a>
-
-      <!-- Card 2 (Height increased via aspect-ratio) -->
-      <a href="/blogs" class="journal-card card-tall">
-        <div class="image-wrapper">
-          <div class="card-bg img-2"></div>
-        </div>
-        <div class="card-content">
-          <span class="journal-date">July 14, 2026</span>
-          <h3>How Courier Bags Have Become a Must-Have for E-commerce</h3>
-        </div>
-      </a>
-
-      <!-- Card 3 -->
-      <a href="/blogs" class="journal-card">
-        <div class="image-wrapper">
-          <div class="card-bg img-3">
-            <span class="card-internal-text">Why Compostable?</span>
+      {posts.map((post: any) => {
+        const catName = post.categories?.nodes?.[0]?.name || "general";
+        const catSlug = encodeURIComponent(catName.toLowerCase().replace(/\s+/g, '-'));
+        return (
+        <a href={`/blog/${catSlug}/${post.slug}`} class="journal-card">
+          <div class="image-wrapper">
+            {post.featuredImage?.node?.sourceUrl ? (
+              <div class="card-bg" style={`background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url('${post.featuredImage.node.sourceUrl}');`}></div>
+            ) : (
+              <div class="card-bg img-3">
+                <span class="card-internal-text">Sakrt</span>
+              </div>
+            )}
           </div>
-        </div>
-        <div class="card-content">
-          <span class="journal-date">July 6, 2026</span>
-          <h3>Why do we need biodegradable packaging?</h3>
-        </div>
-      </a>
-
+          <div class="card-content">
+            <span class="journal-date">{formatDate(post.date)}</span>
+            <h3 set:html={post.title}></h3>
+          </div>
+        </a>
+      );
+      })}
     </div>
 
   </div>
@@ -88,20 +114,44 @@ import Header from '../../components/Header.astro';
   }
 
   .journal-title {
-   font-family: "Bodoni Moda", serif;
-    font-weight: 400;
-    font-size: clamp(3rem, 5vw, 5.2rem);
+   font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(3rem, 5vw, 4.42rem);
     color: var(--dark-green);
     margin: 0;
     line-height: 1.1;
   }
 
-  .scroll-prompt {
+  /* See All Link with Hover-to-Button Transition */
+  .see-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--dark-green);
     font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 10.5px;
-    letter-spacing: 2.5px;
-    color: #999999;
-    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  .see-all-link .arrow-icon {
+    transition: transform 0.25s ease;
+  }
+
+  .see-all-link:hover {
+    background-color: var(--dark-green);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .see-all-link:hover .arrow-icon {
+    transform: translateX(4px);
   }
 
   /* Grid Layout with align-items: flex-start to allow variable heights cleanly */
@@ -114,7 +164,7 @@ import Header from '../../components/Header.astro';
 
   /* Card Styles */
   .journal-card {
-    font-family: "Bodoni Moda", serif;
+    font-family: var(--font-serif);
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -123,16 +173,13 @@ import Header from '../../components/Header.astro';
   .image-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1; /* Standard square for cards 1 and 3 */
-    border-radius: 24px;
+    border-radius: 10px;
     overflow: hidden;
     background-color: #e5e5e7;
     margin-bottom: 20px;
   }
 
-  /* Increased height specifically for the second card image wrapper */
-  .journal-card.card-tall .image-wrapper {
-    aspect-ratio: 1 / 1.35; /* Taller height for card 2 */
-  }
+
 
   .card-bg {
     width: 100%;
@@ -166,9 +213,9 @@ import Header from '../../components/Header.astro';
   }
 
   .card-internal-text {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1.8rem;
+    font-size: 1.53rem;
     color: var(--accent-lime);
   }
 
@@ -188,8 +235,8 @@ import Header from '../../components/Header.astro';
   }
 
   .journal-card h3 {
-font-family: 'Playfair Display', Georgia, serif;
-   font-size: 1.6rem;
+font-family: var(--font-serif);
+   font-size: 1.36rem;
     font-weight: 380;
     color: var(--dark-green);
     margin: 0;
