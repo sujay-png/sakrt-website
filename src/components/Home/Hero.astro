@@ -3,71 +3,119 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 ---
 
-<section class="hero-section">
-  <!-- Soft overlay for background contrast -->
+<section class="hero-section" id="hero-section">
   <div class="hero-bg-overlay"></div>
 
-  <!-- Animated content container -->
-  <div class="hero-content">
+  <div class="hero-content" id="hero-content">
 
-    
     <h1 class="h1">
-      SAKRT Compostable<br />
-      Product Lasts Only<br />
-      <em>Till Six Months.</em>
+      <span class="line-mask"><span class="line-inner" style="--delay: 0.1s">SAKRT Compostable</span></span>
+      <span class="line-mask"><span class="line-inner" style="--delay: 0.25s">Product Lasts Only</span></span>
+      <span class="line-mask"><span class="line-inner" style="--delay: 0.4s"><em class="glow-text">Till Six Months.</em></span></span>
     </h1>
-  
-    <p>
+
+    <p class="fade-blur" style="--delay: 0.65s">
       Switch To Planet-friendly Enterprise by Choosing Reliable, Government Certified<br class="desktop-br" />
       Biodegradable Food Containers Biodegradable Poly Bags & Packaging Solutions
     </p>
 
-    <div class="hero-buttons">
-      <a href="/contact-us" id="hero-get-in-touch-btn" class="btn btn-primary">
-        Get in Touch <span class="arrow">→</span>
+    <div class="hero-buttons fade-blur" style="--delay: 0.85s">
+      <a href="/contact-us" id="hero-get-in-touch-btn" class="btn btn-primary shine-btn">
+        <span>Get in Touch</span> <span class="arrow">→</span>
       </a>
       <a href="/compostable-product" id="hero-explore-products-btn" class="btn btn-secondary">
         Explore Products
       </a>
     </div>
 
+  </div>
 
+  <!-- Animated Scroll Down Pill -->
+  <div class="scroll-indicator fade-blur" style="--delay: 1.1s">
+    <div class="mouse-icon">
+      <div class="wheel"></div>
+    </div>
   </div>
 </section>
+
+<script>
+  import "../../script/SmoothScroll.js";
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroSection = document.getElementById('hero-section') as HTMLElement;
+    const heroContent = document.getElementById('hero-content') as HTMLElement;
+
+    // 1. Scroll Parallax & Scale-Down Effect
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      if (scrollY <= windowHeight && heroContent) {
+        const scale = Math.max(0.88, 1 - (scrollY / windowHeight) * 0.15);
+        const opacity = Math.max(0, 1 - (scrollY / (windowHeight * 0.75)));
+        const translateY = scrollY * 0.3;
+
+        heroContent.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+        heroContent.style.opacity = opacity.toString();
+      }
+    });
+
+    // 2. Interactive Mouse Background Parallax
+    if (heroSection) {
+      heroSection.addEventListener('mousemove', (e: MouseEvent) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        
+        const moveX = (clientX / innerWidth - 0.5) * 25;
+        const moveY = (clientY / innerHeight - 0.5) * 25;
+
+        heroSection.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+      });
+    }
+  });
+</script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
 
   :root {
-    --lime-color: #d6f85aa9;
+    --lime-color: #d6f85a;
     --dark-green: #0b2219;
   }
 
-  /* 1. Full Screen Layout & Top Offset for Header Clearance */
   .hero-section {
-    position: relative;
+    position: sticky;
+    transform-origin: center top;
+    will-change: transform, background-position;
+    top: 0;
+    z-index: 1;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Generous top padding keeps content safely below floating header */
     padding: 120px 24px 60px;
     background: url('../../images/planet.png') center/cover no-repeat;
     overflow: hidden;
     box-sizing: border-box;
+    transition: background-position 0.2s ease-out;
   }
 
-  /* 2. Soft Background Overlay */
   .hero-bg-overlay {
-   position: absolute;
+    position: absolute;
     inset: 0;
-    background: rgba(205, 211, 206, 0.486); /* Reduced opacity */
-    backdrop-filter: blur(2px); /* Reduced blur */
+    background: rgba(205, 211, 206, 0.486);
+    backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     z-index: 1;
+    opacity: 0;
+    animation: overlayIn 1.4s ease-out forwards;
   }
 
-  /* 3. Hero Content Container & Subtle Wave Animation */
+  @keyframes overlayIn {
+    to { opacity: 1; }
+  }
+
   .hero-content {
     position: relative;
     z-index: 8;
@@ -75,70 +123,71 @@ import Header from '../../components/Header.astro';
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
-    animation: waveFloat 6s ease-in-out infinite;
+    will-change: transform, opacity;
+    transition: transform 0.1s linear, opacity 0.1s linear;
   }
 
-  @keyframes waveFloat {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-
-  /* 4. Badge Styling */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #0b2219;
-    margin-bottom: 46px;
-    backdrop-filter: blur(8px);
-  }
-
-  .badge .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--lime-color);
-  }
-
-  /* 5. Main Title & Subtitle */
+  /* --- Line mask reveal --- */
   h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(3rem, 10vw, 6.80rem);
-  font-weight: 300;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+    font-family: var(--font-serif, 'Instrument Serif', serif);
+    font-size: clamp(3rem, 10vw, 6.80rem);
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    color: rgba(9, 36, 25, 0.95);
+    max-width: 1200px;
+    margin: 2px auto 28px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-  color: rgba(9, 36, 25, 0.95);
+  .line-mask {
+    display: block;
+    overflow: hidden;
+  }
 
-  max-width: 1200px;
-  margin: 2px auto 28px;
+  .line-inner {
+    display: block;
+    transform: translateY(105%);
+    animation: lineUp 0.85s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: var(--delay, 0s);
+  }
 
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @keyframes lineUp {
+    to { transform: translateY(0); }
   }
 
   h1 em {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif, 'Instrument Serif', serif);
     font-style: italic;
     color: var(--lime-color);
     font-weight: 300;
-      margin: 2px auto 28px;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(214, 248, 90, 0.4);
+  }
+
+  /* --- Blur-to-focus fade --- */
+  .fade-blur {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(10px);
+    animation: focusIn 0.9s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes focusIn {
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
   }
 
   p {
-    color: var(--color-text-body);
+    color: var(--color-text-body, #2a3a33);
     font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
     font-size: 1.05rem;
     line-height: 1.6;
@@ -146,7 +195,6 @@ import Header from '../../components/Header.astro';
     max-width: 720px;
   }
 
-  /* 6. Action Buttons */
   .hero-buttons {
     display: flex;
     justify-content: center;
@@ -161,15 +209,18 @@ import Header from '../../components/Header.astro';
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     height: 46px;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Primary Button Shine Animation */
   .btn-primary {
     background-color: #0b2219;
     color: #ffffff;
@@ -177,35 +228,95 @@ import Header from '../../components/Header.astro';
     box-shadow: 0 4px 14px rgba(11, 34, 25, 0.25);
   }
 
+  .shine-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+  }
+
+  .shine-btn:hover::after {
+    left: 120%;
+  }
+
   .btn-primary:hover {
     background-color: #123528;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(11, 34, 25, 0.35);
   }
 
   .btn-secondary {
     background: rgba(255, 255, 255, 0.35);
-    color: var(--color-forest-dark);
+    color: #0b2219;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.55);
+    transform: translateY(-3px);
   }
 
   .arrow {
-    transition: transform 0.2s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .btn-primary:hover .arrow {
-    transform: translateX(4px);
+    transform: translateX(5px);
   }
 
+  /* --- Scroll Indicator Pill --- */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    z-index: 8;
+    display: flex;
+    justify-content: center;
+  }
 
+  .mouse-icon {
+    width: 24px;
+    height: 38px;
+    border: 2px solid rgba(11, 34, 25, 0.4);
+    border-radius: 12px;
+    position: relative;
+  }
 
-  /* Responsive Adjustments */
+  .wheel {
+    width: 4px;
+    height: 8px;
+    background-color: #0b2219;
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.6s infinite ease-in-out;
+  }
+
+  @keyframes scrollWheel {
+    0% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 14px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .line-inner,
+    .fade-blur,
+    .hero-bg-overlay,
+    .wheel {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+    }
+  }
+
   @media (max-width: 768px) {
     .h1 {
       font-size: clamp(3rem, 10vw, 4rem);
@@ -222,9 +333,11 @@ import Header from '../../components/Header.astro';
       max-width: 300px;
       margin: 0 auto;
     }
-
     .btn {
       width: 100%;
+    }
+    .scroll-indicator {
+      display: none;
     }
   }
 </style>

@@ -2,28 +2,44 @@
 // MediaHero.astro
 ---
 
-<header class="media-hero-section">
+<header class="media-hero-section" id="media-hero">
+  <!-- Interactive Ambient Spotlight Backdrop -->
+  <div class="ambient-glow" id="media-glow"></div>
+
   <!-- Hero Main Content -->
   <div class="hero-container">
     <div class="hero-content">
-      <!-- Tag / Category Header -->
-      <div class="tag-wrapper">
+      
+      <!-- Tag / Category Header with Pulsing Dot -->
+      <div class="tag-wrapper animate-item">
+        <span class="pulsing-emerald"></span>
         <span class="category-tag">MEDIA & IMPACT</span>
         <span class="tag-line"></span>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="hero-title">
-        Watch Our Latest Public<br />Appearance
-      </h1>
-
-      <!-- Description Paragraphs -->
-      <div class="hero-description">
-        <p>Stay connected with SAKRT's growing presence in India's sustainability movement. Our media page brings together the latest press coverage, public appearances, and recognitions celebrating our commitment to eco-friendly polythene bags. From industry events to state-level sustainability awards, SAKRT continues to be recognized as a trusted name in <a href="/blog/food-packaging/compostable-cutlery-the-sustainable-shift">compostable packaging</a> manufacturing.</p>
-        <p>Based in Mangalore, Karnataka, SAKRT proudly represents Envirly Innovations Pvt Ltd, delivering government-certified compostable bags, polythene bagsfilms, pouches, and tableware to retailers and industrial enterprises across India. Our media features highlight the milestones that matter — from participation in World Environment Day celebrations at ICAR-CPCRI to being honored at eco-awareness events for our contribution to reducing plastic pollution.</p>
-        <p>Each feature reflects our core mission: helping businesses transition away from single-use plastics through certified, biodegradable alternatives that meet CPCB compliance standards. Whether it's a news article, a social media spotlight, or an award recognition, this page keeps you informed about SAKRT's expanding impact in sustainable packaging.</p>
-        <p>Follow our journey as we continue building partnerships with businesses ready to make the switch to eco-friendly solutions. Explore our latest media coverage below, and connect with us to learn how SAKRT's compostable products can support your sustainability&nbsp;goals.</p>
+      <!-- Main Headline (Clipped Line Reveal) -->
+      <div class="title-mask">
+        <h1 class="hero-title animate-title">
+          Watch Our Latest Public<br />Appearance
+        </h1>
       </div>
+
+      <!-- Description Paragraphs (Staggered Blur & Fade-Up) -->
+      <div class="hero-description">
+        <p class="animate-para" style="--delay: 0.15s">
+          Stay connected with SAKRT's growing presence in India's sustainability movement. Our media page brings together the latest press coverage, public appearances, and recognitions celebrating our commitment to eco-friendly polythene bags. From industry events to state-level sustainability awards, SAKRT continues to be recognized as a trusted name in <a href="/blog/food-packaging/compostable-cutlery-the-sustainable-shift">compostable packaging</a> manufacturing.
+        </p>
+        <p class="animate-para" style="--delay: 0.28s">
+          Based in Mangalore, Karnataka, SAKRT proudly represents Envirly Innovations Pvt Ltd, delivering government-certified compostable bags, polythene bagsfilms, pouches, and tableware to retailers and industrial enterprises across India. Our media features highlight the milestones that matter — from participation in World Environment Day celebrations at ICAR-CPCRI to being honored at eco-awareness events for our contribution to reducing plastic pollution.
+        </p>
+        <p class="animate-para" style="--delay: 0.40s">
+          Each feature reflects our core mission: helping businesses transition away from single-use plastics through certified, biodegradable alternatives that meet CPCB compliance standards. Whether it's a news article, a social media spotlight, or an award recognition, this page keeps you informed about SAKRT's expanding impact in sustainable packaging.
+        </p>
+        <p class="animate-para" style="--delay: 0.52s">
+          Follow our journey as we continue building partnerships with businesses ready to make the switch to eco-friendly solutions. Explore our latest media coverage below, and connect with us to learn how SAKRT's compostable products can support your sustainability&nbsp;goals.
+        </p>
+      </div>
+
     </div>
   </div>
 </header>
@@ -31,14 +47,33 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap');
 
+  :root {
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   /* Container Setup */
   .media-hero-section {
+    position: relative;
     width: 100%;
     padding: 120px 3rem 5rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+  }
+
+  /* Interactive Cursor Spotlight Background */
+  .ambient-glow {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197, 255, 73, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: left 0.15s ease-out, top 0.15s ease-out;
+    z-index: 1;
   }
 
   /* --- Navbar Styles --- */
@@ -50,6 +85,8 @@
     justify-content: space-between;
     padding: 0.75rem 0;
     margin-bottom: 5rem;
+    position: relative;
+    z-index: 2;
   }
 
   .logo a {
@@ -84,7 +121,7 @@
     color: #0a2319;
   }
 
-  /* Lime Underline for Active Menu item ("Journal") */
+  /* Lime Underline for Active Menu item */
   .nav-links a.active {
     color: #0a2319;
     font-weight: 500;
@@ -97,7 +134,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #c5ff49; /* SAKRT Lime Accent */
+    background-color: #c5ff49;
     border-radius: 2px;
   }
 
@@ -110,11 +147,12 @@
     padding: 0.6rem 1.6rem;
     border-radius: 2rem;
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.25s ease, transform 0.25s var(--ease-spring);
   }
 
   .btn-inquire:hover {
     background-color: #12382a;
+    transform: translateY(-2px);
   }
 
   /* --- Hero Body Styles --- */
@@ -123,6 +161,8 @@
     max-width: 1240px;
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 2;
   }
 
   .hero-content {
@@ -141,6 +181,20 @@
     margin-bottom: 1.5rem;
   }
 
+  .pulsing-emerald {
+    width: 7px;
+    height: 7px;
+    background-color: #3b8c66;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #3b8c66;
+    animation: emeraldPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes emeraldPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+
   .category-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
@@ -156,19 +210,32 @@
     background-color: #b0bab4;
   }
 
-  /* Headline Header */
+  /* Title Mask Reveal */
+  .title-mask {
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+  }
+
   .hero-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif, 'Playfair Display', serif);
     font-size: 2.98rem;
     font-weight: 400;
     line-height: 1.12;
     color: #0a2319;
-    margin: 0 0 1.75rem 0;
+    margin: 0;
     letter-spacing: -0.02em;
     text-align: center;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.9s var(--ease-spring), opacity 0.9s var(--ease-spring);
   }
 
-  /* Paragraph Text */
+  .media-hero-section.is-visible .hero-title {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Paragraph Staggering */
   .hero-description {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
@@ -184,70 +251,34 @@
   
   .hero-description p {
     margin: 0;
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+    transition: 
+      opacity 0.8s var(--ease-spring) var(--delay, 0s),
+      filter 0.8s var(--ease-spring) var(--delay, 0s),
+      transform 0.8s var(--ease-spring) var(--delay, 0s);
   }
-  
+
+  .media-hero-section.is-visible .hero-description p {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+  /* Link Hover Interactions */
   .hero-description a {
     color: #3b8c66;
     font-weight: 600;
     text-decoration: underline;
     text-decoration-color: rgba(59, 140, 102, 0.4);
     text-underline-offset: 4px;
-    transition: text-decoration-color 0.2s ease;
+    transition: text-decoration-color 0.25s ease, color 0.25s ease;
   }
 
   .hero-description a:hover {
-    text-decoration-color: rgba(59, 140, 102, 1);
-  }
-
-  /* Buttons Wrapper */
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-  }
-
-  .btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding: 0.85rem 1.75rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.25s ease;
-    cursor: pointer;
-  }
-
-  /* Solid Lime Button */
-  .btn-lime {
-    background-color: #c5ff49;
     color: #0a2319;
-    border: 1px solid #c5ff49;
-  }
-
-  .btn-lime:hover {
-    background-color: #b5f038;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(197, 255, 73, 0.3);
-  }
-
-  .arrow {
-    font-size: 0.95rem;
-  }
-
-  /* Outline Button */
-  .btn-outline {
-    background-color: transparent;
-    color: #0a2319;
-    border: 1px solid rgba(10, 35, 25, 0.25);
-  }
-
-  .btn-outline:hover {
-    background-color: rgba(10, 35, 25, 0.04);
-    border-color: #0a2319;
-    transform: translateY(-1px);
+    text-decoration-color: rgba(10, 35, 25, 1);
   }
 
   /* Responsive Queries */
@@ -257,7 +288,7 @@
     }
 
     .nav-links {
-      display: none; /* Add mobile menu drawer here if required */
+      display: none;
     }
 
     .hero-title {
@@ -269,15 +300,48 @@
     .hero-title {
       font-size: 2rem;
     }
+  }
 
-    .hero-actions {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .btn {
-      width: 100%;
-      justify-content: center;
+  @media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .hero-description p {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+      transition: none !important;
     }
   }
 </style>
+
+<script>
+  function initMediaHeroAnimation() {
+    const section = document.getElementById('media-hero');
+    const glow = document.getElementById('media-glow');
+
+    if (!section) return;
+
+    // 1. Interactive Mouse Spotlight Tracking
+    if (glow) {
+      section.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = section.getBoundingClientRect();
+        glow.style.left = `${e.clientX - rect.left}px`;
+        glow.style.top = `${e.clientY - rect.top}px`;
+      });
+    }
+
+    // 2. IntersectionObserver Trigger for Entrance
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(section);
+  }
+
+  document.addEventListener('DOMContentLoaded', initMediaHeroAnimation);
+  document.addEventListener('astro:page-load', initMediaHeroAnimation);
+</script>

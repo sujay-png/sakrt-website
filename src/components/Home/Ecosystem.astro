@@ -1,76 +1,113 @@
-
 ---
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+
+import cipetImg from '../../images/CIPET.webp';
+import isoImg from '../../images/iso.png';
+import cpcbImg from '../../images/cpcb.png';
+import bioComplianceImg from '../../images/bio-compliance.png';
 ---
 
-<section class="ecosystem-section">
+<section class="ecosystem-section" id="ecosystem-section">
+  <!-- Interactive Ambient Glow Circle -->
+  <div class="interactive-glow" id="interactive-glow"></div>
+
   <div class="ecosystem-container">
     
     <!-- Section Header -->
     <div class="ecosystem-header">
-      <div>
+      <div class="header-left">
+        <span class="section-tag">
+          <span class="pulsing-emerald"></span> SAKRT ECOSYSTEM
+        </span>
         <h2 class="ecosystem-title">Most Enquired Products</h2>
       </div>
-      <a href="/compostable-product" class="see-all-link">
-        <span>See All</span>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
+      
+      <a href="/compostable-product" class="see-all-btn">
+        <span>See All Products</span>
+        <div class="arrow-wrapper">
+          <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
       </a>
     </div>
 
-    <!-- Grid Layout matching reference design -->
-    <div class="ecosystem-grid">
+    <!-- Expanding Dynamic Product Accordion Grid -->
+    <div class="accordion-grid">
       
-      <!-- 1. Large Feature Card: Biodegradable Water Bottles -->
-      <a href="/compostable-product/biodegradable-water-bottles" class="ecosystem-card card-large">
-        <div class="card-bg bottle-bg"></div>
-        <div class="card-content">
-          <div>
-            <h3>Biodegradable Water Bottles</h3>
-            <p>Redefining hydration with zero-plastic impact materials.</p>
-          </div>
-          <span class="btn-lime">View Details</span>
-        </div>
-      </a>
-
-      <!-- 2. Medium Card: Compostable Bags -->
-      <a href="/compostable-product/carry-bags" class="ecosystem-card card-medium">
-        <div class="card-bg bag-bg"></div>
-        <div class="card-content">
-          <h3>Compostable Bags</h3>
-          <span class="explore-text">
-            Explore 
-            <svg class="arrow-sm" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 3. Right Stack Column (Grow Bags & Tableware) -->
-      <div class="card-stack">
+      <!-- 1. Biodegradable Water Bottles -->
+      <a href="/compostable-product/biodegradable-water-bottles" class="accordion-card active-card" data-card>
+        <div class="card-image bottle-bg"></div>
+        <div class="card-overlay"></div>
         
-        <!-- Grow Bags Card -->
-        <a href="/compostable-product/compostable-grow-bags" class="ecosystem-card card-small">
-          <div class="card-bg grow-bg"></div>
-          <div class="card-content-overlay">
-            <h3>Grow Bags</h3>
-          </div>
-        </a>
+        <div class="card-badge">01</div>
 
-        <!-- Tableware Card -->
-        <a href="/compostable-product/food-packaging-boxes" class="ecosystem-card card-small">
-          <div class="card-bg tableware-bg"></div>
-          <div class="card-content-overlay">
-            <h3>Tableware</h3>
+        <div class="card-content-box">
+          <span class="category-subtitle">HYDRATION</span>
+          <h3 class="card-heading">Biodegradable Water Bottles</h3>
+          <p class="card-description">Redefining daily hydration with zero-plastic impact, 100% natural materials.</p>
+          
+          <div class="action-row">
+            <span class="btn-lime">View Details</span>
           </div>
-        </a>
+        </div>
+      </a>
 
-      </div>
+      <!-- 2. Compostable Carry Bags -->
+      <a href="/compostable-product/carry-bags" class="accordion-card" data-card>
+        <div class="card-image bag-bg"></div>
+        <div class="card-overlay"></div>
+        
+        <div class="card-badge">02</div>
+
+        <div class="card-content-box">
+          <span class="category-subtitle">PACKAGING</span>
+          <h3 class="card-heading">Compostable Carry Bags</h3>
+          <p class="card-description">High-tensile strength carry bags certified for complete natural decomposition.</p>
+
+          <div class="action-row">
+            <span class="btn-lime">Explore Bags</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. Grow Bags -->
+      <a href="/compostable-product/compostable-grow-bags" class="accordion-card" data-card>
+        <div class="card-image grow-bg"></div>
+        <div class="card-overlay"></div>
+        
+        <div class="card-badge">03</div>
+
+        <div class="card-content-box">
+          <span class="category-subtitle">AGRICULTURE</span>
+          <h3 class="card-heading">Compostable Grow Bags</h3>
+          <p class="card-description">Nurture plants with bio-based nursery bags that blend into soil over time.</p>
+
+          <div class="action-row">
+            <span class="btn-lime">View Agritech</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. Tableware & Utensils -->
+      <a href="/compostable-product/food-packaging-boxes" class="accordion-card" data-card>
+        <div class="card-image tableware-bg"></div>
+        <div class="card-overlay"></div>
+        
+        <div class="card-badge">04</div>
+
+        <div class="card-content-box">
+          <span class="category-subtitle">FOOD SERVICE</span>
+          <h3 class="card-heading">Bio-Tableware & Containers</h3>
+          <p class="card-description">Sturdy, heat-resistant food packaging made from organic sugarcane fibers.</p>
+
+          <div class="action-row">
+            <span class="btn-lime">Explore Tableware</span>
+          </div>
+        </div>
+      </a>
 
     </div>
   </div>
@@ -78,361 +115,330 @@ import Header from '../../components/Header.astro';
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap');
 
   :root {
     --lime-color: #d1ff26;
     --dark-green: #0b2218;
+    --ease-spring: cubic-bezier(0.25, 1, 0.3, 1);
   }
 
   .ecosystem-section {
     position: relative;
-    padding: 120px 24px 100px 24px; 
-    margin-top: 0; /* Remove the margin gap completely */
+    padding: 120px 24px;
+    background: #0d3d26;
+    color: #ffffff;
+    overflow: hidden;
     box-sizing: border-box;
-    display: flex;
-    justify-content: center;
+  }
+
+  /* Interactive Background Spotlight */
+  .interactive-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(209, 255, 38, 0.12) 0%, rgba(8, 26, 18, 0) 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: left 0.15s ease-out, top 0.15s ease-out;
+    z-index: 1;
   }
 
   .ecosystem-container {
-    max-width: 1200px;
-    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
   }
 
-  /* Header Layout */
+  /* SECTION HEADER */
   .ecosystem-header {
-   display: flex;
+    display: flex;
     justify-content: space-between;
-    align-items: center; /* Changed from flex-end to center for better balance */
-    margin-bottom: 40px;
+    align-items: flex-end;
+    margin-bottom: 48px;
   }
 
   .section-tag {
-    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    color: #888888;
-    display: block;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-  }
-
-  .ecosystem-title {
-    font-family: var(--font-serif);
-    font-weight: 300 !important;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.1;
-    color: var(--dark-green);
-    margin: 0;
-  }
-
-  /* See All Link with Hover-to-Button Transition */
-  .see-all-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: transparent;
-    color: var(--dark-green);
-    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #8a9892;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .pulsing-emerald {
+    width: 8px;
+    height: 8px;
+    background-color: var(--lime-color);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--lime-color);
+    animation: emeraldPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes emeraldPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+
+  .ecosystem-title {
+    font-family: var(--font-serif, 'Instrument Serif', serif);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.05;
+  }
+
+  .see-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Space Mono', monospace;
     font-size: 13px;
     font-weight: 700;
-    padding: 10px 18px;
-    border-radius: 30px;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-  }
-
-  .see-all-link .arrow-icon {
-    transition: transform 0.25s ease;
-  }
-
-  .see-all-link:hover {
-    background-color: var(--dark-green);
     color: #ffffff;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 12px 24px;
+    border-radius: 40px;
+    transition: all 0.4s var(--ease-spring);
+  }
+
+  .arrow-wrapper {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s var(--ease-spring), background 0.3s ease;
+  }
+
+  .see-all-btn:hover {
+    background: var(--lime-color);
+    color: var(--dark-green);
     transform: translateY(-2px);
   }
 
-  .see-all-link:hover .arrow-icon {
-    transform: translateX(4px);
+  .see-all-btn:hover .arrow-wrapper {
+    background: var(--dark-green);
+    color: var(--lime-color);
+    transform: translateX(3px);
   }
 
-  /* Asymmetric Grid */
-  .ecosystem-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 0.9fr; /* Made the first column wider */
-    gap: 24px;
-    align-items: stretch;
+  /* EXPANDING ACCORDION GRID */
+  .accordion-grid {
+    display: flex;
+    gap: 20px;
+    height: 520px;
+    width: 100%;
   }
 
-  .ecosystem-card {
+  .accordion-card {
     position: relative;
-    border-radius: 21px;
+    flex: 1;
+    border-radius: 24px;
     overflow: hidden;
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: flex 0.7s var(--ease-spring), border-color 0.4s ease, box-shadow 0.5s ease;
+    will-change: flex;
   }
 
-  .ecosystem-card:hover {
-    transform: translateY(-4px);
+  .accordion-card.active-card {
+    flex: 2.8;
+    border-color: rgba(209, 255, 38, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   }
 
-  /* Background Images with Dark/Gradient Overlays */
-  .card-bg {
+  /* Card Background Images */
+  .card-image {
     position: absolute;
     inset: 0;
     background-size: cover;
     background-position: center;
-    z-index: 1;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s var(--ease-spring), filter 0.5s ease;
+    filter: brightness(0.7) saturate(0.9);
   }
 
-  .ecosystem-card:hover .card-bg {
-    transform: scale(1.03);
+  .accordion-card.active-card .card-image {
+    filter: brightness(0.9) saturate(1.1);
+    transform: scale(1.04);
   }
 
-  /* Your Image Paths */
-  .bottle-bg {
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(11,34,24,0.95) 90%), url('../../images/biodegradable_water.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+  .bottle-bg { background-image: url('../../images/biodegradable_water.png'); }
+  .bag-bg { background-image: url('../../images/sakrt_bag.png'); }
+  .grow-bg { background-image: url('../../images/plants and trees.png'); }
+  .tableware-bg { background-image: url('../../images/biodegradable_utensils.png'); }
 
-  .bag-bg {
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(11,34,24,0.9) 90%), url('../../images/sakrt_bag.png');
-    background-size: cover;
-    background-position: center;
-  }
-
-  .grow-bg {
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%), url('../../images/plants and trees.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #e2e4e1;
-  }
-
-  .tableware-bg {
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(11,34,24,0.6) 100%), url('../../images/biodegradable_utensils.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #353d37;
-  }
-  /* Card Content Layouts */
-  .card-large {
-    min-height: 520px;
-    padding: 40px;
-  }
-
-  .card-medium {
-    min-height: 520px;
-    padding: 40px;
-  }
-
-  .card-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .card-small {
-    height: 248px;
-    padding: 24px;
-  }
-
-  .card-content {
-    position: relative;
+  /* Dark Gradient Overlay */
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 26, 18, 0.2) 0%, rgba(8, 26, 18, 0.95) 90%);
     z-index: 2;
+  }
+
+  /* Badge Number */
+  .card-badge {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    z-index: 3;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .accordion-card.active-card .card-badge {
+    color: var(--lime-color);
+    border-color: var(--lime-color);
+  }
+
+  /* Content Box Inside Cards */
+  .card-content-box {
+    position: absolute;
+    bottom: 36px;
+    left: 32px;
+    right: 32px;
+    z-index: 3;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    height: 100%;
+    gap: 8px;
   }
 
-  .card-large h3, .card-medium h3 {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 3vw, 2.21rem);
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 1.15;
-    margin: 0 0 10px 0;
+  .category-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--lime-color);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s var(--ease-spring) 0.1s;
   }
 
-  .card-large p {
+  .accordion-card.active-card .category-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-heading {
+    font-family: var(--font-serif, 'Instrument Serif', serif);
+    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+    font-weight: 300;
+    margin: 0;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .card-description {
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.75);
     line-height: 1.5;
-    margin: 0 0 24px 0;
+    margin: 4px 0 12px;
     max-width: 320px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease 0.15s, max-height 0.5s var(--ease-spring), transform 0.4s var(--ease-spring) 0.15s;
   }
 
-  .card-content-overlay {
-    position: relative;
-    z-index: 2;
+  .accordion-card.active-card .card-description {
+    opacity: 1;
+    max-height: 80px;
+    transform: translateY(0);
   }
 
-  .card-small h3 {
-    font-family: var(--font-serif);
-    font-size: 1.70rem;
-    color: #ffffff;
-    margin: 0;
-    font-weight: 400;
+  /* Button inside card */
+  .action-row {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease 0.2s, transform 0.4s var(--ease-spring) 0.2s;
   }
 
-  /* Buttons & Explore Text Hover Transitions */
+  .accordion-card.active-card .action-row {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .btn-lime {
     display: inline-block;
-    background-color: var(--lime-color);
+    background: var(--lime-color);
     color: var(--dark-green);
     font-family: system-ui, -apple-system, sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 13px;
-    padding: 10px 20px;
+    padding: 10px 22px;
     border-radius: 30px;
-    width: max-content;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 4px 15px rgba(209, 255, 38, 0.2);
   }
 
-  .ecosystem-card:hover .btn-lime {
-    transform: scale(1.05);
-  }
-
-  .btn-lime-tag {
-    display: inline-block;
-    background-color: var(--lime-color);
-    color: var(--dark-green);
-    font-family: system-ui, -apple-system, sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    padding: 6px 14px;
-   
-  }
-
-  .explore-text {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 12px;
-    color: var(--lime-color);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .explore-text .arrow-sm {
-    transition: transform 0.2s ease;
-  }
-
-  .ecosystem-card:hover .explore-text .arrow-sm {
-    transform: translateX(4px);
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .ecosystem-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-    .card-stack {
-      grid-column: span 2;
-      flex-direction: row;
-    }
-    .card-small {
-      flex: 1;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .ecosystem-grid {
-      grid-template-columns: 1fr;
-    }
-    .card-stack {
-      grid-column: span 1;
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 900px) {
+    .accordion-grid {
       flex-direction: column;
+      height: auto;
     }
 
-    /* Mobile Scroll Accordion */
-    .ecosystem-card {
-      min-height: 220px !important;
-      height: 220px !important;
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .ecosystem-card.scrolled-focus {
-      min-height: 480px !important;
-      height: 480px !important;
+    .accordion-card {
+      height: 220px;
+      flex: none !important;
     }
 
-    /* Hide descriptions and buttons when collapsed */
-    .ecosystem-card p, 
-    .ecosystem-card .btn-lime, 
-    .ecosystem-card .explore-text {
-      opacity: 0;
-      max-height: 0;
-      margin: 0;
-      overflow: hidden;
-      transform: translateY(10px);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    .accordion-card.active-card {
+      height: 380px;
     }
 
-    /* Reveal when focused */
-    .ecosystem-card.scrolled-focus p {
-      opacity: 1;
-      max-height: 100px;
-      margin-bottom: 24px;
-      transform: translateY(0);
-      transition-delay: 0.1s;
-    }
-    
-    .ecosystem-card.scrolled-focus .btn-lime, 
-    .ecosystem-card.scrolled-focus .explore-text {
-      opacity: 1;
-      max-height: 50px;
-      transform: translateY(0);
-      transition-delay: 0.2s;
+    .card-heading {
+      white-space: normal;
     }
   }
 </style>
 
 <script>
-  declare global {
-    interface Window {
-      ecosystemObserver: IntersectionObserver | undefined;
+  function setupAccordion() {
+    const section = document.getElementById('ecosystem-section');
+    const glow = document.getElementById('interactive-glow');
+    const cards = document.querySelectorAll('[data-card]');
+
+    if (!section || cards.length === 0) return;
+
+    // 1. Mouse Tracking Spotlight
+    if (glow) {
+      section.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = section.getBoundingClientRect();
+        glow.style.left = `${e.clientX - rect.left}px`;
+        glow.style.top = `${e.clientY - rect.top}px`;
+      });
     }
-  }
 
-  function setupEcosystemAccordion() {
-    const cards = document.querySelectorAll('.ecosystem-card');
-    if (cards.length === 0) return;
-    
-    cards[0].classList.add('scrolled-focus');
-
-    const observer = new IntersectionObserver((entries) => {
-      const intersectingEntry = entries.find(e => e.isIntersecting);
-      if (intersectingEntry) {
-        cards.forEach(c => c.classList.remove('scrolled-focus'));
-        intersectingEntry.target.classList.add('scrolled-focus');
-      }
-    }, {
-      rootMargin: '-35% 0px -35% 0px',
-      threshold: 0
+    // 2. Active Expansion on Hover/Click
+    cards.forEach((card) => {
+      card.addEventListener('mouseenter', () => {
+        cards.forEach((c) => c.classList.remove('active-card'));
+        card.classList.add('active-card');
+      });
     });
-
-    // Disconnect old observer if re-running
-    if (window.ecosystemObserver) {
-      window.ecosystemObserver.disconnect();
-    }
-    window.ecosystemObserver = observer;
-
-    cards.forEach(card => observer.observe(card));
   }
 
-  setupEcosystemAccordion();
-  document.addEventListener('astro:page-load', setupEcosystemAccordion);
+  setupAccordion();
+  document.addEventListener('astro:page-load', setupAccordion);
 </script>
-
