@@ -41,13 +41,14 @@ const whyChoose = [
 ];
 ---
 
-<section class="foundations-section">
+<section class="foundations-section" id="foundations-section">
   <div class="container">
     <div class="why-sakrt-section">
-      <h2 class="why-title">Why Choose SAKRT Bioplastic Manufacturers?</h2>
+      <h2 class="why-title animate-title">Why Choose SAKRT Bioplastic Manufacturers?</h2>
       <div class="why-grid">
-        {whyChoose.map((item) => (
-          <div class="why-card">
+        {whyChoose.map((item, index) => (
+          <div class="why-card animate-card" style={`--delay: ${index * 0.08}s`} data-tilt>
+            <div class="card-glow"></div>
             <div class="why-icon-box">
               <img src={item.icon} alt={item.title} class="why-icon-img" loading="lazy" />
             </div>
@@ -65,13 +66,16 @@ const whyChoose = [
 
   :root {
     --color-text-dark: #0f3223;
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .foundations-section {
-    padding: 80px 24px;
+    padding: 100px 24px;
     background-color: transparent;
     display: flex;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
   }
 
   .container {
@@ -85,6 +89,7 @@ const whyChoose = [
     width: 100%;
   }
 
+  /* TITLE ENTRANCE ANIMATION */
   .why-title {
     font-family: var(--font-serif, 'DM Serif Display', serif);
     font-size: clamp(2rem, 4vw, 3rem);
@@ -93,6 +98,14 @@ const whyChoose = [
     letter-spacing: -0.01em;
     margin-bottom: 3.5rem;
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--ease-spring), transform 0.8s var(--ease-spring);
+  }
+
+  .is-visible .why-title {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .why-grid {
@@ -100,50 +113,93 @@ const whyChoose = [
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    perspective: 1000px;
   }
   
   .why-card {
+    position: relative;
     background-color: #f3f4f1;
-    border-radius: 14px;
+    border: 1px solid rgba(15, 50, 35, 0.05);
+    border-radius: 16px;
     padding: 2.5rem 1.8rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
     width: calc(25% - 15px); /* 4 per row */
+    
+    /* Reveal State */
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: 
+      opacity 0.7s var(--ease-spring) var(--delay, 0s),
+      transform 0.7s var(--ease-spring) var(--delay, 0s),
+      box-shadow 0.4s ease,
+      background-color 0.4s ease,
+      border-color 0.4s ease;
+    will-change: transform, opacity;
+  }
+
+  .is-visible .why-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Hover Spotlight Effect */
+  .card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(209, 255, 38, 0.25) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .why-card:hover .card-glow {
+    opacity: 1;
   }
 
   .why-icon-box {
+    position: relative;
+    z-index: 2;
     width: 64px;
     height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s var(--ease-spring);
   }
 
   .why-icon-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s var(--ease-spring);
   }
 
+  /* HOVER STATES */
   .why-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(15, 50, 35, 0.08);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(15, 50, 35, 0.12);
     background-color: #ffffff;
+    border-color: rgba(15, 50, 35, 0.15);
   }
 
-  .why-card:hover .why-icon-img {
-    transform: scale(1.1);
+  .why-card:hover .why-icon-box {
+    transform: scale(1.15) rotate(-4deg);
   }
 
   .why-card h3 {
+    position: relative;
+    z-index: 2;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
@@ -153,6 +209,8 @@ const whyChoose = [
   }
 
   .why-card p {
+    position: relative;
+    z-index: 2;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -185,4 +243,64 @@ const whyChoose = [
       width: 100%; /* 1 per row */
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .why-title,
+    .why-card {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
 </style>
+
+<script>
+  function initFoundationsAnimation() {
+    const section = document.getElementById('foundations-section');
+    const cards = document.querySelectorAll('[data-tilt]');
+
+    if (!section) return;
+
+    // 1. Scroll-Trigger Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          section.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    observer.observe(section);
+
+    // 2. Subtle 3D Tilt Effect on Desktop
+    if (window.innerWidth > 768) {
+      cards.forEach((card) => {
+        const el = card as HTMLElement;
+
+        el.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = ((y - centerY) / centerY) * -6;
+          const rotateY = ((x - centerX) / centerX) * 6;
+
+          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+        });
+
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+        });
+      });
+    }
+  }
+
+  initFoundationsAnimation();
+  document.addEventListener('astro:page-load', initFoundationsAnimation);
+</script>
