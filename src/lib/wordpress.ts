@@ -7,7 +7,7 @@ interface WPGraphQLParams {
 
 // 1. THE CORE FETCHER
 export async function wpquery({ query, variables = {} }: WPGraphQLParams) {
-  const wpUrl = "https://dashboard.sakrt.in/graphql";
+  const wpUrl = "https://sakrt.in/graphql";
 
   try {
     const response = await fetch(wpUrl, {

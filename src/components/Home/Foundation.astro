@@ -280,6 +280,11 @@ const whyChoose = [
       cards.forEach((card) => {
         const el = card as HTMLElement;
 
+        // Remove the staggered entrance delay so hover effects are instant
+        el.addEventListener('mouseenter', () => {
+          el.style.setProperty('--delay', '0s');
+        });
+
         el.addEventListener('mousemove', (e: MouseEvent) => {
           const rect = el.getBoundingClientRect();
           const x = e.clientX - rect.left;
