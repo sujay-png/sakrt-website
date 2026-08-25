@@ -71,16 +71,19 @@
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--s-12) var(--s-10);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-10) var(--s-4);
     padding-bottom: var(--s-16);
+  }
+
+  .brand-col {
+    grid-column: 1 / -1;
   }
 
   @media (min-width: 560px) {
     .footer-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-12) var(--s-10);
     }
-    .brand-col { grid-column: 1 / -1; }
   }
 
   @media (min-width: 900px) {

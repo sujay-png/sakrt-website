@@ -334,9 +334,14 @@ const isProductsActive =
     transform: rotate(30deg);
     transition: left 0.6s var(--ease-out);
     pointer-events: none;
+    animation: shimmerLoop 3s infinite;
+  }
+  @keyframes shimmerLoop {
+    0%, 70% { left: -60%; }
+    100% { left: 120%; }
   }
   @media (hover: hover) {
-    .shine-btn:hover::after { left: 120%; }
+    .shine-btn:hover::after { left: 120%; animation: none; }
   }
 
   .mobile-btn {
@@ -359,7 +364,7 @@ const isProductsActive =
     height: 44px;
     cursor: pointer;
     z-index: 1010;
-    border-radius: var(--r-md);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .hamburger span {
@@ -466,29 +471,34 @@ const isProductsActive =
       white-space: nowrap;
     }
 
-    /* Slide-out Mobile Menu Container — opaque ink panel, so link
-       contrast never depends on what is scrolling behind it. */
+    /* Drop panel. An opaque ink sheet that unfolds from under the
+       hamburger and lines up with the navbar's right edge, so it reads as
+       the capsule opening — not a stray card floating mid-screen. Opaque
+       so link contrast never depends on what scrolls behind it. */
     .nav-menu {
       position: fixed;
-      top: 85px;
-      left: 50%;
-      right: auto;
-      transform: translateX(-50%) translateY(-10px);
-      opacity: 0;
-      visibility: hidden;
-      width: calc(100% - 32px);
-      max-width: 340px;
-      max-height: 85vh;
+      top: 88px;                 /* just below the 56px bar (24 top + 56 + 8 gap) */
+      right: var(--s-4);         /* same gutter as the navbar */
+      left: auto;
+      width: calc(100% - var(--s-8));
+      max-width: 360px;
+      max-height: 80vh;
       overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
       background: var(--ink);
-      border: 1px solid rgba(242, 243, 237, 0.14);
+      border: 1px solid rgba(242, 243, 237, 0.12);
       border-radius: var(--r-lg);
-      padding: var(--s-5);
+      padding: var(--s-3);
       flex-direction: column;
       justify-content: flex-start;
       align-items: stretch;
       gap: 2px;
       box-shadow: var(--shadow-3);
+      transform-origin: top right;
+      transform: scale(0.97);
+      opacity: 0;
+      visibility: hidden;
       transition: transform var(--dur-2) var(--ease-settle),
                   opacity var(--dur-2) var(--ease-out),
                   visibility var(--dur-2) var(--ease-out);
@@ -496,32 +506,61 @@ const isProductsActive =
 
     .nav-menu a {
       font-size: var(--fs-sm);
+      font-weight: 500;
       color: var(--on-dark);
       text-align: left;
-      padding: 12px 10px;
+      padding: 13px 14px;
       border-radius: var(--r-md);
       width: 100%;
+      -webkit-tap-highlight-color: transparent;
+      transition: color var(--dur-1) var(--ease-out),
+                  background-color var(--dur-1) var(--ease-out);
     }
 
     .nav-menu a.mobile-btn {
       text-align: center;
+      display: inline-flex;
+      justify-content: center;
+      margin-top: var(--s-4);
+      width: 100%;
+      background: var(--lime);
+      color: var(--ink);
     }
 
     .nav-menu a::after {
       display: none;
     }
 
-    /* Lime on ink measures 12.7:1. The tinted row backs up the colour so
-       state is never signalled by hue alone. */
+    /* Lime on ink measures 12.7:1. A tinted row plus a lime edge back the
+       colour up, so the active state never rides on hue alone. */
     .nav-menu a.active {
       color: var(--lime);
-      background: rgba(242, 243, 237, 0.06);
+      background: rgba(207, 247, 55, 0.09);
+      box-shadow: inset 2px 0 0 var(--lime);
     }
 
-    /* Section divider before Certifications */
+    /* Staggered entrance: rows grow up into place just after the sheet
+       opens. Driven by an animation (not a delayed transition) so hover
+       feedback stays instant and the close fades cleanly with the panel. */
+    .nav-menu > * {
+      opacity: 1;
+      transform: none;
+    }
+    .menu-toggle-cb:checked ~ .nav-menu > * {
+      animation: navItemIn var(--dur-2) var(--ease-settle) both;
+    }
+    .menu-toggle-cb:checked ~ .nav-menu > *:nth-child(1) { animation-delay: 0.04s; }
+    .menu-toggle-cb:checked ~ .nav-menu > *:nth-child(2) { animation-delay: 0.08s; }
+    .menu-toggle-cb:checked ~ .nav-menu > *:nth-child(3) { animation-delay: 0.12s; }
+    .menu-toggle-cb:checked ~ .nav-menu > *:nth-child(4) { animation-delay: 0.16s; }
+    .menu-toggle-cb:checked ~ .nav-menu > *:nth-child(5) { animation-delay: 0.20s; }
+    .menu-toggle-cb:checked ~ .nav-menu > *:nth-child(6) { animation-delay: 0.24s; }
+    .menu-toggle-cb:checked ~ .nav-menu > *:nth-child(7) { animation-delay: 0.28s; }
+
+    /* Section divider before the secondary group */
     a[href="/our-certifications"] {
-      margin-top: 10px;
-      border-top: 1px solid rgba(242, 243, 237, 0.12);
+      margin-top: var(--s-2);
+      border-top: 1px solid rgba(242, 243, 237, 0.1);
       padding-top: var(--s-4);
     }
 
@@ -567,7 +606,7 @@ const isProductsActive =
       max-height: 350px;
       pointer-events: auto;
       margin: 6px 0 var(--s-2) 0;
-      padding: 6px 0;
+      padding: 6px;
     }
 
     .dropdown-container.open .dropdown-arrow {
@@ -576,12 +615,12 @@ const isProductsActive =
 
     .dropdown-menu li a {
       color: var(--on-dark-muted);
-      padding: 10px 14px 10px var(--s-6);
+      padding: 10px 14px 10px var(--s-5);
       font-size: var(--fs-xs);
       display: flex;
       align-items: center;
       gap: var(--s-2);
-      border-radius: var(--r-md);
+      border-radius: var(--r-sm);
     }
 
     /* Dash marker before each submenu item for visual hierarchy */
@@ -592,19 +631,17 @@ const isProductsActive =
       opacity: 0.7;
     }
 
-    .mobile-btn {
-      display: inline-flex;
-      margin-top: var(--s-4);
-      width: 100%;
-      background: var(--lime);
-      color: var(--ink);
-    }
+    /* Let the mobile-btn inside nav-menu handle its own styles */
 
     /* Checkbox Toggle Logic */
     .menu-toggle-cb:checked ~ .nav-menu {
-      transform: translateX(-50%) translateY(0);
+      transform: none;
       opacity: 1;
       visibility: visible;
+    }
+
+    .menu-toggle-cb:checked ~ .hamburger {
+      /* Background removed */
     }
 
     /* Hamburger to 'X' Animation */
@@ -619,15 +656,34 @@ const isProductsActive =
     }
   }
 
+  @keyframes navItemIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   @media (hover: hover) and (max-width: 1000px) {
+    .hamburger:hover {
+      /* Background removed */
+    }
+
     .nav-menu a:hover {
       color: var(--lime);
-      background: rgba(242, 243, 237, 0.06);
+      background: rgba(207, 247, 55, 0.07);
     }
 
     .dropdown-menu li a:hover {
-      background: rgba(242, 243, 237, 0.08);
+      background: rgba(242, 243, 237, 0.06);
       color: var(--lime);
+    }
+  }
+
+  /* Reduced motion: no stagger, no unfold — the sheet just appears. */
+  @media (prefers-reduced-motion: reduce) {
+    .menu-toggle-cb:checked ~ .nav-menu > * {
+      animation: none;
+    }
+    .nav-menu {
+      transform: none;
     }
   }
 </style>
