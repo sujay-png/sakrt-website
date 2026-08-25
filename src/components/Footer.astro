@@ -1,5 +1,6 @@
 ---
 // src/components/Footer.astro
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer-section">
@@ -48,7 +49,7 @@
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">
-      <p class="copyright">&copy; 2024 SAKRT. All rights reserved.</p>
+      <p class="copyright">&copy; {currentYear} SAKRT. All rights reserved.</p>
     </div>
 
   </div>
