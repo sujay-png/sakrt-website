@@ -2,7 +2,7 @@
 // IsoCard.astro
 ---
 
-<div class="glass-card cert-preview-trigger" data-cert-url="/certificates/ISO.webp" data-cert-type="image">
+<div class="cert-card cert-preview-trigger" data-cert-url="/certificates/ISO.webp" data-cert-type="image" data-reveal style="--i: 1">
   <div class="card-top">
     <div class="card-header">
       <div class="dark-icon-badge">
@@ -37,28 +37,30 @@
 </div>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600&family=Inter:ital,wght@0,400;1,400&display=swap');
-
-  .glass-card {
-    background: rgba(206, 209, 206, 0.434);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    box-shadow: 0 8px 32px 0 rgba(10, 35, 25, 0.03);
-    border-radius: 1.5rem;
-    padding: 2.25rem 2.5rem;
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-1);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 310px;
     box-sizing: border-box;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 100%;
     cursor: pointer;
+    transition: transform var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle),
+                border-color var(--dur-2) var(--ease-settle);
   }
 
-  .glass-card:hover {
-    border-color: rgba(255, 255, 255, 1);
-    transform: translateY(-2px);
+  @media (hover: hover) {
+    .cert-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+      border-color: var(--hairline-strong);
+    }
   }
 
   .card-top {
@@ -70,26 +72,28 @@
     display: flex;
     align-items: center;
     min-height: 2.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: var(--s-8);
   }
 
   .dark-icon-badge {
-    width: 2.25rem;
-    height: 2.25rem;
-    background-color: #0a2319;
-    color: #ffffff;
-    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--ink);
+    color: var(--on-dark);
+    border-radius: var(--r-sm);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .card-title {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
     font-weight: 400;
-    color: #0a2319;
-    margin: 0 0 1.75rem 0;
+    font-synthesis-weight: none;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 var(--s-6) 0;
   }
 
   .iso-list {
@@ -98,41 +102,46 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: var(--s-4);
   }
 
   .iso-list li {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    align-items: flex-start;
+    gap: var(--s-3);
   }
 
+  /* Small lime tick — a mark, never text. */
   .bullet-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #c5ff49;
+    width: 7px;
+    height: 7px;
+    background-color: var(--lime);
     border-radius: 50%;
     display: inline-block;
+    flex: none;
+    margin-top: 0.5em;
   }
 
   .iso-code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: #1a2e24;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--ink);
+    overflow-wrap: anywhere;
   }
 
   .card-bottom {
-    margin-top: 2rem;
+    margin-top: var(--s-8);
   }
 
   .subtext {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     font-style: italic;
-    font-size: 0.75rem;
-    line-height: 1.5;
-    color: #727a75;
+    font-size: var(--fs-xs);
+    line-height: 1.6;
+    color: var(--ink-muted);
     margin: 0;
   }
 </style>

@@ -1,27 +1,22 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-
+// src/components/Home/Mission.astro
 import cipetImg from '../../images/CIPET.webp';
 import isoImg from '../../images/iso.png';
 import cpcbImg from '../../images/cpcb.png';
 import bioComplianceImg from '../../images/bio-compliance.png';
 ---
 
-<section class="mission-section" id="mission-section">
-  <!-- Subtle Dynamic Glow Following Cursor -->
-  <div class="cursor-glow" id="cursor-glow"></div>
+<section class="sk-section mission-section" id="mission-section">
+  <div class="sk-wrap mission-container">
 
-  <div class="mission-container">
-    
-    <!-- Left Column: Glass Card Content -->
-    <div class="mission-left tilt-card" data-tilt>
-      <div class="glass-content-card">
-        <span class="section-tag">
-          <span class="tag-dot"></span> OUR MISSION
+    <!-- Left Column: statement -->
+    <div class="mission-left">
+      <div class="mission-copy" data-reveal-group>
+        <span class="sk-eyebrow section-tag">
+          <span class="tag-dot" data-scrub></span> OUR MISSION
         </span>
 
-        <h2 class="mission-title">
+        <h2 class="sk-title sk-title--lg mission-title">
           Let's Get Back To <span class="highlight-text">Nature</span>
         </h2>
 
@@ -34,7 +29,7 @@ import bioComplianceImg from '../../images/bio-compliance.png';
         </p>
 
         <div class="btn-wrapper">
-          <a href="/about" class="mission-btn magnetic-btn">
+          <a href="/about" class="mission-btn">
             <span class="btn-text">More About SAKRT</span>
             <div class="btn-icon-circle">
               <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -46,28 +41,24 @@ import bioComplianceImg from '../../images/bio-compliance.png';
       </div>
     </div>
 
-    <!-- Right Column: Interactive Certification Showcase -->
+    <!-- Right Column: certification register -->
     <div class="mission-right">
-      <div class="cert-header-box">
+      <div class="cert-header-box" data-reveal>
         <h3 class="cert-heading">Government Approved Product</h3>
-        <div class="cert-pulse-bar"></div>
+        <div class="cert-pulse-bar" data-scrub></div>
       </div>
 
-      <div class="cert-grid">
-        <a href="/our-certifications" class="cert-logo-link magnetic-card" data-tilt>
-          <div class="card-glow-border"></div>
+      <div class="cert-grid" data-reveal-group>
+        <a href="/our-certifications" class="cert-logo-link" data-reveal="grow">
           <img src={typeof cipetImg === 'string' ? cipetImg : cipetImg.src} alt="CIPET Certificate" class="cert-logo" />
         </a>
-        <a href="/our-certifications" class="cert-logo-link magnetic-card" data-tilt>
-          <div class="card-glow-border"></div>
+        <a href="/our-certifications" class="cert-logo-link" data-reveal="grow">
           <img src={typeof isoImg === 'string' ? isoImg : isoImg.src} alt="ISO Certificate" class="cert-logo" />
         </a>
-        <a href="/our-certifications" class="cert-logo-link magnetic-card" data-tilt>
-          <div class="card-glow-border"></div>
+        <a href="/our-certifications" class="cert-logo-link" data-reveal="grow">
           <img src={typeof cpcbImg === 'string' ? cpcbImg : cpcbImg.src} alt="CPCB Certificate" class="cert-logo" />
         </a>
-        <a href="/our-certifications" class="cert-logo-link magnetic-card" data-tilt>
-          <div class="card-glow-border"></div>
+        <a href="/our-certifications" class="cert-logo-link" data-reveal="grow">
           <img src={typeof bioComplianceImg === 'string' ? bioComplianceImg : bioComplianceImg.src} alt="Bio Compliance Certificate" class="cert-logo" />
         </a>
       </div>
@@ -77,302 +68,189 @@ import bioComplianceImg from '../../images/bio-compliance.png';
 </section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
-
+  /* Opaque + raised: the hero is position:sticky beneath this section. */
   .mission-section {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 24px;
     z-index: 10;
-    box-sizing: border-box;
-    overflow: hidden;
-    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f4f8f5 100%);
-  }
-
-  /* Ambient Cursor Tracking Glow */
-  .cursor-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(214, 248, 90, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s;
-    z-index: 1;
+    background: var(--pulp);
   }
 
   .mission-container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 80px;
-    position: relative;
-    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-16);
+    align-items: start;
   }
 
-  /* --- LEFT COLUMN: Glass Card & Floating Reveal --- */
-  .mission-left {
-    flex: 0 0 58%;
-    max-width: 720px;
-    perspective: 1000px;
+  @media (min-width: 1024px) {
+    .mission-container {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: clamp(48px, 6vw, 96px);
+      align-items: center;
+    }
   }
 
-  .glass-content-card {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(13, 52, 38, 0.08);
-    border-radius: 28px;
-    padding: 48px;
-    box-shadow: 0 20px 50px rgba(11, 34, 25, 0.05);
-    transform-style: preserve-3d;
-    transition: transform 0.2s ease-out, box-shadow 0.4s ease;
+  .mission-copy {
+    max-width: 62ch;
   }
 
-  .glass-content-card:hover {
-    box-shadow: 0 30px 60px rgba(11, 34, 25, 0.1);
-  }
-
-  .section-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #50695f;
-    margin-bottom: 20px;
-  }
+  /* .tag-dot becomes the single lime rule, replacing the primitive's
+     pseudo-element so the eyebrow carries one mark, not two. */
+  .section-tag::before { display: none; }
 
   .tag-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #ebb13b;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ebb13b;
-    animation: pulseGlow 2s infinite ease-in-out;
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.4); opacity: 1; }
+    width: 26px;
+    height: 3px;
+    background: var(--lime);
+    border-radius: var(--r-pill);
+    flex: none;
+    transform: scaleX(var(--p, 1));
+    transform-origin: left;
+    will-change: transform;
   }
 
   .mission-title {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
-    font-size: clamp(3rem, 5vw, 4.2rem);
-    font-weight: 300;
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-    color: #0d3426;
-    margin: 0 0 28px;
+    margin: var(--s-5) 0 var(--s-6);
   }
 
+  /* Was italic mid-green on a wash. Now ink on a lime marker: 12.7:1. */
   .highlight-text {
     font-style: italic;
-    color: #1b5e43;
+    color: var(--ink);
     position: relative;
+    display: inline-block;
+    padding-inline: 0.08em;
+    isolation: isolate;
   }
 
   .highlight-text::after {
     content: '';
     position: absolute;
-    bottom: 4px;
     left: 0;
-    width: 100%;
-    height: 6px;
-    background: rgba(235, 177, 59, 0.35);
-    border-radius: 4px;
+    right: 0;
+    bottom: 0.08em;
+    height: 0.3em;
     z-index: -1;
+    background: var(--lime);
+    border-radius: 2px 6px 3px 8px;
   }
 
   .mission-desc {
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #435a51;
-    margin-bottom: 16px;
+    font-size: var(--fs-lede);
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: var(--s-4);
   }
 
-  /* Floating Magnetic Button */
+  .mission-desc-secondary {
+    margin-bottom: 0;
+  }
+
   .btn-wrapper {
-    margin-top: 36px;
+    margin-top: var(--s-10);
   }
 
   .mission-btn {
     display: inline-flex;
     align-items: center;
-    gap: 16px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    background-color: #0b2219;
-    color: #ffffff;
-    padding: 10px 10px 10px 28px;
-    border-radius: 50px;
+    gap: var(--s-4);
+    min-height: 48px;
+    padding: 5px 5px 5px 26px;
+    border-radius: var(--r-pill);
+    background: var(--ink);
+    color: var(--on-dark);
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    font-weight: 600;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 25px rgba(11, 34, 25, 0.2);
+    transition: background-color var(--dur-1) var(--ease-out),
+                transform var(--dur-1) var(--ease-out);
   }
 
   .btn-icon-circle {
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: var(--r-pill);
+    background: rgba(242, 243, 237, 0.14);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s ease, background 0.3s ease;
+    transition: background-color var(--dur-2) var(--ease-settle),
+                color var(--dur-2) var(--ease-settle),
+                transform var(--dur-2) var(--ease-settle);
   }
 
-  .mission-btn:hover {
-    background-color: #144231;
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 16px 32px rgba(11, 34, 25, 0.3);
+  @media (hover: hover) {
+    .mission-btn:hover {
+      background: var(--brand);
+      transform: translateY(-2px);
+    }
+    .mission-btn:hover .btn-icon-circle {
+      background: var(--lime);
+      color: var(--ink);
+      transform: translateX(3px);
+    }
   }
 
-  .mission-btn:hover .btn-icon-circle {
-    background: #ebb13b;
-    color: #0b2219;
-    transform: rotate(45deg);
-  }
-
-  /* --- RIGHT COLUMN: 3D Tilting Certification Grid --- */
+  /* --- Certification register --- */
   .mission-right {
-    flex: 0 0 36%;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--s-6);
   }
 
   .cert-heading {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
-    font-size: 2.2rem;
-    font-weight: 300;
-    color: #163728;
-    margin: 0 0 8px 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h3);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 var(--s-3);
   }
 
   .cert-pulse-bar {
-    width: 50px;
+    width: 44px;
     height: 3px;
-    background: linear-gradient(90deg, #ebb13b, transparent);
-    border-radius: 2px;
+    background: var(--lime);
+    border-radius: var(--r-pill);
+    transform: scaleX(var(--p, 1));
+    transform-origin: left;
+    will-change: transform;
   }
 
   .cert-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    perspective: 1000px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-3);
   }
 
   .cert-logo-link {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease-out, box-shadow 0.3s ease;
-    transform-style: preserve-3d;
-  }
-
-  .card-glow-border {
-    position: absolute;
-    inset: -1px;
-    border-radius: 17px;
-    background: linear-gradient(135deg, rgba(235, 177, 59, 0.6), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-  }
-
-  .cert-logo-link:hover .card-glow-border {
-    opacity: 1;
-  }
-
-  .cert-logo-link:hover {
-    box-shadow: 0 20px 40px rgba(11, 34, 25, 0.12);
+    min-height: 116px;
+    padding: var(--s-6) var(--s-5);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    transition: border-color var(--dur-2) var(--ease-settle),
+                transform var(--dur-2) var(--ease-settle);
   }
 
   .cert-logo {
     max-width: 100%;
-    max-height: 60px;
+    max-height: 58px;
+    width: auto;
     object-fit: contain;
-    transform: translateZ(20px);
-    transition: transform 0.3s ease;
   }
 
-  /* Responsive Adjustments */
-  @media (max-width: 1024px) {
-    .mission-container {
-      flex-direction: column;
-      padding: 0 24px;
-      gap: 50px;
-    }
-    .mission-left, .mission-right {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-    .glass-content-card {
-      padding: 32px;
+  @media (hover: hover) {
+    .cert-logo-link:hover {
+      border-color: var(--hairline-strong);
+      transform: translateY(-3px);
     }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const section = document.getElementById('mission-section');
-    const glow = document.getElementById('cursor-glow');
-    const tiltCards = document.querySelectorAll('[data-tilt]');
-
-    // 1. Smooth Cursor Tracking Spotlight Effect
-    if (section && glow) {
-      section.addEventListener('mousemove', (e: MouseEvent) => {
-        const rect = section.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        glow.style.left = `${x}px`;
-        glow.style.top = `${y}px`;
-      });
-    }
-
-    // 2. 3D Tilt Effect on Hover
-    tiltCards.forEach((card) => {
-      const el = card as HTMLElement;
-      
-      el.addEventListener('mousemove', (e: MouseEvent) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = ((y - centerY) / centerY) * -4;
-        const rotateY = ((x - centerX) / centerX) * 4;
-
-        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
-      });
-
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-      });
-    });
-  });
-</script>

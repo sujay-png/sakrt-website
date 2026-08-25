@@ -65,59 +65,70 @@ const {
 </div>
 
 <style>
+  /* Shared product-card language: --surface shell, hairline border,
+     --r-lg corners, one settle hover. See sibling Product/*Card.astro. */
   .pouches-card {
-   position: relative;
+    position: relative;
     width: 100%;
-    min-height: 200px;
-    border-radius: 20px;
-    background-color: #fcfcfc;
-    padding: 2.6rem;
+    height: 100%;
+    min-height: 340px;
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    box-shadow: 0 4px 20px #00000005;
+    box-shadow: var(--shadow-1);
+    transition: transform var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle),
+                border-color var(--dur-2) var(--ease-settle);
   }
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--s-5);
   }
 
   .header-meta {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #444444;
-    letter-spacing: 0.05em;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 700;
+    color: var(--ink-muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
+  /* The single lime mark for this card: ink on lime = 12.7:1. */
   .new-badge {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #3b6028;
-    background-color: #e4f5d4;
-    padding: 0.25rem 0.6rem;
-    border-radius: 4px;
+    color: var(--ink);
+    background-color: var(--lime);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
     letter-spacing: 0.08em;
   }
 
   .card-title {
-    font-family: var(--font-serif);
-    font-size: 1.91rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
     font-weight: 400;
-    line-height: 1.15;
-    margin: 0 0 2rem 0;
-    color: #0b2e1b;
+    font-synthesis-weight: none;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--s-8) 0;
+    color: var(--ink);
   }
 
   .specs-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
+    gap: var(--s-6);
+    margin-bottom: var(--s-8);
   }
 
   .spec-col {
@@ -128,54 +139,69 @@ const {
   .divider-line {
     width: 100%;
     height: 1px;
-    background-color: #e2e4e2;
-    margin-bottom: 1.25rem;
+    background-color: var(--hairline);
+    margin-bottom: var(--s-5);
   }
 
   .spec-label {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #777777;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.75rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--s-3);
   }
 
   .spec-value {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #222222;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: var(--ink);
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
   }
 
   .card-actions {
     margin-top: auto;
     display: flex;
-    gap: 0.75rem;
+    gap: var(--s-3);
   }
 
   .icon-box {
-    width: 90px;
-    height: 90px;
-    border-radius: 16px; /* Slightly softer corners for the larger size */
-    background-color: #f2efe9;
+    width: 88px;
+    height: 88px;
+    border-radius: var(--r-md);
+    background-color: var(--pulp-deep);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #555555;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .icon-box:hover {
-    background-color: #e6e2d8;
-    transform: translateY(-2px);
+    color: var(--ink-muted);
+    transition: transform var(--dur-1) var(--ease-out),
+                background-color var(--dur-1) var(--ease-out);
   }
 
   .icon-box svg {
-   width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
+  }
+
+  @media (hover: hover) {
+    .pouches-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+      border-color: var(--hairline-strong);
+    }
+    .icon-box:hover {
+      background-color: var(--hairline);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pouches-card {
+      padding: var(--s-6);
+    }
   }
 </style>

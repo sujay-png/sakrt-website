@@ -28,8 +28,8 @@
 <style>
   .product-hero {
     width: 100%;
-    padding: 4rem 2rem 2rem;
-    max-width: 1280px;
+    padding: 4rem var(--gutter) 2rem;
+    max-width: var(--maxw);
     margin: 0 auto;
   }
 
@@ -42,36 +42,50 @@
   }
 
   .hero-left {
-       max-width: 650px;
+    max-width: 650px;
     margin-top: 5rem;
   }
 
+  /* Was lime text on pulp (1.5:1, illegible). Now a mono eyebrow in
+     --ink-muted with the lime kept as a rule/mark, per the design system. */
   .sub-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
     font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--color-accent-lime);
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
     text-transform: uppercase;
-    display: inline-block;
     margin-bottom: 1rem;
   }
 
+  .sub-label::before {
+    content: '';
+    width: 26px;
+    height: 3px;
+    background: var(--lime);
+    border-radius: var(--r-pill);
+    flex: none;
+  }
+
   .hero-title {
-    font-family: var(--font-serif);
-        font-size: clamp(3rem, 5vw, 4.42rem);
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 4.42rem);
     line-height: 1.05;
-    color: var(--color-primary-dark);
+    color: var(--brand);
     font-weight: 400;
+    font-synthesis-weight: none;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
   }
 
   .hero-description {
     font-family: var(--font-sans);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--color-text-muted);
+    font-size: var(--fs-lede);
+    line-height: 1.7;
+    color: var(--ink-soft);
     max-width: 520px;
   }
 
@@ -84,33 +98,40 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    background-color: var(--color-bg-pill);
+    background-color: var(--pulp-deep);
     padding: 0.35rem;
-    border-radius: 12px;
-    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--r-md);
+    border: 1px solid var(--hairline);
   }
 
   .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     background: transparent;
     border: none;
     padding: 0.65rem 1.25rem;
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     font-family: var(--font-sans);
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
-    color: var(--color-text-body);
+    color: var(--ink-soft);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color var(--dur-1) var(--ease-out),
+                background-color var(--dur-1) var(--ease-out);
     white-space: nowrap;
   }
 
-  .pill-btn:hover {
-    color: var(--color-primary-dark);
+  @media (hover: hover) {
+    .pill-btn:hover {
+      color: var(--ink);
+    }
   }
 
   .pill-btn.active {
-    background-color: var(--color-primary-dark);
-    color: var(--color-text-light);
+    background-color: var(--brand);
+    color: var(--on-dark);
   }
 
   @media (max-width: 900px) {

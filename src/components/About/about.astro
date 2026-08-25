@@ -60,26 +60,27 @@ const whyChoose = [
 ];
 ---
 
-<section class="about-hero" id="about-section">
-  <!-- Interactive Ambient Glow Backdrop -->
+<section class="about-page" id="about-section">
   <div class="ambient-glow" id="ambient-glow"></div>
 
-  <div class="container">
-    
-    <!-- Hero Banner -->
-    <div class="hero-header animate-header">
-      <span class="badge-tag">
-        <span class="pulsing-dot"></span> SAKRT BIOPLASTIC MANUFACTURERS
-      </span>
-      <h1 class="hero-title">Pioneering Sustainable <br /><span class="italic-highlight">Bioplastic Solutions</span></h1>
+  <!-- Hero band -->
+  <div class="sk-section about-hero-band">
+    <div class="sk-wrap">
+      <div class="hero-header" data-reveal>
+        <span class="badge-tag">
+          <span class="pulsing-dot"></span> SAKRT BIOPLASTIC MANUFACTURERS
+        </span>
+        <h1 class="hero-title">Pioneering Sustainable <br /><span class="italic-highlight">Bioplastic Solutions</span></h1>
+      </div>
     </div>
+  </div>
 
-    <!-- Editorial Split Layout -->
-    <div class="split-narrative">
-      <!-- Left: Story Box -->
-      <div class="story-card animate-card" data-tilt>
-        <div class="card-spotlight"></div>
-        <h2 class="section-heading">About SAKRT</h2>
+  <!-- Narrative band -->
+  <div class="sk-section sk-section--band">
+    <div class="sk-wrap">
+      <div class="split-narrative" data-reveal-group>
+        <div class="story-card">
+          <h2 class="section-heading">About SAKRT</h2>
         <p class="lead-text">
           SAKRT is a trusted bioplastic manufacturer and distributor. We help retailers, food service providers, and eco-conscious brands replace plastic with sustainable alternatives.
         </p>
@@ -92,12 +93,10 @@ const whyChoose = [
           </p>
         </div>
         <button id="about-text-toggle" class="products-toggle-link text-toggle-link">View More <span class="arrow">↓</span></button>
-      </div>
+        </div>
 
-      <!-- Right: Target Sectors -->
-      <div class="sectors-card animate-card" data-tilt>
-        <div class="card-spotlight"></div>
-        <h2 class="section-heading">What We Do?</h2>
+        <div class="sectors-card">
+          <h2 class="section-heading">What We Do?</h2>
         <p class="sub-label">We offer certified compostable packaging for:</p>
         
         <div class="sector-pills">
@@ -122,19 +121,22 @@ const whyChoose = [
             <span class="pill-text">Municipal & Waste Management</span>
           </div>
         </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Features Section -->
-    <div class="pillars-wrapper animate-section">
-      <div class="section-center-head">
+  <!-- Pillars band -->
+  <div class="sk-section">
+    <div class="sk-wrap pillars-wrapper">
+      <div class="section-center-head" data-reveal>
         <h2 class="why-title">Why Choose SAKRT?</h2>
         <div class="gold-accent-line"></div>
       </div>
 
-      <div class="pillars-grid">
-        {whyChoose.map((item, index) => (
-          <div class="pillar-card stagger-pillar" style={`--delay: ${index * 0.07}s`} data-tilt>
+      <div class="pillars-grid" data-reveal-group>
+        {whyChoose.map((item) => (
+          <div class="pillar-card">
             <div class="pillar-icon-wrap">
               <img src={item.icon} alt={item.title} class="pillar-icon" loading="lazy" />
             </div>
@@ -146,18 +148,20 @@ const whyChoose = [
         ))}
       </div>
     </div>
+  </div>
 
-    <!-- Product Showcase Grid -->
-    <div class="products-showcase animate-section">
-      <div class="section-center-head">
+  <!-- Products band -->
+  <div class="sk-section sk-section--band">
+    <div class="sk-wrap products-showcase">
+      <div class="section-center-head" data-reveal>
         <h2 class="why-title">Most Enquired Products</h2>
         <p class="products-subtitle">Browse Our Preferred Eco-Friendly Catalog Options</p>
       </div>
 
-      <div class="product-grid">
-        {products.map((product, index) => (
-          <div class="product-card stagger-product" style={`--delay: ${index * 0.05}s`} data-index={index}>
-            <a href={product.url} class="card-image-box">
+      <div class="product-grid" data-reveal-group>
+        {products.map((product) => (
+          <div class="product-card">
+            <a href={product.url} class="card-image-box sk-media">
               <img src={product.image} alt={product.title} loading="lazy" />
               <div class="card-hover-overlay">
                 <span class="quick-view-badge">Explore Item →</span>
@@ -170,10 +174,9 @@ const whyChoose = [
           </div>
         ))}
       </div>
-      
+
       <button id="about-products-toggle" class="products-toggle-link">View More <span class="arrow">↓</span></button>
     </div>
-
   </div>
 </section>
 
@@ -181,303 +184,237 @@ const whyChoose = [
 <CallToAction />
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+  /* About page — presentation rebuilt on the SAKRT design system.
+     Tokens + .sk-* primitives only. Fonts load once in Layout.astro. */
 
-  :root {
-    --color-bg-light: #f9faf8;
-    --color-card-bg: #ffffff;
-    --color-text-dark: #0b2218;
-    --color-text-muted: #52675e;
-    --color-btn-green: #0b2218;
-    --color-gold: #ebb13b;
-    --ease-fluid: cubic-bezier(0.25, 1, 0.3, 1);
-    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .about-hero {
+  .about-page {
     position: relative;
-    width: 100%;
-    padding: 7rem 2rem 5rem;
-    background: var(--color-bg-light);
-    color: var(--color-text-dark);
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
+    isolation: isolate;
   }
 
-  /* Ambient Spotlight */
-  .ambient-glow {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(235, 177, 59, 0.12) 0%, rgba(249, 250, 248, 0) 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: left 0.2s ease-out, top 0.2s ease-out;
+  /* The old mouse-tracking gold glow is gone; the element (and its id)
+     remain in the DOM but render nothing. */
+  .ambient-glow { display: none; }
+
+  /* Clear the fixed glass header, matching the hero's generous top space. */
+  .about-hero-band {
+    padding-block: clamp(120px, 15vh, 176px) var(--section-y);
   }
 
-  .container {
-    max-width: 1240px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 4.5rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  /* HEADER */
+  /* ---------- HERO ---------- */
   .hero-header {
     text-align: center;
-    max-width: 850px;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s var(--ease-spring), transform 0.8s var(--ease-spring);
-  }
-
-  .hero-header.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+    max-width: 62ch;
+    margin-inline: auto;
   }
 
   .badge-tag {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: #0b2218;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    max-width: 100%;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    background: rgba(11, 34, 24, 0.05);
-    border: 1px solid rgba(11, 34, 24, 0.12);
-    padding: 6px 18px;
-    border-radius: 30px;
-    margin-bottom: 1.5rem;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    padding: 7px 16px;
+    border-radius: var(--r-pill);
+    margin-bottom: var(--s-5);
   }
 
   .pulsing-dot {
     width: 7px;
     height: 7px;
-    background-color: var(--color-gold);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--color-gold);
-    animation: pulseGlow 2s infinite ease-in-out;
+    flex: none;
+    background: var(--lime);
+    border-radius: var(--r-pill);
   }
-
-  @keyframes pulseGlow {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.4); }
+  @media (prefers-reduced-motion: no-preference) {
+    .pulsing-dot { animation: dotPulse 2.4s var(--ease-out) infinite; }
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
   }
 
   .hero-title {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h1);
     line-height: 1.05;
-    font-weight: 300;
-    color: var(--color-text-dark);
+    letter-spacing: -0.02em;
+    color: var(--ink);
     margin: 0;
   }
 
+  /* Ink on a lime marker stroke = 12.7:1 — the page's one lime mark. */
   .italic-highlight {
     font-style: italic;
-    color: #1a523a;
+    color: var(--ink);
+    background-image: linear-gradient(to top, var(--lime) 0 30%, transparent 30%);
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-inline: 0.06em;
   }
 
-  /* NARRATIVE SPLIT */
+  /* ---------- NARRATIVE ---------- */
   .split-narrative {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 2rem;
-    perspective: 1000px;
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
   }
 
-  .story-card, .sectors-card {
-    position: relative;
-    background: var(--color-card-bg);
-    border: 1px solid rgba(11, 34, 24, 0.08);
-    box-shadow: 0 10px 30px rgba(11, 34, 24, 0.03);
-    border-radius: 24px;
-    padding: 3rem;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    opacity: 0;
-    transform: translateY(40px) scale(0.97);
-    transition: opacity 0.8s var(--ease-spring), transform 0.8s var(--ease-spring), box-shadow 0.4s ease;
-  }
-
-  .animate-card.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .card-spotlight {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(235, 177, 59, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .story-card:hover .card-spotlight,
-  .sectors-card:hover .card-spotlight {
-    opacity: 1;
+  .story-card,
+  .sectors-card {
+    padding: clamp(var(--s-6), 4vw, var(--s-12));
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-1);
   }
 
   .section-heading {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
-    font-size: 2.2rem;
-    color: var(--color-text-dark);
-    margin-top: 0;
-    margin-bottom: 1.25rem;
-    font-weight: 300;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h3);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 var(--s-4);
   }
 
   .lead-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.15rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-lede);
     line-height: 1.7;
-    color: #31423a;
-    margin-bottom: 1rem;
+    color: var(--ink-soft);
+    margin: 0;
   }
 
   .about-text-more p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
     line-height: 1.7;
-    color: var(--color-text-muted);
+    color: var(--ink-soft);
+    margin-top: var(--s-4);
   }
 
   .sub-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    color: var(--ink-soft);
+    margin: 0 0 var(--s-5);
   }
 
-  /* SECTOR PILLS CASCADE */
+  /* ---------- SECTOR PILLS ---------- */
   .sector-pills {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--s-2);
   }
 
   .sector-pill {
     display: flex;
     align-items: center;
-    gap: 16px;
-    background: #f3f5f2;
-    border: 1px solid rgba(11, 34, 24, 0.05);
-    padding: 14px 20px;
-    border-radius: 14px;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.6s var(--ease-spring), transform 0.6s var(--ease-spring), border-color 0.3s ease, background 0.3s ease;
-  }
-
-  .sectors-card.is-visible .stagger-pill:nth-child(1) { transition-delay: 0.15s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(2) { transition-delay: 0.25s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(3) { transition-delay: 0.35s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(4) { transition-delay: 0.45s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(5) { transition-delay: 0.55s; opacity: 1; transform: translateX(0); }
-
-  .sector-pill:hover {
-    transform: translateX(8px) !important;
-    border-color: rgba(11, 34, 24, 0.2);
-    background: #ffffff;
-    box-shadow: 0 6px 18px rgba(11, 34, 24, 0.06);
+    gap: var(--s-4);
+    padding: 14px 18px;
+    background: var(--pulp);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    transition: border-color var(--dur-2) var(--ease-settle),
+                transform var(--dur-2) var(--ease-settle);
   }
 
   .pill-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--color-gold);
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
     font-weight: 700;
+    color: var(--lime-ink);
   }
 
   .pill-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
     font-weight: 600;
-    color: var(--color-text-dark);
+    color: var(--ink);
   }
 
-  /* WHY CHOOSE US PILLARS */
+  @media (hover: hover) {
+    .sector-pill:hover {
+      transform: translateX(4px);
+      border-color: var(--hairline-strong);
+    }
+  }
+
+  /* ---------- SECTION HEADS (pillars + products) ---------- */
   .section-center-head {
-    text-align: center;
-    margin-bottom: 3rem;
+    max-width: var(--maxw-narrow);
+    margin: 0 0 var(--s-12);
   }
 
   .why-title {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
-    font-size: clamp(2.2rem, 3.5vw, 3rem);
-    font-weight: 300;
-    color: var(--color-text-dark);
-    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h2);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
   }
 
+  /* Recoloured from gold to a lime rule — the pillars section's one mark. */
   .gold-accent-line {
-    width: 60px;
+    width: 56px;
     height: 3px;
-    background: var(--color-gold);
-    margin: 0 auto;
-    border-radius: 2px;
+    margin: var(--s-4) 0 0;
+    background: var(--lime);
+    border-radius: var(--r-pill);
   }
 
+  /* ---------- WHY-CHOOSE GRID ---------- */
   .pillars-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    perspective: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--s-5);
   }
 
   .pillar-card {
-    background: var(--color-card-bg);
-    border: 1px solid rgba(11, 34, 24, 0.08);
-    border-radius: 20px;
-    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    transition: opacity 0.6s var(--ease-spring) var(--delay, 0s), transform 0.6s var(--ease-spring) var(--delay, 0s), border-color 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  .animate-section.is-visible .pillar-card {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .pillar-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: rgba(11, 34, 24, 0.2);
-    box-shadow: 0 16px 36px rgba(11, 34, 24, 0.08);
+    gap: var(--s-4);
+    height: 100%;
+    padding: var(--s-6);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-1);
+    transition: transform var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle),
+                border-color var(--dur-2) var(--ease-settle);
   }
 
   .pillar-icon-wrap {
     width: 56px;
     height: 56px;
-    background: #f0f4f1;
-    border-radius: 14px;
+    flex: none;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
-    transition: transform 0.4s var(--ease-spring);
-  }
-
-  .pillar-card:hover .pillar-icon-wrap {
-    transform: scale(1.1) rotate(-4deg);
+    background: var(--pulp-deep);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
   }
 
   .pillar-icon {
@@ -487,253 +424,189 @@ const whyChoose = [
   }
 
   .pillar-body h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.1rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-h4);
     font-weight: 700;
-    color: var(--color-text-dark);
-    margin: 0 0 0.5rem;
+    color: var(--ink);
+    margin: 0 0 var(--s-2);
   }
 
   .pillar-body p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
     line-height: 1.6;
-    color: var(--color-text-muted);
+    color: var(--ink-soft);
     margin: 0;
   }
 
-  /* PRODUCTS SECTION */
+  @media (hover: hover) {
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+      border-color: var(--hairline-strong);
+    }
+  }
+
+  /* ---------- PRODUCTS: SPECIMEN GRID ---------- */
   .products-subtitle {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--color-text-muted);
-    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--fs-lede);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: var(--s-4) 0 0;
   }
 
+  /* Mobile-first: one column, widening at each breakpoint below. */
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
   }
 
   .product-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s var(--ease-spring) var(--delay, 0s), transform 0.6s var(--ease-spring) var(--delay, 0s);
+    height: 100%;
   }
 
-  .animate-section.is-visible .product-card {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  /* The anchor is the fixed-ratio tile. Global .sk-media supplies the
+     aspect-ratio, clipping, pulp-deep backing and cover-fit image; here we
+     only pin the ratio and add the specimen hairline. */
   .card-image-box {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #ffffff;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-bottom: 1.25rem;
-    border: 1px solid rgba(11, 34, 24, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s var(--ease-spring);
+    display: block;
+    --ar: 1 / 1;
+    border: 1px solid var(--hairline);
+    transition: border-color var(--dur-2) var(--ease-settle);
   }
 
-  .card-image-box img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-    transition: transform 0.5s var(--ease-spring);
-  }
-
+  /* Bottom scrim holding the "Explore Item" tag — no full-cover wash. */
   .card-hover-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(11, 34, 24, 0.85);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: var(--s-4);
+    background: linear-gradient(to top, rgba(16, 40, 28, 0.55), rgba(16, 40, 28, 0) 60%);
     opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card-image-box:hover {
-    box-shadow: 0 14px 30px rgba(11, 34, 24, 0.12);
-    border-color: rgba(11, 34, 24, 0.2);
-    transform: translateY(-4px);
-  }
-
-  .card-image-box:hover .card-hover-overlay {
-    opacity: 1;
-  }
-
-  .card-image-box:hover img {
-    transform: scale(1.12);
+    transition: opacity var(--dur-2) var(--ease-out);
   }
 
   .quick-view-badge {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-    padding: 8px 16px;
-    border-radius: 30px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--on-dark);
+    background: rgba(16, 40, 28, 0.72);
+    border: 1px solid rgba(242, 243, 237, 0.28);
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+  }
+
+  .card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-3);
+    padding-top: var(--s-4);
   }
 
   .product-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text-dark);
-    margin: 0 0 1rem;
-    min-height: 48px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: clamp(1.3rem, 1.6vw, 1.45rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0;
   }
 
+  /* A text link with a hairline underline, not a coloured pill. The rule
+     turns lime on hover — lime as a mark, never as the text itself. */
   .view-details-btn {
-    display: inline-block;
-    background: var(--color-btn-green);
-    color: #ffffff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
+    align-self: flex-start;
+    margin-top: auto;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--ink);
     text-decoration: none;
-    padding: 10px 24px;
-    border-radius: 30px;
-    transition: transform 0.3s var(--ease-spring), background-color 0.3s ease, box-shadow 0.3s ease;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--hairline-strong);
+    transition: color var(--dur-1) var(--ease-out),
+                border-color var(--dur-1) var(--ease-out);
   }
 
-  .view-details-btn:hover {
-    background-color: #16402f;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(11, 34, 24, 0.25);
-  }
-
-  /* TOGGLE LINK BUTTONS */
+  /* TOGGLE LINK BUTTONS (shown on mobile by the toggle script) */
   .products-toggle-link {
     display: none;
-    margin: 2rem auto 0;
+    margin: var(--s-10) auto 0;
     background: transparent;
-    color: var(--color-btn-green);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
     font-weight: 700;
-    padding: 10px;
+    letter-spacing: 0.14em;
+    padding: var(--s-2);
     border: none;
     cursor: pointer;
     align-items: center;
-    gap: 8px;
+    gap: var(--s-2);
     text-transform: uppercase;
   }
 
   .products-toggle-link.text-toggle-link {
-    margin: 1rem 0 0 0;
+    margin: var(--s-4) 0 0;
     padding-left: 0;
   }
 
-  /* RESPONSIVE DESIGN */
-  @media (max-width: 1024px) {
-    .split-narrative {
-      grid-template-columns: 1fr;
-    }
-    .product-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  @media (hover: hover) {
+    .product-card:hover .card-image-box { border-color: var(--hairline-strong); }
+    .product-card:hover .card-image-box img { transform: scale(1.045); }
+    .product-card:hover .card-hover-overlay { opacity: 1; }
+    .view-details-btn:hover { border-color: var(--lime); }
   }
 
+  /* ---------- RESPONSIVE (mobile-first) ---------- */
+  @media (min-width: 520px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 768px) {
+    .split-narrative {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--s-10);
+      align-items: start;
+    }
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .product-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* Toggle-collapsed rows only apply on phones. */
   @media (max-width: 768px) {
-    .about-hero {
-      padding: 5rem 1.5rem 4rem;
-    }
-    .story-card, .sectors-card {
-      padding: 2rem;
-    }
-    .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
     .product-card.mobile-hidden,
     .about-text-more.mobile-hidden {
       display: none !important;
     }
   }
-
-  @media (max-width: 500px) {
-    .product-grid {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
 
 <script>
-  function initAboutInteractiveDesign() {
-    const section = document.getElementById('about-section');
-    const glow = document.getElementById('ambient-glow');
+  /* Presentation logic only: the two mobile "View More" toggles. Scroll
+     reveals are handled globally in Layout.astro (data-reveal), so the old
+     glow-tracking, 3D-tilt and bespoke IntersectionObserver are gone. */
+  function initAboutToggles() {
     const isMobile = window.innerWidth <= 768;
 
-    // 1. Mouse Ambient Spotlight Tracking
-    if (section && glow) {
-      section.addEventListener('mousemove', (e: MouseEvent) => {
-        const rect = section.getBoundingClientRect();
-        glow.style.left = `${e.clientX - rect.left}px`;
-        glow.style.top = `${e.clientY - rect.top}px`;
-      });
-    }
-
-    // 2. 3D Tilt Effect on Desktop for Cards
-    if (!isMobile) {
-      document.querySelectorAll('[data-tilt]').forEach((card) => {
-        const el = card as HTMLElement;
-        const spotlight = el.querySelector('.card-spotlight') as HTMLElement;
-
-        el.addEventListener('mouseenter', () => {
-          el.style.setProperty('--delay', '0s');
-        });
-
-        el.addEventListener('mousemove', (e: MouseEvent) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          if (spotlight) {
-            spotlight.style.left = `${x}px`;
-            spotlight.style.top = `${y}px`;
-          }
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = ((y - centerY) / centerY) * -2;
-          const rotateY = ((x - centerX) / centerX) * 2;
-
-          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-        });
-
-        el.addEventListener('mouseleave', () => {
-          el.style.transform = '';
-        });
-      });
-    }
-
-    // 3. Scroll Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.hero-header, .animate-card, .animate-section').forEach(el => observer.observe(el));
-
-    // 4. Products Toggle Logic
+    // Products Toggle Logic
     const toggleProductsBtn = document.getElementById('about-products-toggle');
     const cards = document.querySelectorAll('.product-grid .product-card');
     let isProductsExpanded = false;
@@ -761,7 +634,7 @@ const whyChoose = [
       });
     }
 
-    // 5. Text Toggle Logic
+    // Text Toggle Logic
     const toggleTextBtn = document.getElementById('about-text-toggle');
     const textMoreContent = document.querySelector('.about-text-more');
     let isTextExpanded = false;
@@ -788,6 +661,6 @@ const whyChoose = [
     }
   }
 
-  document.addEventListener('DOMContentLoaded', initAboutInteractiveDesign);
-  document.addEventListener('astro:page-load', initAboutInteractiveDesign);
+  document.addEventListener('DOMContentLoaded', initAboutToggles);
+  document.addEventListener('astro:page-load', initAboutToggles);
 </script>

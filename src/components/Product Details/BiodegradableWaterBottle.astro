@@ -25,7 +25,7 @@ const faqs = [
   <div class="content-container">
     
     <!-- Hero Section -->
-    <div class="hero-grid">
+    <div class="hero-grid" data-reveal-group>
       <div class="hero-image">
         <img src={productImg.src} alt="Eco Friendly Biodegradable Bottle" />
       </div>
@@ -84,14 +84,14 @@ const faqs = [
     </div>
 
     <!-- Why Choose Section -->
-    <div class="why-choose">
+    <div class="why-choose" data-reveal>
       <h2>Why Choose Biodegradable Water Bottles</h2>
       <p>Biodegradable water bottles are a smart step toward reducing plastic pollution without compromising convenience. Unlike traditional plastic bottles that remain in landfills and oceans for hundreds of years, these bottles are designed to break down naturally under the right conditions, leaving a much smaller environmental footprint.</p>
       <p>One of the biggest advantages of biodegradable water bottles is their eco-friendly composition. Made from plant-based or compostable materials, they help lower dependence on fossil fuels and reduce harmful carbon emissions. This makes them an ideal solution for businesses, events, hospitals, and environmentally conscious consumers looking to adopt sustainable alternatives.</p>
     </div>
 
     <!-- Additional Details Grid -->
-    <div class="details-grid">
+    <div class="details-grid" data-reveal-group>
       <div class="details-box">
         <h3>Additional Product Details</h3>
         <ul class="bullet-list">
@@ -131,15 +131,16 @@ const faqs = [
 
 <style>
   .bottle-page {
-    background-color: var(--color-bg-page);
+    --rating-star: #fbbf24;
+    background-color: var(--pulp);
     padding-top: 120px;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
   }
 
   .content-container {
-    max-width: 1240px;
+    max-width: var(--maxw);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--gutter);
   }
 
   /* Hero Section */
@@ -151,25 +152,24 @@ const faqs = [
   }
 
   .hero-image {
-    background-color: #f7f8f6;
-    border-radius: 12px;
-    padding: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: var(--r-md);
+    overflow: hidden;
   }
 
   .hero-image img {
     max-width: 100%;
     height: auto;
-    mix-blend-mode: multiply;
+    object-fit: cover;
   }
 
   .hero-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(2rem, 3.5vw, 2.13rem);
     font-weight: 400;
-    color: #0b2218;
+    color: var(--ink);
     margin: 0 0 1.5rem 0;
   }
 
@@ -177,7 +177,7 @@ const faqs = [
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--hairline);
     padding-bottom: 1.5rem;
   }
 
@@ -186,29 +186,29 @@ const faqs = [
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.75rem;
-    color: #64748b;
+    font-size: var(--fs-xs);
+    color: var(--ink-muted);
     text-align: center;
   }
 
   .icon-item svg {
     width: 24px;
     height: 24px;
-    color: #3b5f4c;
+    color: var(--ink-soft);
   }
 
   .section-subtitle {
-    font-size: 1.1rem;
+    font-size: var(--fs-lede);
     font-weight: 700;
-    color: #0b2218;
+    color: var(--ink);
     margin: 0 0 1rem 0;
   }
 
   .bullet-list {
     margin: 0 0 2rem 0;
     padding-left: 1.2rem;
-    color: #475569;
-    font-size: 0.95rem;
+    color: var(--ink-soft);
+    font-size: var(--fs-body);
     line-height: 1.6;
   }
 
@@ -221,11 +221,12 @@ const faqs = [
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: #f1f5f9;
-    border-radius: 30px;
+    background-color: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
     font-weight: 700;
-    font-size: 0.8rem;
-    color: #3b5f4c;
+    font-size: var(--fs-label);
+    color: var(--ink-soft);
     margin-bottom: 1.5rem;
   }
 
@@ -239,12 +240,12 @@ const faqs = [
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;
-    font-size: 0.85rem;
-    color: #64748b;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
   }
 
   .stars {
-    color: #fbbf24;
+    color: var(--rating-star);
     font-size: 1.2rem;
     letter-spacing: 2px;
   }
@@ -256,34 +257,42 @@ const faqs = [
 
   .btn {
     padding: 0.8rem 2rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    border-radius: var(--r-pill);
     text-decoration: none;
     text-align: center;
-    transition: all 0.2s ease;
+    transition: transform var(--dur-1) var(--ease-out), background-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out);
     letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
   }
 
   .btn-primary {
-    background-color: #0d3d26;
-    color: white;
-    border: 1px solid #0d3d26;
-  }
-
-  .btn-primary:hover {
-    background-color: #173b2a;
+    background-color: var(--brand);
+    color: var(--on-dark);
   }
 
   .btn-outline {
     background-color: transparent;
-    color: #475569;
-    border: 1px solid #cbd5e1;
+    color: var(--ink-soft);
+    border-color: var(--hairline-strong);
   }
 
-  .btn-outline:hover {
-    background-color: #f8fafc;
-    color: #0f172a;
+  @media (hover: hover) {
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    .btn-primary:hover {
+      background-color: var(--ink);
+    }
+    .btn-outline:hover {
+      background-color: rgba(16, 40, 28, 0.04);
+      border-color: var(--ink);
+    }
   }
 
   /* Why Choose */
@@ -292,14 +301,15 @@ const faqs = [
   }
 
   .why-choose h2 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 1.49rem;
-    color: #0b2218;
+    color: var(--ink);
     margin-bottom: 1rem;
+    font-weight: 400;
   }
 
   .why-choose p {
-    color: #475569;
+    color: var(--ink-soft);
     line-height: 1.7;
     margin-bottom: 1rem;
   }
@@ -313,50 +323,55 @@ const faqs = [
   }
 
   .details-box {
-    background-color: #ffffff;
-    border-radius: 12px;
+    background-color: var(--surface);
+    border-radius: var(--r-md);
+    border: 1px solid var(--hairline);
     padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--dur-2) var(--ease-settle), box-shadow var(--dur-2) var(--ease-settle), border-color var(--dur-2) var(--ease-settle);
   }
 
-  .details-box:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  @media (hover: hover) {
+    .details-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+      border-color: var(--hairline-strong);
+    }
   }
 
   .details-box h3 {
-    font-size: 1.1rem;
+    font-size: var(--fs-h4);
     font-weight: 700;
-    color: #0b2218;
+    color: var(--ink);
     margin-bottom: 1rem;
   }
 
   /* Banner */
   .banner {
-    background-color: #0d3d26;
-    border-radius: 16px;
+    background-color: var(--brand);
+    border-radius: var(--r-lg);
     padding: 4rem 2rem;
     text-align: center;
-    color: white;
+    color: var(--on-dark);
     margin-bottom: 4rem;
   }
 
   .banner-tag {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 1rem;
-    color: rgba(255,255,255,0.8);
+    color: var(--on-dark-muted);
   }
 
   .banner h2 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(2rem, 3.5vw, 2.55rem);
+    font-weight: 400;
     margin: 0 0 1rem 0;
   }
 
   .banner p {
-    color: rgba(255,255,255,0.9);
+    color: var(--on-dark-muted);
     line-height: 1.6;
     margin-bottom: 2rem;
   }
@@ -366,30 +381,33 @@ const faqs = [
   }
 
   .btn-primary-light {
-    background-color: #ffffff;
-    color: #0d3d26;
-    border: 1px solid #ffffff;
+    background-color: var(--lime);
+    color: var(--ink);
+    border: 1px solid transparent;
   }
 
   .btn-outline-light {
     background-color: transparent;
-    color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.4);
+    color: var(--on-dark);
+    border: 1px solid var(--on-dark-muted);
   }
 
-  .btn-primary-light:hover {
-    background-color: #f1f5f9;
-  }
-
-  .btn-outline-light:hover {
-    background-color: rgba(255,255,255,0.1);
+  @media (hover: hover) {
+    .btn-primary-light:hover {
+      background-color: #c2ec24;
+    }
+    .btn-outline-light:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: var(--on-dark);
+    }
   }
 
   /* Related Products */
   .related-products h2 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 1.49rem;
-    color: #0b2218;
+    font-weight: 400;
+    color: var(--ink);
     margin-bottom: -1rem; /* Grid adds top padding */
   }
 

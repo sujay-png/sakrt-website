@@ -18,297 +18,109 @@ const {
 } = Astro.props;
 ---
 
-<div class="recognition-card animate-card" data-parallax-card>
-  <!-- Background Image with Counter-Parallax Scale -->
-  <div class="card-bg-image"></div>
-  <div class="card-overlay"></div>
-
-  <!-- Animated Border Glow Trace -->
-  <div class="border-glow-trace"></div>
-
-  <!-- Foreground Content Floating Layers -->
-  <div class="card-content">
-    <div class="tag-badge-wrapper">
-      <span class="card-tag">
-        <span class="glow-ring"></span>
-        {tag}
-      </span>
-    </div>
-
-    <h2 class="card-title">{title}</h2>
-    <p class="card-description">{description}</p>
+<article class="recognition">
+  <div class="recognition__media sk-media">
+    <div class="recognition__image"></div>
   </div>
 
-  <div class="action-wrapper">
-    <a href={buttonLink} target="_blank" rel="noopener noreferrer" class="magnetic-btn">
+  <div class="recognition__body">
+    <div class="recognition__meta">
+      <span class="card-tag">{tag}</span>
+    </div>
+
+    <h2 class="recognition__title">{title}</h2>
+
+    <p class="recognition__text">{description}</p>
+
+    <a href={buttonLink} target="_blank" rel="noopener noreferrer" class="recognition__cta sk-btn sk-btn--ghost">
       <span class="btn-text">{buttonText}</span>
-      <div class="btn-icon-circle">
+      <span class="btn-icon">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
-      </div>
+      </span>
     </a>
   </div>
-</div>
+</article>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap');
-
-  :root {
-    --ease-fluid: cubic-bezier(0.25, 1, 0.3, 1);
-    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .recognition-card {
-    position: relative;
-    border-radius: 1.75rem;
-    padding: 3.5rem 2.8rem;
+  /* Recognition tile. Previously white type over a photo with an animated
+     lime glow border and a frosted button; now a fixed-ratio image and the
+     story set on pulp, matching the tile beside it. */
+  .recognition {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 390px;
-    box-sizing: border-box;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 16px 40px rgba(13, 43, 29, 0.2);
-    cursor: pointer;
-
-    /* Initial Scroll Hidden State */
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s var(--ease-fluid), transform 0.8s var(--ease-fluid), border-color 0.4s ease;
+    gap: var(--s-6);
+    height: 100%;
+    min-width: 0;
   }
 
-  .recognition-card.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+  .recognition__media {
+    --ar: 4 / 3;
+    border: 1px solid var(--hairline);
   }
 
-  /* Background Image Zoom & Parallax */
-  .card-bg-image {
+  .recognition__image {
     position: absolute;
-    inset: -20px;
+    inset: 0;
     background-image: url('/media/event-win.jpg');
     background-size: cover;
     background-position: center;
-    transition: transform 0.6s var(--ease-fluid);
-    will-change: transform;
-    z-index: 1;
+    transition: transform 1.1s var(--ease-settle);
   }
 
-  .card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(13, 43, 29, 0.72) 0%, rgba(10, 31, 21, 0.94) 100%);
-    z-index: 2;
-    transition: opacity 0.4s ease;
+  .recognition__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-4);
+    flex: 1;
   }
 
-  /* Dynamic Border Glow Line */
-  .border-glow-trace {
-    position: absolute;
-    inset: -1px;
-    border-radius: 1.75rem;
-    background: linear-gradient(135deg, rgba(197, 255, 73, 0.6), transparent 40%, rgba(197, 255, 73, 0.3));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .recognition-card:hover .border-glow-trace {
-    opacity: 1;
-  }
-
-  .recognition-card:hover .card-bg-image {
-    transform: scale(1.06);
-  }
-
-  /* Content Inner Floating Shift */
-  .card-content {
-    position: relative;
-    z-index: 4;
-    transition: transform 0.4s var(--ease-fluid);
-    will-change: transform;
-  }
-
-  /* Floating Tag Badge */
-  .tag-badge-wrapper {
-    margin-bottom: 1.25rem;
-  }
-
-  .card-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.725rem;
-    font-weight: 600;
-    color: #c5ff49;
+  .recognition__meta {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .recognition__title {
+    margin: 0;
+    max-width: 26ch;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h3);
+    line-height: 1.16;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .recognition__text {
+    margin: 0;
+    max-width: 50ch;
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .recognition__cta {
+    margin-top: auto;
+    padding-inline: 22px;
+  }
+
+  .btn-icon {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(197, 255, 73, 0.08);
-    border: 1px solid rgba(197, 255, 73, 0.25);
-    padding: 6px 14px;
-    border-radius: 20px;
-    backdrop-filter: blur(8px);
-  }
-
-  .glow-ring {
-    width: 6px;
-    height: 6px;
-    background-color: #c5ff49;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #c5ff49;
-    animation: ringPulse 2s infinite ease-in-out;
-  }
-
-  @keyframes ringPulse {
-    0%, 100% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.4); opacity: 1; }
-  }
-
-  .card-title {
-    font-family: var(--font-serif, 'Playfair Display', serif);
-    font-size: 1.85rem;
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 1.22;
-    margin: 0 0 1rem 0;
-  }
-
-  .card-description {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.925rem;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0 0 1.5rem 0;
-  }
-
-  /* Action Button Circle Shift */
-  .action-wrapper {
-    position: relative;
-    z-index: 4;
-  }
-
-  .magnetic-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 8px 8px 8px 24px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 50px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #ffffff;
-    text-decoration: none;
-    backdrop-filter: blur(12px);
-    transition: all 0.4s var(--ease-spring);
-    box-sizing: border-box;
-  }
-
-  .btn-icon-circle {
-    width: 38px;
-    height: 38px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    color: #ffffff;
-    transition: transform 0.4s var(--ease-spring), background-color 0.3s ease, color 0.3s ease;
+    transition: transform var(--dur-1) var(--ease-out);
   }
 
-  .magnetic-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(197, 255, 73, 0.5);
-    color: #c5ff49;
-    transform: translateY(-2px);
-  }
-
-  .magnetic-btn:hover .btn-icon-circle {
-    background: #c5ff49;
-    color: #0d2b1d;
-    transform: scale(1.08) rotate(45deg);
-  }
-
-  @media (max-width: 640px) {
-    .recognition-card {
-      padding: 2.2rem 1.6rem;
-      min-height: auto;
-    }
-
-    .card-title {
-      font-size: 1.6rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .recognition-card,
-    .card-bg-image {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
+  @media (hover: hover) {
+    .recognition:hover .recognition__image { transform: scale(1.045); }
+    .recognition__cta:hover .btn-icon { transform: translateX(3px); }
   }
 </style>
-
-<script>
-  function initParallaxRecognitionCard() {
-    const cards = document.querySelectorAll('[data-parallax-card]');
-
-    cards.forEach((card) => {
-      const el = card as HTMLElement;
-      const bg = el.querySelector('.card-bg-image') as HTMLElement;
-      const content = el.querySelector('.card-content') as HTMLElement;
-
-      // 1. Scroll Reveal Observer
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      observer.observe(el);
-
-      // 2. Multi-Layer Inner Parallax Shift on Hover
-      if (window.innerWidth > 768) {
-        el.addEventListener('mousemove', (e: MouseEvent) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          // Inverse values for counter movement
-          const shiftX = (x - centerX) / 18;
-          const shiftY = (y - centerY) / 18;
-
-          if (content) {
-            content.style.transform = `translate(${shiftX}px, ${shiftY}px)`;
-          }
-
-          if (bg) {
-            bg.style.transform = `scale(1.08) translate(${-shiftX * 0.5}px, ${-shiftY * 0.5}px)`;
-          }
-        });
-
-        el.addEventListener('mouseleave', () => {
-          if (content) content.style.transform = 'translate(0px, 0px)';
-          if (bg) bg.style.transform = 'scale(1) translate(0px, 0px)';
-        });
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', initParallaxRecognitionCard);
-  document.addEventListener('astro:page-load', initParallaxRecognitionCard);
-</script>

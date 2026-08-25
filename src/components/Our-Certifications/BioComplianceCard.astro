@@ -2,7 +2,7 @@
 // BioComplianceCard.astro
 ---
 
-<div class="dark-card bio-card cert-preview-trigger" data-cert-url="/certificates/global.pdf" data-cert-type="pdf">
+<div class="dark-card bio-card cert-preview-trigger" data-cert-url="/certificates/global.pdf" data-cert-type="pdf" data-reveal style="--i: 3">
   <div class="card-top">
     <h3 class="card-title">CIPET Lab Test Report</h3>
   </div>
@@ -28,12 +28,11 @@
 </div>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600&display=swap');
-
   .dark-card {
-background-color: #0f3f2d;
-    border-radius: 1.5rem;
-    padding: 1.35rem 2.5rem;
+    background-color: var(--brand);
+    border: 1px solid var(--brand);
+    border-radius: var(--r-lg);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -43,31 +42,38 @@ background-color: #0f3f2d;
     height: 100%;
     min-height: 200px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle);
   }
-  
-  .dark-card:hover {
-    transform: translateY(-2px);
+
+  @media (hover: hover) {
+    .dark-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-3);
+    }
   }
 
   .card-top {
     position: relative;
     z-index: 2;
-    margin-bottom: 2rem;
+    margin-bottom: var(--s-8);
   }
 
+  /* The single lime moment of the section — a serif title as a seal. */
   .card-title {
-    font-family: var(--font-serif);
-    font-size: 1.06rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
     font-weight: 400;
-    color: #c5ff49; /* SAKRT Lime Accent */
+    font-synthesis-weight: none;
+    line-height: 1.15;
+    color: var(--lime);
     margin: 0;
   }
 
   .standards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: var(--s-6);
     position: relative;
     z-index: 2;
   }
@@ -75,22 +81,22 @@ background-color: #0f3f2d;
   .standard-item {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: var(--s-2);
   }
 
   .standard-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: #8fa89b;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--on-dark-muted);
   }
 
   .standard-val {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.05rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-h4);
     font-weight: 700;
-    color: #ffffff;
+    color: var(--on-dark);
     letter-spacing: 0.02em;
   }
 
@@ -101,7 +107,7 @@ background-color: #0f3f2d;
     right: -30px;
     width: 220px;
     height: 220px;
-    color: #ffffff;
+    color: var(--on-dark);
     pointer-events: none;
     z-index: 1;
   }
@@ -109,7 +115,7 @@ background-color: #0f3f2d;
   @media (max-width: 480px) {
     .standards-grid {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: var(--s-5);
     }
   }
 </style>

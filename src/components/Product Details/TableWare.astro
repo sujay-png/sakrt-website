@@ -9,7 +9,7 @@ import EnquiryForm from "../EnquiryForm.astro";
     <!-- LEFT COLUMN: Product Gallery & Schematics -->
     <div class="left-column">
       <!-- Main Featured Image Showcase -->
-      <div class="main-image-card">
+      <div class="main-image-card" data-reveal>
         <img
           src={productImg.src}
           alt="Designer Tableware"
@@ -24,7 +24,7 @@ import EnquiryForm from "../EnquiryForm.astro";
       </div>
 
       <!-- Secondary Info Cards Grid -->
-      <div class="schematics-grid">
+      <div class="schematics-grid" data-reveal-group>
         <!-- Technical Schematic Card -->
         <div class="spec-card schematic-card">
           <div class="schematic-diagram">
@@ -58,7 +58,7 @@ import EnquiryForm from "../EnquiryForm.astro";
 
     <!-- RIGHT COLUMN: Details, Specs, & Inquire Form -->
     <div class="right-column">
-      <div class="product-info-card">
+      <div class="product-info-card" data-reveal>
         <!-- Badges -->
         <div class="badge-group">
           <span class="badge lime-badge">FOOD SAFE</span>
@@ -81,7 +81,7 @@ import EnquiryForm from "../EnquiryForm.astro";
         <!-- Technical Specifications Grid -->
         <div class="tech-specs-container">
           <h2 class="specs-section-title">TECHNICAL SPECIFICATIONS</h2>
-          <div class="specs-grid">
+          <div class="specs-grid" data-reveal-group>
             <div class="spec-item">
               <span class="spec-label">COMPOSITION</span>
               <span class="spec-value">Sugarcane Bagasse</span>
@@ -130,18 +130,14 @@ import EnquiryForm from "../EnquiryForm.astro";
   /* Base Layout */
   .product-detail-section {
     width: 100%;
-    background-color: #f3f4f1;
+    background-color: var(--pulp);
     padding: 8rem 1.5rem 3rem;
     box-sizing: border-box;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      sans-serif;
+    font-family: var(--font-sans);
   }
 
   .product-container {
-    max-width: 1240px;
+    max-width: var(--maxw);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -161,8 +157,7 @@ import EnquiryForm from "../EnquiryForm.astro";
     position: relative;
     width: 100%;
     height: 520px;
-    background-color: #ebece8;
-    border-radius: 20px;
+    border-radius: var(--r-xl);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -181,29 +176,28 @@ import EnquiryForm from "../EnquiryForm.astro";
     position: absolute;
     bottom: 24px;
     left: 24px;
-    background-color: #0e2d1f;
+    background-color: var(--brand);
     padding: 1.25rem 1.5rem;
-    border-radius: 12px;
+    border-radius: var(--r-md);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     max-width: 260px;
   }
 
   .tag-label {
     display: block;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #cff737;
+    color: var(--lime);
     letter-spacing: 0.12em;
     margin-bottom: 0.4rem;
   }
 
   .tag-title {
-    font-family: var(--font-serif);
-    font-size: 0.98rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-body);
     font-weight: 400;
-    color: #ffffff;
+    color: var(--on-dark);
     margin: 0;
     line-height: 1.25;
   }
@@ -217,7 +211,7 @@ import EnquiryForm from "../EnquiryForm.astro";
 
   .spec-card {
     height: 220px;
-    border-radius: 16px;
+    border-radius: var(--r-lg);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -226,11 +220,10 @@ import EnquiryForm from "../EnquiryForm.astro";
   }
 
   .card-caption {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.68rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #727a75;
+    color: var(--ink-muted);
     letter-spacing: 0.12em;
     margin: 0;
     text-transform: uppercase;
@@ -238,7 +231,7 @@ import EnquiryForm from "../EnquiryForm.astro";
 
   /* Schematic Card Specifics */
   .schematic-card {
-    background-color: #eeebe6;
+    background-color: var(--pulp-deep);
   }
 
   .schematic-diagram {
@@ -252,25 +245,24 @@ import EnquiryForm from "../EnquiryForm.astro";
   .height-indicator {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #2b332e;
+    color: var(--ink-soft);
     letter-spacing: 0.1em;
   }
 
   .bottle-outline {
     width: 65px;
     height: 110px;
-    border: 1.5px dashed rgba(43, 51, 46, 0.4);
-    border-radius: 6px;
+    border: 1.5px dashed rgba(58, 74, 65, 0.4);
+    border-radius: var(--r-xs);
     position: relative;
   }
 
   /* Capacity Card Specifics */
   .capacity-card {
-    background-color: #ebece8;
+    background-color: var(--pulp-deep);
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -279,24 +271,24 @@ import EnquiryForm from "../EnquiryForm.astro";
   .leaf-icon {
     width: 32px;
     height: 32px;
-    color: #0e2d1f;
+    color: var(--brand);
     margin-bottom: 0.5rem;
   }
 
   .capacity-number {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 1.91rem;
     font-weight: 400;
-    color: #0e2d1f;
+    color: var(--brand);
     margin: 0 0 0.25rem 0;
   }
 
   /* RIGHT COLUMN STYLES */
   .product-info-card {
-    background-color: #ffffff;
-    border-radius: 20px;
+    background-color: var(--surface);
+    border-radius: var(--r-xl);
     padding: 3rem 2.5rem 2.5rem 2.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--shadow-1);
   }
 
   /* Badges */
@@ -308,55 +300,53 @@ import EnquiryForm from "../EnquiryForm.astro";
 
   .badge {
     padding: 0.35rem 0.65rem;
-    border-radius: 4px;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
+    border-radius: var(--r-xs);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
     letter-spacing: 0.08em;
   }
 
   .lime-badge {
-    background-color: #d9f99d;
-    color: #365314;
+    background-color: var(--lime-soft);
+    color: var(--lime-ink);
   }
 
   .muted-badge {
-    background-color: #e5e7eb;
-    color: #4b5563;
+    background-color: var(--pulp-deep);
+    color: var(--ink-muted);
   }
 
   /* Product Title & Info */
   .product-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 2.98rem;
     font-weight: 400;
-    color: #0e2d1f;
+    color: var(--brand);
     line-height: 1.05;
     margin: 0 0 1.25rem 0;
     letter-spacing: -0.02em;
   }
 
   .product-description {
-    font-size: 1rem;
+    font-size: var(--fs-body);
     line-height: 1.6;
-    color: #525a55;
+    color: var(--ink-soft);
     margin: 0 0 2.25rem 0;
   }
 
   /* Specifications Grid */
   .tech-specs-container {
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--hairline);
     padding-top: 1.75rem;
     margin-bottom: 2rem;
   }
 
   .specs-section-title {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.725rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #374151;
+    color: var(--ink-soft);
     letter-spacing: 0.12em;
     margin: 0 0 1.5rem 0;
   }
@@ -374,33 +364,32 @@ import EnquiryForm from "../EnquiryForm.astro";
   }
 
   .spec-label {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #9ca3af;
+    color: var(--ink-muted);
     letter-spacing: 0.08em;
   }
 
   .spec-value {
-    font-size: 0.925rem;
+    font-size: var(--fs-sm);
     font-weight: 700;
-    color: #1f2937;
+    color: var(--ink);
   }
 
   /* Bulk Supply Form Box */
   .inquiry-card {
-    background-color: #0e2d1f;
-    border-radius: 14px;
+    background-color: var(--brand);
+    border-radius: var(--r-md);
     padding: 1.75rem;
     margin-bottom: 1.5rem;
   }
 
   .inquiry-title {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
     font-weight: 400;
-    color: #ffffff;
+    color: var(--on-dark);
     margin: 0 0 1.25rem 0;
   }
 
@@ -420,28 +409,28 @@ import EnquiryForm from "../EnquiryForm.astro";
     width: 100%;
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     padding: 0.85rem 1rem;
-    font-size: 0.875rem;
-    color: #ffffff;
+    font-size: var(--fs-sm);
+    color: var(--on-dark);
     box-sizing: border-box;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: border-color var(--dur-1) var(--ease-out);
   }
 
   .form-input::placeholder {
-    color: #8da397;
+    color: var(--on-dark-muted);
   }
 
   .form-input:focus,
   .form-select:focus {
-    border-color: #a3e635;
+    border-color: var(--lime);
   }
 
   .form-select {
     appearance: none;
     -webkit-appearance: none;
-    color: #8da397;
+    color: var(--on-dark-muted);
     cursor: pointer;
   }
 
@@ -452,29 +441,30 @@ import EnquiryForm from "../EnquiryForm.astro";
     transform: translateY(-50%);
     width: 16px;
     height: 16px;
-    color: #8da397;
+    color: var(--on-dark-muted);
     pointer-events: none;
   }
 
   .submit-btn {
     width: 100%;
-    background-color: #bef264;
-    color: #0e2d1f;
+    background-color: var(--lime);
+    color: var(--ink);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     padding: 1rem;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
     letter-spacing: 0.08em;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color var(--dur-1) var(--ease-out);
     margin-top: 0.35rem;
   }
 
-  .submit-btn:hover {
-    background-color: #a3e635;
+  @media (hover: hover) {
+    .submit-btn:hover {
+      background-color: #c2ec24;
+    }
   }
 
   /* Verified Footer Tag */
@@ -482,11 +472,10 @@ import EnquiryForm from "../EnquiryForm.astro";
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #6b7280;
+    color: var(--ink-muted);
     letter-spacing: 0.08em;
     padding-left: 0.25rem;
   }
@@ -494,7 +483,7 @@ import EnquiryForm from "../EnquiryForm.astro";
   .check-icon {
     width: 14px;
     height: 14px;
-    color: #6b7280;
+    color: var(--ink-muted);
   }
 
   /* Responsive Adjustments */

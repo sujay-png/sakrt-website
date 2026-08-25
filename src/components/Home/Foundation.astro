@@ -1,7 +1,5 @@
 ---
 // src/components/Home/Foundation.astro
-import Layout from '../../layouts/Layout.astro';
-
 const whyChoose = [
   {
     title: "We Vet Every Product",
@@ -41,14 +39,16 @@ const whyChoose = [
 ];
 ---
 
-<section class="foundations-section" id="foundations-section">
-  <div class="container">
+<section class="sk-section foundations-section" id="foundations-section">
+  <div class="sk-wrap">
     <div class="why-sakrt-section">
-      <h2 class="why-title animate-title">Why Choose SAKRT Bioplastic Manufacturers?</h2>
-      <div class="why-grid">
-        {whyChoose.map((item, index) => (
-          <div class="why-card animate-card" style={`--delay: ${index * 0.08}s`} data-tilt>
-            <div class="card-glow"></div>
+      <div class="why-header" data-reveal>
+        <h2 class="sk-title why-title">Why Choose SAKRT Bioplastic Manufacturers?</h2>
+      </div>
+
+      <div class="why-grid" data-reveal-group>
+        {whyChoose.map((item) => (
+          <div class="why-card" data-reveal="grow">
             <div class="why-icon-box">
               <img src={item.icon} alt={item.title} class="why-icon-img" loading="lazy" />
             </div>
@@ -62,250 +62,101 @@ const whyChoose = [
 </section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap');
-
-  :root {
-    --color-text-dark: #0f3223;
-    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
+  /* Opaque + raised over the sticky hero. Light band after the dark one. */
   .foundations-section {
-    padding: 100px 24px;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
     position: relative;
-    overflow: hidden;
+    z-index: 10;
+    background: var(--pulp);
   }
 
-  .container {
-    max-width: 1240px;
-    width: 100%;
+  .why-header {
+    padding-bottom: var(--s-8);
+    margin-bottom: var(--s-10);
+    border-bottom: 1px solid var(--hairline-strong);
   }
 
-  /* WHY SAKRT GRID */
-  .why-sakrt-section {
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  /* TITLE ENTRANCE ANIMATION */
   .why-title {
-    font-family: var(--font-serif, 'DM Serif Display', serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 400;
-    color: var(--color-text-dark);
-    letter-spacing: -0.01em;
-    margin-bottom: 3.5rem;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s var(--ease-spring), transform 0.8s var(--ease-spring);
+    max-width: 30ch;
+    margin: 0;
   }
 
-  .is-visible .why-title {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  /* Register of reasons: equal ruled cards, seven of them, no orphan row. */
   .why-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    perspective: 1000px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
   }
-  
+
+  @media (min-width: 560px) {
+    .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (min-width: 900px) {
+    .why-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  @media (min-width: 1140px) {
+    .why-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+
   .why-card {
-    position: relative;
-    background-color: #f3f4f1;
-    border: 1px solid rgba(15, 50, 35, 0.05);
-    border-radius: 16px;
-    padding: 2.5rem 1.8rem;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-    overflow: hidden;
-    width: calc(25% - 15px); /* 4 per row */
-    
-    /* Reveal State */
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-    transition: 
-      opacity 0.7s var(--ease-spring) var(--delay, 0s),
-      transform 0.7s var(--ease-spring) var(--delay, 0s),
-      box-shadow 0.4s ease,
-      background-color 0.4s ease,
-      border-color 0.4s ease;
-    will-change: transform, opacity;
+    align-items: flex-start;
+    min-width: 0;
+    padding: var(--s-8) var(--s-6);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    transition: border-color var(--dur-2) var(--ease-settle),
+                transform var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle);
   }
 
-  .is-visible .why-card {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  /* Hover Spotlight Effect */
-  .card-glow {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(209, 255, 38, 0.25) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .why-card:hover .card-glow {
-    opacity: 1;
-  }
-
+  /* Icons here are a mix of product photos and flat PNGs. A fixed square
+     on pulp-deep with object-fit: contain normalises the set. */
   .why-icon-box {
-    position: relative;
-    z-index: 2;
-    width: 64px;
-    height: 64px;
+    width: 60px;
+    height: 60px;
+    flex: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
-    transition: transform 0.4s var(--ease-spring);
+    padding: var(--s-2);
+    background: var(--pulp-deep);
+    border-radius: var(--r-sm);
+    margin-bottom: var(--s-6);
   }
 
   .why-icon-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 0.4s var(--ease-spring);
-  }
-
-  /* HOVER STATES */
-  .why-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 16px 36px rgba(15, 50, 35, 0.12);
-    background-color: #ffffff;
-    border-color: rgba(15, 50, 35, 0.15);
-  }
-
-  .why-card:hover .why-icon-box {
-    transform: scale(1.15) rotate(-4deg);
   }
 
   .why-card h3 {
-    position: relative;
-    z-index: 2;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--color-text-dark);
-    margin-bottom: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-h4);
+    font-weight: 600;
     line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 var(--s-3);
+    overflow-wrap: anywhere;
   }
 
   .why-card p {
-    position: relative;
-    z-index: 2;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #6b7368;
-    font-weight: 400;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    line-height: 1.65;
+    color: var(--ink-soft);
     margin: 0;
   }
 
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .why-card {
-      width: calc(33.333% - 14px); /* 3 per row */
-    }
-  }
-
-  @media (max-width: 768px) {
-    .foundations-section {
-      padding: 60px 24px;
-    }
-    .why-card {
-      width: calc(50% - 10px); /* 2 per row */
-    }
-    .why-title {
-      margin-bottom: 2.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .why-card {
-      width: 100%; /* 1 per row */
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .why-title,
-    .why-card {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
+  @media (hover: hover) {
+    .why-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--hairline-strong);
+      box-shadow: var(--shadow-2);
     }
   }
 </style>
-
-<script>
-  function initFoundationsAnimation() {
-    const section = document.getElementById('foundations-section');
-    const cards = document.querySelectorAll('[data-tilt]');
-
-    if (!section) return;
-
-    // 1. Scroll-Trigger Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          section.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.15
-    });
-
-    observer.observe(section);
-
-    // 2. Subtle 3D Tilt Effect on Desktop
-    if (window.innerWidth > 768) {
-      cards.forEach((card) => {
-        const el = card as HTMLElement;
-
-        // Remove the staggered entrance delay so hover effects are instant
-        el.addEventListener('mouseenter', () => {
-          el.style.setProperty('--delay', '0s');
-        });
-
-        el.addEventListener('mousemove', (e: MouseEvent) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = ((y - centerY) / centerY) * -6;
-          const rotateY = ((x - centerX) / centerX) * 6;
-
-          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
-        });
-
-        el.addEventListener('mouseleave', () => {
-          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
-        });
-      });
-    }
-  }
-
-  initFoundationsAnimation();
-  document.addEventListener('astro:page-load', initFoundationsAnimation);
-</script>

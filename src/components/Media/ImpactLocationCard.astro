@@ -16,93 +16,65 @@ const {
 } = Astro.props;
 ---
 
-<div class="impact-card">
-  <div class="text-content">
-    <h2 class="card-title">{title}</h2>
-    <p class="card-description">{description}</p>
+<article class="impact">
+  <div class="impact__body">
+    <h2 class="impact__title">{title}</h2>
+    <p class="impact__description">{description}</p>
   </div>
 
-  <div class="map-graphic-wrapper">
-    <div class="map-circle">
-      <img src={mapImageSrc} alt={mapAlt} class="map-image" loading="lazy" />
-    </div>
+  <div class="impact__media sk-media">
+    <img src={mapImageSrc} alt={mapAlt} class="impact__map" loading="lazy" />
   </div>
-</div>
+</article>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap');
-
-  .impact-card {
-    background-color: #f7f9f6; /* Soft Off-White/Light Sage Tint */
-    border-radius: 1.75rem;
-    padding: 3.5rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    min-height: 380px;
-    box-sizing: border-box;
-    border: 1px solid rgba(13, 43, 29, 0.04);
-  }
-
-  .text-content {
-    flex: 1;
-    max-width: 580px;
-  }
-
-  .card-title {
-    font-family: var(--font-serif);
-    font-size: 1.70rem;
-    font-weight: 400;
-    color: #0d2b1d;
-    line-height: 1.25;
-    margin: 0 0 1.25rem 0;
-  }
-
-  .card-description {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: #4a5852;
-    margin: 0;
-  }
-
-  /* Circular Badge with Soft Shadow */
-  .map-graphic-wrapper {
-    flex-shrink: 0;
-  }
-
-  .map-circle {
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: #ffffff;
-    padding: 6px; /* White border inset ring */
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .map-image {
-    width: 100%;
+  /* Same ratio box as the tile beside it so the row reads evenly.
+     The map is a graphic, not a photograph, so it is contained rather
+     than cropped, on a pulp-deep field. */
+  .impact {
+    display: grid;
+    gap: var(--s-6);
+    align-content: start;
     height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+    min-width: 0;
   }
 
-  @media (max-width: 860px) {
-    .impact-card {
-      flex-direction: column-reverse;
-      text-align: left;
-      align-items: flex-start;
-      padding: 2.5rem 2rem;
-    }
+  .impact__media {
+    grid-row: 1;
+    --ar: 4 / 3;
+    border: 1px solid var(--hairline);
+    background: var(--pulp-deep);
+  }
 
-    .map-circle {
-      width: 130px;
-      height: 130px;
-    }
+  .impact__map {
+    object-fit: contain;
+    padding: var(--s-6);
+  }
+
+  .impact__body {
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .impact__title {
+    margin: 0;
+    max-width: 26ch;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h3);
+    line-height: 1.16;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .impact__description {
+    margin: 0;
+    max-width: 50ch;
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
   }
 </style>

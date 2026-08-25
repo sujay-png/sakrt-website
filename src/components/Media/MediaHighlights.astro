@@ -4,37 +4,45 @@ import WorldEnvironmentCard from './WorldEnvironmentCard.astro';
 import InstagramReelCard from './InstagramReelCard.astro';
 ---
 
-<section class="media-highlights-section">
-  <div class="media-grid">
-    <div class="main-card-col">
+<section class="media-index sk-section sk-section--band">
+  <div class="sk-wrap media-index__grid" data-reveal-group>
+    <div class="media-index__lead">
       <WorldEnvironmentCard />
     </div>
 
-    <div class="side-card-col">
+    <div class="media-index__aside">
       <InstagramReelCard />
     </div>
   </div>
 </section>
 
 <style>
-  .media-highlights-section {
-    width: 100%;
-    max-width: 1340px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    box-sizing: border-box;
-  }
-
-  .media-grid {
+  /* One lead story, one supporting item, split by a hairline instead of
+     two competing card boxes of different heights. */
+  .media-index__grid {
     display: grid;
-    grid-template-columns: 1.65fr 1fr;
-    gap: 1.75rem;
-    align-items: stretch;
+    gap: var(--s-10);
   }
 
-  @media (max-width: 960px) {
-    .media-grid {
-      grid-template-columns: 1fr;
+  .media-index__lead,
+  .media-index__aside { min-width: 0; }
+
+  .media-index__aside {
+    border-top: 1px solid var(--hairline-strong);
+    padding-top: var(--s-10);
+  }
+
+  @media (min-width: 960px) {
+    .media-index__grid {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      column-gap: var(--s-12);
+    }
+
+    .media-index__aside {
+      border-top: 0;
+      padding-top: 0;
+      border-left: 1px solid var(--hairline-strong);
+      padding-left: var(--s-12);
     }
   }
 </style>

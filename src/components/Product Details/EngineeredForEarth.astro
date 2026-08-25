@@ -2,7 +2,7 @@
 // EngineeredForEarth.astro
 ---
 
-<div class="efe-wrapper">
+<div class="efe-wrapper" data-reveal-group>
   <!-- Google Fonts import -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 
     <div class="efe-grid">
       <!-- Card 1: Large Dark Green (Spans 2 columns) -->
-      <div class="efe-card card-dark-lg">
+      <div class="efe-card card-dark-lg" data-reveal>
         <span class="efe-tag">LIFE CYCLE</span>
         <h2 class="efe-card-title">Zero Microplastics Policy</h2>
         <p class="efe-card-text">
@@ -22,7 +22,7 @@
       </div>
 
       <!-- Card 2: Light Cream (Flask Icon) -->
-      <div class="efe-card card-cream">
+      <div class="efe-card card-cream" data-reveal>
         <div class="efe-card-content">
           <!-- Flask Icon -->
           <svg class="efe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
@@ -36,7 +36,7 @@
       </div>
 
       <!-- Card 3: Light Gray Stat (94%) -->
-      <div class="efe-card card-gray">
+      <div class="efe-card card-gray" data-reveal>
         <div class="efe-stat-number">94%</div>
         <p class="efe-card-text">
           Reduction in carbon footprint compared to standard PET manufacturing processes.
@@ -44,7 +44,7 @@
       </div>
 
       <!-- Card 4: Neon Green Stat (180) -->
-      <div class="efe-card card-neon">
+      <div class="efe-card card-neon" data-reveal>
         <div class="efe-stat-number">180</div>
         <p class="efe-card-text">
           Average days for complete degradation in industrial composting environments.
@@ -52,7 +52,7 @@
       </div>
 
       <!-- Card 5: Dark Green Compliance (Check Icon) -->
-      <div class="efe-card card-dark-sm">
+      <div class="efe-card card-dark-sm" data-reveal>
         <svg class="efe-icon icon-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
@@ -65,21 +65,9 @@
 </div>
 
 <style>
-  /* Base Variables */
-  :root {
-    --color-dark-green: #112d22;
-    --color-neon-green: #c1f541;
-    --color-cream: #f5efe8;
-    --color-light-gray: #ededed;
-    --color-text-dark: #112d22;
-    --color-text-muted: #666666;
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Inter', sans-serif;
-  }
-
   /* Container Styles */
   .efe-wrapper {
-    background-color: #f9f9f9;
+    background-color: var(--pulp);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -89,17 +77,17 @@
   }
 
   .efe-container {
-    max-width: 1024px;
+    max-width: var(--maxw);
     width: 100%;
     margin: 0 auto;
   }
 
   .efe-heading {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 2.13rem;
     font-weight: 400;
     text-align: center;
-    color: var(--color-dark-green);
+    color: var(--brand);
     margin-bottom: 3rem;
   }
 
@@ -122,18 +110,19 @@
 
   /* Generic Card Styles */
   .efe-card {
-    border-radius: 1rem;
+    border-radius: var(--r-xl);
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
+    box-shadow: var(--shadow-1);
   }
 
   /* Card Variants */
   .card-dark-lg {
-    background-color: var(--color-dark-green);
-    color: #ffffff;
+    background-color: var(--brand);
+    color: var(--on-dark);
     min-height: 320px;
     justify-content: flex-end;
   }
@@ -145,44 +134,44 @@
   }
 
   .card-cream {
-    background-color: var(--color-cream);
-    color: var(--color-text-dark);
+    background-color: var(--surface);
+    color: var(--ink);
     min-height: 320px;
   }
 
   .card-gray {
-    background-color: var(--color-light-gray);
-    color: var(--color-text-dark);
+    background-color: var(--pulp-deep);
+    color: var(--ink);
     min-height: 220px;
   }
 
   .card-neon {
-    background-color: var(--color-neon-green);
-    color: var(--color-text-dark);
+    background-color: var(--lime);
+    color: var(--lime-ink);
     min-height: 220px;
   }
 
   .card-dark-sm {
-    background-color: var(--color-dark-green);
-    color: #ffffff;
+    background-color: var(--brand);
+    color: var(--on-dark);
     min-height: 220px;
   }
 
   /* Typography & Inner Elements */
   .efe-tag {
-    font-family: monospace;
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: var(--color-neon-green);
+    color: var(--lime);
     text-transform: uppercase;
     margin-bottom: 0.75rem;
     display: block;
   }
 
   .efe-card-title {
-    font-family: var(--font-serif);
-    font-size: 1.27rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0.75rem;
@@ -195,35 +184,32 @@
 
   .efe-card-text {
     font-family: var(--font-sans);
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     line-height: 1.6;
     margin: 0;
   }
 
   .card-dark-lg .efe-card-text {
-    color: #d1d5db;
+    color: var(--on-dark-muted);
     max-width: 32rem;
   }
 
   .card-cream .efe-card-text,
   .card-gray .efe-card-text {
-    color: var(--color-text-muted);
-    font-size: 0.8rem;
+    color: var(--ink-soft);
   }
 
   .card-neon .efe-card-text {
-    color: #324510;
-    font-size: 0.8rem;
+    color: var(--lime-ink);
     font-weight: 500;
   }
 
   .card-dark-sm .efe-card-text {
-    color: #e5e7eb;
-    font-size: 0.8rem;
+    color: var(--on-dark-muted);
   }
 
   .efe-stat-number {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 2.13rem;
     font-weight: 400;
     line-height: 1;
@@ -234,11 +220,11 @@
     width: 2rem;
     height: 2rem;
     margin-bottom: 2rem;
-    color: var(--color-text-dark);
+    color: var(--ink);
   }
 
   .efe-icon.icon-neon {
-    color: var(--color-neon-green);
+    color: var(--lime);
     margin-bottom: 1rem;
   }
 

@@ -2,80 +2,72 @@
 // src/components/Home/PublicAppearance.astro
 ---
 
-<section class="public-appearance-section">
-  <div class="pa-container">
-    <h2 class="pa-heading">Watch Our Latest Public Appearance</h2>
-    <div class="pa-underline"></div>
-    <div class="pa-video-wrapper">
-      <iframe 
-        width="100%" 
-        height="100%" 
-        src="https://www.youtube.com/embed/A6YEPwwKUEk?si=N8iajocHU-sHEnjS" 
-        title="YouTube video player" 
-      
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen>
-      </iframe>
+<section class="sk-section sk-section--band public-appearance-section">
+  <div class="sk-wrap pa-container">
+    <div class="pa-header" data-reveal-group>
+      <h2 class="sk-title pa-heading" data-reveal>Watch Our Latest Public Appearance</h2>
+      <div class="pa-underline" data-reveal="wipe"></div>
+    </div>
+
+    <div data-reveal-group>
+      <div class="pa-video-wrapper" data-reveal="wipe">
+        <iframe
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/A6YEPwwKUEk?si=N8iajocHU-sHEnjS"
+          title="YouTube video player"
+
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  /* Opaque + raised: the hero is position:sticky beneath the page. */
   .public-appearance-section {
-    padding: 60px 24px 80px 24px;
-    display: flex;
-    justify-content: center;
     position: relative;
     z-index: 10;
   }
 
   .pa-container {
-    max-width: 1000px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    max-width: 1040px;
+  }
+
+  .pa-header {
+    margin-bottom: var(--s-10);
   }
 
   .pa-heading {
-    font-family: var(--font-serif, 'Playfair Display', serif);
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: 400;
-    color: #163728;
-    margin: 0 0 15px 0;
+    max-width: 24ch;
+    margin: 0 0 var(--s-5);
   }
 
   .pa-underline {
-    width: 80px;
+    width: 56px;
     height: 3px;
-    background-color: #EBB13B;
-    margin-bottom: 40px;
+    background: var(--lime);
+    border-radius: var(--r-pill);
   }
 
+  /* Hairline frame instead of a drop shadow: the video reads as a plate
+     mounted on the sheet, not a floating card. */
   .pa-video-wrapper {
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 10px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--r-lg);
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    background: var(--ink);
   }
 
   .pa-video-wrapper iframe {
     width: 100%;
     height: 100%;
-    border: none;
-    border-radius: 10px;
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .public-appearance-section {
-      padding: 20px 24px 60px 24px;
-    }
-    .pa-underline {
-      margin-bottom: 30px;
-    }
+    border: 0;
+    display: block;
   }
 </style>

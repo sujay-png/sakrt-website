@@ -68,34 +68,40 @@ const {
         src={productImage} 
         alt={title} 
         class="zoom-img"
-        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease-in-out; transform-origin: center center;"
+        style="width: 100%; height: 100%; object-fit: contain; transition: transform 1.1s var(--ease-settle); transform-origin: center center;"
       />
     ) : (
       <Image 
         src={productImage} 
         alt={title} 
         class="zoom-img"
-        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease-in-out; transform-origin: center center;" 
+        style="width: 100%; height: 100%; object-fit: contain; transition: transform 1.1s var(--ease-settle); transform-origin: center center;" 
       />
     )}
   </div>
 </div>
 
 <style>
+  /* Shared product-card language: --surface shell, hairline border,
+     --r-lg corners, one settle hover. See sibling Product/*Card.astro. */
   .tableware-card {
     position: relative;
     width: 100%;
-    min-height: 520px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    padding: 3.5rem;
-    margin-right: 2rem;
+    height: 100%;
+    min-height: 340px;
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
     display: grid;
     grid-template-columns: 1fr 1.1fr;
-    gap: 2rem;
+    gap: clamp(1.5rem, 3vw, 2rem);
     align-items: center;
     box-sizing: border-box;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--shadow-1);
+    transition: transform var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle),
+                border-color var(--dur-2) var(--ease-settle);
   }
 
   .text-content {
@@ -104,71 +110,73 @@ const {
   }
 
   .card-header {
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--s-5);
   }
 
   .header-meta {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #444444;
-    letter-spacing: 0.05em;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 700;
+    color: var(--ink-muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
   .card-title {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
     font-weight: 400;
-    line-height: 1.10;
-  margin: 0 0rem 2rem 0;
-    color: #0b2e1b;
+    font-synthesis-weight: none;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--s-8) 0;
+    color: var(--ink);
   }
 
   .features-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 2.5rem 0;
+    margin: 0 0 var(--s-10) 0;
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: var(--s-3);
   }
 
   .feature-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.9rem;
-    color: #333333;
+    gap: var(--s-3);
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    color: var(--ink-soft);
   }
 
   .check-icon {
     width: 18px;
     height: 18px;
-    color: #84cc16;
+    color: var(--brand);
     flex-shrink: 0;
   }
 
   .explore-btn {
+    margin-top: auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: var(--s-2);
     width: fit-content;
-    padding: 0.85rem 1.5rem;
-    background-color: #0b2e1b;
-    color: #ffffff;
+    min-height: 44px;
+    padding: 0 var(--s-5);
+    background-color: var(--ink);
+    color: var(--on-dark);
     text-decoration: none;
-    border-radius: 8px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.75rem;
+    border-radius: var(--r-pill);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    letter-spacing: 0.08em;
-    transition: background-color 0.2s ease;
-  }
-
-  .explore-btn:hover {
-    background-color: #12452a;
+    letter-spacing: 0.1em;
+    transition: transform var(--dur-1) var(--ease-out),
+                background-color var(--dur-1) var(--ease-out);
   }
 
   .btn-arrow {
@@ -176,14 +184,28 @@ const {
     height: 16px;
   }
 
+  /* The photo sits in an identical --pulp-deep specimen tile. */
   .image-wrapper {
-    border-radius: 16px;
+    background: var(--pulp-deep);
+    border-radius: var(--r-md);
+    padding: var(--s-5);
   }
 
-  /* Direct CSS Hover Target for the image */
-  .tableware-card:hover .zoom-img,
-  .image-wrapper:hover .zoom-img {
-    transform: scale(1.08) !important;
+  .zoom-img {
+    transition: transform 1.1s var(--ease-settle);
+  }
+
+  @media (hover: hover) {
+    .tableware-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+      border-color: var(--hairline-strong);
+    }
+    .tableware-card:hover .zoom-img { transform: scale(1.045); }
+    .explore-btn:hover {
+      background-color: var(--brand);
+      transform: translateY(-2px);
+    }
   }
 
   @media (max-width: 992px) {
@@ -192,6 +214,12 @@ const {
     }
     .image-wrapper {
       height: 280px !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tableware-card {
+      padding: var(--s-6);
     }
   }
 </style> 

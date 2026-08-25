@@ -1,38 +1,42 @@
 ---
+// src/components/Shared/ReadyToGoGreen.astro
 ---
-<section class="go-green-section">
-  <div class="go-green-container">
-    <h2 class="go-green-title">Ready to Go Green?</h2>
-    <p class="go-green-desc">Reach out for bulk orders, custom branding, or distribution partnerships.</p>
-    
-    <div class="go-green-actions">
-      <a href="/contact-us" class="btn-primary">
-        GET IN TOUCH
-      </a>
-      <a href="/compostable-product" class="btn-secondary">
-        EXPLORE PRODUCTS
-      </a>
+<section class="sk-section go-green-section">
+  <div class="sk-wrap go-green-wrap">
+    <div class="go-green-container" data-reveal>
+      <h2 class="go-green-title">Ready to Go Green?</h2>
+      <p class="go-green-desc">Reach out for bulk orders, custom branding, or distribution partnerships.</p>
+
+      <div class="go-green-actions">
+        <a href="/contact-us" class="btn-primary">
+          GET IN TOUCH
+        </a>
+        <a href="/compostable-product" class="btn-secondary">
+          EXPLORE PRODUCTS
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
-
   .go-green-section {
-    width: 100%;
-    padding: 0 1.5rem 6rem;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    background: var(--pulp);
   }
 
+  .go-green-wrap {
+    max-width: 940px;
+  }
+
+  /* Was a two-stop gradient panel. Now a hairline-ruled specimen panel:
+     one surface, one border, no gradient. */
   .go-green-container {
-    max-width: 900px;
-    width: 100%;
-    background: linear-gradient(135deg, #f4f6f1 0%, #ebefe6 100%);
-    border-radius: 12px;
-    padding: 3.5rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-xl);
+    padding: clamp(36px, 6vw, 64px) var(--s-6);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -40,64 +44,82 @@
   }
 
   .go-green-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 4vw, 2.72rem);
+    font-family: var(--font-display);
     font-weight: 400;
-    color: #0b2218;
-    margin: 0 0 1rem 0;
-    line-height: 1.1;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h2);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 var(--s-4);
   }
 
   .go-green-desc {
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: 0.95rem;
-    color: #3b5f4c;
-    margin: 0 0 2.5rem 0;
+    font-family: var(--font-sans);
+    font-size: var(--fs-lede);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 48ch;
+    margin: 0 0 var(--s-10);
   }
 
   .go-green-actions {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--s-3);
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .btn-primary, .btn-secondary {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 26px;
+    border: 1px solid transparent;
+    border-radius: var(--r-pill);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
     font-weight: 700;
     letter-spacing: 0.1em;
-    text-transform: uppercase;
     text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+    transition: background-color var(--dur-1) var(--ease-out),
+                border-color var(--dur-1) var(--ease-out),
+                color var(--dur-1) var(--ease-out),
+                transform var(--dur-1) var(--ease-out);
   }
 
   .btn-primary {
-    background-color: #ffffff;
-    color: #0b2218;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-  }
-
-  .btn-primary:hover {
-    background-color: #f8faf9;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+    background: var(--ink);
+    color: var(--on-dark);
   }
 
   .btn-secondary {
-    background-color: #ffffff;
-    color: #0b2218;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--hairline-strong);
   }
 
-  .btn-secondary:hover {
-    background-color: #f8faf9;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background: var(--brand);
+      transform: translateY(-2px);
+    }
+    .btn-secondary:hover {
+      border-color: var(--ink);
+      background: rgba(16, 40, 28, 0.04);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .go-green-actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+    }
+    .btn-primary,
+    .btn-secondary { width: 100%; }
   }
 </style>

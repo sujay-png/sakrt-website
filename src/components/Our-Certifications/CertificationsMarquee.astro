@@ -98,26 +98,23 @@ const {
 <!-- Navigation handled by CertificatePreviewModal.astro -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap');
-
   .marquee-section {
     grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 3rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
     overflow: hidden;
   }
 
   .marquee-hint {
-    font-family: var(--font-serif);
-    font-size: 0.98rem;
-    font-weight: 400;
-    color: #2e6247;
-    margin: 0 0 2rem 0;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--ink-muted);
+    margin: 0 0 var(--s-8) 0;
     text-align: center;
-    letter-spacing: -0.01em;
   }
 
   .marquee-container {
@@ -144,7 +141,7 @@ const {
   .marquee-track {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: var(--s-6);
     width: max-content;
     animation: marquee-scroll var(--marquee-speed, 22s) linear infinite;
   }
@@ -159,14 +156,14 @@ const {
     justify-content: center;
     width: 180px;
     height: 110px;
-    padding: 1.25rem;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(10, 35, 25, 0.08);
-    border-radius: 1.25rem;
-    box-shadow: 0 4px 20px rgba(10, 35, 25, 0.03);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: var(--s-5);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-1);
+    transition: transform var(--dur-2) var(--ease-settle),
+                border-color var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle);
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
@@ -177,19 +174,21 @@ const {
     max-height: 100%;
     object-fit: contain;
     filter: grayscale(15%) opacity(0.9);
-    transition: filter 0.3s ease;
+    transition: filter var(--dur-2) var(--ease-out);
     pointer-events: none; /* Prevents image dragging */
   }
 
-  .logo-card:hover {
-    background: #ffffff;
-    border-color: rgba(197, 255, 73, 0.6);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(10, 35, 25, 0.08);
-  }
+  @media (hover: hover) {
+    .logo-card:hover {
+      background: var(--surface);
+      border-color: var(--hairline-strong);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+    }
 
-  .logo-card:hover img {
-    filter: grayscale(0%) opacity(1);
+    .logo-card:hover img {
+      filter: grayscale(0%) opacity(1);
+    }
   }
 
   @keyframes marquee-scroll {
@@ -201,16 +200,20 @@ const {
     }
   }
 
+  /* Honour reduced motion: stop the strip cleanly rather than jittering. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+
   @media (max-width: 600px) {
     .logo-card {
       width: 140px;
       height: 90px;
-      padding: 1rem;
-      border-radius: 1rem;
+      padding: var(--s-4);
     }
 
     .marquee-track {
-      gap: 1.25rem;
+      gap: var(--s-4);
     }
   }
 </style>

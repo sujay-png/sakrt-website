@@ -47,11 +47,11 @@ const usageApplications = productData?.usageApplications || [
 ];
 ---
 
-<section class="product-detail-page">
+<section class="product-detail-page" data-reveal-group>
   <div class="container">
     
     <!-- Top Section: Image and Title/Bullets -->
-    <div class="top-section">
+    <div class="top-section" data-reveal>
       <div class="image-column">
         <div class="image-wrapper">
           <img src={productImage} alt={productName} class="main-image" />
@@ -100,7 +100,7 @@ const usageApplications = productData?.usageApplications || [
     </div>
 
     <!-- Why Choose Section -->
-    <div class="why-choose-section">
+    <div class="why-choose-section" data-reveal>
       <h2 class="section-title">{whyChooseTitle}</h2>
       {whyChooseText.map((text: string) => (
         <p class="description-text">{text}</p>
@@ -108,8 +108,8 @@ const usageApplications = productData?.usageApplications || [
     </div>
 
     <!-- Additional Details & Usage Grid -->
-    <div class="details-usage-grid">
-      <div class="additional-details">
+    <div class="details-usage-grid" data-reveal-group>
+      <div class="additional-details" data-reveal>
         <h3 class="sub-section-title">{additionalDetailsTitle}</h3>
         <ul class="details-list">
           {additionalDetails.map((detail: string) => (
@@ -118,7 +118,7 @@ const usageApplications = productData?.usageApplications || [
         </ul>
       </div>
       
-      <div class="usage-applications">
+      <div class="usage-applications" data-reveal>
         <h3 class="sub-section-title">Usage Applications:</h3>
         <ul class="usage-list">
           {usageApplications.map((app: string) => (
@@ -130,7 +130,7 @@ const usageApplications = productData?.usageApplications || [
 
     <!-- Related Products -->
     {relatedProducts && relatedProducts.length > 0 && (
-      <div class="related-products-section">
+      <div class="related-products-section" data-reveal-group>
         <h2 class="section-title">Related Products</h2>
         <div class="related-grid">
           {relatedProducts.map((rp: any) => (
@@ -147,7 +147,7 @@ const usageApplications = productData?.usageApplications || [
     )}
 
     <!-- Enquiry Form Section -->
-    <div class="enquiry-section">
+    <div class="enquiry-section" data-reveal>
       <h2 class="section-title text-center">Ready to Go Green?</h2>
       <p class="section-subtitle text-center">Reach out for bulk orders, custom branding, or distribution partnerships.</p>
       
@@ -161,14 +161,14 @@ const usageApplications = productData?.usageApplications || [
 
 <style>
   .product-detail-page {
-    background-color: #ffffff;
+    background-color: var(--pulp);
     padding: 8rem 1.5rem 4rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #333;
+    font-family: var(--font-sans);
+    color: var(--ink);
   }
 
   .container {
-    max-width: 1200px;
+    max-width: var(--maxw);
     margin: 0 auto;
   }
 
@@ -176,21 +176,21 @@ const usageApplications = productData?.usageApplications || [
   .section-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #111;
+    color: var(--ink);
     margin-bottom: 1.25rem;
   }
 
   .sub-section-title {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #111;
+    color: var(--ink);
     margin-bottom: 1rem;
   }
   
   .description-text {
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     line-height: 1.6;
-    color: #555;
+    color: var(--ink-soft);
     margin-bottom: 1.25rem;
   }
 
@@ -215,8 +215,7 @@ const usageApplications = productData?.usageApplications || [
 
   .image-wrapper {
     width: 100%;
-    border-radius: 12px;
-    background-color: #ffffff;
+    border-radius: var(--r-xl);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -229,10 +228,11 @@ const usageApplications = productData?.usageApplications || [
   }
 
   .product-title {
+    font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1.2;
-    color: #111;
+    color: var(--brand);
     margin-bottom: 2rem;
   }
 
@@ -255,8 +255,8 @@ const usageApplications = productData?.usageApplications || [
     flex-direction: column;
     align-items: center;
     text-align: center;
-    font-size: 0.75rem;
-    color: #4da674;
+    font-size: var(--fs-label);
+    color: var(--brand);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -271,10 +271,13 @@ const usageApplications = productData?.usageApplications || [
 
   /* Features List */
   .about-title {
-    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #111;
+    color: var(--ink-soft);
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
 
   .feature-list {
@@ -284,9 +287,9 @@ const usageApplications = productData?.usageApplications || [
   }
 
   .feature-list li {
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     line-height: 1.6;
-    color: #555;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
   }
 
@@ -295,25 +298,29 @@ const usageApplications = productData?.usageApplications || [
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
   }
 
   .cpcb-tag {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #4da674;
+    color: var(--brand);
+    font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
+    font-size: var(--fs-label);
+    letter-spacing: 0.08em;
   }
 
   .rating-text {
-    font-size: 0.85rem;
-    color: #666;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
   }
 
   .stars {
-    color: #fbbf24;
+    color: var(--lime-ink);
     font-size: 1rem;
     margin-left: 0.25rem;
   }
@@ -344,26 +351,26 @@ const usageApplications = productData?.usageApplications || [
   }
 
   .details-list li, .usage-list li {
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     line-height: 1.6;
-    color: #555;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
   }
 
   .details-list strong {
-    color: #111;
+    color: var(--ink);
   }
 
   .usage-applications {
-    background-color: #f3f4f6; /* Light grey box */
+    background-color: var(--pulp-deep);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: var(--r-md);
   }
 
   /* Related Products */
   .related-products-section {
     margin-bottom: 5rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--hairline);
     padding-top: 3rem;
   }
 
@@ -391,55 +398,60 @@ const usageApplications = productData?.usageApplications || [
   .related-img-wrapper {
     width: 100%;
     aspect-ratio: 1;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    background-color: var(--surface);
+    border-radius: var(--r-sm);
     overflow: hidden;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--dur-1) var(--ease-out), box-shadow var(--dur-1) var(--ease-out);
+    box-shadow: var(--shadow-1);
   }
   
-  .related-img-wrapper:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  @media (hover: hover) {
+    .related-img-wrapper:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .related-img-wrapper:hover img {
+      transform: scale(1.05);
+    }
   }
 
   .related-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .related-img-wrapper:hover img {
-    transform: scale(1.05);
+    transition: transform var(--dur-1) var(--ease-out);
   }
 
   .related-title {
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
     font-weight: 600;
-    color: #111;
+    color: var(--ink);
     margin-bottom: 1rem;
     height: 2.4em; /* clamp height to align buttons */
     overflow: hidden;
   }
 
   .view-details-btn {
-    background-color: #2b7a4b;
-    color: white;
+    background-color: var(--brand);
+    color: var(--on-dark);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: var(--fs-sm);
     font-weight: 600;
     padding: 0.6rem 1.5rem;
     border-radius: 20px;
-    transition: background-color 0.2s;
+    transition: background-color var(--dur-1) var(--ease-out);
   }
 
-  .view-details-btn:hover {
-    background-color: #1e5c37;
+  @media (hover: hover) {
+    .view-details-btn:hover {
+      background-color: #081e14;
+    }
   }
 
   /* Enquiry Section */
@@ -450,8 +462,8 @@ const usageApplications = productData?.usageApplications || [
   }
 
   .section-subtitle {
-    font-size: 1rem;
-    color: #555;
+    font-size: var(--fs-body);
+    color: var(--ink-soft);
     margin-bottom: 2.5rem;
   }
 

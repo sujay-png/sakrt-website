@@ -95,50 +95,52 @@ const isProductsActive =
       <a href="/media" class={pathname === "/media" ? "active" : ""}>Media</a>
 
       <!-- Mobile-only CTA -->
-      <a href="/contact-us" class="enquire-btn mobile-btn">Inquire</a>
+      <a href="/contact-us" class="enquire-btn mobile-btn shine-btn">Inquire</a>
     </nav>
 
     <!-- Right: Desktop Enquire Button -->
     <div class="nav-right desktop-btn">
-      <a href="/contact-us" class="enquire-btn">Inquire</a>
+      <a href="/contact-us" class="enquire-btn shine-btn">Inquire</a>
     </div>
   </div>
 </header>
 
 <style>
-  /* Font Imports */
-  @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Space+Mono:wght@400;700&display=swap");
+  /* No @import here — every face is loaded once in Layout.astro. A CSS
+     @import inside a component blocks first paint. */
 
   /* Fixed Header Outer Wrapper */
   .main-header {
     position: fixed;
-    top: 24px;
+    top: var(--s-6);
     left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 2rem;
+    padding-inline: clamp(16px, 3vw, 32px);
     z-index: 1000;
   }
 
-  /* Glassmorphism Floating Capsule Navbar */
+  /* Floating capsule. Tinted with pulp rather than neutral grey so ink
+     text keeps its contrast wherever the light hero photo sits behind it.
+     backdrop-filter is allowed here — header and hero buttons only. */
   .glass-navbar {
     width: 100%;
     max-width: 1100px;
     height: 64px;
 
-    background: rgba(220, 220, 220, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    background: rgba(242, 243, 237, 0.62);
+    backdrop-filter: blur(18px) saturate(115%);
+    -webkit-backdrop-filter: blur(18px) saturate(115%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: var(--r-lg);
+    box-shadow: 0 10px 30px -18px rgba(16, 40, 28, 0.35);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px 0 32px;
+    padding: 0 10px 0 var(--s-8);
   }
 
   /* Flexbox Layout Helpers */
@@ -167,12 +169,8 @@ const isProductsActive =
     height: 48px;
     width: 48px;
     object-fit: cover;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-  }
-
-  .logo:hover img {
-    transform: scale(1.02);
+    border-radius: var(--r-pill);
+    transition: transform var(--dur-2) var(--ease-settle);
   }
 
   /* Navigation Menu Container */
@@ -180,62 +178,45 @@ const isProductsActive =
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: var(--s-8);
     position: relative;
     flex-wrap: nowrap;
   }
 
   .nav-menu a {
     text-decoration: none;
-    color: #66706b;
-    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 15px;
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
     font-weight: 500;
-    letter-spacing: 0.5px;
-    text-transform: capitalize;
-    transition: color 0.3s ease;
+    letter-spacing: 0.01em;
+    transition: color var(--dur-1) var(--ease-out);
     position: relative;
     padding: 6px 0;
     white-space: nowrap;
   }
 
-  .nav-menu a:hover {
-    color: #1b3d2f;
+  .nav-menu a.active {
+    color: var(--ink);
   }
 
-  .nav-menu a.active,
-  .nav-menu a:hover {
-    color: #1b3d2f;
-    font-weight: 700;
-  }
-
+  /* Lime as a rule, not as text. Scales rather than animating width. */
   .nav-menu a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0px;
-    width: 0;
+    right: 0;
+    bottom: 0;
     height: 2px;
-    background: #a3d200;
-    border-radius: 2px;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--lime);
+    border-radius: var(--r-pill);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--dur-2) var(--ease-settle);
   }
 
   .nav-menu a.active::after {
-    width: 100%;
-  }
-
-  .nav-menu:hover a:hover::after {
-    width: 100%;
-  }
-
-  .nav-menu:hover a:not(:hover).active::after {
-    width: 0;
-  }
-
-  /* Mobile-only close button (hidden on desktop) */
-  .mobile-close {
-    display: none;
+    transform: scaleX(1);
   }
 
   /* ==========================================
@@ -255,12 +236,8 @@ const isProductsActive =
   }
 
   .dropdown-arrow {
-    transition: transform 0.3s ease;
+    transition: transform var(--dur-2) var(--ease-settle);
     margin-top: -1px;
-  }
-
-  .dropdown-container:hover .dropdown-arrow {
-    transform: rotate(180deg);
   }
 
   .dropdown-menu {
@@ -268,37 +245,21 @@ const isProductsActive =
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 12px;
-    padding: 10px 0;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    padding: var(--s-2) 0;
     min-width: 210px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-2);
     list-style: none;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity var(--dur-2) var(--ease-settle),
+                transform var(--dur-2) var(--ease-settle),
+                visibility var(--dur-2) var(--ease-settle);
     pointer-events: none;
     z-index: 1050;
     margin: 0;
-  }
-
-  .dropdown-container::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 20px;
-  }
-
-  .dropdown-container:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(4px);
-    pointer-events: auto;
   }
 
   .dropdown-menu li {
@@ -308,14 +269,13 @@ const isProductsActive =
   .dropdown-menu li a {
     display: block;
     padding: 10px 20px;
-    color: #1b3d2f;
-    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 14px;
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
     font-weight: 500;
     text-decoration: none;
-    transition:
-      background 0.2s ease,
-      color 0.2s ease;
+    transition: background-color var(--dur-1) var(--ease-out),
+                color var(--dur-1) var(--ease-out);
     white-space: nowrap;
   }
 
@@ -323,35 +283,68 @@ const isProductsActive =
     display: none !important;
   }
 
-  .dropdown-menu li a:hover {
-    background: #f4f6f5;
-    color: #0b2218;
-    font-weight: 700;
+  /* Keyboard users get the same panel a mouse user gets. Desktop only —
+     on mobile the trigger's click handler owns the .open state, and Enter
+     on a link fires click, so keyboard works there too. */
+  @media (min-width: 1001px) {
+    .dropdown-container:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(4px);
+      pointer-events: auto;
+    }
+
+    .dropdown-container:focus-within .dropdown-arrow {
+      transform: rotate(180deg);
+    }
   }
 
-  /* Dark Green Pill Button */
+  /* Dark Pill Button */
   .enquire-btn {
-    background: #0b2218;
-    color: #ffffff;
-    padding: 12px 28px;
-    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 26px;
+    background: var(--ink);
+    color: var(--on-dark);
+    border-radius: var(--r-pill);
     text-decoration: none;
-    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
     font-weight: 600;
-    transition: all 0.3s ease;
     white-space: nowrap;
+    transition: background-color var(--dur-1) var(--ease-out),
+                transform var(--dur-1) var(--ease-out);
   }
 
-  .enquire-btn:hover {
-    background: #144735;
-    transform: scale(1.02);
+  /* Shine Effect for Enquire Button */
+  .shine-btn {
+    overflow: hidden;
+    position: relative;
+  }
+  .shine-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.22);
+    transform: rotate(30deg);
+    transition: left 0.6s var(--ease-out);
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .shine-btn:hover::after { left: 120%; }
   }
 
   .mobile-btn {
     display: none;
   }
 
+  /* Hidden outright on desktop, where there is no drawer to toggle. It
+     becomes a focusable sr-only control inside the mobile query below. */
   .menu-toggle-cb {
     display: none;
   }
@@ -359,27 +352,85 @@ const isProductsActive =
   .hamburger {
     display: none;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
     z-index: 1010;
-    margin-right: 12px;
+    border-radius: var(--r-md);
   }
 
   .hamburger span {
     width: 24px;
     height: 2px;
-    background-color: #1b3d2f;
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
+    background-color: var(--ink);
+    border-radius: var(--r-pill);
+    transition: transform var(--dur-2) var(--ease-settle),
+                opacity var(--dur-1) var(--ease-out);
+  }
+
+  .menu-toggle-cb:focus-visible ~ .hamburger {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+  }
+
+  /* ==========================================
+   DESKTOP HOVER (pointer devices only, so touch never sticks)
+   ========================================== */
+  @media (hover: hover) {
+    .logo:hover img { transform: scale(1.02); }
+
+    .nav-menu a:hover { color: var(--ink); }
+    .nav-menu:hover a:hover::after { transform: scaleX(1); }
+    .nav-menu:hover a:not(:hover).active::after { transform: scaleX(0); }
+
+    .dropdown-menu li a:hover {
+      background: var(--pulp-deep);
+      color: var(--ink);
+    }
+
+    .enquire-btn:hover {
+      background: var(--brand);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (hover: hover) and (min-width: 1001px) {
+    /* Invisible bridge so the pointer can cross the gap to the panel. */
+    .dropdown-container::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 20px;
+    }
+
+    .dropdown-container:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(4px);
+      pointer-events: auto;
+    }
+
+    .dropdown-container:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
   }
 
   /* ==========================================
    MOBILE RESPONSIVENESS
    ========================================== */
   @media (max-width: 1000px) {
+    .main-header {
+      padding-inline: var(--s-4);
+    }
+
     .glass-navbar {
       height: 56px;
-      padding: 0 16px 0 12px;
+      padding: 0 var(--s-2) 0 var(--s-3);
     }
 
     .logo img {
@@ -400,7 +451,23 @@ const isProductsActive =
       display: flex;
     }
 
-    /* Slide-out Mobile Menu Container — top-right panel */
+    /* Visually hidden but focusable, so the drawer is reachable by
+       keyboard — it was not, while this was display: none. */
+    .menu-toggle-cb {
+      display: block;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    /* Slide-out Mobile Menu Container — opaque ink panel, so link
+       contrast never depends on what is scrolling behind it. */
     .nav-menu {
       position: fixed;
       top: 85px;
@@ -409,36 +476,33 @@ const isProductsActive =
       transform: translateX(-50%) translateY(-10px);
       opacity: 0;
       visibility: hidden;
-      width: calc(100vw - 32px);
+      width: calc(100% - 32px);
       max-width: 340px;
       max-height: 85vh;
       overflow-y: auto;
-      background: rgba(11, 34, 24, 0.99);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 20px;
+      background: var(--ink);
+      border: 1px solid rgba(242, 243, 237, 0.14);
+      border-radius: var(--r-lg);
+      padding: var(--s-5);
       flex-direction: column;
       justify-content: flex-start;
       align-items: stretch;
       gap: 2px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      transition:
-        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.35s ease;
+      box-shadow: var(--shadow-3);
+      transition: transform var(--dur-2) var(--ease-settle),
+                  opacity var(--dur-2) var(--ease-out),
+                  visibility var(--dur-2) var(--ease-out);
     }
-
-
 
     .nav-menu a {
-      font-size: 15px;
-      color: #ffffff;
+      font-size: var(--fs-sm);
+      color: var(--on-dark);
       text-align: left;
       padding: 12px 10px;
-      border-radius: 10px;
+      border-radius: var(--r-md);
       width: 100%;
     }
+
     .nav-menu a.mobile-btn {
       text-align: center;
     }
@@ -447,17 +511,18 @@ const isProductsActive =
       display: none;
     }
 
-    .nav-menu a:hover,
+    /* Lime on ink measures 12.7:1. The tinted row backs up the colour so
+       state is never signalled by hue alone. */
     .nav-menu a.active {
-      color: #a3d200;
-      background: rgba(255, 255, 255, 0.05);
+      color: var(--lime);
+      background: rgba(242, 243, 237, 0.06);
     }
 
     /* Section divider before Certifications */
     a[href="/our-certifications"] {
       margin-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 16px;
+      border-top: 1px solid rgba(242, 243, 237, 0.12);
+      padding-top: var(--s-4);
     }
 
     /* Mobile Dropdown Customization */
@@ -467,6 +532,10 @@ const isProductsActive =
       align-items: stretch;
     }
 
+    .dropdown-container::after {
+      content: none;
+    }
+
     .dropdown-trigger {
       justify-content: space-between;
       width: 100%;
@@ -474,29 +543,22 @@ const isProductsActive =
 
     .dropdown-menu {
       position: static;
-      transform: none !important;
+      transform: none;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       max-height: 0;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(242, 243, 237, 0.04);
       border: none;
-      border-radius: 10px;
+      border-radius: var(--r-md);
       box-shadow: none;
       width: 100%;
       text-align: left;
       margin-top: 0;
       padding: 0;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Override desktop hover on mobile */
-    .dropdown-container:hover .dropdown-menu {
-      opacity: 0;
-      visibility: hidden;
-      transform: none !important;
-      pointer-events: none;
+      transition: opacity var(--dur-2) var(--ease-out),
+                  visibility var(--dur-2) var(--ease-out);
     }
 
     .dropdown-container.open .dropdown-menu {
@@ -504,7 +566,7 @@ const isProductsActive =
       visibility: visible;
       max-height: 350px;
       pointer-events: auto;
-      margin: 6px 0 8px 0;
+      margin: 6px 0 var(--s-2) 0;
       padding: 6px 0;
     }
 
@@ -513,35 +575,29 @@ const isProductsActive =
     }
 
     .dropdown-menu li a {
-      color: rgba(255, 255, 255, 0.65);
-      padding: 10px 14px 10px 24px;
-      font-size: 13.5px;
+      color: var(--on-dark-muted);
+      padding: 10px 14px 10px var(--s-6);
+      font-size: var(--fs-xs);
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-radius: 8px;
+      gap: var(--s-2);
+      border-radius: var(--r-md);
     }
 
-    /* Small dash marker before each submenu item for visual hierarchy */
+    /* Dash marker before each submenu item for visual hierarchy */
     .dropdown-menu li a::before {
       content: "—";
-      color: #a3d200;
+      color: var(--lime);
       font-size: 12px;
       opacity: 0.7;
     }
 
-    .dropdown-menu li a:hover {
-      background: rgba(255, 255, 255, 0.06);
-      color: #a3d200;
-    }
-
     .mobile-btn {
-      display: inline-block;
-      margin-top: 16px;
+      display: inline-flex;
+      margin-top: var(--s-4);
       width: 100%;
-      text-align: center;
-      background: #a3d200;
-      color: #0b2218;
+      background: var(--lime);
+      color: var(--ink);
     }
 
     /* Checkbox Toggle Logic */
@@ -562,10 +618,22 @@ const isProductsActive =
       transform: translateY(-7px) rotate(-45deg);
     }
   }
+
+  @media (hover: hover) and (max-width: 1000px) {
+    .nav-menu a:hover {
+      color: var(--lime);
+      background: rgba(242, 243, 237, 0.06);
+    }
+
+    .dropdown-menu li a:hover {
+      background: rgba(242, 243, 237, 0.08);
+      color: var(--lime);
+    }
+  }
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  const initHeaderMenu = () => {
     const dropdownTrigger = document.querySelector(".dropdown-trigger");
     const dropdownContainer = document.querySelector(".dropdown-container");
 
@@ -577,5 +645,8 @@ const isProductsActive =
         }
       });
     }
-  });
+  };
+
+  initHeaderMenu();
+  document.addEventListener("astro:after-swap", initHeaderMenu);
 </script>

@@ -6,7 +6,7 @@ import FilmsCard from './FilmsCard.astro';
 
 <section class="barrier-section">
   <!-- Product Cards Grid -->
-  <div class="barrier-grid">
+  <div class="barrier-grid" data-reveal-group>
     <a href="/compostable-product/compostable-pouches" class="card-link">
       <PouchesCard />
     </a>
@@ -19,38 +19,33 @@ import FilmsCard from './FilmsCard.astro';
 
 <style>
   .barrier-section {
-    padding: 1.5rem 1.4rem 3rem 1.5rem;
-    max-width: 1340px;
+    padding: 1.5rem var(--gutter) 3rem;
+    max-width: var(--maxw);
     margin: 0 auto;
-    width: 600%;
-    height:450%;
+    width: 100%;
     box-sizing: border-box;
   }
 
   .card-link {
     display: block;
+    height: 100%;
     text-decoration: none;
     color: inherit;
   }
 
-  /* Equal width 1:1 grid */
+  /* Narrow + wide specimen pair, equal height via stretch. */
   .barrier-grid {
     display: grid;
-       display: grid;
     grid-template-columns: 1.2fr 1.6fr;
-    gap: 1.66rem;
-    align-items: stretch;
-    margin-bottom: 2rem;
     gap: 1.5rem;
     align-items: stretch;
-    margin-bottom: 4rem; /* Spacing between cards and the line */
+    margin-bottom: 4rem;
   }
 
-  /* Bottom Grey Divider Line */
   .section-divider {
     border: none;
     height: 1px;
-    background-color: #e5e7eb; /* Soft subtle grey line */
+    background-color: var(--hairline);
     width: 100%;
     margin: 0;
   }

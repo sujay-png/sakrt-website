@@ -68,14 +68,14 @@
 <style>
   .sakrt-standard {
     width: 100%;
-    background-color: #f7f7f5;
-    padding: 5rem 2rem;
+    background-color: var(--pulp-deep);
+    padding: 5rem var(--gutter);
     overflow: hidden;
     box-sizing: border-box;
   }
 
   .standard-container {
-    max-width: 1200px;
+    max-width: var(--maxw);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -85,19 +85,21 @@
 
   /* Left Column Styling */
   .section-title {
-    font-family: var(--font-serif);
-    font-size: 2.76rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
     font-weight: 400;
-    color: #0d2818;
+    font-synthesis-weight: none;
+    color: var(--ink);
     margin: 0 0 1.25rem 0;
     line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   .section-description {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #4a524d;
+    font-family: var(--font-sans);
+    font-size: var(--fs-lede);
+    line-height: 1.7;
+    color: var(--ink-soft);
     max-width: 480px;
     margin: 0 0 3rem 0;
   }
@@ -109,10 +111,11 @@
   }
 
   .feature-card {
-    background-color: #ffffff;
-    border-radius: 16px;
+    background-color: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
     padding: 1.75rem 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    box-shadow: var(--shadow-1);
   }
 
   .card-icon {
@@ -122,7 +125,7 @@
   }
 
   .card-icon.green {
-    color: #84cc16;
+    color: var(--brand);
   }
 
   .card-icon svg {
@@ -131,17 +134,19 @@
   }
 
   .card-title {
-    font-family: var(--font-serif);
-    font-size: 1.06rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
     font-weight: 400;
-    color: #0d2818;
+    font-synthesis-weight: none;
+    color: var(--ink);
     margin: 0 0 0.5rem 0;
+    line-height: 1.1;
   }
 
   .card-text {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.725rem;
-    color: #666666;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--ink-muted);
     line-height: 1.5;
     margin: 0;
     text-transform: uppercase;
@@ -158,10 +163,10 @@
 
   .halo-circle {
     position: relative;
-    width: 440px;
-    height: 440px;
+    width: min(440px, 100%);
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
-    background-color: rgba(235, 240, 234, 0.65);
+    background-color: rgba(242, 243, 237, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,10 +175,11 @@
   .stat-circle {
     position: relative;
     z-index: 1;
-    width: 340px;
-    height: 340px;
+    width: 78%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
-    background-color: #174830;
+    background-color: var(--brand);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -181,32 +187,34 @@
     text-align: center;
     padding: 2.5rem;
     box-sizing: border-box;
-    box-shadow: 0 10px 30px #0d2d1d26;
+    box-shadow: var(--shadow-2);
   }
 
   .badge-label {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #a3e635;
-    letter-spacing: 0.15em;
+    color: var(--lime);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
 
   .stat-number {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 3.82rem;
     font-weight: 400;
-    color: #ffffff;
+    font-synthesis-weight: none;
+    color: var(--on-dark);
     line-height: 1;
     margin-bottom: 1rem;
   }
 
   .stat-description {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.875rem;
-    color: #d1e2d6;
-    line-height: 1.4;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    color: var(--on-dark-muted);
+    line-height: 1.5;
     margin: 0;
     max-width: 220px;
   }
@@ -215,15 +223,15 @@
     position: static;
     bottom: 28px;
     left: 20px;
-    background-color: #fff;
+    background-color: var(--surface);
     padding: .35rem .75rem;
-    border-radius: 6px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: .65rem;
+    border-radius: var(--r-sm);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
     font-weight: 700;
-    color: #333;
+    color: var(--ink);
     letter-spacing: .08em;
-    box-shadow: 0 2px 8px #0000000d;
+    box-shadow: var(--shadow-1);
   }
 
   /* Responsive Layout */
@@ -234,16 +242,6 @@
 
     .feature-cards {
       grid-template-columns: 1fr;
-    }
-
-    .halo-circle {
-      width: 340px;
-      height: 340px;
-    }
-
-    .stat-circle {
-      width: 270px;
-      height: 270px;
     }
 
     .stat-number {

@@ -10,7 +10,7 @@ import CertificatePreviewModal from './CertificatePreviewModal.astro';
 
 <section class="certifications-section">
   <!-- Header Area -->
-  <div class="header-container">
+  <div class="header-container" data-reveal>
     <span class="section-tag">VERIFIED ECOLOGY</span>
     <h2 class="section-title">Government-Certified Compostable Packaging Manufacturer in India</h2>
     <p class="section-description">
@@ -24,7 +24,7 @@ import CertificatePreviewModal from './CertificatePreviewModal.astro';
     <IsoCard />
     <CipetCard />
     <BioComplianceCard />
-    
+
     <!-- Certification Logos Marquee -->
     <CertificationsMarquee />
 
@@ -34,55 +34,68 @@ import CertificatePreviewModal from './CertificatePreviewModal.astro';
 </section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Playfair+Display:wght@600&family=Inter:wght@400&display=swap');
-
   .certifications-section {
     width: 100%;
-    max-width: 1340px;
+    max-width: var(--maxw);
     margin: 0 auto;
-    padding: 6.5rem 1.5rem;
+    padding: var(--section-y) var(--gutter);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
   }
 
   .header-container {
-    max-width: 580px;
-    margin-bottom: 3rem;
+    max-width: 640px;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
 
+  /* Eyebrow — mono label with the one lime rule (fill, never text). */
   .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 700;
     letter-spacing: 0.2em;
-    color: #4a5550;
-    display: block;
-    margin-bottom: 0.75rem;
+    color: var(--ink-muted);
     text-transform: uppercase;
+    margin-bottom: var(--s-5);
+  }
+  .section-tag::before {
+    content: '';
+    width: 26px;
+    height: 3px;
+    background: var(--lime);
+    border-radius: var(--r-pill);
+    flex: none;
   }
 
   .section-title {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
     font-weight: 400;
-    color: #0a2319;
-    margin: 0 0 1.25rem 0;
+    font-synthesis-weight: none;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 var(--s-5) 0;
+    text-wrap: balance;
   }
 
   .section-description {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    line-height: 1.65;
-    color: #4a5550;
+    font-family: var(--font-sans);
+    font-size: var(--fs-lede);
+    line-height: 1.7;
+    color: var(--ink-soft);
     margin: 0;
   }
 
-  /* Side-by-side Grid Layout */
+  /* Register layout: a wide primary column and a narrower companion. */
   .cards-grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
-    gap: 1.5rem;
+    gap: var(--s-5);
     align-items: stretch;
     width: 100%;
   }

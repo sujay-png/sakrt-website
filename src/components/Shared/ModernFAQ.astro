@@ -12,128 +12,167 @@ interface Props {
 const { title, faqs } = Astro.props;
 ---
 
-<div class="faq-container">
-  <h2 class="faq-title">{title}</h2>
-  
-  <div class="faq-list">
-    {faqs.map((faq, index) => (
-      <details class="faq-item" name="faq-accordion">
-        <summary class="faq-question">
-          <span class="question-text">
-            <strong>{index + 1}.</strong> {faq.question}
-          </span>
-          <span class="faq-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </summary>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>{faq.answer}</p>
+<div class="sk-section sk-section--band faq-container">
+  <div class="sk-wrap faq-wrap">
+    <h2 class="faq-title" data-reveal>{title}</h2>
+
+    <div class="faq-list" data-reveal>
+      {faqs.map((faq, index) => (
+        <details class="faq-item" name="faq-accordion">
+          <summary class="faq-question">
+            <span class="question-text">
+              <strong>{index + 1}.</strong> {faq.question}
+            </span>
+            <span class="faq-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>{faq.answer}</p>
+            </div>
           </div>
-        </div>
-      </details>
-    ))}
+        </details>
+      ))}
+    </div>
   </div>
 </div>
 
 <style>
   .faq-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 6rem;
-    font-family: system-ui, -apple-system, sans-serif;
+    position: relative;
+    z-index: 10;
+  }
+
+  .faq-wrap {
+    max-width: var(--maxw-narrow);
   }
 
   .faq-title {
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 600;
-    color: #0b2218;
-    margin-bottom: 2rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    font-size: var(--fs-h2);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 var(--s-10);
+    max-width: 30ch;
   }
 
+  /* A ruled register, not a stack of cards. */
   .faq-list {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--hairline-strong);
   }
 
   .faq-item {
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  .faq-item::details-content {
-    transition: height 0.3s ease, opacity 0.3s ease;
+    border-bottom: 1px solid var(--hairline-strong);
   }
 
   .faq-question {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 0;
+    align-items: flex-start;
+    gap: var(--s-5);
+    min-height: 44px;
+    padding: var(--s-6) 0;
     cursor: pointer;
+    font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 1rem;
-    color: #1e293b;
-    list-style: none; /* Hide default marker */
-    transition: color 0.2s ease;
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    color: var(--ink);
+    list-style: none;
+    transition: color var(--dur-1) var(--ease-out);
   }
 
-  /* Hide default details marker for Webkit */
-  .faq-question::-webkit-details-marker {
-    display: none;
-  }
-
-  .faq-question:hover {
-    color: #0b2218;
-    text-decoration: underline;
-  }
+  /* Strip the default disclosure marker in every engine. */
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::marker { content: ''; }
 
   .question-text {
     display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
+    gap: var(--s-3);
+    align-items: baseline;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
+  /* The index is data, so it is set in mono and stays quiet. */
   .question-text strong {
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--ink-muted);
+    flex: none;
   }
 
   .faq-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #64748b;
-    transition: transform 0.3s ease;
+    width: 28px;
+    height: 28px;
+    flex: none;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--hairline-strong);
+    color: var(--ink-muted);
+    transition: transform var(--dur-2) var(--ease-settle),
+                border-color var(--dur-1) var(--ease-out),
+                color var(--dur-1) var(--ease-out);
   }
 
-  /* Rotate icon when open */
-  details[open] .faq-icon {
+  .faq-item[open] .faq-icon {
     transform: rotate(180deg);
+    border-color: var(--ink);
+    color: var(--ink);
   }
 
+  /* Opens on grid-template-rows, never on height, and never from JS.
+     Browsers without ::details-content support still get this transition
+     because the wrapper lives inside the <details>. */
   .faq-answer {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease-out;
+    transition: grid-template-rows var(--dur-2) var(--ease-settle);
   }
 
-  details[open] .faq-answer {
+  .faq-item[open] .faq-answer {
     grid-template-rows: 1fr;
   }
 
   .faq-answer-inner {
     overflow: hidden;
+    min-height: 0;
   }
 
   .faq-answer p {
     margin: 0;
-    padding-bottom: 1.5rem;
-    padding-left: 1.85rem;
-    color: #475569;
-    line-height: 1.6;
-    font-size: 0.95rem;
+    padding: 0 var(--s-10) var(--s-6) calc(var(--s-6) + var(--s-2));
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 68ch;
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 560px) {
+    .faq-answer p {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  @media (hover: hover) {
+    .faq-question:hover { color: var(--brand); }
+    .faq-question:hover .faq-icon {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
   }
 </style>
