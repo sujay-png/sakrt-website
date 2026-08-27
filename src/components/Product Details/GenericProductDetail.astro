@@ -96,6 +96,11 @@ const usageApplications = productData?.usageApplications || [
             {ratingText} <span class="stars">★★★★★</span>
           </div>
         </div>
+
+        <div class="product-action-buttons">
+          <a href="/contact-us" class="btn-primary">ENQUIRE NOW</a>
+          <a href="#bulk-order-form" class="btn-secondary">ORDER IN BULK</a>
+        </div>
       </div>
     </div>
 
@@ -147,7 +152,7 @@ const usageApplications = productData?.usageApplications || [
     )}
 
     <!-- Enquiry Form Section -->
-    <div class="enquiry-section">
+    <div class="enquiry-section" id="bulk-order-form">
       <h2 class="section-title text-center">Ready to Go Green?</h2>
       <p class="section-subtitle text-center">Reach out for bulk orders, custom branding, or distribution partnerships.</p>
       
@@ -458,5 +463,65 @@ const usageApplications = productData?.usageApplications || [
   .form-wrapper {
     max-width: 700px;
     margin: 0 auto;
+  }
+
+  /* Action Buttons */
+  .product-action-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .product-action-buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-accent-lime, #8ce02c);
+    color: var(--color-primary-dark, #0d3d26);
+    box-shadow: 0 8px 20px rgba(140, 224, 44, 0.2);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-accent-lime-bright, #CFF737);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(140, 224, 44, 0.3);
+  }
+
+  .btn-secondary {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1.5px solid #000000;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .btn-secondary:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #000000;
+  }
+
+  @media (max-width: 768px) {
+    .product-action-buttons {
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+    }
+    
+    .product-action-buttons a {
+      width: 100%;
+      text-align: center;
+    }
   }
 </style>

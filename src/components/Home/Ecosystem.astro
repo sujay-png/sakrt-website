@@ -73,20 +73,20 @@ import bioComplianceImg from '../../images/bio-compliance.png';
         </div>
       </a>
 
-      <!-- 3. Grow Bags -->
-      <a href="/compostable-product/compostable-grow-bags" class="accordion-card" data-card>
-        <div class="card-image grow-bg"></div>
+      <!-- 3. Compostable Films -->
+      <a href="/compostable-product/compostable-films" class="accordion-card" data-card>
+        <div class="card-image film-bg"></div>
         <div class="card-overlay"></div>
         
         <div class="card-badge">03</div>
 
         <div class="card-content-box">
-          <span class="category-subtitle">AGRICULTURE</span>
-          <h3 class="card-heading">Compostable Grow Bags</h3>
-          <p class="card-description">Nurture plants with bio-based nursery bags that blend into soil over time.</p>
+          <span class="category-subtitle">PACKAGING</span>
+          <h3 class="card-heading">Compostable Films</h3>
+          <p class="card-description">Versatile, eco-friendly films designed to protect goods while minimizing environmental impact.</p>
 
           <div class="action-row">
-            <span class="btn-lime">View Agritech</span>
+            <span class="btn-lime">Explore Films</span>
           </div>
         </div>
       </a>
@@ -277,7 +277,7 @@ import bioComplianceImg from '../../images/bio-compliance.png';
 
   .bottle-bg { background-image: url('../../images/biodegradable_water.png'); }
   .bag-bg { background-image: url('../../images/sakrt_bag.png'); }
-  .grow-bg { background-image: url('../../images/plants and trees.png'); }
+  .film-bg { background-image: url('/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp'); }
   .tableware-bg { background-image: url('../../images/biodegradable_utensils.png'); }
 
   /* Dark Gradient Overlay */
@@ -401,6 +401,7 @@ import bioComplianceImg from '../../images/bio-compliance.png';
     .accordion-card {
       height: 220px;
       flex: none !important;
+      transition: height 0.8s var(--ease-spring), border-color 0.4s ease, box-shadow 0.5s ease;
     }
 
     .accordion-card.active-card {
@@ -409,6 +410,14 @@ import bioComplianceImg from '../../images/bio-compliance.png';
 
     .card-heading {
       white-space: normal;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ecosystem-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
     }
   }
 </style>
@@ -430,13 +439,38 @@ import bioComplianceImg from '../../images/bio-compliance.png';
       });
     }
 
-    // 2. Active Expansion on Hover/Click
+    const isMobile = () => window.innerWidth <= 900;
+
+    // 2. Active Expansion on Hover/Click (Desktop)
     cards.forEach((card) => {
       card.addEventListener('mouseenter', () => {
-        cards.forEach((c) => c.classList.remove('active-card'));
-        card.classList.add('active-card');
+        if (!isMobile()) {
+          cards.forEach((c) => c.classList.remove('active-card'));
+          card.classList.add('active-card');
+        }
       });
     });
+
+    // 3. Scroll-to-expand using IntersectionObserver (Mobile)
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (!isMobile()) return;
+
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            cards.forEach((c) => c.classList.remove('active-card'));
+            entry.target.classList.add('active-card');
+          }
+        });
+      }, {
+        root: null,
+        // Trigger when the card enters the middle 40% of the viewport
+        rootMargin: '-30% 0px -30% 0px',
+        threshold: 0
+      });
+
+      cards.forEach(card => observer.observe(card));
+    }
   }
 
   setupAccordion();

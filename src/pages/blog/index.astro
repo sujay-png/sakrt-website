@@ -108,7 +108,7 @@ const slugify = (text: string) =>
                 <h3 class="post-title" set:html={post.title}></h3>
               </a>
               
-              <div class="post-excerpt" set:html={post.excerpt}></div>
+              <div class="post-excerpt" set:html={post.excerpt.replace(/\[&hellip;\]|\[\.\.\.\]|\.\.\./g, `... <a href="/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}" class="read-more-link">Read more</a>`)}></div>
             </div>
 
             {/* Right Column: Image */}
@@ -339,6 +339,19 @@ const slugify = (text: string) =>
     line-height: 1.6;
     color: var(--color-text);
     margin: 0;
+  }
+
+  .post-excerpt :global(.read-more-link) {
+    color: #3b735b;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 0.25rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .post-excerpt :global(.read-more-link:hover) {
+    text-decoration: underline;
+    opacity: 0.8;
   }
 
   /* Image Styling */

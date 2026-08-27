@@ -17,9 +17,9 @@ const { products } = Astro.props;
   <div class="category-grid">
     {products.map((product) => (
       <div class="product-card">
-        <div class="image-wrapper">
+        <a href={`/compostable-product/${product.category}/${product.slug}`} class="image-wrapper" style="display: block;">
           <img src={product.image} alt={product.name} loading="lazy" />
-        </div>
+        </a>
         <div class="product-info">
           <h3 class="product-name">{product.name}</h3>
           <a href={`/compostable-product/${product.category}/${product.slug}`} class="view-details-btn">
@@ -89,6 +89,7 @@ const { products } = Astro.props;
     padding: 1.5rem;
     box-sizing: border-box;
     overflow: hidden;
+    cursor: pointer;
   }
 
   .image-wrapper img {

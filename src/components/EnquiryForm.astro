@@ -115,7 +115,7 @@
         </div>
 
         <div class="full-width">
-            <button type="submit" class="submit-btn"> REQUEST A QUOTE </button>
+            <button type="submit" class="submit-btn"> SUBMIT INQUIRY </button>
         </div>
     </form>
 </div>
@@ -355,6 +355,7 @@
             ]);
 
             form.reset();
+            alert("Your inquiry has been successfully submitted!");
         } catch (error) {
             console.error("Error submitting form:", error);
             alert(
@@ -362,7 +363,7 @@
             );
         } finally {
             if (submitBtn) {
-                submitBtn.textContent = "REQUEST A QUOTE";
+                submitBtn.textContent = "SUBMIT INQUIRY";
                 submitBtn.disabled = false;
             }
         }
