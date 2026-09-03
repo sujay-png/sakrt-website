@@ -1,13 +1,14 @@
 ---
 // CipetCard.astro
+import cipetSeal from '../../images/cipet-seal.png';
 ---
 
 <div class="glass-card cipet-card cert-preview-trigger" data-cert-url="/certificates/CIPET.webp" data-cert-type="image">
   <div class="card-content">
     <div class="image-wrapper">
-      <!-- Replace src with your actual seal image path -->
+      <!-- Proper Vite Image Import for Production -->
       <img 
-        src="/src/images/cipet-seal.png" 
+        src={cipetSeal.src} 
         alt="CIPET Validation Stamp" 
         class="seal-image"
         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
