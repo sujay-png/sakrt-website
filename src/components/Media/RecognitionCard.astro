@@ -23,9 +23,6 @@ const {
   <div class="card-bg-image"></div>
   <div class="card-overlay"></div>
 
-  <!-- Animated Border Glow Trace -->
-  <div class="border-glow-trace"></div>
-
   <!-- Foreground Content Floating Layers -->
   <div class="card-content">
     <div class="tag-badge-wrapper">
@@ -63,7 +60,7 @@ const {
   .recognition-card {
     position: relative;
     border-radius: 1.75rem;
-    padding: 3.5rem 2.8rem;
+    padding: 3.5rem 2rem; /* STANDARD: 2rem horizontal padding */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -105,20 +102,8 @@ const {
     transition: opacity 0.4s ease;
   }
 
-  /* Dynamic Border Glow Line */
-  .border-glow-trace {
-    position: absolute;
-    inset: -1px;
-    border-radius: 1.75rem;
-    background: linear-gradient(135deg, rgba(197, 255, 73, 0.6), transparent 40%, rgba(197, 255, 73, 0.3));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .recognition-card:hover .border-glow-trace {
-    opacity: 1;
+  .recognition-card:hover {
+    border-color: rgba(197, 255, 73, 0.3); /* Subtle theme color border on hover */
   }
 
   .recognition-card:hover .card-bg-image {
@@ -175,7 +160,7 @@ const {
     font-weight: 400;
     color: #ffffff;
     line-height: 1.22;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.25rem 0; /* Standardized vertical rhythm */
   }
 
   .card-description {

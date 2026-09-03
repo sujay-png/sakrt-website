@@ -33,6 +33,13 @@
     <p class="subtext">
       Globally audited for consistent quality and sustainable manufacturing practices across every batch.
     </p>
+    <div class="doc-link">
+      <span>VIEW<br />DOCUMENT</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="7" y1="17" x2="17" y2="7"></line>
+        <polyline points="7 7 17 7 17 17"></polyline>
+      </svg>
+    </div>
   </div>
 </div>
 
@@ -125,6 +132,10 @@
 
   .card-bottom {
     margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
   }
 
   .subtext {
@@ -134,5 +145,26 @@
     line-height: 1.5;
     color: #727a75;
     margin: 0;
+    max-width: 70%;
+  }
+
+  .doc-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #0a2319;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: right;
+    line-height: 1.2;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .doc-link:hover {
+    opacity: 0.7;
   }
 </style>

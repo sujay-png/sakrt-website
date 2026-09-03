@@ -1,0 +1,115 @@
+---
+// YouTubeCard.astro
+
+export interface Props {
+  tag?: string;
+  title?: string;
+  videoThumbnail?: string;
+  youtubeUrl?: string;
+}
+
+const {
+  tag = "YOUTUBE VIDEO",
+  title = "SAKRT Honored at State-Level Eco Awareness Event",
+  videoThumbnail = "src/images/choose-sustainable.webp",
+  youtubeUrl = "https://youtu.be/A6YEPwwKUEk"
+} = Astro.props;
+---
+
+<div class="video-card">
+  <span class="card-tag">{tag}</span>
+
+  <h3 class="card-title">{title}</h3>
+
+  <!-- Embedded YouTube Video -->
+  <div class="iframe-container">
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/A6YEPwwKUEk?si=3zK_01SnUWebn2Wb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <!-- Footer Link -->
+  <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" class="video-footer-link">
+    <span>WATCH ON YOUTUBE</span>
+    <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Playfair+Display:wght@500;600&display=swap');
+
+  .video-card {
+    background: #f1f4f0; /* Soft tint card background */
+    border-radius: 1.75rem;
+    padding: 2.5rem 2rem; /* STANDARD: 2rem horizontal padding for perfect alignment */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(10, 35, 25, 0.05);
+  }
+
+  .card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.725rem;
+    font-weight: 500;
+    color: #6a7870;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem; /* Standardized vertical rhythm */
+    display: block;
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 1.27rem;
+    font-weight: 400;
+    color: #0a2319;
+    line-height: 1.25;
+    margin: 0 0 1.25rem 0; /* Standardized vertical rhythm */
+  }
+
+  .iframe-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+  }
+  
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Bottom External Link */
+  .video-footer-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.725rem;
+    font-weight: 600;
+    color: #4a5550;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .video-footer-link:hover {
+    color: #0a2319;
+  }
+
+  .external-icon {
+    width: 16px;
+    height: 16px;
+  }
+</style>

@@ -19,6 +19,16 @@
     </div>
   </div>
 
+  <div class="card-bottom">
+    <div class="doc-link">
+      <span>VIEW<br />DOCUMENT</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="7" y1="17" x2="17" y2="7"></line>
+        <polyline points="7 7 17 7 17 17"></polyline>
+      </svg>
+    </div>
+  </div>
+
   <!-- Decorative Leaf Background Watermark -->
   <div class="leaf-watermark">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="currentColor">
@@ -104,6 +114,33 @@ background-color: #0f3f2d;
     color: #ffffff;
     pointer-events: none;
     z-index: 1;
+  }
+
+  .card-bottom {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 3;
+  }
+
+  .doc-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #c5ff49; /* Bright lime for contrast on dark green */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: right;
+    line-height: 1.2;
+    transition: opacity 0.2s ease;
+  }
+
+  .doc-link:hover {
+    opacity: 0.7;
   }
 
   @media (max-width: 480px) {

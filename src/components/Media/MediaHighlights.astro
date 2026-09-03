@@ -1,17 +1,17 @@
 ---
 // MediaHighlights.astro
-import WorldEnvironmentCard from './WorldEnvironmentCard.astro';
-import InstagramReelCard from './InstagramReelCard.astro';
+import WorldEnvironmentCard from "./WorldEnvironmentCard.astro";
+import YouTubeCard from "./YouTubeCard.astro";
 ---
 
 <section class="media-highlights-section">
   <div class="media-grid">
-    <div class="main-card-col">
-      <WorldEnvironmentCard />
+    <div class="side-card-col">
+      <YouTubeCard />
     </div>
 
-    <div class="side-card-col">
-      <InstagramReelCard />
+    <div class="main-card-col">
+      <WorldEnvironmentCard />
     </div>
   </div>
 </section>
@@ -19,7 +19,7 @@ import InstagramReelCard from './InstagramReelCard.astro';
 <style>
   .media-highlights-section {
     width: 100%;
-    max-width: 1340px;
+    max-width: 1480px; /* Increased to allow taller iframe height while keeping right card wide */
     margin: 0 auto;
     padding: 2rem 1.5rem;
     box-sizing: border-box;
@@ -27,7 +27,7 @@ import InstagramReelCard from './InstagramReelCard.astro';
 
   .media-grid {
     display: grid;
-    grid-template-columns: 1.65fr 1fr;
+    grid-template-columns: 1.45fr 1fr;
     gap: 1.75rem;
     align-items: stretch;
   }
@@ -38,3 +38,38 @@ import InstagramReelCard from './InstagramReelCard.astro';
     }
   }
 </style>
+
+<script>
+  function syncCardHeight() {
+    const iframeContainer = document.querySelector('.iframe-container');
+    const rightCard = document.querySelector('.news-featured-card');
+    const mediaGrid = document.querySelector('.media-grid');
+    
+    if (iframeContainer && rightCard && mediaGrid) {
+      const rightCardEl = rightCard as HTMLElement;
+      
+      // On mobile (stacked), reset margins so it flows naturally
+      if (window.innerWidth <= 960) {
+        rightCardEl.style.marginTop = '0px';
+        rightCardEl.style.marginBottom = '0px';
+        return;
+      }
+      
+      const iframeRect = iframeContainer.getBoundingClientRect();
+      const gridRect = mediaGrid.getBoundingClientRect();
+      
+      // Calculate exact distance from top of the grid row
+      const offsetTop = iframeRect.top - gridRect.top;
+      
+      // Apply exact margin top and exact height to perfectly clone the iframe's boundaries
+      rightCardEl.style.marginTop = `${offsetTop}px`;
+      rightCardEl.style.height = `${iframeRect.height}px`;
+    }
+  }
+
+  // Run immediately and on events to prevent layout shifts
+  syncCardHeight();
+  window.addEventListener('load', syncCardHeight);
+  window.addEventListener('resize', syncCardHeight);
+  document.addEventListener('astro:page-load', syncCardHeight);
+</script>
