@@ -223,8 +223,8 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   /* Sidebar Styles */
   .blog-sidebar {
     position: sticky;
-    top: 6rem;
-    height: fit-content;
+    top: 130px; /* Offset for fixed header */
+    align-self: start;
   }
   
   .sidebar-title {

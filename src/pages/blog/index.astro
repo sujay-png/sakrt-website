@@ -71,58 +71,35 @@ const slugify = (text: string) =>
       </p>
     </header>
 
-    <header class="blog-section-header">
-      <h2 class="section-title">Sustainability & Compostable Packaging Insights</h2>
-      <div class="filters">
-        <a href="/blog" class="filter-btn active">All</a>
-        {categories.map((cat: any) => (
-          <a href={`/blog/category/${slugify(cat)}`} class="filter-btn">{cat}</a>
-        ))}
-      </div>
-    </header>
+    <div class="filters">
+      <a href="/blog" class="filter-btn active">All</a>
+      {categories.map((cat: any) => (
+        <a href={`/blog/category/${slugify(cat)}`} class="filter-btn">{cat}</a>
+      ))}
+    </div>
 
     <section class="post-list">
       {posts.map((post: any) => {
         const { day, monthYear } = formatDate(post.date);
+        const mainCategory = post.categories?.nodes?.[0]?.name || "general";
+        const categorySlug = slugify(mainCategory);
+        const postUrl = `/blog/category/${categorySlug}/${post.slug}`;
         
         return (
-          <article class="post-item" data-categories={post.categories?.nodes.map((c:any) => c.name).join(',') || ''}>
+          <article class="post-card" data-categories={post.categories?.nodes.map((c:any) => c.name).join(',') || ''}>
             
-            {/* Left Column: Date */}
-            <div class="post-date">
-              <span class="day">{day}</span>
-              <span class="month-year">{monthYear}</span>
-            </div>
-            
-            {/* Middle Column: Content */}
-            <div class="post-content">
-              <div class="post-categories">
-                {post.categories.nodes.map((category: any, index: number) => (
-                  <span class={`category-badge ${index === 1 ? 'badge-filled' : ''}`}>
-                    {category.name}
-                  </span>
-                ))}
-              </div>
-              
-              <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`} class="post-link">
-                <h3 class="post-title" set:html={post.title}></h3>
-              </a>
-              
-              <div class="post-excerpt" set:html={post.excerpt.replace(/\[&hellip;\]|\[\.\.\.\]|\.\.\./g, `... <a href="/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}" class="read-more-link">Read more</a>`)}></div>
-            </div>
-
-            {/* Right Column: Image */}
             <div class="post-image-wrapper">
               {post.featuredImage?.node ? (
-                <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`}>
+                <a href={postUrl}>
                   <img 
                     src={post.featuredImage.node.sourceUrl} 
                     alt={post.featuredImage.node.altText || post.title} 
                     class="post-thumbnail"
+                    loading="lazy"
                   />
                 </a>
               ) : (
-                <a href={`/blog/category/${encodeURIComponent((post.categories?.nodes?.[0]?.name || "general").toLowerCase().replace(/\s+/g, '-'))}/${post.slug}`} class="placeholder-image">
+                <a href={postUrl} class="placeholder-image">
                   <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1" fill="none">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                     <circle cx="8.5" cy="8.5" r="1.5"></circle>
@@ -132,48 +109,34 @@ const slugify = (text: string) =>
               )}
             </div>
             
+            <div class="post-content">
+              <a href={postUrl} class="post-link">
+                <h3 class="post-title" set:html={post.title}></h3>
+              </a>
+              
+              <div class="post-excerpt" set:html={post.excerpt.replace(/\[&hellip;\]|\[\.\.\.\]|\.\.\./g, `...`)}></div>
+              
+              <a href={postUrl} class="read-more-link">Read More</a>
+            </div>
+            
           </article>
         );
       })}
     </section>
 
-
-
   </main>
 </BaseLayout>
 
 <style>
-  /* Base Variables matching the design system */
-  :root {
-    --font-serif: 'Playfair Display', serif;
-    --font-mono: 'Space Mono', monospace;
-    --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --color-dark: #1b3d2f;
-    --color-text: #555555;
-    --color-light-gray: #e5e5e5;
-    --color-border: #f0f0f0;
-    --color-accent: #CFF737;
-  }
-
   .blog-container {
-    max-width: 1100px;
+    max-width: var(--maxw, 1320px);
     margin: 0 auto;
-    padding: 10rem 2rem 6rem; /* Account for fixed header */
-  }
-
-  /* Section Header */
-  .blog-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
+    padding: clamp(120px, 15vh, 160px) var(--gutter) var(--section-y);
   }
 
   /* Main Header */
   .blog-main-header {
-    margin-bottom: 3rem;
+    margin-bottom: var(--s-10);
     text-align: center;
     max-width: 800px;
     margin-left: auto;
@@ -181,196 +144,96 @@ const slugify = (text: string) =>
   }
 
   .main-title {
-    font-family: var(--font-serif);
-    font-size: 3.5rem;
-    font-weight: 500;
-    color: var(--color-dark);
-    margin: 0 0 1rem 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-h1);
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0 0 var(--s-4) 0;
   }
 
   .main-desc {
     font-family: var(--font-sans);
-    font-size: 1.05rem;
-    color: var(--color-text);
+    font-size: var(--fs-lede);
+    color: var(--ink-soft);
     margin: 0;
     line-height: 1.6;
   }
 
-  /* Section Header */
-  .blog-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .section-title {
-    font-family: var(--font-serif);
-    font-size: 1.06rem;
-    font-weight: 400;
-    color: var(--color-dark);
-    margin: 0;
-  }
-
+  /* Filters */
   .filters {
     display: flex;
-    gap: 0.75rem;
+    gap: var(--s-3);
     flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: var(--s-12);
   }
 
   .filters a {
-    background: #f0f0f0;
+    background: var(--brand);
+    color: var(--on-dark);
     border: 1px solid transparent;
-    border-radius: 20px;
-    padding: 0.4rem 1rem;
-    font-family: var(--font-mono);
+    padding: 14px 28px;
+    font-family: var(--font-sans);
     font-size: 0.75rem;
-    color: var(--color-text);
+    font-weight: 700;
     text-decoration: none;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
+    letter-spacing: 0.12em;
+    transition: all var(--dur-2) var(--ease-out);
   }
 
   .filters a:hover {
-    background: #e5e5e5;
-    color: var(--color-dark);
+    background: var(--lime);
+    color: var(--ink);
   }
 
   .filters a.active {
-    background: var(--color-dark);
-    color: var(--color-accent);
+    background: #e2e4dc; /* Muted pulp */
+    color: var(--ink);
+    border-color: var(--hairline-strong);
   }
 
-  /* Post List Items */
-  .post-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 3rem 0;
-    border-bottom: 1px solid var(--color-border);
-    gap: 3rem;
+  /* Grid Layout */
+  .post-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-6);
   }
 
-  /* Date Styling */
-  .post-date {
+  /* Card Styling */
+  .post-card {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 80px;
-    flex-shrink: 0;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    transition: transform var(--dur-2) var(--ease-settle),
+                box-shadow var(--dur-2) var(--ease-settle),
+                border-color var(--dur-2) var(--ease-settle);
+  }
+  
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2);
+    border-color: var(--hairline-strong);
   }
 
-  .post-date .day {
-    font-family: var(--font-serif);
-    font-size: 2.98rem;
-    font-weight: 400;
-    line-height: 0.8;
-    color: #e2e2e2;
-  }
-
-  .post-date .month-year {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--color-dark);
-    letter-spacing: 0.1em;
-    margin-top: 0.75rem;
-  }
-
-  /* Content Styling */
-  .post-content {
-    flex-grow: 1;
-    max-width: 600px;
-  }
-
-  .post-categories {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .category-badge {
-    font-family: var(--font-mono);
-    font-size: 0.55rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    border: 1px solid #dcdcdc;
-    color: #666;
-    background: transparent;
-  }
-
-  /* Simulating the "HIGH-PRECISION" badge style from the image for secondary categories */
-  .category-badge.badge-filled {
-    background-color: var(--color-dark);
-    color: var(--color-accent);
-    border-color: var(--color-dark);
-    font-weight: 700;
-  }
-
-  .post-link {
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .post-title {
-    font-family: var(--font-serif);
-    font-size: 1.19rem;
-    font-weight: 400;
-    color: var(--color-dark);
-    line-height: 1.3;
-    margin: 0 0 0.75rem 0;
-    transition: color 0.3s ease;
-  }
-
-  .post-link:hover .post-title {
-    color: #3b735b;
-  }
-
-  /* The excerpt comes from WP with <p> tags, so we must target them */
-  .post-excerpt :global(p) {
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  .post-excerpt :global(.read-more-link) {
-    color: #3b735b;
-    font-weight: 600;
-    text-decoration: none;
-    margin-left: 0.25rem;
-    transition: opacity 0.2s ease;
-  }
-
-  .post-excerpt :global(.read-more-link:hover) {
-    text-decoration: underline;
-    opacity: 0.8;
-  }
-
-  /* Image Styling */
   .post-image-wrapper {
-    width: 240px;
-    height: 130px;
-    flex-shrink: 0;
-    border-radius: 6px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
+    background: var(--pulp-deep);
+    border-bottom: 1px solid var(--hairline);
   }
 
   .post-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 1.1s var(--ease-settle);
   }
 
-  .post-image-wrapper:hover .post-thumbnail {
+  .post-card:hover .post-thumbnail {
     transform: scale(1.05);
   }
 
@@ -380,95 +243,87 @@ const slugify = (text: string) =>
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: #f9f9f9;
-    color: #dcdcdc;
-    border: 1px solid #eee;
-    border-radius: 6px;
+    color: var(--ink-muted);
   }
 
-  /* View Archive Button */
-  .view-archive-wrapper {
+  .post-content {
+    padding: var(--s-5);
     display: flex;
-    justify-content: center;
-    margin-top: 5rem;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
-  .view-archive-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: none;
-    border: none;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    color: var(--color-text);
-    cursor: pointer;
-    transition: color 0.3s ease;
+  .post-link {
+    text-decoration: none;
+    margin-bottom: var(--s-3);
   }
 
-  .view-archive-btn:hover {
-    color: var(--color-dark);
+  .post-title {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin: 0;
+    transition: color var(--dur-1) var(--ease-out);
   }
 
-  .plus-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border: 1px solid var(--color-text);
-    border-radius: 50%;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+  .post-card:hover .post-title {
+    color: var(--brand);
   }
 
-  .view-archive-btn:hover .plus-circle {
-    border-color: var(--color-dark);
-    transform: rotate(90deg);
+  .post-excerpt :global(p) {
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 var(--s-4) 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-line-break: auto;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-more-link {
+    margin-top: auto;
+    font-family: var(--font-sans);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .read-more-link:hover {
+    color: var(--lime-ink, #4a6b0c);
   }
 
   /* Responsive Adjustments */
+  @media (max-width: 1200px) {
+    .post-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
   @media (max-width: 900px) {
-    .post-item {
-      flex-direction: column;
-      gap: 1.5rem;
-      padding: 2.5rem 0;
+    .post-list {
+      grid-template-columns: repeat(2, 1fr);
     }
-    
-    .post-date {
-      flex-direction: row;
-      align-items: baseline;
-      width: 100%;
-      gap: 1rem;
-    }
-    
-    .post-date .day {
-      font-size: 2.5rem;
-    }
-    
-    .post-image-wrapper {
-      width: 100%;
-      height: 200px;
-      order: -1; /* Puts image above text on mobile */
-      margin-bottom: 1rem;
-    }
-    
-    .blog-main-header {
-      text-align: left;
-    }
+  }
 
-    .main-title {
-      font-size: 2.5rem;
+  @media (max-width: 600px) {
+    .post-list {
+      grid-template-columns: 1fr;
     }
-
-    .blog-section-header {
+    .filters {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
+      align-items: stretch;
     }
-    
-    .filters button.active::after {
-      bottom: -0.5rem;
+    .filters a {
+      text-align: center;
     }
   }
 </style>
