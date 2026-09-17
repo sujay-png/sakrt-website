@@ -31,8 +31,6 @@ const isProductsActive =
 
     <!-- Center: Navigation Links -->
     <nav class="nav-menu">
-
-
       <a href="/" class={pathname === "/" ? "active" : ""}>Home</a>
       <a href="/about" class={pathname === "/about" ? "active" : ""}>About</a>
 
@@ -95,12 +93,12 @@ const isProductsActive =
       <a href="/media" class={pathname === "/media" ? "active" : ""}>Media</a>
 
       <!-- Mobile-only CTA -->
-      <a href="/contact-us" class="enquire-btn mobile-btn">Inquire</a>
+      <a href="/contact-us" class="enquire-btn mobile-btn">Enquire</a>
     </nav>
 
     <!-- Right: Desktop Enquire Button -->
     <div class="nav-right desktop-btn">
-      <a href="/contact-us" class="enquire-btn">Inquire</a>
+      <a href="/contact-us" class="enquire-btn">Enquire</a>
     </div>
   </div>
 </header>
@@ -346,7 +344,7 @@ const isProductsActive =
   }
 
   .enquire-btn::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -50%;
     left: -60%;
@@ -446,8 +444,6 @@ const isProductsActive =
         transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
         opacity 0.35s ease;
     }
-
-
 
     .nav-menu a {
       font-size: 15px;

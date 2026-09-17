@@ -1,15 +1,13 @@
 ---
 /* src/components/Product Details/Pouches.astro */
-import productImg from '../../images/biodegradable_greybags.png';
-import EnquiryForm from '../EnquiryForm.astro';
+import productImg from "../../images/biodegradable_greybags.png";
+import EnquiryForm from "../EnquiryForm.astro";
 ---
 
 <section class="product-detail-section">
   <div class="product-container">
-
     <!-- LEFT COLUMN: Product Gallery & Schematics -->
     <div class="left-column">
-
       <!-- Main Featured Image Showcase -->
       <div class="main-image-card">
         <img
@@ -27,7 +25,6 @@ import EnquiryForm from '../EnquiryForm.astro';
 
       <!-- Secondary Info Cards Grid -->
       <div class="schematics-grid">
-
         <!-- Technical Schematic Card -->
         <div class="spec-card schematic-card">
           <div class="schematic-diagram">
@@ -42,22 +39,26 @@ import EnquiryForm from '../EnquiryForm.astro';
         <!-- Size Range Card -->
         <div class="spec-card capacity-card">
           <div class="leaf-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"></path>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M11 20A9 9 0 0 0 20 11V3h-8a9 9 0 0 0-9 9 9 9 0 0 0 8 8zm0 0V11"
+              ></path>
             </svg>
           </div>
           <h3 class="capacity-number">5kg</h3>
           <p class="card-caption">MAX FILL SIZE</p>
         </div>
-
       </div>
-
     </div>
 
-    <!-- RIGHT COLUMN: Details, Specs, & Inquire Form -->
+    <!-- RIGHT COLUMN: Details, Specs, & Enquire Form -->
     <div class="right-column">
       <div class="product-info-card">
-
         <!-- Badges -->
         <div class="badge-group">
           <span class="badge lime-badge">CPCB CERTIFIED</span>
@@ -65,22 +66,22 @@ import EnquiryForm from '../EnquiryForm.astro';
         </div>
 
         <!-- Title & Description -->
-        <h1 class="product-title">Stand-up Pouches for Food,<br />Coffee &amp; Dry Goods</h1>
+        <h1 class="product-title">
+          Stand-up Pouches for Food,<br />Coffee &amp; Dry Goods
+        </h1>
         <p class="product-description">
-          1) High moisture and oxygen barrier keeps contents fresh longer.
-          2) Made from compostable, plant-based film laminates.
-          3) Resealable zipper and custom printing options available.
-          4) Stands upright on shelf for premium retail presentation.
-          5) Sizes from 250g to 5kg, with custom formats on request.
-          6) Ideal for coffee, snacks, grains, and dry goods.
-          7) Stand-up pouch.
+          1) High moisture and oxygen barrier keeps contents fresh longer. 2)
+          Made from compostable, plant-based film laminates. 3) Resealable
+          zipper and custom printing options available. 4) Stands upright on
+          shelf for premium retail presentation. 5) Sizes from 250g to 5kg, with
+          custom formats on request. 6) Ideal for coffee, snacks, grains, and
+          dry goods. 7) Stand-up pouch.
         </p>
 
         <!-- Technical Specifications Grid -->
         <div class="tech-specs-container">
           <h2 class="specs-section-title">TECHNICAL SPECIFICATIONS</h2>
           <div class="specs-grid">
-
             <div class="spec-item">
               <span class="spec-label">COMPOSITION</span>
               <span class="spec-value">Bio-Film Laminate</span>
@@ -100,32 +101,37 @@ import EnquiryForm from '../EnquiryForm.astro';
               <span class="spec-label">DEGRADATION</span>
               <span class="spec-value">180 Days (Industrial)</span>
             </div>
-
           </div>
         </div>
 
-      <EnquiryForm  title="Biodegradable<br />Water Bottles"
-  description="Engineering the future of hydration. A bottle designed by nature, refined by technology, and returned to the earth in 180 days."
-  specs={[
-    { label: 'COMPOSITION', value: '100% Bio-Polymer' },
-    { label: 'CERTIFICATION', value: 'ISO 17088 / CPCB' },
-    { label: 'TOXICITY', value: 'Zero-BPA / Non-Toxic' },
-    { label: 'DEGRADATION', value: '180 Days (Industrial)' },
-  ]}
-  whatsappNumber="917975310662" />
+        <EnquiryForm
+          title="Biodegradable<br />Water Bottles"
+          description="Engineering the future of hydration. A bottle designed by nature, refined by technology, and returned to the earth in 180 days."
+          specs={[
+            { label: "COMPOSITION", value: "100% Bio-Polymer" },
+            { label: "CERTIFICATION", value: "ISO 17088 / CPCB" },
+            { label: "TOXICITY", value: "Zero-BPA / Non-Toxic" },
+            { label: "DEGRADATION", value: "180 Days (Industrial)" },
+          ]}
+          whatsappNumber="917975310662"
+        />
 
         <!-- Footer Verification Tag -->
         <div class="verified-footer">
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg
+            class="check-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
           <span>VERIFIED CIRCULAR ECONOMY ASSET</span>
         </div>
-
       </div>
     </div>
-
   </div>
 </section>
 
@@ -136,7 +142,11 @@ import EnquiryForm from '../EnquiryForm.astro';
     background-color: #f3f4f1;
     padding: 8rem 1.5rem 3rem;
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
   }
 
   .product-container {
@@ -189,7 +199,8 @@ import EnquiryForm from '../EnquiryForm.astro';
 
   .tag-label {
     display: block;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.65rem;
     font-weight: 700;
     color: #cff737;
@@ -224,7 +235,8 @@ import EnquiryForm from '../EnquiryForm.astro';
   }
 
   .card-caption {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.68rem;
     font-weight: 700;
     color: #727a75;
@@ -249,7 +261,8 @@ import EnquiryForm from '../EnquiryForm.astro';
   .height-indicator {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.625rem;
     font-weight: 700;
     color: #2b332e;
@@ -305,7 +318,8 @@ import EnquiryForm from '../EnquiryForm.astro';
   .badge {
     padding: 0.35rem 0.65rem;
     border-radius: 4px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.625rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -347,7 +361,8 @@ import EnquiryForm from '../EnquiryForm.astro';
   }
 
   .specs-section-title {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.725rem;
     font-weight: 700;
     color: #374151;
@@ -368,7 +383,8 @@ import EnquiryForm from '../EnquiryForm.astro';
   }
 
   .spec-label {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.625rem;
     font-weight: 700;
     color: #9ca3af;
@@ -456,7 +472,8 @@ import EnquiryForm from '../EnquiryForm.astro';
     border: none;
     border-radius: 8px;
     padding: 1rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -474,7 +491,8 @@ import EnquiryForm from '../EnquiryForm.astro';
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.65rem;
     font-weight: 700;
     color: #6b7280;
