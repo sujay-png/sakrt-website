@@ -1,0 +1,242 @@
+---
+// src/components/Home/WhyChooseUs.astro
+const faqs = [
+  {
+    question: "Is compostable bags strong enough?",
+    answer: "Yes, modern high-quality compostable bags are strong enough for everyday commercial, retail, and household use.<br/><br/>While early-generation bioplastic bags sometimes suffered from being brittle or tearing easily, advanced material science has closed the performance gap. High-grade compostable bags (such as those engineered for retail carry bags, garbage disposal, and e-commerce packaging) match traditional plastic in tensile strength."
+  },
+  {
+    question: "Can i use compostable bags to carry liquid food items?",
+    answer: "No, standard compostable film or carry bags are not recommended for holding loose or heavy liquid food items.<br/><br/>While high-quality compostable liners can handle damp kitchen scraps and short-term moisture for a brief period, they are intentionally designed to be breathable to help organic materials begin decomposing. Because of this, leaving free-flowing liquids, soups, or heavy sauces inside a flexible bag will quickly weaken the polymer structure and cause leaks or tears."
+  },
+  {
+    question: "Is plastic totally banned in India?",
+    answer: "No, plastic is not totally banned in India.<br/><br/>Instead, the Government of India has banned specific single-use plastic (SUP) items that have high littering potential and low utility, while allowing regulated plastics and certified alternatives."
+  },
+  {
+    question: "Can i use bioplastics for daily use?",
+    answer: "Yes, you can use bioplastics for many daily applications, especially short-term items and single-use packaging like retail carry bags, garbage liners, food containers, and drinking cups. However, whether a bioplastic item works for your daily routine depends on matching the specific material type to the job."
+  },
+  {
+    question: "Are sakrt compostable products 100% compostable?",
+    answer: "Yes, all SAKRT compostable products are fully biodegradable and break down naturally within 180 days of disposal."
+  }
+];
+---
+
+<section class="why-choose-section">
+  <div class="wc-container">
+    
+    <!-- Top Part: Why Choose Features -->
+    <div class="wc-features-block">
+      <h2 class="wc-title">Why Choose SAKRT for Your Business Packaging?</h2>
+      
+      <div class="wc-feature">
+        <h4 class="wc-feature-title">CPCB Certification & Compliance</h4>
+        <p class="wc-feature-desc">Every batch manufactured complies strictly with Central Pollution Control Board (CPCB) parameters, ensuring complete legal safety for your business.</p>
+      </div>
+
+      <div class="wc-feature">
+        <h4 class="wc-feature-title">Rapid Natural Decomposition</h4>
+        <p class="wc-feature-desc">Our products break down naturally into organic compost within 180 days in active soil conditions, producing no toxic microplastics.</p>
+      </div>
+
+      <div class="wc-feature">
+        <h4 class="wc-feature-title">Eco-Engineered Durability</h4>
+        <p class="wc-feature-desc">Unlike standard fragile paper bags, SAKRT compostable bags match traditional plastic in tensile strength, puncture resistance, and moisture protection.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Part: FAQs -->
+    <div class="wc-faq-block">
+      <h3 class="faq-title">FAQs</h3>
+      
+      <div class="faq-container">
+        {faqs.map((faq) => (
+          <details class="faq-details">
+            <summary class="faq-summary">{faq.question}</summary>
+            <p class="faq-answer" set:html={faq.answer}></p>
+          </details>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .why-choose-section {
+    position: relative;
+    padding: 80px 24px 100px;
+    background-color: var(--color-bg-page, #f8f9f6);
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .wc-container {
+    max-width: 1000px; /* Kept slightly narrower for readability */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  /* --- Features Section --- */
+  .wc-features-block {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .wc-title {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    color: var(--brand, #0d3d26); /* Updated to brand color */
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+  }
+
+  .wc-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .wc-feature-title {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--brand, #0d3d26); /* Updated to brand color */
+    margin: 0;
+  }
+
+  .wc-feature-desc {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-soft, #3a4a41);
+    margin: 0;
+  }
+
+  /* --- FAQ Section --- */
+  .wc-faq-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-title {
+    font-family: var(--font-serif, 'Instrument Serif', serif);
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: var(--brand, #0d3d26);
+    margin: 0 0 30px 0;
+  }
+
+  /* Reusing the beautiful FAQ styles from the blog page */
+  .faq-container {
+    background-color: #f7faf3; /* Light mint green */
+    padding: 2.5rem;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .faq-container {
+      padding: 1.5rem 1.25rem;
+    }
+  }
+
+  .faq-details {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+  
+  .faq-details:last-of-type {
+    border-bottom: none;
+  }
+
+  .faq-summary {
+    padding: 1.25rem 0;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-weight: 600;
+    color: #111;
+    cursor: pointer;
+    font-size: 1.05rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    margin-bottom: 0;
+    gap: 1rem;
+  }
+
+  .faq-summary:hover {
+    color: var(--brand, #0d3d26);
+  }
+
+  /* Clear default arrows */
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Custom chevron */
+  .faq-summary::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid #111;
+    border-bottom: 2px solid #111;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+  }
+
+  .faq-details[open] .faq-summary::after {
+    transform: rotate(-135deg);
+    margin-bottom: -4px;
+  }
+
+  .faq-answer {
+    padding: 0 0 1.5rem 0;
+    margin-bottom: 0;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  @keyframes accordion-down {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  // Add mutually exclusive toggle logic to native <details> elements
+  const initFaqs = () => {
+    const detailElements = document.querySelectorAll<HTMLDetailsElement>('.why-choose-section details');
+    detailElements.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          detailElements.forEach(other => {
+            if (other !== details && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      });
+    });
+  };
+
+  initFaqs();
+  document.addEventListener('astro:page-load', initFaqs);
+</script>

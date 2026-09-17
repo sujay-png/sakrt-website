@@ -1,0 +1,144 @@
+---
+// src/components/Home/ProductRange.astro
+import productImg from '../../images/imgi_8_admin-ajax-22.webp';
+---
+
+<section class="product-range-section">
+  <div class="pr-container">
+    <div class="pr-left">
+      <img src={typeof productImg === 'string' ? productImg : productImg.src} alt="Delivery person holding Sakrt package" class="pr-image" />
+    </div>
+    
+    <div class="pr-right">
+      <h2 class="pr-title">High-Performance Compostable Product Range</h2>
+      
+      <p class="pr-desc-main">
+        Our extensive catalog offers sustainable solutions tailored for retail, waste management, agriculture, and food service sectors across South India.
+      </p>
+
+      <div class="pr-features-list">
+        
+        <div class="pr-feature-item">
+          <h4 class="pr-feature-title">Compostable Carry & Shopping Bags</h4>
+          <p class="pr-feature-desc">
+            Our extensive catalog offers sustainable solutions tailored for retail, waste management, agriculture, and food service sectors across South India.
+          </p>
+        </div>
+
+        <div class="pr-feature-item">
+          <h4 class="pr-feature-title">Biodegradable Garbage & Waste Liners</h4>
+          <p class="pr-feature-desc">
+            Durable, leak-proof waste bags suitable for industrial, hospital, hotel, and household waste collection in municipal regions like Mangalore and Udupi.
+          </p>
+        </div>
+
+        <div class="pr-feature-item">
+          <h4 class="pr-feature-title">Eco-Friendly Food Containers & Tableware</h4>
+          <p class="pr-feature-desc">
+            Safe, non-toxic, and food-grade packaging including biodegradable water bottles, compartment plates, drinking cups, and food takeaway boxes.
+          </p>
+        </div>
+
+        <div class="pr-feature-item">
+          <h4 class="pr-feature-title">Industrial & Agricultural Packaging Films</h4>
+          <p class="pr-feature-desc">
+            Protect your crops and industrial goods sustainably with our CPCB-approved compostable mulch films, nursery bags, and wrapping films.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-range-section {
+    position: relative;
+    padding: 100px 24px;
+    background-color: var(--color-bg-page, #f8f9f6);
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .pr-container {
+    max-width: 1240px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .pr-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+  }
+
+  .pr-left {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pr-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px; /* Slight rounding based on screenshot */
+  }
+
+  .pr-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pr-title {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--brand, #0d3d26);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .pr-desc-main {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ink-soft, #3a4a41);
+    margin: 0 0 10px 0;
+  }
+
+  .pr-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .pr-feature-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .pr-feature-title {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--brand, #0d3d26); /* Updated to brand color */
+    margin: 0;
+  }
+
+  .pr-feature-desc {
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft, #3a4a41);
+    margin: 0;
+  }
+</style>
