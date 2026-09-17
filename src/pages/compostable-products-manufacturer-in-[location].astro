@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AllProductsGrid from '../components/Product/AllProductsGrid.astro';
+import { getAllLocations } from '../data/sitemapData';
+
+export const prerender = true;
+export async function getStaticPaths() {
+  return getAllLocations().map(loc => ({
+    params: { location: loc.slug },
+    props: { locationName: loc.name }
+  }));
+}
+
+const { locationName } = Astro.props;
+---
+
+<Layout hideHeader={true} title={`Compostable Product Manufacturer in ${locationName} | SAKRT`} description={`Your Local Partner For Sustainable, Biodegradable Bags & Films in ${locationName}.`}>
+  <main class="location-page">
+    
+    <!-- Hero Section -->
+    <section class="location-hero" style="background-image: url('/location-hero.webp');">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content text-center">
+        <h1 class="hero-title">Compostable Product Manufacturer In {locationName}</h1>
+        <p class="hero-subtitle">Your Local Partner For Sustainable, Biodegradable Bags & Films</p>
+      </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section section-padding bg-light">
+      <div class="container text-center">
+        <h2 class="welcome-title">Welcome To SAKRT<br/><span class="text-green">Your Sustainable Packaging Expert In {locationName}</span></h2>
+        <p class="welcome-text">At Sakrt, we understand that packaging is more than just containment; it's the first impression your brand makes, and it's also one of the biggest opportunities to reduce your environmental impact. We supply eco-friendly, biodegradable, compostable packaging solutions designed for the region's businesses. Whether you are a retailer, e-commerce brand, food service outlet or waste management Compostable products {locationName}, we're here to help you switch from conventional plastics to a greener alternative.</p>
+      </div>
+    </section>
+
+    <!-- 2 Column Info Section -->
+    <section class="info-grid-section section-padding">
+      <div class="container info-grid">
+        <div class="info-card">
+          <h3 class="green-title">Compostable Product Manufacturer in {locationName}</h3>
+          <p>Sakrt is a trusted compostable product manufacturer in {locationName}, offering certified, eco-friendly alternatives to single-use plastic. We manufacture and supply high-quality compostable bags and sustainable packaging solutions for businesses, institutions, and bulk buyers across {locationName} and nearby regions.</p>
+          <p>Our products are designed to meet Plastic Waste Management Rules while helping businesses transition to environmentally responsible packaging without compromising on strength, quality, or compliance. Compostable products {locationName}.</p>
+        </div>
+        <div class="info-card">
+          <h3 class="green-title">Why Choose Sakrt</h3>
+          <p>Businesses across {locationName} choose Sakrt for reliability, compliance, and scale:</p>
+          <ul class="custom-check-list">
+            <li>CPCB-certified compostable products</li>
+            <li>ISO standard manufacturing processes</li>
+            <li>Bulk manufacturing capacity for B2B buyers</li>
+            <li>Consistent supply across {locationName}</li>
+            <li>Custom sizes, thickness & branding options</li>
+            <li>Competitive pricing for distributors & institutions</li>
+          </ul>
+          <p>We support retailers, hotels, restaurants, hospitals, and organizations looking for a dependable compostable products manufacturer in {locationName}. Compostable products {locationName}.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Areas Section -->
+    <section class="service-areas section-padding text-center">
+      <div class="container">
+        <h3 class="green-title">Service Areas in and Around {locationName}</h3>
+        <p class="sub-heading">We supply compostable products across all major areas of {locationName}, including:</p>
+        <p class="areas-text">{locationName} City, surrounding districts, industrial hubs, commercial centers, and neighboring regions.</p>
+        <p class="areas-text">We also deliver to nearby states and across India.</p>
+        <p class="tagline">Compostable products {locationName}</p>
+      </div>
+    </section>
+
+    <!-- Contact Banner -->
+    <section class="contact-banner">
+      <div class="container">
+        <div class="contact-box text-center">
+          <h2>Contact Us</h2>
+          <p>Looking for a reliable compostable product manufacturer in {locationName}?<br/>Choose SAKRT for your home, business, or event and make waste disposal environmentally responsible.</p>
+          <a href="/contact-us" class="btn btn-primary mt-4">Click Here</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section section-padding">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="green-title portfolio-heading">Our Product Portfolio</h2>
+        </div>
+        
+        <div class="portfolio-grid">
+          <!-- Card 1 -->
+          <div class="portfolio-card">
+            <img src="/hero/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags.webp" alt="Biodegradable Retail & Carry Bags" width="80" height="80" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;" />
+            <h4 class="portfolio-title">Biodegradable Retail & Carry Bags</h4>
+            <p>Ideal for boutiques, grocery stores, food outlets and retail chains. Strong printed or plain compostable materials that look and feel premium.</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="portfolio-card">
+            <img src="/hero/imgi_6_biodegradable-bags-compostable-products-ecofriendly-bags-carry-bags-.webp" alt="Packaging & Mailer Films/Bags" width="80" height="80" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;" />
+            <h4 class="portfolio-title">Packaging & Mailer Films/Bags</h4>
+            <p>For e-commerce and logistics shipments leaving {locationName} require tough, lightweight, eco-friendly packaging.</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="portfolio-card">
+            <img src="/hero/imgi_4_biodegradable-carry-bags-biodegradable-bags-compostable-products-ecofriendly-bags.webp" alt="Waste & Garbage Liners" width="80" height="80" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;" />
+            <h4 class="portfolio-title">Waste & Garbage Liners</h4>
+            <p>For commercial kitchens, hotels, apartments, resorts: reduce your landfill impact and demonstrate your green credentials.</p>
+          </div>
+          <!-- Card 4 -->
+          <div class="portfolio-card">
+            <img src="/hero/imgi_5_biodegradable_carry_bags-biodegradable_bags__compostable-products-ecofriendly-bags.-1.webp" alt="Customized Solutions" width="80" height="80" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;" />
+            <h4 class="portfolio-title">Customized Solutions</h4>
+            <p>Need a special size, gusset, branded print or a mix of materials? We offer tailored orders to match your brand identity and operational needs.</p>
+          </div>
+          <!-- Card 5 -->
+          <div class="portfolio-card">
+            <img src="/hero/imgi_6_Biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly-bags.webp" alt="Eco-Conscious Partnerships" width="80" height="80" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;" />
+            <h4 class="portfolio-title">Eco-Conscious Partnerships</h4>
+            <p>We work only with manufacturers committed to sustainable agriculture, fair labor, and carbon neutrality.</p>
+          </div>
+          <!-- Card 6 -->
+          <div class="portfolio-card">
+            <img src="/hero/imgi_8_supply-chain.png" alt="Scalable Supply Chain" width="80" height="80" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;" />
+            <h4 class="portfolio-title">Scalable Supply Chain</h4>
+            <p>From local shops to national distributors, our inventory and logistics are built to grow with you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Offer Section -->
+    <section class="products-offer-section section-padding bg-light">
+      <div class="container text-center">
+        <h2 class="green-title lowercase-heading">compostable products we offer</h2>
+      </div>
+      <AllProductsGrid />
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  /* Common Utilities */
+  .text-center { text-align: center; }
+  .text-green { color: var(--color-primary-dark); }
+  .bg-light { background-color: var(--color-bg-page); }
+  .section-padding { padding: 60px 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .mb-5 { margin-bottom: 3rem; }
+  .mt-4 { margin-top: 2rem; }
+
+  /* Hero Section */
+  .location-hero {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 220px 0 160px;
+    color: white;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: var(--font-serif);
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  /* Typography */
+  .green-title {
+    color: var(--color-primary-dark);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .welcome-title {
+    font-size: 2rem;
+    font-family: var(--font-serif);
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+  .welcome-text {
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--color-text-body);
+    line-height: 1.8;
+  }
+
+  /* 2 Column Info Grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  @media (min-width: 768px) {
+    .info-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .info-card p {
+    color: var(--color-text-body);
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+  .custom-check-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+  }
+  .custom-check-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    color: var(--color-text-body);
+  }
+  .custom-check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-lime-bright);
+    font-weight: bold;
+  }
+
+  /* Service Areas */
+  .service-areas .sub-heading {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin-bottom: 10px;
+  }
+  .service-areas .areas-text {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  .tagline {
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin-top: 20px;
+  }
+
+  /* Contact Banner */
+  .contact-banner {
+    padding: 0 20px;
+  }
+  .contact-box {
+    background-color: var(--color-primary-dark);
+    color: white;
+    padding: 50px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(13, 61, 38, 0.15);
+  }
+  .contact-box h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .contact-box p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--color-accent-lime-bright);
+    color: var(--color-primary-dark);
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    background-color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Portfolio Section */
+  .portfolio-heading {
+    display: inline-block;
+    border-bottom: 2px solid var(--color-accent-lime-bright);
+    padding-bottom: 5px;
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  @media (min-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .portfolio-card {
+    background: var(--color-bg-card);
+    padding: 30px 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8e4;
+    transition: transform 0.3s;
+  }
+  .portfolio-card:hover {
+    transform: translateY(-5px);
+  }
+  .portfolio-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
+  }
+  .portfolio-title {
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  .portfolio-card p {
+    color: var(--color-text-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Products Offer Section */
+  .lowercase-heading {
+    border-bottom: 2px solid var(--color-primary-dark);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 40px;
+  }
+</style>

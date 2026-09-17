@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ecoFriendlyStates, karnatakaCities, mostSoldProductCities, popularProducts } from '../data/sitemapData';
+
+const formatSlug = (name: string) => `/compostable-products-manufacturer-in-${name.toLowerCase().replace(/\s+/g, '-')}/`;
+---
+<Layout title="Site Maps - SAKRT" description="Explore our service areas and popular compostable products across India.">
+  <main class="sitemap-page">
+    <section class="sitemap-hero">
+      <div class="container">
+        <h1 class="hero-title">Site Maps</h1>
+      </div>
+    </section>
+
+    <section class="sitemap-content">
+      <div class="container grid-container">
+        
+        <div class="card card-large">
+          <h2 class="card-title">Eco Friendly Products in India</h2>
+          <ul class="link-list two-cols">
+            {ecoFriendlyStates.map(state => (
+              <li><a href={formatSlug(state)}>{state}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Karnataka</h2>
+          <ul class="link-list two-cols">
+            {karnatakaCities.map(city => (
+              <li><a href={formatSlug(city)}>{city}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card card-large">
+          <h2 class="card-title">Popular Compostable products</h2>
+          <ul class="link-list">
+            {popularProducts.map(product => (
+              <li><a href="/compostable-product">{product}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Most sold products</h2>
+          <ul class="link-list">
+            {mostSoldProductCities.map(city => (
+              <li><a href={formatSlug(city)}>{city}</a></li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="sitemap-footer-banner">
+      <div class="container text-center">
+        <h2>Ready to Go Green?</h2>
+        <p>Reach out for bulk orders, custom branding, or distribution partnerships.</p>
+        <div class="actions">
+          <a href="/contact-us" class="btn btn-primary">Get in Touch</a>
+          <a href="/compostable-product" class="btn btn-secondary">Explore Products</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .sitemap-page {
+    background-color: var(--color-bg-page);
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .sitemap-hero {
+    background: var(--color-primary-dark);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    border-radius: 12px;
+    margin: 20px;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+  }
+  @media (min-width: 768px) {
+    .grid-container {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+  .card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--color-primary-dark);
+    font-family: var(--font-sans);
+    text-align: center;
+  }
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .link-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+  }
+  .link-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary-dark);
+  }
+  .link-list a {
+    text-decoration: none;
+    color: var(--color-text-body);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .link-list a:hover {
+    color: var(--color-accent-lime-bright);
+  }
+  .two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .sitemap-footer-banner {
+    background: var(--color-bg-page);
+    padding: 60px 20px;
+    border-radius: 12px;
+    margin: 60px 20px 20px;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .sitemap-footer-banner h2 {
+    font-size: 2rem;
+    color: var(--color-primary-dark);
+    font-family: var(--font-serif);
+    margin-bottom: 10px;
+  }
+  .sitemap-footer-banner p {
+    color: var(--color-text-body);
+    margin-bottom: 30px;
+  }
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .btn {
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .btn-primary {
+    background: var(--color-primary-dark);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-lime-bright);
+    color: var(--color-primary-dark);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary-dark);
+  }
+  .btn-secondary:hover {
+    background: var(--color-primary-dark);
+    color: white;
+  }
+</style>

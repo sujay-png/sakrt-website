@@ -10,6 +10,7 @@ interface Props {
   canonical?: string;
   ogType?: string;
   schema?: any;
+  hideHeader?: boolean;
 }
 
 const { 
@@ -18,7 +19,8 @@ const {
   image = "/logo/footer-logo.webp",
   canonical,
   ogType = "website",
-  schema
+  schema,
+  hideHeader = false
 } = Astro.props;
 
 const canonicalURL = canonical ? new URL(canonical, Astro.site || Astro.url) : new URL(Astro.url.pathname, Astro.site || Astro.url);
@@ -64,7 +66,7 @@ const canonicalURL = canonical ? new URL(canonical, Astro.site || Astro.url) : n
   </head>
   <body>
     <!-- Global Header rendered at the top of every page -->
-    <Header />
+    {!hideHeader && <Header />}
 
     <!-- Page-specific content gets rendered here -->
     <div class="layout-main">
