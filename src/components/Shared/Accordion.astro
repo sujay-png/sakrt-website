@@ -1,0 +1,157 @@
+---
+export interface Props {
+  items: {
+    value: string;
+    trigger: string;
+    content: string;
+  }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="shadcn-accordion">
+  {items.map((item, index) => (
+    <div class={`accordion-item ${index === 0 ? 'is-open' : ''}`}>
+      <button class="accordion-trigger" aria-expanded={index === 0 ? "true" : "false"}>
+        {item.trigger}
+        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-content">
+        <div class="accordion-inner" set:html={item.content} />
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  function setupAccordion() {
+    const triggers = document.querySelectorAll('.accordion-trigger');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const currentItem = trigger.closest('.accordion-item');
+        if (!currentItem) return;
+        const isOpen = currentItem.classList.contains('is-open');
+        
+        const parentAccordion = currentItem.closest('.shadcn-accordion');
+        if (parentAccordion) {
+          parentAccordion.querySelectorAll('.accordion-item').forEach(item => {
+            item.classList.remove('is-open');
+            item.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        }
+        
+        if (!isOpen) {
+          currentItem.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+  
+  setupAccordion();
+  document.addEventListener('astro:page-load', setupAccordion);
+</script>
+
+<style>
+  .shadcn-accordion {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-bottom: 4rem;
+    overflow: hidden;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-trigger {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0b2218;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+  }
+
+  .accordion-trigger:hover {
+    background-color: #f8f9f6;
+  }
+
+  .accordion-item.is-open .accordion-trigger {
+    color: #0d3d26;
+    font-weight: 700;
+  }
+
+  .accordion-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    color: #0d3d26;
+  }
+
+  .accordion-item.is-open .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .accordion-item.is-open .accordion-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .accordion-inner {
+    overflow: hidden;
+    padding: 0 2rem;
+  }
+
+  .accordion-item.is-open .accordion-inner {
+    padding-bottom: 2rem;
+  }
+
+  .accordion-inner :global(p) {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  
+  .accordion-inner :global(p:last-child),
+  .accordion-inner :global(.bullet-list) {
+    margin-bottom: 0;
+  }
+
+  .accordion-inner :global(.bullet-list) {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .accordion-inner :global(.bullet-list li) {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+
+  .accordion-inner :global(.bullet-list strong) {
+    color: #111;
+  }
+</style>

@@ -104,7 +104,7 @@ const formatDate = (dateString: string) => {
         const { day, monthYear } = formatDate(post.date);
         const mainCategory = post.categories?.nodes?.[0]?.name || "general";
         const categorySlug = slugify(mainCategory);
-        const postUrl = `/blog/category/${categorySlug}/${post.slug}`;
+        const postUrl = `/blog/${post.slug}`;
         
         return (
           <article class="post-card" data-categories={post.categories?.nodes.map((c:any) => c.name).join(',') || ''}>

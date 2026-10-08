@@ -41,24 +41,31 @@ const { products } = Astro.props;
   }
 
   .category-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 3rem;
     width: 100%;
     max-width: 1200px;
   }
 
+  .product-card {
+    width: 100%;
+  }
+
   @media (min-width: 600px) {
-    .category-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .product-card {
+      width: calc(50% - 1.5rem);
     }
   }
 
   @media (min-width: 1024px) {
     .category-grid {
-      grid-template-columns: repeat(4, 1fr);
       row-gap: 4rem;
       column-gap: 2rem;
+    }
+    .product-card {
+      width: calc(25% - 1.5rem);
     }
   }
 

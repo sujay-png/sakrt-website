@@ -1,5 +1,9 @@
 ---
 import EnquiryForm from '../EnquiryForm.astro';
+import Accordion from '../Shared/Accordion.astro';
+import RelatedProducts from '../Shared/RelatedProducts.astro';
+
+
 
 export interface Props {
   productName?: string;
@@ -44,6 +48,24 @@ const usageApplications = productData?.usageApplications || [
   "Ideal for takeaway, catering, or bakery items.",
   "Great for giveaways, exhibitions, and eco-friendly campaigns.",
   "Convenient for carrying personal items, books, or small household goods."
+];
+
+const accordionItems = [
+  {
+    value: "why-choose",
+    trigger: whyChooseTitle,
+    content: whyChooseText.map((text: string) => `<p>${text}</p>`).join("")
+  },
+  {
+    value: "additional-details",
+    trigger: additionalDetailsTitle,
+    content: `<ul class="bullet-list">` + additionalDetails.map((detail: string) => `<li>${detail}</li>`).join("") + `</ul>`
+  },
+  {
+    value: "usage-applications",
+    trigger: "Usage Applications",
+    content: `<ul class="bullet-list">` + usageApplications.map((app: string) => `<li>${app}</li>`).join("") + `</ul>`
+  }
 ];
 ---
 
@@ -104,52 +126,11 @@ const usageApplications = productData?.usageApplications || [
       </div>
     </div>
 
-    <!-- Why Choose Section -->
-    <div class="why-choose-section">
-      <h2 class="section-title">{whyChooseTitle}</h2>
-      {whyChooseText.map((text: string) => (
-        <p class="description-text">{text}</p>
-      ))}
-    </div>
-
-    <!-- Additional Details & Usage Grid -->
-    <div class="details-usage-grid">
-      <div class="additional-details">
-        <h3 class="sub-section-title">{additionalDetailsTitle}</h3>
-        <ul class="details-list">
-          {additionalDetails.map((detail: string) => (
-            <li><Fragment set:html={detail} /></li>
-          ))}
-        </ul>
-      </div>
-      
-      <div class="usage-applications">
-        <h3 class="sub-section-title">Usage Applications:</h3>
-        <ul class="usage-list">
-          {usageApplications.map((app: string) => (
-            <li><Fragment set:html={app} /></li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <!-- Accordion Section -->
+    <Accordion items={accordionItems} />
 
     <!-- Related Products -->
-    {relatedProducts && relatedProducts.length > 0 && (
-      <div class="related-products-section">
-        <h2 class="section-title">Related Products</h2>
-        <div class="related-grid">
-          {relatedProducts.map((rp: any) => (
-            <div class="related-card">
-              <a href={`/compostable-product/${rp.category}/${rp.slug}`} class="related-img-wrapper">
-                <img src={rp.image} alt={rp.name} />
-              </a>
-              <h4 class="related-title">{rp.name}</h4>
-              <a href={`/compostable-product/${rp.category}/${rp.slug}`} class="view-details-btn">View Details</a>
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
+    <RelatedProducts products={relatedProducts} />
 
     <!-- Enquiry Form Section -->
     <div class="enquiry-section" id="bulk-order-form">
@@ -329,129 +310,9 @@ const usageApplications = productData?.usageApplications || [
     margin-left: 0.25rem;
   }
 
-  /* Why Choose Section */
-  .why-choose-section {
-    margin-bottom: 4rem;
-  }
 
-  /* Details and Usage Grid */
-  .details-usage-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
 
-  @media (min-width: 768px) {
-    .details-usage-grid {
-      grid-template-columns: 6fr 4fr;
-      gap: 3rem;
-    }
-  }
 
-  .details-list, .usage-list {
-    list-style: disc;
-    padding-left: 1.25rem;
-  }
-
-  .details-list li, .usage-list li {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 0.5rem;
-  }
-
-  .details-list strong {
-    color: #111;
-  }
-
-  .usage-applications {
-    background-color: #f3f4f6; /* Light grey box */
-    padding: 2rem;
-    border-radius: 8px;
-  }
-
-  /* Related Products */
-  .related-products-section {
-    margin-bottom: 5rem;
-    border-top: 1px solid #eee;
-    padding-top: 3rem;
-  }
-
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .related-grid {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-    }
-  }
-
-  .related-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .related-img-wrapper {
-    width: 100%;
-    aspect-ratio: 1;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .related-img-wrapper:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  }
-
-  .related-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .related-img-wrapper:hover img {
-    transform: scale(1.05);
-  }
-
-  .related-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #111;
-    margin-bottom: 1rem;
-    height: 2.4em; /* clamp height to align buttons */
-    overflow: hidden;
-  }
-
-  .view-details-btn {
-    background-color: #2b7a4b;
-    color: white;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.6rem 1.5rem;
-    border-radius: 20px;
-    transition: background-color 0.2s;
-  }
-
-  .view-details-btn:hover {
-    background-color: #1e5c37;
-  }
 
   /* Enquiry Section */
   .enquiry-section {

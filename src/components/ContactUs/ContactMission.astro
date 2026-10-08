@@ -1,0 +1,186 @@
+---
+// ContactMission.astro
+---
+
+<div class="card mission-card">
+  <div class="mission-split">
+    <!-- Left Column: Mission text -->
+    <div class="mission-left">
+      <span class="card-tag">Our mission</span>
+      <h2 class="card-heading">
+        SAKRT is a reliable partner in manufacturing and distributing government-certified compostable products for retailers and industrial enterprises across India.
+      </h2>
+    </div>
+
+    <!-- Right Column: Trust strip items stacked -->
+    <div class="mission-right">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+        </div>
+        <div class="trust-content">
+          <h3 class="trust-label">ISO Certified</h3>
+          <p class="trust-desc">Meets international standards for quality and environmental management.</p>
+        </div>
+      </div>
+
+      <div class="trust-divider"></div>
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" /></svg>
+        </div>
+        <div class="trust-content">
+          <h3 class="trust-label">Govt. Approved</h3>
+          <p class="trust-desc">Certified by the Central Pollution Control Board (CPCB) for compostability.</p>
+        </div>
+      </div>
+
+      <div class="trust-divider"></div>
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+        </div>
+        <div class="trust-content">
+          <h3 class="trust-label">BIS Compliant</h3>
+          <p class="trust-desc">Manufactured in strict accordance with Indian standard protocols.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-card {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .card {
+      padding: 4rem;
+    }
+  }
+
+  /* Flex split for desktop */
+  .mission-split {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .mission-split {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  }
+
+  .mission-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mission-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 900px) {
+    .mission-right {
+      margin-top: 2.5rem; /* Offset to align with the heading (compensates for .card-tag height + margin) */
+    }
+  }
+
+  .card-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #6c7870;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-heading {
+    font-family: var(--font-serif, "Playfair Display", serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #0A2F1F;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .card-heading {
+      font-size: 1.6rem;
+    }
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .trust-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .trust-icon {
+    width: 28px;
+    height: 28px;
+    color: #0A2F1F;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .trust-item:hover .trust-icon {
+    color: #348e5b;
+    transform: scale(1.1);
+  }
+
+  .trust-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .trust-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0A2F1F;
+    margin: 0;
+  }
+
+  .trust-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #4a514d;
+    margin: 0;
+  }
+
+  .trust-divider {
+    height: 1px;
+    background-color: #e9ecea;
+    margin: 1.5rem 0;
+    width: 100%;
+  }
+</style>

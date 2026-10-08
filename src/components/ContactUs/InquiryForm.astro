@@ -5,7 +5,6 @@
 <div class="card form-card">
   <div class="form-header">
     <h2 class="form-title">Send an Inquiry</h2>
-    <div class="watermark-at">@</div>
   </div>
 
   <form class="inquiry-form" id="inquiryForm" novalidate>
@@ -249,6 +248,21 @@
 
   .form-group label.invalid-label {
     color: #d93838 !important;
+  }
+  .form-card .form-title,
+  .form-card .form-group label,
+  .form-card .form-group input,
+  .form-card .form-group textarea {
+    color: #142F1A;
+  }
+
+  .form-card .form-group input::placeholder,
+  .form-card .form-group textarea::placeholder {
+    color: #142F1A;
+    opacity: 0.5;
+  }
+  .form-card .form-group label.invalid-label {
+    color: #142F1A !important;
   }
 </style>
 

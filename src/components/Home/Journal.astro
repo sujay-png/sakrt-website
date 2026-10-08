@@ -8,7 +8,7 @@ import { wpquery } from '../../lib/wordpress.ts';
 const data = await wpquery({
   query: `
     query GetLatestJournals {
-      posts(first: 3) {
+      posts(first: 4) {
         nodes {
           title
           slug
@@ -46,13 +46,7 @@ const formatDate = (dateString: string) => {
     <!-- Section Header -->
     <div class="journal-header">
       <h2 class="journal-title">Our Blogs</h2>
-      <a href="/blog" class="see-all-link">
-        <span>See All</span>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </a>
+
     </div>
 
     <!-- Journal Cards Grid -->
@@ -61,7 +55,8 @@ const formatDate = (dateString: string) => {
         const catName = post.categories?.nodes?.[0]?.name || "general";
         const catSlug = encodeURIComponent(catName.toLowerCase().replace(/\s+/g, '-'));
         return (
-        <a href={`/blog/${catSlug}/${post.slug}`} class="journal-card">
+        <div class="journal-card">
+          <a href={`/blog/${post.slug}`} class="journal-card-content">
           <div class="image-wrapper">
             {post.featuredImage?.node?.sourceUrl ? (
               <div class="card-bg" style={`background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url('${post.featuredImage.node.sourceUrl}');`}></div>
@@ -75,9 +70,17 @@ const formatDate = (dateString: string) => {
             <span class="journal-date">{formatDate(post.date)}</span>
             <h3 set:html={post.title}></h3>
           </div>
-        </a>
+          </a>
+          <a href={`/blog/${post.slug}`} class="journal-read-more" aria-label={`Read more about ${post.title.replace(/<[^>]*>/g, '')}`}>
+            Read More <span class="journal-read-more__arrow" aria-hidden="true">&raquo;</span>
+          </a>
+        </div>
       );
       })}
+    </div>
+
+    <div class="journal-actions">
+      <a href="/blog" class="see-all-link">See All Blogs</a>
     </div>
 
   </div>
@@ -158,9 +161,25 @@ const formatDate = (dateString: string) => {
   /* Grid Layout with align-items: flex-start to allow variable heights cleanly */
   .journal-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 32px;
     align-items: flex-start;
+  }
+
+  .journal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  .see-all-link {
+    background-color: var(--dark-green);
+    color: #ffffff;
+  }
+
+  .see-all-link:hover {
+    background-color: #185235;
+    color: #ffffff;
   }
 
   /* Card Styles */
@@ -253,12 +272,67 @@ font-family: var(--font-serif);
   /* Responsive Design */
   @media (max-width: 1024px) {
     .journal-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .journal-grid {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 32px;
     }
-    .scroll-prompt {
-      display: none;
+    .journal-title {
+      font-size: clamp(2.4rem, 10vw, 3rem);
     }
+    .journal-header {
+      margin-bottom: 32px;
+    }
+  }
+  .journal-section .journal-grid {
+    align-items: stretch;
+  }
+
+  .journal-section .journal-card {
+    height: 100%;
+  }
+
+  .journal-section .journal-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .journal-section .journal-read-more {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: baseline;
+    gap: 3px;
+    margin-top: auto;
+    padding-top: 12px;
+    color: var(--dark-green);
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .journal-section .journal-read-more:hover,
+  .journal-section .journal-read-more:focus-visible {
+    text-decoration: underline;
+  }
+
+  .journal-section .journal-read-more__arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .journal-section .journal-read-more:hover .journal-read-more__arrow,
+  .journal-section .journal-read-more:focus-visible .journal-read-more__arrow {
+    transform: translateX(3px);
   }
 </style>
 

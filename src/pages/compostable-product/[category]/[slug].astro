@@ -996,6 +996,15 @@ const productSchema = {
   schema={productSchema}
 >
   <main>
+    <section class="product-page-header">
+      <div class="header-container">
+        <h1 class="main-title">{product.name}</h1>
+        <p class="subtitle">
+          SAKRT is one of India, Bangalore's fastest-growing Supplier in Products Compostable in Nature and Premium quality distribution.
+        </p>
+      </div>
+    </section>
+
     <GenericProductDetail
       productName={product.name}
       productImage={product.image}
@@ -1004,3 +1013,35 @@ const productSchema = {
     />
   </main>
 </Layout>
+
+<style>
+  .product-page-header {
+    background: linear-gradient(180deg, #e6e9e4 0%, #f3f4f1 100%);
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
+  }
+  
+  .header-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .main-title {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    color: #0d3d26;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  
+  .subtitle {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: #3a4a41;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

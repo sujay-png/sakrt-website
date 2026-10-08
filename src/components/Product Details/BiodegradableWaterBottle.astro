@@ -4,6 +4,8 @@ import CategoryGrid from '../Shared/CategoryGrid.astro';
 import ModernFAQ from '../Shared/ModernFAQ.astro';
 import CallToAction from '../../components/Home/CallToAction.astro';
 import EnquiryForm from '../EnquiryForm.astro';
+import Accordion from '../Shared/Accordion.astro';
+import RelatedProducts from '../Shared/RelatedProducts.astro';
 
 const relatedProducts = [
   { name: "Compostable Wrapping Film", slug: "compostable-wrapping-film", category: "compostable-films", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
@@ -18,6 +20,45 @@ const faqs = [
   { question: "What material is 100% biodegradable?", answer: "Materials such as PLA (Polylactic Acid) and PHA are fully biodegradable when placed in the correct composting environment." },
   { question: "What is the best eco-friendly water bottle?", answer: "Bottles made from recycled aluminum have the smallest effect on the environment among single–use containers. Recycling aluminum uses less energy and makes a smaller impact on the climate than making new aluminum from scratch." },
   { question: "What materials are used to make biodegradable bottles?", answer: "We use high-quality, food-safe plant-based resins and bagasse derivatives to ensure strength, clarity, and complete compostability." }
+];
+
+const accordionItems = [
+  {
+    value: "why-choose",
+    trigger: "Why Choose Biodegradable Water Bottles",
+    content: `
+      <p>Biodegradable water bottles are a smart step toward reducing plastic pollution without compromising convenience. Unlike traditional plastic bottles that remain in landfills and oceans for hundreds of years, these bottles are designed to break down naturally under the right conditions, leaving a much smaller environmental footprint.</p>
+      <p>One of the biggest advantages of biodegradable water bottles is their eco-friendly composition. Made from plant-based or compostable materials, they help lower dependence on fossil fuels and reduce harmful carbon emissions. This makes them an ideal solution for businesses, events, hospitals, and environmentally conscious consumers looking to adopt sustainable alternatives.</p>
+    `
+  },
+  {
+    value: "additional-details",
+    trigger: "Additional Product Details",
+    content: `
+      <ul class="bullet-list">
+        <li>Made from plant-based, biodegradable materials instead of petroleum plastics.</li>
+        <li>Designed to break down naturally under proper composting or disposal conditions.</li>
+        <li>Strong, durable structure with leak-resistant design.</li>
+        <li>Lightweight and easy to carry.</li>
+        <li>Helps reduce plastic waste and carbon footprint.</li>
+        <li>Manufactured following eco-friendly production practices.</li>
+        <li>Available in multiple sizes and capacities.</li>
+      </ul>
+    `
+  },
+  {
+    value: "usage-applications",
+    trigger: "Usage Applications",
+    content: `
+      <ul class="bullet-list">
+        <li>Corporate offices promoting eco-friendly initiatives.</li>
+        <li>Hospitals & healthcare facilities reducing plastic waste.</li>
+        <li>Events, exhibitions & conferences as sustainable giveaway bottles.</li>
+        <li>Schools & colleges encouraging green habits among students.</li>
+        <li>Hotels & resorts offering eco-conscious guest amenities.</li>
+      </ul>
+    `
+  }
 ];
 ---
 
@@ -83,43 +124,16 @@ const faqs = [
       </div>
     </div>
 
-    <!-- Why Choose Section -->
-    <div class="why-choose">
-      <h2>Why Choose Biodegradable Water Bottles</h2>
-      <p>Biodegradable water bottles are a smart step toward reducing plastic pollution without compromising convenience. Unlike traditional plastic bottles that remain in landfills and oceans for hundreds of years, these bottles are designed to break down naturally under the right conditions, leaving a much smaller environmental footprint.</p>
-      <p>One of the biggest advantages of biodegradable water bottles is their eco-friendly composition. Made from plant-based or compostable materials, they help lower dependence on fossil fuels and reduce harmful carbon emissions. This makes them an ideal solution for businesses, events, hospitals, and environmentally conscious consumers looking to adopt sustainable alternatives.</p>
-    </div>
-
-    <!-- Additional Details Grid -->
-    <div class="details-grid">
-      <div class="details-box">
-        <h3>Additional Product Details</h3>
-        <ul class="bullet-list">
-          <li>Made from plant-based, biodegradable materials instead of petroleum plastics.</li>
-          <li>Designed to break down naturally under proper composting or disposal conditions.</li>
-          <li>Strong, durable structure with leak-resistant design.</li>
-          <li>Lightweight and easy to carry.</li>
-          <li>Helps reduce plastic waste and carbon footprint.</li>
-          <li>Manufactured following eco-friendly production practices.</li>
-          <li>Available in multiple sizes and capacities.</li>
-        </ul>
-      </div>
-      <div class="details-box usage-box">
-        <h3>Usage Applications:</h3>
-        <ul class="bullet-list">
-          <li>Corporate offices promoting eco-friendly initiatives.</li>
-          <li>Hospitals & healthcare facilities reducing plastic waste.</li>
-          <li>Events, exhibitions & conferences as sustainable giveaway bottles.</li>
-          <li>Schools & colleges encouraging green habits among students.</li>
-          <li>Hotels & resorts offering eco-conscious guest amenities.</li>
-        </ul>
-      </div>
-    </div>
+    <!-- Accordion Section -->
+    <Accordion items={accordionItems} />
 
     <!-- FAQ Section -->
     <div style="margin-top: 4rem;">
       <ModernFAQ title="Frequently Asked Questions" faqs={faqs} />
     </div>
+
+    <!-- Related Products -->
+    <RelatedProducts products={relatedProducts} />
 
     <!-- Banner -->
     <div class="banner-wrapper" style="margin-top: 4rem; margin-bottom: 2rem;">
@@ -286,50 +300,7 @@ const faqs = [
     color: #0f172a;
   }
 
-  /* Why Choose */
-  .why-choose {
-    margin-bottom: 4rem;
-  }
 
-  .why-choose h2 {
-    font-family: var(--font-serif);
-    font-size: 1.49rem;
-    color: #0b2218;
-    margin-bottom: 1rem;
-  }
-
-  .why-choose p {
-    color: #475569;
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  /* Details Grid */
-  .details-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-
-  .details-box {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .details-box:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
-  }
-
-  .details-box h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0b2218;
-    margin-bottom: 1rem;
-  }
 
   /* Banner */
   .banner {
@@ -385,16 +356,10 @@ const faqs = [
     background-color: rgba(255,255,255,0.1);
   }
 
-  /* Related Products */
-  .related-products h2 {
-    font-family: var(--font-serif);
-    font-size: 1.49rem;
-    color: #0b2218;
-    margin-bottom: -1rem; /* Grid adds top padding */
-  }
+
 
   @media (max-width: 900px) {
-    .hero-grid, .details-grid {
+    .hero-grid {
       grid-template-columns: 1fr;
     }
   }
