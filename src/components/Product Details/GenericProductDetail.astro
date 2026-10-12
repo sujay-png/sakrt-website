@@ -10,14 +10,18 @@ export interface Props {
   productImage?: string;
   relatedProducts?: any[];
   productData?: any;
+  accordionPlacement?: 'right' | 'bottom';
 }
 
 const { 
   productName = "Compostable Product",
   productImage = "",
   relatedProducts = [],
-  productData = {}
+  productData = {},
+  accordionPlacement
 } = Astro.props;
+
+const accordionOnRight = accordionPlacement ? accordionPlacement === "right" : true;
 
 const longTitle = productData?.longTitle || productName;
 const aboutTitle = productData?.aboutTitle || "About This Item";
@@ -73,7 +77,7 @@ const accordionItems = [
   <div class="container">
     
     <!-- Top Section: Image and Title/Bullets -->
-    <div class="top-section">
+    <div class={`top-section ${accordionOnRight ? 'accordion-on-right' : ''}`}>
       <div class="image-column">
         <div class="image-wrapper">
           <img src={productImage} alt={productName} class="main-image" />
@@ -123,11 +127,55 @@ const accordionItems = [
           <a href="/contact-us" class="btn-primary">ENQUIRE NOW</a>
           <a href="#bulk-order-form" class="btn-secondary">ORDER IN BULK</a>
         </div>
+
+        <!-- Trust Badges Row -->
+        <div class="product-trust-badges">
+          <div class="trust-badge">
+            <div class="trust-badge-circle">
+              <svg class="trust-badge-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <span class="trust-badge-text">CIPET Certified</span>
+          </div>
+
+          <div class="trust-badge">
+            <div class="trust-badge-circle">
+              <svg class="trust-badge-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+                <path d="m3.3 7 8.7 5 8.7-5"></path>
+                <path d="M12 12v10"></path>
+              </svg>
+            </div>
+            <span class="trust-badge-text">Easy Order</span>
+          </div>
+
+          <div class="trust-badge">
+            <div class="trust-badge-circle">
+              <svg class="trust-badge-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9.5"></circle>
+                <path d="M8.5 7.5h7"></path>
+                <path d="M8.5 10.5h5"></path>
+                <path d="M10.5 7.5v1.2a2.4 2.4 0 0 0 0 4.8h.5l3.5 4.5"></path>
+              </svg>
+            </div>
+            <span class="trust-badge-text">Easy Payment</span>
+          </div>
+        </div>
       </div>
+
+      {accordionOnRight && (
+        <div class="accordion-column">
+          <Accordion items={accordionItems} />
+        </div>
+      )}
     </div>
 
-    <!-- Accordion Section -->
-    <Accordion items={accordionItems} />
+    <!-- Accordion Section (default placement for other pages until approved) -->
+    {!accordionOnRight && (
+      <Accordion items={accordionItems} />
+    )}
 
     <!-- Related Products -->
     <RelatedProducts products={relatedProducts} />
@@ -202,6 +250,87 @@ const accordionItems = [
       position: sticky;
       top: 120px;
       align-self: start;
+    }
+  }
+
+  /* Accordion on Right Layout (All Product Pages) */
+  .top-section.accordion-on-right {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .top-section.accordion-on-right .image-column {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .top-section.accordion-on-right .info-column {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .top-section.accordion-on-right .accordion-column {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  /* Tablet: 768px - 1024px (Accordion displayed below the image and info, full width as before) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .top-section.accordion-on-right {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 3rem;
+      row-gap: 3rem;
+    }
+
+    .top-section.accordion-on-right .image-column {
+      grid-column: 1;
+      grid-row: 1;
+      position: static;
+      align-self: auto;
+    }
+
+    .top-section.accordion-on-right .info-column {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .top-section.accordion-on-right .accordion-column {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+
+  /* Desktop: 1025px and up (Product image on the left; details, buttons, and accordion on the right) */
+  @media (min-width: 1025px) {
+    .top-section.accordion-on-right {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 4rem;
+      row-gap: 2rem;
+      align-items: start;
+    }
+
+    .top-section.accordion-on-right .image-column {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      position: sticky;
+      top: 120px;
+      align-self: start;
+    }
+
+    .top-section.accordion-on-right .info-column {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .top-section.accordion-on-right .accordion-column {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .top-section.accordion-on-right .accordion-column :global(.shadcn-accordion) {
+      margin-bottom: 0;
     }
   }
 
@@ -379,6 +508,61 @@ const accordionItems = [
     box-shadow: 0px 0px 0px #000000;
   }
 
+  /* Trust Badges Strip */
+  .product-trust-badges {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 14px 0;
+    border-top: 1px solid var(--color-border-subtle, #e3e5e0);
+    border-bottom: 1px solid var(--color-border-subtle, #e3e5e0);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .trust-badge {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .trust-badge-circle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    background-color: rgba(162, 240, 64, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .trust-badge-icon {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+    color: var(--color-primary-dark, #103527);
+    stroke-width: 1.75px;
+    flex-shrink: 0;
+  }
+
+  .trust-badge-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-primary-dark, #103527);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
   @media (max-width: 768px) {
     .product-action-buttons {
       flex-direction: column;
@@ -389,6 +573,45 @@ const accordionItems = [
     .product-action-buttons a {
       width: 100%;
       text-align: center;
+    }
+
+    .product-trust-badges {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 16px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 12px 0;
+    }
+
+    .trust-badge {
+      gap: 8px;
+    }
+
+    .trust-badge-circle {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+    }
+
+    .trust-badge-icon {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      min-height: 18px;
+      stroke-width: 1.75px;
+    }
+
+    .trust-badge-text {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .product-trust-badges {
+      gap: 12px 14px;
+      justify-content: flex-start;
     }
   }
 </style>

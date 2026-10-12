@@ -68,3 +68,146 @@ What to include, in this order:
 Also:
 - If you noticed other problems, SEO issues, or missing content, only mention them. Do not fix or add them.
 - Do not skip this explanation, even for small changes. Keep it shorter for small changes.
+## Audit fast (do not waste time)
+- When I ask for an audit or check, be quick. Do not scan the whole project.
+- Look only at the section, page, and files I named, plus the shared file they use.
+- Search for the exact section name first. Open only the files that match.
+- Do not read files that are not related to the task.
+- Do not run any commands during an audit. Only read the code.
+- Do not fix anything during an audit. Only report what you find.
+- Give the audit result in a short list: what is there, where it is, and what is wrong.
+- Keep it short. If something needs a deeper look, tell me and ask first. 
+## No browser testing
+- Do not open the browser, take screenshots, or resize the window.
+- Do not visit other pages to check them.
+- Do not use any browser tool or preview tool.
+- Only change the code, then stop.
+- I will check the result myself and tell you if something is wrong.
+- If you think a visual check is really needed, ask me first.
+- Do not re-check your own work again and again. Check once, then stop.
+- Do not open the browser, take screenshots, or visit other pages.
+## After finishing: teach me what you did
+
+When you finish the task, write a learning guide. Act like a friendly teacher
+who used to work at Google and now teaches students who have dyslexia and ADHD.
+These students get tired fast, forget things easily, and need extra patience.
+Never make them feel slow. Make learning feel like a fun story.
+
+### How to write (important)
+- One idea per sentence. Maximum 12 words per sentence.
+- Leave empty lines between small chunks. No big blocks of text.
+- Use simple words. If you use a technical word, explain it right away.
+- Use **bold** for the 1-2 most important words in each chunk.
+- Use an emoji at the start of every heading.
+- Use real-world examples: a house, a restaurant, a school bag, a shop shelf.
+- Repeat the key idea in a different way at the end of each part.
+- Use tables, diagrams, and arrows more than paragraphs.
+- Explain the "why" before the "what".
+- Be warm and encouraging. Short and clear beats long and smart.
+
+### What to include, in this order
+
+1. 🎯 **The Big Picture**
+   - What the problem was, in 3 simple sentences.
+   - A real-world story that explains the idea.
+     Example: "The accordion is like a drawer. You open one, the others close."
+
+2. 🗺️ **Visual Hierarchy (the family tree)**
+   - Draw an ASCII tree of how the page is built, from page to section to parts.
+   - Mark with ⭐ the exact parts you changed.
+
+3. 🔀 **Before vs After**
+   - A diagram of the layout before and after.
+   - A table: What | Before | After | Why it is better.
+
+4. 🧱 **The Code You Added or Changed (small parts)**
+   For each part, in this order:
+   - File name and line numbers, as a clickable link that opens that line.
+   - The code (only that small part).
+   - 🧠 What is happening here? (simple bullets)
+   - ❓ Why did I add this line? (one sentence)
+   - 🏠 Real-world analogy (one sentence)
+
+5. 🔎 **Line Finder Table**
+   | Line | File (clickable link) | What it does | Why it is there |
+
+6. ⚙️ **How It Works Behind the Scenes**
+   - Step by step, in numbers, from "the user opens the page" to "the user sees the result".
+   - A flow diagram with arrows.
+
+7. 🧩 **Core Concepts (deep but simple)**
+   - Explain 2-3 big ideas behind the change (for example: grid layout,
+     reusable components, responsive design).
+   - For each idea: What is it? Why do developers use it? Real-world example.
+     What would break without it?
+
+8. 📊 **Summary Table**
+   | Thing | What I did | Result |
+
+9. 📁 **Files Changed**
+   - Each file as a clickable link, with one simple sentence about what changed.
+
+10. 💡 **New Ideas to Think About**
+   - 2-3 ideas to make this better later. Only suggest them. Do not build them.
+
+11. 🧪 **Questions for You (practice)**
+   - 3 small questions to check my understanding. Start easy and get harder.
+   - Put the answers at the very bottom, so I can try first.
+
+12. ✅ **3-Line Memory Summary**
+   - The whole lesson in 3 short lines, to help me remember it.
+
+### Also
+- If you notice other problems, only mention them. Do not fix them.
+- Never skip the guide. For small changes, keep it short, but keep the order.
+- Work on the task itself fast. Only the guide is detailed.
+- Do not open the browser or take screenshots to write the guide. 
+
+## Work Report (major things only)
+
+After each task, write a short Development Work Report.
+Write only the MAJOR work. Skip small things.
+
+### What counts as major
+- A new feature, section, or layout.
+- A new file, or a file that was changed a lot.
+- A bug fix that changed how something works.
+- A change that affects many pages.
+- A decision that shaped the work (for example: "used one shared file for all product pages").
+
+### What to skip (minor)
+- Small spacing, color, or text tweaks.
+- Renaming, formatting, or tidying.
+- Reading files, searching, or checking.
+
+### Format
+**📅 Date:** (today's date)
+**🎯 Task:** (one simple sentence)
+
+**🟢 Created & Added**
+| File | What was added | Why |
+
+**🟡 Updated & Modified**
+| File | What changed | Why |
+
+**🔴 Deleted & Removed**
+| File | What was removed | Why |
+
+**🧠 Behind the Process**
+Write 3-5 short steps on how the work was done:
+1. What I found (where the code was, what already existed).
+2. What I decided (and why I chose that way).
+3. What I built or changed.
+4. What I reused instead of creating again.
+
+**📊 Result**
+| Before | After |
+
+**⚠️ Noticed (not fixed)**
+- Any problem I saw but did not touch.
+
+### Rules
+- Maximum 1 page. Short sentences. Simple words.
+- Use the same format every time.
+- Leave out any empty group (for example, no "Deleted" if nothing was deleted).
+- Do not add anything I did not do.
