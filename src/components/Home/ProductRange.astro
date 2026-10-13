@@ -70,9 +70,22 @@ import productImg from '../../images/imgi_8_admin-ajax-22.webp';
     align-items: center;
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .pr-container {
       grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .pr-left {
+      position: sticky;
+      top: max(100px, calc(50vh - 250px));
+      align-self: start;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .pr-container {
       gap: 80px;
     }
   }
