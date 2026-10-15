@@ -1,17 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-
-import cipetImg from '../../images/CIPET.webp';
-import isoImg from '../../images/iso.png';
-import cpcbImg from '../../images/cpcb.png';
-import bioComplianceImg from '../../images/bio-compliance.png';
+// src/components/Home/Ecosystem.astro
 ---
 
 <section class="ecosystem-section" id="ecosystem-section">
-  <!-- Interactive Ambient Glow Circle -->
-  <div class="interactive-glow" id="interactive-glow"></div>
-
   <div class="ecosystem-container">
     
     <!-- Section Header -->
@@ -22,111 +13,151 @@ import bioComplianceImg from '../../images/bio-compliance.png';
         </span>
         <h2 class="ecosystem-title">Most Enquired Products</h2>
       </div>
-      
-      <a href="/compostable-product" class="see-all-btn">
-        <span>See All Products</span>
-        <div class="arrow-wrapper">
-          <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </div>
-      </a>
     </div>
 
     <!-- 6-Product Cards Grid -->
     <div class="ecosystem-grid">
+      <span class="hover-bg" aria-hidden="true"></span>
       
       <!-- 1. Biodegradable Water Bottles -->
-      <a href="/compostable-product/biodegradable-water-bottles" class="product-card active-card">
-        <div class="card-image bottle-bg"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">01</div>
-        <div class="card-content-box">
-          <span class="category-subtitle">HYDRATION</span>
-          <h3 class="card-heading">Biodegradable Water Bottles</h3>
-          <p class="card-description">Redefining daily hydration with zero-plastic impact, 100% natural materials.</p>
-          <div class="action-row">
-            <span class="btn-lime">View Details</span>
+      <a href="/compostable-product/biodegradable-water-bottles" class="card-wrap">
+        <div class="product-card">
+          <div class="card-media">
+            <span class="card-badge">01</span>
+            <div class="card-blur-bg bottle-bg" aria-hidden="true"></div>
+            <div class="card-image-wrap">
+              <div class="card-image bottle-bg"></div>
+            </div>
+          </div>
+          <div class="card-content-box">
+            <span class="category-subtitle">HYDRATION</span>
+            <h3 class="card-heading">Biodegradable Water Bottles</h3>
+            <p class="card-description">Redefining daily hydration with zero-plastic impact, 100% natural materials.</p>
+            <div class="card-footer">
+              <span class="view-details-text">View Details</span>
+            </div>
           </div>
         </div>
       </a>
 
       <!-- 2. Compostable Carry Bags -->
-      <a href="/compostable-product/carry-bags" class="product-card">
-        <div class="card-image bag-bg"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">02</div>
-        <div class="card-content-box">
-          <span class="category-subtitle">PACKAGING</span>
-          <h3 class="card-heading">Compostable Carry Bags</h3>
-          <p class="card-description">High-tensile strength carry bags certified for complete natural decomposition.</p>
-          <div class="action-row">
-            <span class="btn-lime">View Details</span>
+      <a href="/compostable-product/carry-bags" class="card-wrap">
+        <div class="product-card">
+          <div class="card-media">
+            <span class="card-badge">02</span>
+            <div class="card-blur-bg bag-bg" aria-hidden="true"></div>
+            <div class="card-image-wrap">
+              <div class="card-image bag-bg"></div>
+            </div>
+          </div>
+          <div class="card-content-box">
+            <span class="category-subtitle">PACKAGING</span>
+            <h3 class="card-heading">Compostable Carry Bags</h3>
+            <p class="card-description">High-tensile strength carry bags certified for complete natural decomposition.</p>
+            <div class="card-footer">
+              <span class="view-details-text">View Details</span>
+            </div>
           </div>
         </div>
       </a>
 
       <!-- 3. Compostable Films -->
-      <a href="/compostable-product/compostable-films" class="product-card">
-        <div class="card-image film-bg"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">03</div>
-        <div class="card-content-box">
-          <span class="category-subtitle">PACKAGING</span>
-          <h3 class="card-heading">Compostable Films</h3>
-          <p class="card-description">Versatile, eco-friendly films designed to protect goods while minimizing environmental impact.</p>
-          <div class="action-row">
-            <span class="btn-lime">View Details</span>
+      <a href="/compostable-product/compostable-films" class="card-wrap">
+        <div class="product-card">
+          <div class="card-media">
+            <span class="card-badge">03</span>
+            <div class="card-blur-bg film-bg" aria-hidden="true"></div>
+            <div class="card-image-wrap">
+              <div class="card-image film-bg"></div>
+            </div>
+          </div>
+          <div class="card-content-box">
+            <span class="category-subtitle">PACKAGING</span>
+            <h3 class="card-heading">Compostable Films</h3>
+            <p class="card-description">Versatile, eco-friendly films designed to protect goods while minimizing environmental impact.</p>
+            <div class="card-footer">
+              <span class="view-details-text">View Details</span>
+            </div>
           </div>
         </div>
       </a>
 
       <!-- 4. Tableware & Utensils -->
-      <a href="/compostable-product/food-packaging-boxes" class="product-card">
-        <div class="card-image tableware-bg"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">04</div>
-        <div class="card-content-box">
-          <span class="category-subtitle">FOOD SERVICE</span>
-          <h3 class="card-heading">Bio-Tableware & Containers</h3>
-          <p class="card-description">Sturdy, heat-resistant food packaging made from organic sugarcane fibers.</p>
-          <div class="action-row">
-            <span class="btn-lime">View Details</span>
+      <a href="/compostable-product/food-packaging-boxes" class="card-wrap">
+        <div class="product-card">
+          <div class="card-media">
+            <span class="card-badge">04</span>
+            <div class="card-blur-bg tableware-bg" aria-hidden="true"></div>
+            <div class="card-image-wrap">
+              <div class="card-image tableware-bg"></div>
+            </div>
+          </div>
+          <div class="card-content-box">
+            <span class="category-subtitle">FOOD SERVICE</span>
+            <h3 class="card-heading">Bio-Tableware & Containers</h3>
+            <p class="card-description">Sturdy, heat-resistant food packaging made from organic sugarcane fibers.</p>
+            <div class="card-footer">
+              <span class="view-details-text">View Details</span>
+            </div>
           </div>
         </div>
       </a>
 
       <!-- 5. Compostable Pouches -->
-      <a href="/compostable-product/compostable-pouches" class="product-card">
-        <div class="card-image pouches-bg"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">05</div>
-        <div class="card-content-box">
-          <span class="category-subtitle">PACKAGING</span>
-          <h3 class="card-heading">Compostable Pouches</h3>
-          <p class="card-description">Multi-layer barrier protection stand-up pouches designed for food, dry goods, and retail items.</p>
-          <div class="action-row">
-            <span class="btn-lime">View Details</span>
+      <a href="/compostable-product/compostable-pouches" class="card-wrap">
+        <div class="product-card">
+          <div class="card-media">
+            <span class="card-badge">05</span>
+            <div class="card-blur-bg pouches-bg" aria-hidden="true"></div>
+            <div class="card-image-wrap">
+              <div class="card-image pouches-bg"></div>
+            </div>
+          </div>
+          <div class="card-content-box">
+            <span class="category-subtitle">PACKAGING</span>
+            <h3 class="card-heading">Compostable Pouches</h3>
+            <p class="card-description">Multi-layer barrier protection stand-up pouches designed for food, dry goods, and retail items.</p>
+            <div class="card-footer">
+              <span class="view-details-text">View Details</span>
+            </div>
           </div>
         </div>
       </a>
 
       <!-- 6. Courier & Mailer Bags -->
-      <a href="/compostable-product/carry-bags/compostable-mailer-bags" class="product-card">
-        <div class="card-image courier-bg"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">06</div>
-        <div class="card-content-box">
-          <span class="category-subtitle">E-COMMERCE</span>
-          <h3 class="card-heading">Courier & Mailer Bags</h3>
-          <p class="card-description">Tear-resistant, waterproof shipping mailers certified for 100% natural composting.</p>
-          <div class="action-row">
-            <span class="btn-lime">View Details</span>
+      <a href="/compostable-product/carry-bags/compostable-mailer-bags" class="card-wrap">
+        <div class="product-card">
+          <div class="card-media">
+            <span class="card-badge">06</span>
+            <div class="card-blur-bg courier-bg" aria-hidden="true"></div>
+            <div class="card-image-wrap">
+              <div class="card-image courier-bg"></div>
+            </div>
+          </div>
+          <div class="card-content-box">
+            <span class="category-subtitle">E-COMMERCE</span>
+            <h3 class="card-heading">Courier & Mailer Bags</h3>
+            <p class="card-description">Tear-resistant, waterproof shipping mailers certified for 100% natural composting.</p>
+            <div class="card-footer">
+              <span class="view-details-text">View Details</span>
+            </div>
           </div>
         </div>
       </a>
 
+    </div>
+
+    <!-- Bottom Centered "See All Products" Button -->
+    <div class="ecosystem-bottom-cta">
+      <a href="/compostable-product" class="bottom-see-all-btn">
+        <span>See All Products</span>
+        <div class="bottom-arrow-wrapper">
+          <svg class="bottom-arrow-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -134,52 +165,36 @@ import bioComplianceImg from '../../images/bio-compliance.png';
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
 
-  :root {
-    --color-btn-bg: #8FBF6A;
-    --color-btn-hover: #A8D08D;
-    --color-btn-border: #8FBF6A;
-    --color-btn-text: #0B3B26;
-    --color-label: #A8D08D;
-    --color-border-active: #8FBF6A;
-    --dark-green: #0b2218;
-    --ease-spring: cubic-bezier(0.25, 1, 0.3, 1);
-  }
-
+  /* 1. SECTION & CONTAINER */
   .ecosystem-section {
     position: relative;
-    padding: 120px 24px;
-    background: #0d3d26;
-    color: #ffffff;
-    overflow: hidden;
+    padding: 64px 20px;
+    background: #FFFFFF;
+    border-top: 1px solid #E8F0E3;
+    border-bottom: 1px solid #E8F0E3;
     box-sizing: border-box;
   }
 
-  /* Interactive Background Spotlight */
-  .interactive-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(143, 191, 106, 0.1) 0%, rgba(8, 26, 18, 0) 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: left 0.15s ease-out, top 0.15s ease-out;
-    z-index: 1;
-  }
-
   .ecosystem-container {
-    max-width: 1320px;
+    max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
     position: relative;
-    z-index: 2;
+    box-sizing: border-box;
   }
 
-  /* SECTION HEADER */
+  /* 2. SECTION HEADER */
   .ecosystem-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 48px;
+    margin-bottom: 36px;
+    gap: 20px;
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
   }
 
   .section-tag {
@@ -188,124 +203,204 @@ import bioComplianceImg from '../../images/bio-compliance.png';
     gap: 8px;
     font-family: 'Space Mono', monospace;
     font-size: 12px;
-    letter-spacing: 3px;
-    color: #8a9892;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: #2F6B3F;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   .pulsing-emerald {
-    width: 8px;
-    height: 8px;
-    background-color: var(--color-label, #A8D08D);
+    width: 7px;
+    height: 7px;
+    background-color: #8FBF6A;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(168, 208, 141, 0.5);
-    animation: emeraldPulse 2s infinite ease-in-out;
-  }
-
-  @keyframes emeraldPulse {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.4); }
+    box-shadow: 0 0 6px rgba(143, 191, 106, 0.7);
+    display: inline-block;
   }
 
   .ecosystem-title {
     font-family: var(--font-serif, 'Instrument Serif', serif);
-    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-    font-weight: 300;
-    color: #ffffff;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 400;
+    color: #0B3B26;
     margin: 0;
-    line-height: 1.05;
+    line-height: 1.15;
   }
 
-  .see-all-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    font-weight: 700;
-    color: #ffffff;
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 12px 24px;
-    border-radius: 40px;
-    transition: all 0.3s var(--ease-spring);
-  }
-
-  .arrow-wrapper {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s var(--ease-spring), background 0.3s ease;
-  }
-
-  .see-all-btn:hover {
-    background: var(--color-btn-bg, #8FBF6A);
-    color: var(--color-btn-text, #0B3B26);
-    border-color: var(--color-btn-border, #8FBF6A);
-    transform: translateY(-2px);
-  }
-
-  .see-all-btn:hover .arrow-wrapper {
-    background: rgba(11, 59, 38, 0.15);
-    color: var(--color-btn-text, #0B3B26);
-    transform: translateX(3px);
-  }
-
-  /* PRODUCT CARDS GRID (3 across desktop, 2 tablet, 1 mobile) */
+  /* 3. GRID LAYOUT & SLIDING HOVER HIGHLIGHT */
   .ecosystem-grid {
+    position: relative;
+    isolation: isolate;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 4px;
     width: 100%;
+    box-sizing: border-box;
   }
 
-  .product-card {
-    position: relative;
-    height: 480px;
+  .hover-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    background: #DCEBCF;
     border-radius: 24px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #ffffff;
+    z-index: 1;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    transition: transform 0.25s ease, width 0.25s ease, height 0.25s ease, opacity 0.15s ease;
+  }
+
+  /* 4. CARD WRAPPER & VERTICAL COMPACT PRODUCT CARD */
+  .card-wrap {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: #081a12;
-    transition: transform 0.3s var(--ease-spring), border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 8px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    z-index: 2;
+    border-radius: 24px;
+    box-sizing: border-box;
+    height: 100%;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: transform 0.45s ease, opacity 0.45s ease;
   }
 
-  /* Active card has its soft green border visible */
-  .product-card.active-card {
-    border-color: var(--color-border-active, #8FBF6A);
+  /* FADE-UP ON SCROLL */
+  .ecosystem-section.is-visible .card-wrap {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .product-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--color-border-active, #8FBF6A);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+  .ecosystem-section.is-visible .card-wrap:nth-child(2) { transition-delay: 0ms; }
+  .ecosystem-section.is-visible .card-wrap:nth-child(3) { transition-delay: 60ms; }
+  .ecosystem-section.is-visible .card-wrap:nth-child(4) { transition-delay: 120ms; }
+  .ecosystem-section.is-visible .card-wrap:nth-child(5) { transition-delay: 180ms; }
+  .ecosystem-section.is-visible .card-wrap:nth-child(6) { transition-delay: 240ms; }
+  .ecosystem-section.is-visible .card-wrap:nth-child(7) { transition-delay: 300ms; }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #FFFFFF;
+    border: 1px solid #E3EDDC;
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(11, 59, 38, 0.05);
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.25s ease;
   }
 
-  /* Card Background Images */
-  .card-image {
+  /* CARD HOVER STATE (NO LIFT, NO ZOOM) */
+  .card-wrap:hover .product-card {
+    border-color: #8FBF6A;
+  }
+
+  .card-wrap:hover .view-details-text {
+    color: #2F6B3F;
+    text-decoration-color: #8FBF6A;
+  }
+
+  .card-wrap:focus-visible {
+    outline: 2px solid #8FBF6A;
+    outline-offset: 2px;
+  }
+
+  .card-wrap:focus-visible .view-details-text {
+    color: #2F6B3F;
+    text-decoration-color: #8FBF6A;
+    outline: 2px solid #8FBF6A;
+    outline-offset: 2px;
+  }
+
+  /* 5. IMAGE AREA (TOP OF CARD) */
+  .card-media {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .card-blur-bg {
     position: absolute;
     inset: 0;
     background-size: cover;
     background-position: center;
-    transition: transform 0.5s var(--ease-spring), filter 0.3s ease;
-    filter: brightness(0.72) saturate(0.95);
+    background-repeat: no-repeat;
+    object-fit: cover;
+    filter: blur(18px);
+    transform: scale(1.15);
+    z-index: 1;
+    pointer-events: none;
   }
 
-  .product-card:hover .card-image {
-    filter: brightness(0.88) saturate(1.1);
+  .card-blur-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .card-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: contain;
+    transition: transform 0.35s ease;
+  }
+
+  .card-wrap:hover .card-image {
     transform: scale(1.04);
   }
 
+  .card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #0B3B26;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 3;
+  }
+
+  /* Background Image Classes */
   .bottle-bg { background-image: url('../../images/biodegradable_water.png'); }
   .bag-bg { background-image: url('../../images/sakrt_bag.png'); }
   .film-bg { background-image: url('/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp'); }
@@ -313,161 +408,344 @@ import bioComplianceImg from '../../images/bio-compliance.png';
   .pouches-bg { background-image: url('../../images/biodegradable_greybags.png'); }
   .courier-bg { background-image: url('../../images/plastic courier bag.webp'); }
 
-  /* Dark Gradient Overlay */
-  .card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(8, 26, 18, 0.2) 0%, rgba(8, 26, 18, 0.72) 55%, rgba(8, 26, 18, 0.96) 100%);
-    z-index: 2;
-  }
-
-  /* Badge Number */
-  .card-badge {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    z-index: 3;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 14px;
-    border-radius: 20px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
-
-  .product-card.active-card .card-badge,
-  .product-card:hover .card-badge {
-    color: var(--color-border-active, #8FBF6A);
-    border-color: var(--color-border-active, #8FBF6A);
-  }
-
-  /* Content Box Inside Cards */
+  /* 6. CARD TEXT CONTENT */
   .card-content-box {
-    position: relative;
-    z-index: 3;
-    padding: 28px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    flex: 1;
+    padding: 14px 14px 16px 14px;
+    min-width: 0;
   }
 
   .category-subtitle {
-    font-family: 'Space Mono', monospace;
+    display: inline-block;
+    color: #2F6B3F;
+    font-family: system-ui, -apple-system, sans-serif;
     font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--color-label, #A8D08D);
+    font-weight: 700;
     text-transform: uppercase;
-    display: block;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    padding: 0;
   }
 
   .card-heading {
     font-family: var(--font-serif, 'Instrument Serif', serif);
-    font-size: clamp(1.45rem, 1.8vw, 1.85rem);
-    font-weight: 300;
-    margin: 0;
-    line-height: 1.15;
-    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0B3B26;
+    margin: 8px 0 0 0;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
 
   .card-description {
     font-family: system-ui, -apple-system, sans-serif;
-    font-size: 0.92rem;
-    color: rgba(255, 255, 255, 0.78);
-    line-height: 1.5;
-    margin: 4px 0 12px;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: #4A5A50;
+    line-height: 1.55;
+    margin: 6px 0 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  /* Button inside card */
-  .action-row {
-    margin-top: 4px;
+  /* 7. CARD FOOTER ROW */
+  .card-footer {
+    margin-top: auto;
+    padding-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  .btn-lime {
-    display: inline-block;
-    background: var(--color-btn-bg, #8FBF6A);
-    color: var(--color-btn-text, #0B3B26);
-    border: 1px solid var(--color-btn-border, #8FBF6A);
+  .view-details-text {
     font-family: system-ui, -apple-system, sans-serif;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #0B3B26;
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.25s ease, text-decoration-color 0.25s ease;
+    display: inline-block;
+  }
+
+  .view-details-text:hover {
+    color: #2F6B3F;
+    text-decoration-color: #8FBF6A;
+  }
+
+  /* 8. BOTTOM CENTERED SEE ALL PRODUCTS BUTTON */
+  .ecosystem-bottom-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+  }
+
+  .bottom-see-all-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: 'Space Mono', monospace;
     font-size: 13px;
-    padding: 10px 22px;
-    border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(143, 191, 106, 0.2);
-    transition: transform 0.3s var(--ease-spring), background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    font-weight: 600;
+    color: #0B3B26;
+    text-decoration: none;
+    background: #8FBF6A;
+    padding: 12px 28px;
+    border-radius: 40px;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
+    box-sizing: border-box;
   }
 
-  .product-card:hover .btn-lime {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(143, 191, 106, 0.35);
+  .bottom-arrow-wrapper {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #0B3B26;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
   }
 
-  .btn-lime:hover {
-    background: var(--color-btn-hover, #A8D08D);
-    color: var(--color-btn-text, #0B3B26);
-    border-color: var(--color-btn-hover, #A8D08D);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(143, 191, 106, 0.4);
+  .bottom-see-all-btn:hover {
+    background: #7DAE59;
   }
 
-  /* RESPONSIVE DESIGN */
-  @media (max-width: 1024px) {
+  .bottom-see-all-btn:hover .bottom-arrow-wrapper {
+    transform: translateX(3px);
+  }
+
+  /* 9. RESPONSIVE BREAKPOINTS */
+  @media (max-width: 900px) {
     .ecosystem-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 4px;
     }
 
-    .product-card {
-      height: 440px;
+    .card-media {
+      height: 210px;
     }
   }
 
   @media (max-width: 768px) {
-    .ecosystem-section {
-      padding: 80px 20px;
-    }
-
     .ecosystem-header {
       flex-direction: column;
       align-items: flex-start;
       gap: 16px;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 560px) {
+    .ecosystem-section {
+      padding: 48px 16px;
+    }
+
     .ecosystem-grid {
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 4px;
     }
 
-    .product-card {
-      height: 400px;
+    .card-media {
+      height: 230px;
     }
 
-    .card-content-box {
-      padding: 22px;
+    .ecosystem-bottom-cta {
+      margin-top: 32px;
+    }
+
+    .bottom-see-all-btn {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+
+    .card-heading {
+      font-size: 19px;
+    }
+
+    .card-description {
+      font-size: 13.5px;
+    }
+  }
+
+  @media (hover: none) {
+    .hover-bg {
+      display: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hover-bg {
+      transition: none !important;
+    }
+    .card-wrap {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .card-image,
+    .view-details-text,
+    .bottom-see-all-btn,
+    .bottom-arrow-wrapper {
+      transition: none !important;
     }
   }
 </style>
 
 <script>
-  function setupEcosystemSpotlight() {
+  function setupEcosystemScroll() {
     const section = document.getElementById('ecosystem-section');
-    const glow = document.getElementById('interactive-glow');
+    if (!section) return;
 
-    if (!section || !glow) return;
+    if (!('IntersectionObserver' in window)) {
+      section.classList.add('is-visible');
+      return;
+    }
 
-    section.addEventListener('mousemove', (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect();
-      glow.style.left = `${e.clientX - rect.left}px`;
-      glow.style.top = `${e.clientY - rect.top}px`;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          section.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    observer.observe(section);
+  }
+
+  function setupSlidingHover() {
+    const grid = document.querySelector<HTMLElement>('.ecosystem-grid');
+    if (!grid || grid.dataset.hoverInitialized === 'true') return;
+    grid.dataset.hoverInitialized = 'true';
+
+    const hoverBg = grid.querySelector<HTMLElement>('.hover-bg');
+    const items = grid.querySelectorAll<HTMLElement>('.card-wrap');
+    if (!hoverBg || !items.length) return;
+
+    let activeItem: HTMLElement | null = null;
+    let isVisible = false;
+
+    function canHover() {
+      return window.matchMedia('(hover: hover)').matches;
+    }
+
+    function updateHighlight(item: HTMLElement, animate = true) {
+      if (!item || !grid || !hoverBg) return;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const gridRect = grid.getBoundingClientRect();
+      const itemRect = item.getBoundingClientRect();
+
+      const x = itemRect.left - gridRect.left;
+      const y = itemRect.top - gridRect.top;
+      const w = itemRect.width;
+      const h = itemRect.height;
+
+      if (!animate || prefersReduced || !isVisible) {
+        hoverBg.style.transition = 'none';
+        hoverBg.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        hoverBg.style.width = `${w}px`;
+        hoverBg.style.height = `${h}px`;
+        void hoverBg.offsetHeight; // Force reflow
+        if (!prefersReduced) {
+          hoverBg.style.transition = '';
+        }
+      } else {
+        hoverBg.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        hoverBg.style.width = `${w}px`;
+        hoverBg.style.height = `${h}px`;
+      }
+
+      hoverBg.style.opacity = '1';
+      isVisible = true;
+    }
+
+    items.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        if (!hoverBg) return;
+        if (!canHover()) {
+          hoverBg.style.opacity = '0';
+          isVisible = false;
+          activeItem = null;
+          return;
+        }
+
+        activeItem = item;
+        updateHighlight(item, isVisible);
+      });
+    });
+
+    grid.addEventListener('mouseleave', () => {
+      if (!hoverBg) return;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        hoverBg.style.transition = 'none';
+      }
+      hoverBg.style.opacity = '0';
+      isVisible = false;
+      activeItem = null;
+    });
+
+    window.addEventListener('resize', () => {
+      if (activeItem && isVisible) {
+        updateHighlight(activeItem, false);
+      } else if (hoverBg) {
+        hoverBg.style.opacity = '0';
+        isVisible = false;
+        activeItem = null;
+      }
+    });
+
+    // Recalculate highlight position and size after images finish loading
+    window.addEventListener('load', () => {
+      if (activeItem && isVisible) {
+        updateHighlight(activeItem, false);
+      }
+    });
+
+    const cardImages = grid.querySelectorAll<HTMLElement>('.card-image');
+    cardImages.forEach((imgEl) => {
+      const bg = window.getComputedStyle(imgEl).backgroundImage;
+      const match = bg.match(/url\(['"]?(.*?)['"]?\)/i);
+      if (match && match[1]) {
+        const img = new Image();
+        img.onload = () => {
+          if (activeItem && isVisible) {
+            updateHighlight(activeItem, false);
+          }
+        };
+        img.src = match[1];
+      }
     });
   }
 
-  setupEcosystemSpotlight();
-  document.addEventListener('astro:page-load', setupEcosystemSpotlight);
+  function initEcosystem() {
+    setupEcosystemScroll();
+    setupSlidingHover();
+  }
+
+  initEcosystem();
+  document.addEventListener('astro:page-load', initEcosystem);
 </script>
