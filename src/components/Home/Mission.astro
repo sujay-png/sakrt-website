@@ -25,12 +25,27 @@ import bioComplianceImg from '../../images/bio-compliance.png';
           Sustainable & Biodegradable<span class="highlight-text"><br/>Packaging Solutions in Karnataka</span>
         </h2>
 
-        <p class="mission-desc">
-          As government mandates restrict traditional single-use plastics, businesses across Karnataka require legal, reliable, and eco-friendly packaging alternatives. Headquartered in Mangalore, SAKRT is a premier manufacturer and supplier of CPCB-certified compostable products.
-          <br/>
-         We bridge the gap between sustainability and commercial performance. Whether you are a local retailer in Dakshina Kannada seeking sustainable shopping bags or an enterprise requiring bulk eco-friendly packaging solutions across Karnataka, 
-         SAKRT provides high-quality bioplastic alternatives that protect the environment without compromising durability.
-        </p>
+        <div class="mission-desc-container" id="mission-desc-content">
+          <p class="mission-desc">
+            As government mandates restrict traditional single-use plastics, businesses across Karnataka require legal, reliable, and eco-friendly packaging alternatives. Headquartered in Mangalore, SAKRT is a premier manufacturer and supplier of CPCB-certified compostable products.
+            <br/>
+           We bridge the gap between sustainability and commercial performance. Whether you are a local retailer in Dakshina Kannada seeking sustainable shopping bags or an enterprise requiring bulk eco-friendly packaging solutions across Karnataka, 
+           SAKRT provides high-quality bioplastic alternatives that protect the environment without compromising durability.
+          </p>
+        </div>
+
+        <button 
+          type="button" 
+          class="mission-toggle-btn" 
+          id="mission-text-toggle" 
+          aria-expanded="false" 
+          aria-controls="mission-desc-content"
+        >
+          <span class="toggle-text">Read more</span>
+          <svg class="toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
 
        
 
@@ -202,6 +217,10 @@ import bioComplianceImg from '../../images/bio-compliance.png';
     margin-bottom: 16px;
   }
 
+  .mission-toggle-btn {
+    display: none;
+  }
+
   /* Floating Magnetic Button */
   .btn-wrapper {
     margin-top: 36px;
@@ -336,26 +355,90 @@ import bioComplianceImg from '../../images/bio-compliance.png';
   }
 
   @media (max-width: 768px) {
-    .mission-desc-secondary {
-      display: none;
+    .mission-desc-container {
+      position: relative;
+      max-height: 7.2em;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.25, 1, 0.3, 1);
     }
+
+    .mission-desc-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%);
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .mission-desc-container.is-expanded {
+      max-height: 800px;
+    }
+
+    .mission-desc-container.is-expanded::after {
+      opacity: 0;
+    }
+
+    .mission-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      padding: 6px 0;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0d3426;
+      cursor: pointer;
+      text-decoration: none;
+      outline-offset: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .mission-toggle-btn:hover,
+    .mission-toggle-btn:focus-visible {
+      color: #1b5e43;
+    }
+
+    .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .mission-desc-container.is-expanded + .mission-toggle-btn .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
     .mission-container {
       padding: 0 16px;
     }
+
     .glass-content-card {
       padding: 24px 20px;
+    }
+
+    .btn-wrapper {
+      margin-top: 20px;
     }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initMissionInteractive() {
     const section = document.getElementById('mission-section');
     const glow = document.getElementById('cursor-glow');
     const tiltCards = document.querySelectorAll('[data-tilt]');
 
     // 1. Smooth Cursor Tracking Spotlight Effect
-    if (section && glow) {
+    if (section && glow && !(section as any)._hasGlow) {
+      (section as any)._hasGlow = true;
       section.addEventListener('mousemove', (e: MouseEvent) => {
         const rect = section.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -369,6 +452,8 @@ import bioComplianceImg from '../../images/bio-compliance.png';
     // 2. 3D Tilt Effect on Hover
     tiltCards.forEach((card) => {
       const el = card as HTMLElement;
+      if ((el as any)._hasTilt) return;
+      (el as any)._hasTilt = true;
       
       el.addEventListener('mousemove', (e: MouseEvent) => {
         const rect = el.getBoundingClientRect();
@@ -388,5 +473,24 @@ import bioComplianceImg from '../../images/bio-compliance.png';
         el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       });
     });
-  });
+
+    // 3. Mobile Mission Text Toggle
+    const toggleBtn = document.getElementById('mission-text-toggle');
+    const textContainer = document.getElementById('mission-desc-content');
+    if (toggleBtn && textContainer && !(toggleBtn as any)._hasToggle) {
+      (toggleBtn as any)._hasToggle = true;
+      toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isExpanded = textContainer.classList.toggle('is-expanded');
+        toggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        const textSpan = toggleBtn.querySelector('.toggle-text');
+        if (textSpan) {
+          textSpan.textContent = isExpanded ? 'Read less' : 'Read more';
+        }
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initMissionInteractive);
+  document.addEventListener('astro:page-load', initMissionInteractive);
 </script>
