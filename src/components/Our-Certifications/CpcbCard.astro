@@ -1,11 +1,25 @@
 ---
 // CpcbCard.astro
+import cpcbLogo from '../../images/cpcb.png';
 ---
 
 <div class="glass-card cert-preview-trigger" data-cert-url="/certificates/CPCB.pdf" data-cert-type="pdf">
   <div class="card-top">
     <div class="card-header">
-      <span class="badge floating-badge">CPCB-REG-2024</span>
+      <a 
+        href="/certificates/CPCB.pdf" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="cert-logo-link" 
+        title="View certificate"
+        onclick="event.stopPropagation();"
+      >
+        <img 
+          src={cpcbLogo.src} 
+          alt="CPCB certificate" 
+          class="cert-logo-img" 
+        />
+      </a>
       <div class="shield-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -94,6 +108,30 @@
     50% { transform: translate(-3px, -6px); }
     75% { transform: translate(-4px, -2px); }
     100% { transform: translate(0px, 0px); }
+  }
+
+  .cert-logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 2px 4px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+  }
+
+  .cert-logo-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(10, 35, 25, 0.12);
+  }
+
+  .cert-logo-img {
+    height: 58px;
+    width: auto;
+    max-width: 90px;
+    object-fit: contain;
+    display: block;
   }
 
   .shield-icon {

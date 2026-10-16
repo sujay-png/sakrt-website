@@ -1,18 +1,25 @@
 ---
 // IsoCard.astro
+import isoLogo from '../../images/iso.png';
 ---
 
 <div class="glass-card cert-preview-trigger" data-cert-url="/certificates/ISO.webp" data-cert-type="image">
   <div class="card-top">
     <div class="card-header">
-      <div class="dark-icon-badge">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="5" r="2"/>
-          <path d="m3 21 7.5-13"/>
-          <path d="m21 21-7.5-13"/>
-          <path d="M7 16h10"/>
-        </svg>
-      </div>
+      <a 
+        href="/certificates/ISO.webp" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="cert-logo-link" 
+        title="View certificate"
+        onclick="event.stopPropagation();"
+      >
+        <img 
+          src={isoLogo.src} 
+          alt="International Accurate Certification logo" 
+          class="cert-logo-img" 
+        />
+      </a>
     </div>
 
     <h3 class="card-title">ISO-Certified Manufacturing Standards</h3>
@@ -80,15 +87,28 @@
     margin-bottom: 2rem;
   }
 
-  .dark-icon-badge {
-    width: 2.25rem;
-    height: 2.25rem;
-    background-color: #0a2319;
-    color: #ffffff;
-    border-radius: 0.5rem;
-    display: flex;
+  .cert-logo-link {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 2px 4px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+  }
+
+  .cert-logo-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(10, 35, 25, 0.12);
+  }
+
+  .cert-logo-img {
+    height: 58px;
+    width: auto;
+    max-width: 90px;
+    object-fit: contain;
+    display: block;
   }
 
   .card-title {
