@@ -1,16 +1,12 @@
 ---
+// src/components/Product Details/BiodegradableWaterBottle.astro
 import productImg from '../../images/biodegradable_water.png';
-import CategoryGrid from '../Shared/CategoryGrid.astro';
-import ModernFAQ from '../Shared/ModernFAQ.astro';
-import CallToAction from '../../components/Home/CallToAction.astro';
-import EnquiryForm from '../EnquiryForm.astro';
-import Accordion from '../Shared/Accordion.astro';
-import RelatedProducts from '../Shared/RelatedProducts.astro';
+import GenericProductDetail from './GenericProductDetail.astro';
 
 const relatedProducts = [
   { name: "Compostable Wrapping Film", slug: "compostable-wrapping-film", category: "compostable-films", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
-  { name: "Compostable Medical Waste Bag", slug: "compostable-medical-waste-bags", category: "compostable-bags", image: "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp" },
-  { name: "Compostable Custom Made Bag", slug: "compostable-custom-made-bag", category: "compostable-bags", image: "/compostable-bags/imgi_6_biodegradable-bags-compostable-products-eco-product.-3.webp" },
+  { name: "Compostable Medical Waste Bag", slug: "compostable-medical-waste-bags", category: "carry-bags", image: "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp" },
+  { name: "Compostable Custom Made Bag", slug: "compostable-custom-made-bag", category: "carry-bags", image: "/compostable-bags/imgi_6_biodegradable-bags-compostable-products-eco-product.-3.webp" },
   { name: "Compostable Mulch Films", slug: "compostable-mulch-films", category: "compostable-films", image: "/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp" }
 ];
 
@@ -22,345 +18,50 @@ const faqs = [
   { question: "What materials are used to make biodegradable bottles?", answer: "We use high-quality, food-safe plant-based resins and bagasse derivatives to ensure strength, clarity, and complete compostability." }
 ];
 
-const accordionItems = [
-  {
-    value: "why-choose",
-    trigger: "Why Choose Biodegradable Water Bottles",
-    content: `
-      <p>Biodegradable water bottles are a smart step toward reducing plastic pollution without compromising convenience. Unlike traditional plastic bottles that remain in landfills and oceans for hundreds of years, these bottles are designed to break down naturally under the right conditions, leaving a much smaller environmental footprint.</p>
-      <p>One of the biggest advantages of biodegradable water bottles is their eco-friendly composition. Made from plant-based or compostable materials, they help lower dependence on fossil fuels and reduce harmful carbon emissions. This makes them an ideal solution for businesses, events, hospitals, and environmentally conscious consumers looking to adopt sustainable alternatives.</p>
-    `
-  },
-  {
-    value: "additional-details",
-    trigger: "Additional Product Details",
-    content: `
-      <ul class="bullet-list">
-        <li>Made from plant-based, biodegradable materials instead of petroleum plastics.</li>
-        <li>Designed to break down naturally under proper composting or disposal conditions.</li>
-        <li>Strong, durable structure with leak-resistant design.</li>
-        <li>Lightweight and easy to carry.</li>
-        <li>Helps reduce plastic waste and carbon footprint.</li>
-        <li>Manufactured following eco-friendly production practices.</li>
-        <li>Available in multiple sizes and capacities.</li>
-      </ul>
-    `
-  },
-  {
-    value: "usage-applications",
-    trigger: "Usage Applications",
-    content: `
-      <ul class="bullet-list">
-        <li>Corporate offices promoting eco-friendly initiatives.</li>
-        <li>Hospitals & healthcare facilities reducing plastic waste.</li>
-        <li>Events, exhibitions & conferences as sustainable giveaway bottles.</li>
-        <li>Schools & colleges encouraging green habits among students.</li>
-        <li>Hotels & resorts offering eco-conscious guest amenities.</li>
-      </ul>
-    `
-  }
-];
+const productData = {
+  name: "Eco Friendly Biodegradable Bottles",
+  longTitle: "Eco Friendly Biodegradable Bottles",
+  aboutTitle: "About Our Biodegradable Bottles",
+  aboutBullets: [
+    "These biodegradable water bottles are made from plant-based materials that break down naturally without harming the environment.",
+    "Designed as an eco-friendly alternative to single-use plastic bottles.",
+    "Helps reduce plastic pollution and landfill waste.",
+    "Strong, durable, and suitable for daily water storage and transport.",
+    "Lightweight and easy to carry for travel, events, offices, and outdoor use.",
+    "Supports businesses and individuals moving toward sustainable packaging solutions.",
+    "Ideal for corporate events, hospitals, educational institutions, and eco-conscious brands.",
+    "Standard sizes available."
+  ],
+  ratingText: "5.0 / 5.0 from verified buyers & rating websites",
+  whyChooseTitle: "Why Choose Biodegradable Water Bottles",
+  whyChooseText: [
+    "Biodegradable water bottles are a smart step toward reducing plastic pollution without compromising convenience. Unlike traditional plastic bottles that remain in landfills and oceans for hundreds of years, these bottles are designed to break down naturally under the right conditions, leaving a much smaller environmental footprint.",
+    "One of the biggest advantages of biodegradable water bottles is their eco-friendly composition. Made from plant-based or compostable materials, they help lower dependence on fossil fuels and reduce harmful carbon emissions. This makes them an ideal solution for businesses, events, hospitals, and environmentally conscious consumers looking to adopt sustainable alternatives."
+  ],
+  additionalDetailsTitle: "Additional Product Details",
+  additionalDetails: [
+    "Made from plant-based, biodegradable materials instead of petroleum plastics.",
+    "Designed to break down naturally under proper composting or disposal conditions.",
+    "Strong, durable structure with leak-resistant design.",
+    "Lightweight and easy to carry.",
+    "Helps reduce plastic waste and carbon footprint.",
+    "Manufactured following eco-friendly production practices.",
+    "Available in multiple sizes and capacities."
+  ],
+  usageApplications: [
+    "Corporate offices promoting eco-friendly initiatives.",
+    "Hospitals & healthcare facilities reducing plastic waste.",
+    "Events, exhibitions & conferences as sustainable giveaway bottles.",
+    "Schools & colleges encouraging green habits among students.",
+    "Hotels & resorts offering eco-conscious guest amenities."
+  ],
+  faqs
+};
 ---
 
-<section class="bottle-page">
-  <div class="content-container">
-    
-    <!-- Hero Section -->
-    <div class="hero-grid">
-      <div class="hero-image">
-        <img src={productImg.src} alt="Eco Friendly Biodegradable Bottle" />
-      </div>
-      
-      <div class="hero-content">
-        <h1 class="hero-title">Eco Friendly Biodegradable Bottles</h1>
-        
-        <div class="feature-icons">
-          <div class="icon-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            <span>Certified Product</span>
-          </div>
-          <div class="icon-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            <span>Secure Delivery</span>
-          </div>
-          <div class="icon-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
-            <span>Custom Orders</span>
-          </div>
-          <div class="icon-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M21.5 22v-6h-6M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2"></path></svg>
-            <span>Easy Returns</span>
-          </div>
-        </div>
-
-        <h3 class="section-subtitle">About Our Biodegradable Bottles</h3>
-        <ul class="bullet-list">
-          <li>These biodegradable water bottles are made from plant-based materials that break down naturally without harming the environment.</li>
-          <li>Designed as an eco-friendly alternative to single-use plastic bottles.</li>
-          <li>Helps reduce plastic pollution and landfill waste.</li>
-          <li>Strong, durable, and suitable for daily water storage and transport.</li>
-          <li>Lightweight and easy to carry for travel, events, offices, and outdoor use.</li>
-          <li>Supports businesses and individuals moving toward sustainable packaging solutions.</li>
-          <li>Ideal for corporate events, hospitals, educational institutions, and eco-conscious brands.</li>
-          <li>Standard sizes available.</li>
-        </ul>
-
-        <div class="cpcb-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          <span>CPCB CERTIFIED</span>
-        </div>
-
-        <div class="rating-row">
-          <span class="rating-text">5.0 / 5.0 from verified buyers & rating websites</span>
-          <div class="stars">
-            ★★★★★
-          </div>
-        </div>
-
-        <div class="action-buttons">
-          <a href="/contact-us" class="btn btn-primary">ENQUIRE NOW</a>
-          <a href="/contact-us" class="btn btn-outline">ORDER IN BULK</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Accordion Section -->
-    <Accordion items={accordionItems} />
-
-    <!-- FAQ Section -->
-    <div style="margin-top: 4rem;">
-      <ModernFAQ title="Frequently Asked Questions" faqs={faqs} />
-    </div>
-
-    <!-- Related Products -->
-    <RelatedProducts products={relatedProducts} />
-
-    <!-- Banner -->
-    <div class="banner-wrapper" style="margin-top: 4rem; margin-bottom: 2rem;">
-      <EnquiryForm />
-    </div>
-
-  </div>
-</section>
-
-<style>
-  .bottle-page {
-    background-color: var(--color-bg-page);
-    padding-top: 120px;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  .content-container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  /* Hero Section */
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
-  }
-
-  .hero-image {
-    background-color: #f7f8f6;
-    border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .hero-image img {
-    max-width: 100%;
-    height: auto;
-    mix-blend-mode: multiply;
-  }
-
-  .hero-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 3.5vw, 2.13rem);
-    font-weight: 400;
-    color: #0b2218;
-    margin: 0 0 1.5rem 0;
-  }
-
-  .feature-icons {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 1.5rem;
-  }
-
-  .icon-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    color: #64748b;
-    text-align: center;
-  }
-
-  .icon-item svg {
-    width: 24px;
-    height: 24px;
-    color: #3b5f4c;
-  }
-
-  .section-subtitle {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0b2218;
-    margin: 0 0 1rem 0;
-  }
-
-  .bullet-list {
-    margin: 0 0 2rem 0;
-    padding-left: 1.2rem;
-    color: #475569;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .bullet-list li {
-    margin-bottom: 0.5rem;
-  }
-
-  .cpcb-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #f1f5f9;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    color: #3b5f4c;
-    margin-bottom: 1.5rem;
-  }
-
-  .cpcb-badge svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .rating-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    font-size: 0.85rem;
-    color: #64748b;
-  }
-
-  .stars {
-    color: #fbbf24;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-  }
-
-  .action-buttons {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .btn {
-    padding: 0.8rem 2rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 6px;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.2s ease;
-    letter-spacing: 0.5px;
-  }
-
-  .btn-primary {
-    background-color: #0d3d26;
-    color: white;
-    border: 1px solid #0d3d26;
-  }
-
-  .btn-primary:hover {
-    background-color: #173b2a;
-  }
-
-  .btn-outline {
-    background-color: transparent;
-    color: #475569;
-    border: 1px solid #cbd5e1;
-  }
-
-  .btn-outline:hover {
-    background-color: #f8fafc;
-    color: #0f172a;
-  }
-
-
-
-  /* Banner */
-  .banner {
-    background-color: #0d3d26;
-    border-radius: 16px;
-    padding: 4rem 2rem;
-    text-align: center;
-    color: white;
-    margin-bottom: 4rem;
-  }
-
-  .banner-tag {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    color: rgba(255,255,255,0.8);
-  }
-
-  .banner h2 {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 3.5vw, 2.55rem);
-    margin: 0 0 1rem 0;
-  }
-
-  .banner p {
-    color: rgba(255,255,255,0.9);
-    line-height: 1.6;
-    margin-bottom: 2rem;
-  }
-
-  .banner-buttons {
-    justify-content: center;
-  }
-
-  .btn-primary-light {
-    background-color: #ffffff;
-    color: #0d3d26;
-    border: 1px solid #ffffff;
-  }
-
-  .btn-outline-light {
-    background-color: transparent;
-    color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.4);
-  }
-
-  .btn-primary-light:hover {
-    background-color: #f1f5f9;
-  }
-
-  .btn-outline-light:hover {
-    background-color: rgba(255,255,255,0.1);
-  }
-
-
-
-  @media (max-width: 900px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+<GenericProductDetail
+  productName={productData.name}
+  productImage={typeof productImg === 'string' ? productImg : productImg.src}
+  relatedProducts={relatedProducts}
+  productData={productData}
+/>
