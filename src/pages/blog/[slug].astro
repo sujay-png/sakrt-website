@@ -2,10 +2,11 @@
 import BaseLayout from '../../layouts/Layout.astro';
 import { wpquery } from '../../lib/wordpress';
 import CallToAction from '../../components/Home/CallToAction.astro';
+import BlogCategoryArchive from '../../components/Blog/BlogCategoryArchive.astro';
 
 export const prerender = true;
 
-// 1. Tell Astro which paths (slugs) to build
+// Build both category archives and article pages at /blog/{slug}/.
 export async function getStaticPaths() {
   const data = await wpquery({
     query: `
@@ -34,58 +35,72 @@ export async function getStaticPaths() {
     `,
   });
 
-  // Return the paths and pass the post data as a prop
-  return data.posts.nodes.map((post: any) => {
-    const catName = post.categories?.nodes?.[0]?.name || "general";
-    const category = encodeURIComponent(catName.toLowerCase().replace(/\s+/g, '-'));
-    
-    return {
-      params: { slug: post.slug },
-      props: { 
-        post,
-        recentPosts: data.posts.nodes.slice(0, 5)
-      },
-    };
+  const posts = data.posts.nodes;
+  const slugify = (text: string) =>
+    text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+  const categoryPages = new Map<string, { categoryName: string; posts: any[] }>();
+
+  posts.forEach((post: any) => {
+    post.categories?.nodes?.forEach((category: any) => {
+      const categorySlug = slugify(category.name);
+      if (!categoryPages.has(categorySlug)) {
+        categoryPages.set(categorySlug, { categoryName: category.name, posts: [] });
+      }
+      categoryPages.get(categorySlug)?.posts.push(post);
+    });
   });
-}
 
-// 2. Define the Props interface to clear TypeScript errors
+  const postSlugs = new Set(posts.map((post: any) => post.slug));
+  const conflictingCategories = Array.from(categoryPages.keys()).filter((slug) => postSlugs.has(slug));
+  if (conflictingCategories.length > 0) {
+    throw new Error(`Blog category slugs conflict with article slugs: ${conflictingCategories.join(', ')}`);
+  }
+
+  const allCategories = Array.from(new Set(Array.from(categoryPages.values()).map((page) => page.categoryName)));
+  return [
+    ...posts.map((post: any) => ({
+      params: { slug: post.slug },
+      props: { kind: 'post', post, recentPosts: posts.slice(0, 5) },
+    })),
+    ...Array.from(categoryPages.entries()).map(([slug, page]) => ({
+      params: { slug },
+      props: { kind: 'category', categoryName: page.categoryName, categoryPosts: page.posts, allCategories },
+    })),
+  ];
+}
 interface Props {
-  post: any;
-  recentPosts: any[];
+  kind: 'post' | 'category';
+  post?: any;
+  recentPosts?: any[];
+  categoryName?: string;
+  categoryPosts?: any[];
+  allCategories?: string[];
 }
 
-// 3. Access the post data passed from getStaticPaths
-const { post, recentPosts } = Astro.props as Props;
-const mainCatName = post.categories?.nodes?.[0]?.name || "general";
-const mainCategorySlug = encodeURIComponent(mainCatName.toLowerCase().replace(/\s+/g, '-'));
+const props = Astro.props as Props;
+const isCategory = props.kind === 'category';
+const post: any = props.post;
+const recentPosts = props.recentPosts || [];
+const categoryName = props.categoryName || '';
+const categoryPosts = props.categoryPosts || [];
+const allCategories = props.allCategories || [];
+const slugify = (text: string) => text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+const mainCatName = post?.categories?.nodes?.[0]?.name || 'general';
+const mainCategorySlug = slugify(mainCatName);
 
-// 4. Format Date
-const date = new Date(post.date);
-const formattedDate = date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+const date = post ? new Date(post.date) : null;
+const formattedDate = date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+const cleanExcerpt = post?.excerpt ? post.excerpt.replace(/<[^>]*>?/gm, '').substring(0, 155) + '...' : '';
 
-// Strip HTML tags from excerpt for the meta description
-const cleanExcerpt = post.excerpt ? post.excerpt.replace(/<[^>]*>?/gm, '').substring(0, 155) + '...' : `Read about ${post.title} on SAKRT's blog.`;
-
-// Clean the content to remove the hardcoded "Choose SAKRT" CTA
-let processedContent = post.content || '';
+let processedContent = post?.content || '';
 processedContent = processedContent.replace(/<h[1-6][^>]*>Choose SAKRT.*?<\/h[1-6]>[\s\S]*?(?=<div class="wp-block-yoast-faq-block"|<div class="schema-faq"|<div class="schema-faq-section"|<details|$)/i, '');
 
-// If FAQs exist but don't have a main wrapper, wrap them so we can style the container
 if (processedContent.includes('schema-faq-section') && !processedContent.includes('wp-block-yoast-faq-block')) {
   const firstFaqIndex = processedContent.indexOf('<div class="schema-faq-section"');
   if (firstFaqIndex !== -1) {
-    processedContent = processedContent.slice(0, firstFaqIndex) + 
-                       '<div class="custom-faq-container">' + 
-                       processedContent.slice(firstFaqIndex) + 
-                       '</div>';
+    processedContent = processedContent.slice(0, firstFaqIndex) + '<div class="custom-faq-container">' + processedContent.slice(firstFaqIndex) + '</div>';
   }
 }
-
 // Rewrite internal WordPress links to point to Astro frontend routes
 processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, url: string) => {
   // If it's an external link not containing sakrt.in, leave it alone
@@ -109,19 +124,23 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   
   const mainPages = ['about', 'contact', 'shop', 'products', 'faq', 'home'];
   if (mainPages.includes(slug)) return `href="/${slug}"`;
-  if (path.includes('category/')) return `href="/blog/category/${slug}"`;
+  if (path.includes('category/')) return `href="/blog/${encodeURIComponent(slug)}/"`;
   
   // By default, assume it's a blog post and point to /blog/[slug]
   return `href="/blog/${slug}"`;
 });
 ---
 
-<BaseLayout 
-  title={`${post.title} | Sakrt`}
-  description={cleanExcerpt}
-  image={post.featuredImage?.node?.sourceUrl}
-  ogType="article"
+<BaseLayout
+  title={isCategory ? `${categoryName} Blog Articles | SAKRT Journals` : `${post.title} | Sakrt`}
+  description={isCategory ? `Read SAKRT's latest journals and articles on ${categoryName}. Explore how biodegradable products can transform your lifestyle.` : cleanExcerpt}
+  image={!isCategory ? post.featuredImage?.node?.sourceUrl : undefined}
+  ogType={!isCategory ? 'article' : undefined}
 >
+  {isCategory ? (
+    <BlogCategoryArchive categoryName={categoryName} posts={categoryPosts} allCategories={allCategories} />
+  ) : (
+    <>
   <main class="single-post-container">
     <div class="blog-grid">
       <div class="blog-content-area">
@@ -180,8 +199,10 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   </main>
   <CallToAction />
   <div class="back-link">
-    <a href={`/blog/category/${mainCategorySlug}`}>← Back to {mainCatName}</a>
+    <a href={`/blog/${mainCategorySlug}/`}>← Back to {mainCatName}</a>
   </div>
+    </>
+  )}
 </BaseLayout>
 
 <style>

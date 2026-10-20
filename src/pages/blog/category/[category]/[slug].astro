@@ -108,7 +108,7 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   
   const mainPages = ['about', 'contact', 'shop', 'products', 'faq', 'home'];
   if (mainPages.includes(slug)) return `href="/${slug}"`;
-  if (path.includes('category/')) return `href="/blog/category/${slug}"`;
+  if (path.includes('category/')) return `href="/blog/${encodeURIComponent(slug)}/"`;
   
   // By default, assume it's a blog post and point to /blog/[slug]
   return `href="/blog/${slug}"`;
@@ -155,11 +155,11 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
         <div class="recent-posts-list">
           {recentPosts.filter((p: any) => p.slug !== post.slug).slice(0, 4).map((rp: any) => {
             const rpCat = rp.categories?.nodes?.[0]?.name || "general";
-            const rpCatSlug = encodeURIComponent(rpCat.toLowerCase().replace(/\s+/g, '-'));
+
             const rpDate = new Date(rp.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
             
             return (
-              <a href={`/blog/category/${rpCatSlug}/${rp.slug}`} class="recent-post-card">
+              <a href={`/blog/${rp.slug}`} class="recent-post-card">
                 {rp.featuredImage?.node?.sourceUrl && (
                   <div class="rp-img-wrapper">
                     <img src={rp.featuredImage.node.sourceUrl} alt={rp.title} />
@@ -179,7 +179,7 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   </main>
   <CallToAction />
   <div class="back-link">
-    <a href={`/blog/category/${category}`}>← Back to Category</a>
+    <a href={`/blog/${category}/`}>← Back to Category</a>
   </div>
 </BaseLayout>
 

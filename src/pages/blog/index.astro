@@ -72,9 +72,9 @@ const slugify = (text: string) =>
     </header>
 
     <div class="filters">
-      <a href="/blog" class="filter-btn active">All</a>
+      <a href="/blog" class="filter-btn active" data-category-filter="all">All</a>
       {categories.map((cat: any) => (
-        <a href={`/blog/category/${slugify(cat)}`} class="filter-btn">{cat}</a>
+        <a href={`/blog/${slugify(cat)}/`} class="filter-btn" data-category-filter={slugify(cat)}>{cat}</a>
       ))}
     </div>
 
@@ -86,7 +86,7 @@ const slugify = (text: string) =>
         const postUrl = `/blog/${post.slug}`;
         
         return (
-          <article class="post-card" data-categories={post.categories?.nodes.map((c:any) => c.name).join(',') || ''}>
+          <article class="post-card" data-category-slugs={post.categories?.nodes.map((c:any) => slugify(c.name)).join(',') || ''}>
             
             <div class="post-image-wrapper">
               {post.featuredImage?.node ? (
@@ -126,6 +126,25 @@ const slugify = (text: string) =>
 
   </main>
 </BaseLayout>
+
+<script>
+  const selectedCategory = new URLSearchParams(window.location.search).get('filter');
+  const categoryFilters = document.querySelectorAll<HTMLAnchorElement>('[data-category-filter]');
+  const postCards = document.querySelectorAll<HTMLElement>('.post-card');
+  const categoryExists = Array.from(categoryFilters).some(
+    (filter) => filter.dataset.categoryFilter === selectedCategory
+  );
+  const activeCategory = categoryExists ? selectedCategory : 'all';
+
+  postCards.forEach((card) => {
+    const categories = card.dataset.categorySlugs?.split(',') || [];
+    card.hidden = activeCategory !== 'all' && !categories.includes(activeCategory || '');
+  });
+
+  categoryFilters.forEach((filter) => {
+    filter.classList.toggle('active', filter.dataset.categoryFilter === activeCategory);
+  });
+</script>
 
 <style>
   .blog-container {
