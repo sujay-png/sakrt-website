@@ -1,62 +1,117 @@
 ---
 // src/components/About.astro
-import CallToAction from '../Home/CallToAction.astro';
-import biodegradableWaterImg from '../../images/biodegradable_water.png';
-import greyBagsImg from '../../images/biodegradable_greybags.png';
+import CallToAction from "../Home/CallToAction.astro";
+import biodegradableWaterImg from "../../images/biodegradable_water.png";
+import greyBagsImg from "../../images/biodegradable_greybags.png";
 
 const products = [
-  { title: "Biodegradable Water Bottle", url: "/compostable-product/biodegradable-water-bottles/", image: biodegradableWaterImg.src },
-  { title: "Compostable Bag", url: "/compostable-product/carry-bags/compostable-bag/", image: "/compostable-bags/new-compostable-bag.webp" },
-  { title: "Compostable Nursery Bags", url: "/compostable-product/carry-bags/compostable-nursery-bags/", image: "/compostable-bags/imgi_7_Compostable-grow-bags-e1780576071172.webp"},
-  { title: "Compostable Grocery Bag", url: "/compostable-product/carry-bags/compostable-grocery-bag/", image: "/compostable-bags/imgi_12_biodegradable-bags-compostable-products-eco-products-3.webp" },
-  
-  { title: "Compostable Medical Waste Bags", url: "/compostable-product/carry-bags/compostable-medical-waste-bags/", image: "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp" },
-  { title: "Compostable Mailer Bags", url: "/compostable-product/carry-bags/compostable-mailer-bags/", image: "/compostable-bags/imgi_11_courier-bags.webp" },
-  { title: "Stand-up Pouches", url: "/compostable-product/compostable-pouches/stand-up-pouch/", image: greyBagsImg.src },
-  { title: "Compostable Garment Bags", url: "/compostable-product/carry-bags/compostable-garment-bags/", image: "/compostable-bags/imgi_9_biodegradable-bags-compostable-products-ecofriendly-bags-2-1.webp" },
-  
-  { title: "Compostable Dona Bowl", url: "/compostable-product/food-packaging-boxes/compostable-dona-bowl/", image: "/tableware/imgi_12_biodegradable-bags-compostable-products-eco-product-1.webp" },
-  { title: "Compostable Plates", url: "/compostable-product/food-packaging-boxes/compostable-food-plates/", image: "/tableware/imgi_7_biodegradable-bags-compostable-products-eco-product.-1.webp" },
-  { title: "Compostable Bowls", url: "/compostable-product/food-packaging-boxes/compostable-bowl/", image: "/tableware/imgi_6_biodegradable-bags-compostable-products-eco-product.webp" },
-  { title: "Compostable Round Cup", url: "/compostable-product/food-packaging-boxes/compostable-round-cup/", image: "/tableware/imgi_5_biodegradable-bags-compostable-products-eco-products.webp" }
+  {
+    title: "Biodegradable Water Bottle",
+    url: "/compostable-product/biodegradable-water-bottles/",
+    image: biodegradableWaterImg.src,
+  },
+  {
+    title: "Compostable Bag",
+    url: "/compostable-product/carry-bags/compostable-bag/",
+    image: "/compostable-bags/new-compostable-bag.webp",
+  },
+  {
+    title: "Compostable Nursery Bags",
+    url: "/compostable-product/carry-bags/compostable-nursery-bags/",
+    image: "/compostable-bags/imgi_7_Compostable-grow-bags-e1780576071172.webp",
+  },
+  {
+    title: "Compostable Grocery Bag",
+    url: "/compostable-product/carry-bags/compostable-grocery-bag/",
+    image:
+      "/compostable-bags/imgi_12_biodegradable-bags-compostable-products-eco-products-3.webp",
+  },
+
+  {
+    title: "Compostable Medical Waste Bags",
+    url: "/compostable-product/carry-bags/compostable-medical-waste-bags/",
+    image:
+      "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp",
+  },
+  {
+    title: "Compostable Mailer Bags",
+    url: "/compostable-product/carry-bags/compostable-mailer-bags/",
+    image: "/compostable-bags/imgi_11_courier-bags.webp",
+  },
+  {
+    title: "Stand-up Pouches",
+    url: "/compostable-product/compostable-pouches/stand-up-pouch/",
+    image: greyBagsImg.src,
+  },
+  {
+    title: "Compostable Garment Bags",
+    url: "/compostable-product/carry-bags/compostable-garment-bags/",
+    image:
+      "/compostable-bags/imgi_9_biodegradable-bags-compostable-products-ecofriendly-bags-2-1.webp",
+  },
+
+  {
+    title: "Compostable Dona Bowl",
+    url: "/compostable-product/food-packaging-boxes/compostable-dona-bowl/",
+    image:
+      "/tableware/imgi_12_biodegradable-bags-compostable-products-eco-product-1.webp",
+  },
+  {
+    title: "Compostable Plates",
+    url: "/compostable-product/food-packaging-boxes/compostable-food-plates/",
+    image:
+      "/tableware/imgi_7_biodegradable-bags-compostable-products-eco-product.-1.webp",
+  },
+  {
+    title: "Compostable Bowls",
+    url: "/compostable-product/food-packaging-boxes/compostable-bowl/",
+    image:
+      "/tableware/imgi_6_biodegradable-bags-compostable-products-eco-product.webp",
+  },
+  {
+    title: "Compostable Round Cup",
+    url: "/compostable-product/food-packaging-boxes/compostable-round-cup/",
+    image:
+      "/tableware/imgi_5_biodegradable-bags-compostable-products-eco-products.webp",
+  },
 ];
 
 const whyChoose = [
   {
     title: "Customised Solutions",
     desc: "Only globally certified compostable products make it into our catalog (EN 13432, ASTM D6400, OK Compost).",
-    icon: "/about/imgi_4_biodegradable_carry_bags-biodegradable_bags__compostable-products-ecofriendly-bags.-1.webp"
+    icon: "/about/imgi_4_biodegradable_carry_bags-biodegradable_bags__compostable-products-ecofriendly-bags.-1.webp",
   },
   {
     title: "Fast Fulfillment",
     desc: "We stock and deliver in bulk perfect for retailers, supermarkets, restaurants, and event suppliers.",
-    icon: "/about/imgi_5_biodegradable_carry_bags_biodegradable_bags-compostable-products-ecofriendly-bags.webp"
+    icon: "/about/imgi_5_biodegradable_carry_bags_biodegradable_bags-compostable-products-ecofriendly-bags.webp",
   },
   {
     title: "Personalized B2B Support",
     desc: "A dedicated account manager ensures smooth ordering, consistent supply, and custom packaging options.",
-    icon: "/about/imgi_6_biodegradable_carry_bags-biodegradable_bags_compostable-products-ecofriendly-bags.webp"
+    icon: "/about/imgi_6_biodegradable_carry_bags-biodegradable_bags_compostable-products-ecofriendly-bags.webp",
   },
   {
     title: "Full Transparency",
     desc: "We provide full material traceability, product certifications, and eco-impact documentation.",
-    icon: "/about/imgi_7_biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly_bags.webp"
+    icon: "/about/imgi_7_biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly_bags.webp",
   },
   {
     title: "Eco-Conscious Partnerships",
     desc: "We work only with manufacturers committed to sustainable agriculture, fair labor, and carbon neutrality.",
-    icon: "/about/imgi_8_Biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly-bags.webp"
+    icon: "/about/imgi_8_Biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly-bags.webp",
   },
   {
     title: "Field-Tested Quality",
     desc: "We provide full material traceability, product certifications, and eco-impact documentation.",
-    icon: "/about/imgi_9_server-check.png"
+    icon: "/about/imgi_9_server-check.png",
   },
   {
     title: "Scalable Supply Chain",
     desc: "From local shops to national distributors, our inventory and logistics are built to grow with you.",
-    icon: "/about/imgi_10_supply-chain.png"
-  }
+    icon: "/about/imgi_10_supply-chain.png",
+  },
 ];
 ---
 
@@ -65,11 +120,12 @@ const whyChoose = [
   <div class="ambient-glow" id="ambient-glow"></div>
 
   <div class="container">
-    
     <!-- Hero Banner -->
     <div class="hero-header animate-header">
-
-      <h1 class="hero-title">ABOUT US <br /><span class="italic-highlight">Bioplastic Manufacturers</span></h1>
+      <h1 class="hero-title">
+        ABOUT US <br /><span class="italic-highlight"
+          >Leading CPCB-Certified Bioplastic Manufacturer in India</span>
+      </h1>
     </div>
 
     <!-- Editorial Split Layout -->
@@ -79,17 +135,33 @@ const whyChoose = [
         <div class="card-spotlight"></div>
         <h2 class="section-heading">About SAKRT</h2>
         <p class="lead-text">
-          SAKRT is a trusted bioplastic manufacturer and distributor. We help retailers, food service providers, and eco-conscious brands replace plastic with sustainable alternatives.
+          SAKRT is a trusted bioplastic manufacturer and distributor. We help
+          retailers, food service providers, and eco-conscious brands replace
+          plastic with sustainable alternatives.
         </p>
         <div class="about-text-more">
           <p>
-            SAKRT delivers 100% bioplastic manufacturers, plates, and tableware. We are the trusted partner for modern businesses committed to protecting the environment. More than just a supplier, SAKRT is your trusted partner in sustainability. Together, we can reduce plastic pollution, safeguard our oceans, and create a future where bioplastic manufacturers’ choices are the norm.
+            SAKRT delivers 100% bioplastic manufacturers, plates, and tableware.
+            We are the trusted partner for modern businesses committed to
+            protecting the environment. More than just a supplier, SAKRT is your
+            trusted partner in sustainability. Together, we can reduce plastic
+            pollution, safeguard our oceans, and create a future where
+            bioplastic manufacturers’ choices are the norm.
           </p>
           <p>
-            As one of India’s leading bioplastic manufacturers, SAKRT combines quality, compliance, and innovation to help businesses transition away from single-use plastics with confidence. Our manufacturing process adheres to CPCB certification standards, ensuring every product meets India’s regulatory requirements for compostability and environmental safety.
+            As one of India’s leading bioplastic manufacturers, SAKRT combines
+            quality, compliance, and innovation to help businesses transition
+            away from single-use plastics with confidence. Our manufacturing
+            process adheres to CPCB certification standards, ensuring every
+            product meets India’s regulatory requirements for compostability and
+            environmental safety.
           </p>
         </div>
-        <button id="about-text-toggle" class="products-toggle-link text-toggle-link">View More <span class="arrow">↓</span></button>
+        <button
+          id="about-text-toggle"
+          class="products-toggle-link text-toggle-link"
+          >View More <span class="arrow">↓</span></button
+        >
       </div>
 
       <!-- Right: Target Sectors -->
@@ -97,7 +169,7 @@ const whyChoose = [
         <div class="card-spotlight"></div>
         <h2 class="section-heading">What We Do?</h2>
         <p class="sub-label">We offer certified compostable packaging for:</p>
-        
+
         <div class="sector-pills">
           <div class="sector-pill stagger-pill">
             <span class="pill-num">01</span>
@@ -131,17 +203,28 @@ const whyChoose = [
       </div>
 
       <div class="pillars-grid">
-        {whyChoose.map((item, index) => (
-          <div class="pillar-card stagger-pillar" style={`--delay: ${index * 0.07}s`} data-tilt>
-            <div class="pillar-icon-wrap">
-              <img src={item.icon} alt={item.title} class="pillar-icon" loading="lazy" />
+        {
+          whyChoose.map((item, index) => (
+            <div
+              class="pillar-card stagger-pillar"
+              style={`--delay: ${index * 0.07}s`}
+              data-tilt
+            >
+              <div class="pillar-icon-wrap">
+                <img
+                  src={item.icon}
+                  alt={item.title}
+                  class="pillar-icon"
+                  loading="lazy"
+                />
+              </div>
+              <div class="pillar-body">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
             </div>
-            <div class="pillar-body">
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
 
@@ -149,29 +232,40 @@ const whyChoose = [
     <div class="products-showcase animate-section">
       <div class="section-center-head">
         <h2 class="why-title">Most Enquired Products</h2>
-        <p class="products-subtitle">Browse Our Preferred Eco-Friendly Catalog Options</p>
+        <p class="products-subtitle">
+          Browse Our Preferred Eco-Friendly Catalog Options
+        </p>
       </div>
 
       <div class="product-grid">
-        {products.map((product, index) => (
-          <div class="product-card stagger-product" style={`--delay: ${index * 0.05}s`} data-index={index}>
-            <a href={product.url} class="card-image-box">
-              <img src={product.image} alt={product.title} loading="lazy" />
-              <div class="card-hover-overlay">
-                <span class="quick-view-badge">Explore Item →</span>
+        {
+          products.map((product, index) => (
+            <div
+              class="product-card stagger-product"
+              style={`--delay: ${index * 0.05}s`}
+              data-index={index}
+            >
+              <a href={product.url} class="card-image-box">
+                <img src={product.image} alt={product.title} loading="lazy" />
+                <div class="card-hover-overlay">
+                  <span class="quick-view-badge">Explore Item →</span>
+                </div>
+              </a>
+              <div class="card-content">
+                <h3 class="product-title">{product.title}</h3>
+                <a href={product.url} class="view-details-btn">
+                  View Details
+                </a>
               </div>
-            </a>
-            <div class="card-content">
-              <h3 class="product-title">{product.title}</h3>
-              <a href={product.url} class="view-details-btn">View Details</a>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
-      
-      <button id="about-products-toggle" class="products-toggle-link">View More <span class="arrow">↓</span></button>
-    </div>
 
+      <button id="about-products-toggle" class="products-toggle-link"
+        >View More <span class="arrow">↓</span></button
+      >
+    </div>
   </div>
 </section>
 
@@ -179,7 +273,7 @@ const whyChoose = [
 <CallToAction />
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap");
 
   :root {
     --color-bg-light: #f9faf8;
@@ -209,10 +303,16 @@ const whyChoose = [
     width: 700px;
     height: 700px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(235, 177, 59, 0.12) 0%, rgba(249, 250, 248, 0) 70%);
+    background: radial-gradient(
+      circle,
+      rgba(235, 177, 59, 0.12) 0%,
+      rgba(249, 250, 248, 0) 70%
+    );
     pointer-events: none;
     transform: translate(-50%, -50%);
-    transition: left 0.2s ease-out, top 0.2s ease-out;
+    transition:
+      left 0.2s ease-out,
+      top 0.2s ease-out;
   }
 
   .container {
@@ -232,7 +332,9 @@ const whyChoose = [
     margin: 0 auto;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s var(--ease-spring), transform 0.8s var(--ease-spring);
+    transition:
+      opacity 0.8s var(--ease-spring),
+      transform 0.8s var(--ease-spring);
   }
 
   .hero-header.is-visible {
@@ -244,7 +346,7 @@ const whyChoose = [
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 0.75rem;
     letter-spacing: 0.2em;
     color: #0b2218;
@@ -266,12 +368,19 @@ const whyChoose = [
   }
 
   @keyframes pulseGlow {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.4); }
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.4);
+    }
   }
 
   .hero-title {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
+    font-family: var(--font-serif, "Instrument Serif", serif);
     font-size: clamp(2.8rem, 5vw, 4.5rem);
     line-height: 1.05;
     font-weight: 300;
@@ -292,7 +401,8 @@ const whyChoose = [
     perspective: 1000px;
   }
 
-  .story-card, .sectors-card {
+  .story-card,
+  .sectors-card {
     position: relative;
     background: var(--color-card-bg);
     border: 1px solid rgba(11, 34, 24, 0.08);
@@ -303,7 +413,10 @@ const whyChoose = [
     transform-style: preserve-3d;
     opacity: 0;
     transform: translateY(40px) scale(0.97);
-    transition: opacity 0.8s var(--ease-spring), transform 0.8s var(--ease-spring), box-shadow 0.4s ease;
+    transition:
+      opacity 0.8s var(--ease-spring),
+      transform 0.8s var(--ease-spring),
+      box-shadow 0.4s ease;
   }
 
   .animate-card.is-visible {
@@ -318,7 +431,11 @@ const whyChoose = [
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(235, 177, 59, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(
+      circle,
+      rgba(235, 177, 59, 0.15) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
     pointer-events: none;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -331,7 +448,7 @@ const whyChoose = [
   }
 
   .section-heading {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
+    font-family: var(--font-serif, "Instrument Serif", serif);
     font-size: 2.2rem;
     color: var(--color-text-dark);
     margin-top: 0;
@@ -340,7 +457,7 @@ const whyChoose = [
   }
 
   .lead-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 1.15rem;
     line-height: 1.7;
     color: #31423a;
@@ -348,14 +465,14 @@ const whyChoose = [
   }
 
   .about-text-more p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 1rem;
     line-height: 1.7;
     color: var(--color-text-muted);
   }
 
   .sub-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 1rem;
     color: var(--color-text-muted);
     margin-bottom: 1.5rem;
@@ -378,14 +495,38 @@ const whyChoose = [
     border-radius: 14px;
     opacity: 0;
     transform: translateX(-20px);
-    transition: opacity 0.6s var(--ease-spring), transform 0.6s var(--ease-spring), border-color 0.3s ease, background 0.3s ease;
+    transition:
+      opacity 0.6s var(--ease-spring),
+      transform 0.6s var(--ease-spring),
+      border-color 0.3s ease,
+      background 0.3s ease;
   }
 
-  .sectors-card.is-visible .stagger-pill:nth-child(1) { transition-delay: 0.15s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(2) { transition-delay: 0.25s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(3) { transition-delay: 0.35s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(4) { transition-delay: 0.45s; opacity: 1; transform: translateX(0); }
-  .sectors-card.is-visible .stagger-pill:nth-child(5) { transition-delay: 0.55s; opacity: 1; transform: translateX(0); }
+  .sectors-card.is-visible .stagger-pill:nth-child(1) {
+    transition-delay: 0.15s;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .sectors-card.is-visible .stagger-pill:nth-child(2) {
+    transition-delay: 0.25s;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .sectors-card.is-visible .stagger-pill:nth-child(3) {
+    transition-delay: 0.35s;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .sectors-card.is-visible .stagger-pill:nth-child(4) {
+    transition-delay: 0.45s;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .sectors-card.is-visible .stagger-pill:nth-child(5) {
+    transition-delay: 0.55s;
+    opacity: 1;
+    transform: translateX(0);
+  }
 
   .sector-pill:hover {
     transform: translateX(8px) !important;
@@ -395,14 +536,14 @@ const whyChoose = [
   }
 
   .pill-num {
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 0.85rem;
     color: var(--color-gold);
     font-weight: 700;
   }
 
   .pill-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--color-text-dark);
@@ -415,7 +556,7 @@ const whyChoose = [
   }
 
   .why-title {
-    font-family: var(--font-serif, 'Instrument Serif', serif);
+    font-family: var(--font-serif, "Instrument Serif", serif);
     font-size: clamp(2.2rem, 3.5vw, 3rem);
     font-weight: 300;
     color: var(--color-text-dark);
@@ -448,7 +589,11 @@ const whyChoose = [
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
     opacity: 0;
     transform: translateY(30px) scale(0.95);
-    transition: opacity 0.6s var(--ease-spring) var(--delay, 0s), transform 0.6s var(--ease-spring) var(--delay, 0s), border-color 0.4s ease, box-shadow 0.4s ease;
+    transition:
+      opacity 0.6s var(--ease-spring) var(--delay, 0s),
+      transform 0.6s var(--ease-spring) var(--delay, 0s),
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
   }
 
   .animate-section.is-visible .pillar-card {
@@ -485,7 +630,7 @@ const whyChoose = [
   }
 
   .pillar-body h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-text-dark);
@@ -493,7 +638,7 @@ const whyChoose = [
   }
 
   .pillar-body p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--color-text-muted);
@@ -502,7 +647,7 @@ const whyChoose = [
 
   /* PRODUCTS SECTION */
   .products-subtitle {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     color: var(--color-text-muted);
     margin: 0;
   }
@@ -520,7 +665,9 @@ const whyChoose = [
     text-align: center;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s var(--ease-spring) var(--delay, 0s), transform 0.6s var(--ease-spring) var(--delay, 0s);
+    transition:
+      opacity 0.6s var(--ease-spring) var(--delay, 0s),
+      transform 0.6s var(--ease-spring) var(--delay, 0s);
   }
 
   .animate-section.is-visible .product-card {
@@ -541,7 +688,10 @@ const whyChoose = [
     margin-bottom: 1.25rem;
     border: 1px solid rgba(11, 34, 24, 0.1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s var(--ease-spring);
+    transition:
+      box-shadow 0.4s ease,
+      border-color 0.4s ease,
+      transform 0.4s var(--ease-spring);
   }
 
   .card-image-box img {
@@ -577,7 +727,7 @@ const whyChoose = [
   }
 
   .quick-view-badge {
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 0.8rem;
     color: #ffffff;
     border: 1px solid #ffffff;
@@ -586,7 +736,7 @@ const whyChoose = [
   }
 
   .product-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--color-text-dark);
@@ -598,13 +748,16 @@ const whyChoose = [
     display: inline-block;
     background: var(--color-btn-green);
     color: #ffffff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
     text-decoration: none;
     padding: 10px 24px;
     border-radius: 30px;
-    transition: transform 0.3s var(--ease-spring), background-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s var(--ease-spring),
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .view-details-btn:hover {
@@ -619,7 +772,7 @@ const whyChoose = [
     margin: 2rem auto 0;
     background: transparent;
     color: var(--color-btn-green);
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 0.85rem;
     font-weight: 700;
     padding: 10px;
@@ -649,7 +802,8 @@ const whyChoose = [
     .about-hero {
       padding: 5rem 1.5rem 4rem;
     }
-    .story-card, .sectors-card {
+    .story-card,
+    .sectors-card {
       padding: 2rem;
     }
     .product-grid {
@@ -671,13 +825,13 @@ const whyChoose = [
 
 <script>
   function initAboutInteractiveDesign() {
-    const section = document.getElementById('about-section');
-    const glow = document.getElementById('ambient-glow');
+    const section = document.getElementById("about-section");
+    const glow = document.getElementById("ambient-glow");
     const isMobile = window.innerWidth <= 768;
 
     // 1. Mouse Ambient Spotlight Tracking
     if (section && glow) {
-      section.addEventListener('mousemove', (e: MouseEvent) => {
+      section.addEventListener("mousemove", (e: MouseEvent) => {
         const rect = section.getBoundingClientRect();
         glow.style.left = `${e.clientX - rect.left}px`;
         glow.style.top = `${e.clientY - rect.top}px`;
@@ -686,15 +840,15 @@ const whyChoose = [
 
     // 2. 3D Tilt Effect on Desktop for Cards
     if (!isMobile) {
-      document.querySelectorAll('[data-tilt]').forEach((card) => {
+      document.querySelectorAll("[data-tilt]").forEach((card) => {
         const el = card as HTMLElement;
-        const spotlight = el.querySelector('.card-spotlight') as HTMLElement;
+        const spotlight = el.querySelector(".card-spotlight") as HTMLElement;
 
-        el.addEventListener('mouseenter', () => {
-          el.style.setProperty('--delay', '0s');
+        el.addEventListener("mouseenter", () => {
+          el.style.setProperty("--delay", "0s");
         });
 
-        el.addEventListener('mousemove', (e: MouseEvent) => {
+        el.addEventListener("mousemove", (e: MouseEvent) => {
           const rect = el.getBoundingClientRect();
           const x = e.clientX - rect.left;
           const y = e.clientY - rect.top;
@@ -713,79 +867,88 @@ const whyChoose = [
           el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
         });
 
-        el.addEventListener('mouseleave', () => {
-          el.style.transform = '';
+        el.addEventListener("mouseleave", () => {
+          el.style.transform = "";
         });
       });
     }
 
     // 3. Scroll Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
 
-    document.querySelectorAll('.hero-header, .animate-card, .animate-section').forEach(el => observer.observe(el));
+    document
+      .querySelectorAll(".hero-header, .animate-card, .animate-section")
+      .forEach((el) => observer.observe(el));
 
     // 4. Products Toggle Logic
-    const toggleProductsBtn = document.getElementById('about-products-toggle');
-    const cards = document.querySelectorAll('.product-grid .product-card');
+    const toggleProductsBtn = document.getElementById("about-products-toggle");
+    const cards = document.querySelectorAll(".product-grid .product-card");
     let isProductsExpanded = false;
 
     const updateProductsVisibility = () => {
       cards.forEach((card, index) => {
         if (isMobile && !isProductsExpanded && index >= 4) {
-          card.classList.add('mobile-hidden');
+          card.classList.add("mobile-hidden");
         } else {
-          card.classList.remove('mobile-hidden');
+          card.classList.remove("mobile-hidden");
         }
       });
       if (toggleProductsBtn) {
-        toggleProductsBtn.style.display = isMobile ? 'inline-flex' : 'none';
-        toggleProductsBtn.innerHTML = isProductsExpanded ? 'View Less <span class="arrow">↑</span>' : 'View More <span class="arrow">↓</span>';
+        toggleProductsBtn.style.display = isMobile ? "inline-flex" : "none";
+        toggleProductsBtn.innerHTML = isProductsExpanded
+          ? 'View Less <span class="arrow">↑</span>'
+          : 'View More <span class="arrow">↓</span>';
       }
     };
 
     updateProductsVisibility();
 
     if (toggleProductsBtn) {
-      toggleProductsBtn.addEventListener('click', () => {
+      toggleProductsBtn.addEventListener("click", () => {
         isProductsExpanded = !isProductsExpanded;
         updateProductsVisibility();
       });
     }
 
     // 5. Text Toggle Logic
-    const toggleTextBtn = document.getElementById('about-text-toggle');
-    const textMoreContent = document.querySelector('.about-text-more');
+    const toggleTextBtn = document.getElementById("about-text-toggle");
+    const textMoreContent = document.querySelector(".about-text-more");
     let isTextExpanded = false;
 
     const updateTextVisibility = () => {
       if (isMobile && !isTextExpanded) {
-        textMoreContent?.classList.add('mobile-hidden');
+        textMoreContent?.classList.add("mobile-hidden");
       } else {
-        textMoreContent?.classList.remove('mobile-hidden');
+        textMoreContent?.classList.remove("mobile-hidden");
       }
       if (toggleTextBtn) {
-        toggleTextBtn.style.display = isMobile ? 'inline-flex' : 'none';
-        toggleTextBtn.innerHTML = isTextExpanded ? 'View Less <span class="arrow">↑</span>' : 'View More <span class="arrow">↓</span>';
+        toggleTextBtn.style.display = isMobile ? "inline-flex" : "none";
+        toggleTextBtn.innerHTML = isTextExpanded
+          ? 'View Less <span class="arrow">↑</span>'
+          : 'View More <span class="arrow">↓</span>';
       }
     };
 
     updateTextVisibility();
 
     if (toggleTextBtn) {
-      toggleTextBtn.addEventListener('click', () => {
+      toggleTextBtn.addEventListener("click", () => {
         isTextExpanded = !isTextExpanded;
         updateTextVisibility();
       });
     }
   }
 
-  document.addEventListener('DOMContentLoaded', initAboutInteractiveDesign);
-  document.addEventListener('astro:page-load', initAboutInteractiveDesign);
+  document.addEventListener("DOMContentLoaded", initAboutInteractiveDesign);
+  document.addEventListener("astro:page-load", initAboutInteractiveDesign);
 </script>

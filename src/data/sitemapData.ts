@@ -14,14 +14,19 @@ export const mostSoldProductCities = [
   "Mangaluru", "Mysore", "Bengaluru"
 ];
 
-export const popularProducts = [
-  "Compostable Bags",
-  "Tableware's",
-  "Compostable Films",
-  "Biodegradable Pouches",
-  "Food Containers",
-  "Disposable plates",
-  "Biodegradable Water Bottles"
+export interface PopularProduct {
+  name: string;
+  slug: string;
+}
+
+export const popularProducts: PopularProduct[] = [
+  { name: "Compostable Bags", slug: "carry-bag" },
+  { name: "Tableware's", slug: "food-packaging-boxes" },
+  { name: "Compostable Films", slug: "compostable-films" },
+  { name: "Biodegradable Pouches", slug: "packaging-pouches" },
+  { name: "Food Containers", slug: "food-container-box" },
+  { name: "Disposable plates", slug: "compostable-plates" },
+  { name: "Biodegradable Water Bottles", slug: "biodegradable-water-bottles" }
 ];
 
 // Helper to get all location slugs for dynamic routing

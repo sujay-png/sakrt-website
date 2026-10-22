@@ -1,4 +1,6 @@
 ---
+import { getProductUrl } from '../../lib/products';
+
 export interface Props {
   products: any[];
 }
@@ -9,15 +11,18 @@ const { products } = Astro.props;
   <div class="related-products-section">
     <h2 class="section-title">Related Products</h2>
     <div class="related-grid">
-      {products.map((rp: any) => (
-        <div class="related-card">
-          <a href={`/compostable-product/${rp.category}/${rp.slug}`} class="related-img-wrapper">
-            <img src={rp.image} alt={rp.name} />
-          </a>
-          <h4 class="related-title">{rp.name}</h4>
-          <a href={`/compostable-product/${rp.category}/${rp.slug}`} class="view-details-btn">View Details</a>
-        </div>
-      ))}
+      {products.map((rp: any) => {
+        const productUrl = getProductUrl(rp.slug);
+        return (
+          <div class="related-card">
+            <a href={productUrl} class="related-img-wrapper">
+              <img src={rp.image} alt={rp.name} />
+            </a>
+            <h4 class="related-title">{rp.name}</h4>
+            <a href={productUrl} class="view-details-btn">View Details</a>
+          </div>
+        );
+      })}
     </div>
   </div>
 )}

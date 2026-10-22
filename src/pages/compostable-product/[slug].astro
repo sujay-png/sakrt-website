@@ -1,0 +1,143 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GenericProductDetail from "../../components/Product Details/GenericProductDetail.astro";
+import { allProducts, productSEOMap } from "../../data/productsData";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const slugAliases: Record<string, string> = {
+    "carry-bag": "compostable-bag",
+    "agriculture-mulch-films": "compostable-mulch-films",
+    "nursery-bag": "compostable-nursery-bags",
+    "wrapping-film": "compostable-wrapping-film",
+    "packaging-pouches": "stand-up-pouch",
+    "disposable-cups": "compostable-round-cup",
+    "bowls": "compostable-bowl",
+    "pet-poop-bags": "compostable-pet-poop-bags",
+    "compostable-plates": "compostable-square-plate",
+    "dona-bowls": "compostable-dona-bowl",
+    "spoons": "compostable-cutleries",
+    "bag-pouches": "compostable-custom-made-bag",
+    "meal-plates": "compostable-compartment-plate",
+    "food-container-box": "compostable-packaging",
+    "clamshell-box": "compostable-clam-shell",
+    "compostable-bio-medical-waste-bags": "compostable-medical-waste-bags",
+    "garment-bags": "compostable-garment-bags",
+    "garbage-bag": "bio-compostable-garbage-bags",
+    "eco-friendly-straws": "compostable-drinking-straws",
+    "heat-shrink-films": "compostable-heat-shrink-films",
+    "courier-bags": "compostable-mailer-bags",
+    "grocery-bag": "compostable-grocery-bag",
+    "eco-friendly-round-plate": "compostable-food-plates",
+  };
+
+  const productPaths = allProducts
+    .filter((product) => product.slug !== "biodegradable-water-bottles")
+    .map((product) => {
+      const relatedProducts = allProducts
+        .filter((p) => p.category === product.category && p.slug !== product.slug)
+        .slice(0, 4);
+
+      return {
+        params: { slug: product.slug },
+        props: { product, relatedProducts, currentSlug: product.slug },
+      };
+    });
+
+  const aliasPaths = Object.entries(slugAliases)
+    .map(([aliasSlug, targetSlug]) => {
+      const product = allProducts.find((p) => p.slug === targetSlug);
+      if (!product) return null;
+      const relatedProducts = allProducts
+        .filter((p) => p.category === product.category && p.slug !== product.slug)
+        .slice(0, 4);
+
+      return {
+        params: { slug: aliasSlug },
+        props: { product, relatedProducts, currentSlug: aliasSlug },
+      };
+    })
+    .filter(Boolean);
+
+  return [...productPaths, ...aliasPaths];
+}
+
+const { product, relatedProducts = [], currentSlug } = Astro.props;
+
+const slugKey = currentSlug || product.slug;
+const seoData = productSEOMap[slugKey] || productSEOMap[product.slug];
+const pageTitle = seoData?.title || `${product.name} | Certified Compostable | SAKRT`;
+const pageDesc = seoData?.desc || `High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`;
+const pageH1 = seoData?.h1 || product.longTitle || product.name;
+
+const productSchema = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  name: product.name,
+  image: `https://www.sakrt.in${product.image.startsWith("/") ? product.image : "/" + product.image}`,
+  description: `High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`,
+  brand: {
+    "@type": "Brand",
+    name: "SAKRT",
+  },
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  image={product.image}
+  ogType="product"
+  schema={productSchema}
+>
+  <main>
+    <section class="product-page-header">
+      <div class="header-container">
+        <h1 class="main-title">{pageH1}</h1>
+        <p class="subtitle">
+          SAKRT is one of India, Bangalore's fastest-growing Supplier in
+          Products Compostable in Nature and Premium quality distribution.
+        </p>
+      </div>
+    </section>
+
+    <GenericProductDetail
+      productName={pageH1}
+      productImage={product.image}
+      relatedProducts={relatedProducts}
+      productData={{ ...product, longTitle: pageH1 }}
+    />
+  </main>
+</Layout>
+
+<style>
+  .product-page-header {
+    background: linear-gradient(180deg, #e6e9e4 0%, #f3f4f1 100%);
+    padding: 7rem 24px 3rem 24px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .header-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .main-title {
+    font-family: var(--font-serif, "Playfair Display", serif);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 500;
+    color: #1b3d2f;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+  }
+
+  .subtitle {
+    font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+  }
+</style>
