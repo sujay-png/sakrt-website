@@ -5,6 +5,8 @@ interface Props {
   allCategories: string[];
 }
 
+import { getBlogUrl } from '../../lib/wordpress.ts';
+
 const { categoryName, posts, allCategories } = Astro.props as Props;
 const slugify = (text: string) =>
   text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
@@ -38,7 +40,7 @@ const formatDate = (dateString: string) => {
       const { day, monthYear } = formatDate(post.date);
       const mainCategory = post.categories?.nodes?.[0]?.name || "general";
       const categorySlug = slugify(mainCategory);
-      const postUrl = `/blog/${post.slug}`;
+      const postUrl = getBlogUrl(post);
       return (
         <article class="post-card" data-categories={post.categories?.nodes.map((c:any) => c.name).join(',') || ''}>
           <div class="post-image-wrapper">

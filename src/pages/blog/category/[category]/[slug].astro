@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/Layout.astro';
-import { wpquery } from '../../../../lib/wordpress';
+import { wpquery, getBlogUrl } from '../../../../lib/wordpress';
 import CallToAction from '../../../../components/Home/CallToAction.astro';
 
 export const prerender = true;
@@ -57,7 +57,12 @@ interface Props {
 
 // 3. Access the post data passed from getStaticPaths
 const { post, recentPosts } = Astro.props as Props;
-const { category } = Astro.params as { category: string; slug: string };
+const { category, slug } = Astro.params as { category: string; slug: string };
+
+// 301 Redirect old /blog/category/[category]/[slug] to /blog/[category]/[slug]
+if (post) {
+  return Astro.redirect(getBlogUrl(post), 301);
+}
 
 // 4. Format Date
 const date = new Date(post.date);
@@ -135,15 +140,6 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
             
             <h1 class="post-title">{post.title}</h1>
           </header>
-
-          {post.featuredImage?.node && (
-            <div class="hero-image">
-              <img 
-                src={post.featuredImage.node.sourceUrl} 
-                alt={post.featuredImage.node.altText || post.title} 
-              />
-            </div>
-          )}
 
           <!-- Render the WordPress HTML content safely with closing tag -->
           <div class="post-content wp-content" set:html={processedContent}></div>
@@ -307,7 +303,7 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
 
   .post-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .post-meta {
@@ -337,19 +333,6 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
     font-size: clamp(1.75rem, 5vw, 2.75rem); /* Responsive font size */
     line-height: 1.2;
     color: #111;
-  }
-
-  .hero-image {
-    width: 100%;
-    margin-bottom: 3rem;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .hero-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
   }
 
   .back-link {

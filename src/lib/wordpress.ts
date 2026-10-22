@@ -111,3 +111,32 @@ export async function getPaginatedPosts(
     pageInfo: { hasNextPage: false, endCursor: null } 
   };
 }
+
+// 4. URL SLUG AND BLOG URL HELPERS
+export function slugifyCategory(category?: string): string {
+  if (!category) return 'general';
+  return category
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '') || 'general';
+}
+
+export function getBlogUrl(postOrCategory: any, maybeSlug?: string): string {
+  if (typeof postOrCategory === 'string' && maybeSlug) {
+    const categorySlug = slugifyCategory(postOrCategory);
+    const postSlug = maybeSlug.replace(/^\/+|\/+$/g, '');
+    return `/blog/${categorySlug}/${postSlug}`;
+  }
+
+  const post = postOrCategory;
+  if (!post) return '/blog';
+  const categoryName = post.categories?.nodes?.[0]?.name || post.category || 'general';
+  const categorySlug = slugifyCategory(categoryName);
+  const postSlug = (post.slug || '').replace(/^\/+|\/+$/g, '');
+  return `/blog/${categorySlug}/${postSlug}`;
+}
