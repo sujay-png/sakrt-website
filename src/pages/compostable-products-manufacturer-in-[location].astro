@@ -11,17 +11,254 @@ export async function getStaticPaths() {
   }));
 }
 
+interface LocationMetaData {
+  title: string;
+  description: string;
+  h1: string;
+}
+
+const locationMetaMap: Record<string, LocationMetaData> = {
+  // 1. Karnataka
+  "karnataka": {
+    title: "Compostable products Karnataka | Sakrt India",
+    description: "Sakrt is a trusted Compostable products Karnataka, India. Eco-friendly bags & packaging for bulk and business supply.",
+    h1: "Compostable Product Manufacturer In Bengaluru, Karnataka"
+  },
+  // 2. Kerala
+  "kerala": {
+    title: "Compostable products Kerala | Biodegradable products India",
+    description: "Compostable products Kerala | sakrt is the leading manufacturer and distributor of compostable bag and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic manufacture's In Kerala"
+  },
+  // 3. Telangana
+  "telangana": {
+    title: "Compostable products Telangana |biodegradable products India",
+    description: "Sakrt is the leading manufacturer and distributor of compostable bags and tableware products in Telangana. Compostable products Telangana",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Telangana"
+  },
+  "telengana": {
+    title: "Compostable products Telangana |biodegradable products India",
+    description: "Sakrt is the leading manufacturer and distributor of compostable bags and tableware products in Telangana. Compostable products Telangana",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Telangana"
+  },
+  // 4. Andhra Pradesh
+  "andhra-pradesh": {
+    title: "Compostable products Andhra Pradesh | biodegradable product",
+    description: "Compostable products Andhra Pradesh | sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Andhra Pradesh"
+  },
+  "andrapradesh": {
+    title: "Compostable products Andhra Pradesh | biodegradable product",
+    description: "Compostable products Andhra Pradesh | sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Andhra Pradesh"
+  },
+  // 5. Tamil Nadu
+  "tamil-nadu": {
+    title: "Compostable products Tamil Nadu, biodegradable products",
+    description: "sakrt is the leading manufacturer and distributor of compostable bag and tableware product in Tamil Nadu | Compostable products Tamil Nadu",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Tamil Nadu"
+  },
+  "tamilnadu": {
+    title: "Compostable products Tamil Nadu, biodegradable products",
+    description: "sakrt is the leading manufacturer and distributor of compostable bag and tableware product in Tamil Nadu | Compostable products Tamil Nadu",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Tamil Nadu"
+  },
+  // 6. Goa
+  "goa": {
+    title: "Compostable products Goa| disposable Product manufacturer",
+    description: "Compostable products, Goa, India | sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Goa"
+  },
+  // 7. Maharashtra
+  "maharashtra": {
+    title: "Biodegradable products Maharashtra India compostable product",
+    description: "Biodegradable products Maharashtra, India | Sakrt is the leading manufacturer and distributor of compostable products | shop now",
+    h1: "Biodegradable products Maharashtra"
+  },
+  "maharastra": {
+    title: "Biodegradable products Maharashtra India compostable product",
+    description: "Biodegradable products Maharashtra, India | Sakrt is the leading manufacturer and distributor of compostable products | shop now",
+    h1: "Biodegradable products Maharashtra"
+  },
+  // 8. West Bengal
+  "west-bengal": {
+    title: "compostable products West Bengal | biodegradable product India",
+    description: "Compostable products West Bengal | Sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In West Bengal"
+  },
+  "westbengal": {
+    title: "compostable products West Bengal | biodegradable product India",
+    description: "Compostable products West Bengal | Sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In West Bengal"
+  },
+  // 9. Odisha
+  "odisha": {
+    title: "compostable products Odisha | Biodegradable products India",
+    description: "Compostable products Odisha, India | Sakrt is the leading manufacturer and distributor of compostable bags and tableware | Shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Odisha"
+  },
+  // 10. Pune
+  "pune": {
+    title: "Compostable products pune | biodegradable bags India",
+    description: "Biodegradable plastic bags manufacturers, suppliers in Pune | sakrt is the leading manufacturer and distributor | Compostable products pune",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Pune"
+  },
+  // 11. Mumbai
+  "mumbai": {
+    title: "Compostable products Mumbai | Biodegradable Bottles, India",
+    description: "Biodegradable bottle manufacturers & suppliers in Mumbai | sakrt is the leading manufacturer and distributor | Compostable products Mumbai",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Mumbai"
+  },
+  // 12. Gujarat
+  "gujarat": {
+    title: "compostable products Gujarat| biodegradable product India",
+    description: "Compostable products Gujarat | sakrt is the leading manufacturer and distributor of compostable products in India | shop Now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Gujarat"
+  },
+  // 13. Uttar Pradesh
+  "uttar-pradesh": {
+    title: "Biodegradable products India | compostable products Uttar pradesh",
+    description: "compostable products Uttar Pradesh | sakrt is the leading manufacturer and distributor of compostable bag and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Uttar Pradesh"
+  },
+  // 14. Rajasthan
+  "rajasthan": {
+    title: "compostable products Rajasthan | Biodegradable product India",
+    description: "sakrt is the leading manufacturer and distributor of compostable bag and tableware products in Rajasthan | Compostable products Rajasthan",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Rajasthan"
+  },
+  // 15. Madhya Pradesh
+  "madhya-pradesh": {
+    title: "Compostable products Madhya Pradesh | India",
+    description: "Compostable products Madhya Pradesh | Sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Compostable Products & Biodegradable Plastic Manufacturer In Madhya Pradesh"
+  },
+  "madya-pradesh": {
+    title: "Compostable products Madhya Pradesh | India",
+    description: "Compostable products Madhya Pradesh | Sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Compostable Products & Biodegradable Plastic Manufacturer In Madhya Pradesh"
+  },
+  // 16. Punjab
+  "punjab": {
+    title: "Compostable products Punjab | compostable product India",
+    description: "Compostable products Punjab | Sakrt is the leading manufacturer and distributor of compostable bags & products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacturer In Punjab"
+  },
+  // 17. Uttarakhand
+  "uttarakhand": {
+    title: "compostable products Uttarakhand | Biodegradable product",
+    description: "sakrt is the leading manufacturer and distributor of compostable bag and tableware products in Uttarakhand | Compostable products Uttarakhand",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Uttarakhand"
+  },
+  // 18. Haryana
+  "haryana": {
+    title: "compostable products Haryana, India | Biodegradable products",
+    description: "Compostable products Haryana, India | sakrt is the leading manufacturer and distributor of compostable bags and tableware products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Haryana"
+  },
+  // 19. Ahmedabad
+  "ahmedabad": {
+    title: "Compostable products Ahmedabad | Biodegradable Bottles, India",
+    description: "Compostable products Ahmedabad | sakrt is the leading manufacturer and distributor | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Ahmedabad"
+  },
+  // 20. Chennai
+  "chennai": {
+    title: "Compostable products Chennai | India",
+    description: "Biodegradable plastic bags manufacturers, suppliers in Chennai | Compostable products Chennai | sakrt is the leading manufacturer and distributor",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Chennai"
+  },
+  // 21. Sikkim
+  "sikkim": {
+    title: "Compostable products Sikkim | Biodegradable product India",
+    description: "Compostable products Sikkim, India | Sakrt is the leading manufacturer and distributor of compostable products and bags | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacturer In Sikkim"
+  },
+  // 22. Bihar
+  "bihar": {
+    title: "Compostable products Bihar | Biodegradable product India",
+    description: "Compostable products Bihar | Sakrt is the leading manufacturer and distributor of compostable products and tableware | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacturer In Bihar"
+  },
+  // 23. Mangalore / Mangaluru
+  "mangalore": {
+    title: "Compostable products Mangalore| compostable material",
+    description: "Compostable products Mangalore | Sakrt is the leading manufacturer and distributor in Mangalore, Karnataka, India",
+    h1: "Compostable Products Suppliers In Mangalore"
+  },
+  "mangaluru": {
+    title: "Compostable products Mangalore| compostable material",
+    description: "Compostable products Mangalore | Sakrt is the leading manufacturer and distributor in Mangalore, Karnataka, India",
+    h1: "Compostable Products Suppliers In Mangalore"
+  },
+  // 24. Bangalore / Bengaluru
+  "bangalore": {
+    title: "Compostable products Bengaluru | biodegradable product",
+    description: "Compostable products Bengaluru, Karnataka, India | Sakrt is the leading manufacturer and distributor | shop Now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Bengaluru"
+  },
+  "bengaluru": {
+    title: "Compostable products Bengaluru | biodegradable product",
+    description: "Compostable products Bengaluru, Karnataka, India | Sakrt is the leading manufacturer and distributor | shop Now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Bengaluru"
+  },
+  // 25. Mysore
+  "mysore": {
+    title: "Compostable products Mysore, Biodegradable product",
+    description: "Compostable products Mysore | Sakrt is the leading manufacturer and distributor of eco-friendly products | shop now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Mysore"
+  },
+  // 26. Shivamogga
+  "shivamogga": {
+    title: "Compostable products Shivamogga | Biodegradable products India",
+    description: "Compostable products Shivamogga, Karnataka | Sakrt is the leading manufacturer and distributor in Karnataka, India | Shop Now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Shivamogga"
+  },
+  // 27. Dharwad
+  "dharwad": {
+    title: "Compostable products Dharwad, Hubballi Karnataka | India",
+    description: "Compostable products Dharwad, Hubballi Karnataka | Sakrt is the leading manufacturer and distributor in Karnataka, India | Shop Now!",
+    h1: "Best Biodegradable Plastic Bags Manufacturer In Hubballi -Dharwad, Karnataka"
+  },
+  // 28. Belagavi
+  "belagavi": {
+    title: "Compostable products Belagavi | Biodegradable products India",
+    description: "Compostable products Belagavi, Karnataka | Sakrt is the leading manufacturer and distributor in Karnataka, India | Shop Now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture In Belagavi"
+  },
+  // 29. Udupi
+  "udupi": {
+    title: "Compostable products Udupi | Biodegradable products India",
+    description: "Compostable products Udupi | Sakrt is the leading manufacturer and distributor of compostable bags in Karnataka | eco-friendly products",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture's In Udupi"
+  },
+  // 30. Bagalkote
+  "bagalkote": {
+    title: "Compostable products Bagalkote | Biodegradable products India",
+    description: "Compostable products Bagalkote, Karnataka | Sakrt is the leading manufacturer and distributor in Karnataka, India | Shop Now",
+    h1: "Biodegradable Bags & Compostable Plastic Manufacture In Bagalkote"
+  }
+};
+
 const { locationName } = Astro.props;
+const { location } = Astro.params;
+
+const locationKey = (location || '').toLowerCase();
+const customMeta = locationMetaMap[locationKey];
+
+const metaTitle = customMeta?.title || `Compostable Product Manufacturer in ${locationName} | SAKRT`;
+const metaDesc = customMeta?.description || `Your Local Partner For Sustainable, Biodegradable Bags & Films in ${locationName}.`;
+const metaH1 = customMeta?.h1 || `Compostable Product Manufacturer In ${locationName}`;
 ---
 
-<Layout hideHeader={true} title={`Compostable Product Manufacturer in ${locationName} | SAKRT`} description={`Your Local Partner For Sustainable, Biodegradable Bags & Films in ${locationName}.`}>
+<Layout hideHeader={true} title={metaTitle} description={metaDesc}>
   <main class="location-page">
     
     <!-- Hero Section -->
     <section class="location-hero" style="background-image: url('/location-hero.webp');">
       <div class="hero-overlay"></div>
       <div class="container hero-content text-center">
-        <h1 class="hero-title">Compostable Product Manufacturer In {locationName}</h1>
+        <h1 class="hero-title">{metaH1}</h1>
         <p class="hero-subtitle">Your Local Partner For Sustainable, Biodegradable Bags & Films</p>
       </div>
     </section>
@@ -75,7 +312,7 @@ const { locationName } = Astro.props;
         <div class="contact-box text-center">
           <h2>Contact Us</h2>
           <p>Looking for a reliable compostable product manufacturer in {locationName}?<br/>Choose SAKRT for your home, business, or event and make waste disposal environmentally responsible.</p>
-          <a href="/contact-us" class="btn btn-primary mt-4">Click Here</a>
+          <a href="/contact-us/" class="btn btn-primary mt-4">Click Here</a>
         </div>
       </div>
     </section>

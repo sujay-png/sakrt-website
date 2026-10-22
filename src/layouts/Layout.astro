@@ -23,7 +23,11 @@ const {
   hideHeader = false
 } = Astro.props;
 
-const canonicalURL = canonical ? new URL(canonical, Astro.site || Astro.url) : new URL(Astro.url.pathname, Astro.site || Astro.url);
+let rawPath = canonical ? canonical : Astro.url.pathname;
+if (!rawPath.endsWith('/') && !rawPath.split('/').pop()?.includes('.')) {
+  rawPath = `${rawPath}/`;
+}
+const canonicalURL = new URL(rawPath, Astro.site || Astro.url);
 ---
 
 <!doctype html>

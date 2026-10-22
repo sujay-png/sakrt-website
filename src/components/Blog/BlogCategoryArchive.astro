@@ -5,7 +5,7 @@ interface Props {
   allCategories: string[];
 }
 
-import { getBlogUrl } from '../../lib/wordpress.ts';
+import { getBlogUrl } from '../../lib/wordpress.ts'; // automatic label maker and import means "bring in a tool" from '../../lib/wordpress.ts' tells Astro where the tool lives.
 
 const { categoryName, posts, allCategories } = Astro.props as Props;
 const slugify = (text: string) =>
@@ -29,7 +29,7 @@ const formatDate = (dateString: string) => {
   </header>
 
   <div class="filters">
-    <a href="/blog" class="filter-btn">All</a>
+    <a href="/blog/" class="filter-btn">All</a>
     {allCategories.map((cat: any) => (
       <a href={`/blog/${slugify(cat)}/`} class={`filter-btn ${cat === categoryName ? 'active' : ''}`}>{cat}</a>
     ))}

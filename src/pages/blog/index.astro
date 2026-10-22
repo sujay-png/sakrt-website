@@ -58,8 +58,8 @@ const slugify = (text: string) =>
 ---
 
 <BaseLayout 
-  title="Sustainability & Eco-Packaging Blog | SAKRT Journals"
-  description="Read SAKRT's latest journals and articles on sustainability, compostable materials, and the shift towards eco-friendly packaging in India."
+  title="biodegradable Product Blogs | Insights by SAKRT"
+  description="Get updated insights and industry knowledge about compostable plant based products. biodegradable product blogs | Insights by SAKRT"
 >
   <main class="blog-container">
     
@@ -72,7 +72,7 @@ const slugify = (text: string) =>
     </header>
 
     <div class="filters">
-      <a href="/blog" class="filter-btn active" data-category-filter="all">All</a>
+      <a href="/blog/" class="filter-btn active" data-category-filter="all">All</a>
       {categories.map((cat: any) => (
         <a href={`/blog/${slugify(cat)}/`} class="filter-btn" data-category-filter={slugify(cat)}>{cat}</a>
       ))}

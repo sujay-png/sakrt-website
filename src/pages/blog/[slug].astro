@@ -129,11 +129,11 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   const slug = segments[segments.length - 1];
   
   const mainPages = ['about', 'contact', 'shop', 'products', 'faq', 'home'];
-  if (mainPages.includes(slug)) return `href="/${slug}"`;
+  if (mainPages.includes(slug)) return `href="/${slug}/"`;
   if (path.includes('category/')) return `href="/blog/${encodeURIComponent(slug)}/"`;
   
-  // By default, assume it's a blog post and point to /blog/[slug]
-  return `href="/blog/${slug}"`;
+  // By default, assume it's a blog post and point to /blog/[slug]/
+  return `href="/blog/${slug}/"`;
 });
 ---
 
@@ -280,15 +280,16 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
 
   .rp-img-wrapper {
     width: 100%;
-    height: 180px;
+    height: auto;
     border-radius: 8px;
     overflow: hidden;
   }
 
   .rp-img-wrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+    display: block;
     transition: transform 0.3s ease;
   }
   

@@ -26,7 +26,7 @@ export const popularProducts = [
 
 // Helper to get all location slugs for dynamic routing
 export const getAllLocations = () => {
-  const allLocations = new Set([...ecoFriendlyStates, ...karnatakaCities, ...mostSoldProductCities]);
+  const allLocations = new Set([...ecoFriendlyStates, ...karnatakaCities, ...mostSoldProductCities, "Mangalore", "Bangalore"]);
   return Array.from(allLocations).map(loc => ({
     name: loc,
     slug: loc.toLowerCase().replace(/\s+/g, '-')

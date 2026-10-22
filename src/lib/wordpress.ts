@@ -130,13 +130,13 @@ export function getBlogUrl(postOrCategory: any, maybeSlug?: string): string {
   if (typeof postOrCategory === 'string' && maybeSlug) {
     const categorySlug = slugifyCategory(postOrCategory);
     const postSlug = maybeSlug.replace(/^\/+|\/+$/g, '');
-    return `/blog/${categorySlug}/${postSlug}`;
+    return `/blog/${categorySlug}/${postSlug}/`;
   }
 
   const post = postOrCategory;
-  if (!post) return '/blog';
+  if (!post) return '/blog/';
   const categoryName = post.categories?.nodes?.[0]?.name || post.category || 'general';
   const categorySlug = slugifyCategory(categoryName);
   const postSlug = (post.slug || '').replace(/^\/+|\/+$/g, '');
-  return `/blog/${categorySlug}/${postSlug}`;
+  return `/blog/${categorySlug}/${postSlug}/`;
 }

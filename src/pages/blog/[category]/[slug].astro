@@ -113,11 +113,11 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   const linkSlug = segments[segments.length - 1];
   
   const mainPages = ['about', 'contact', 'shop', 'products', 'faq', 'home'];
-  if (mainPages.includes(linkSlug)) return `href="/${linkSlug}"`;
+  if (mainPages.includes(linkSlug)) return `href="/${linkSlug}/"`;
   if (path.includes('category/')) return `href="/blog/${encodeURIComponent(linkSlug)}/"`;
   
-  // By default, point to /blog/[slug] which redirects to the category URL
-  return `href="/blog/${linkSlug}"`;
+  // By default, point to /blog/[slug]/ which redirects to the category URL
+  return `href="/blog/${linkSlug}/"`;
 });
 ---
 
@@ -257,15 +257,16 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
 
   .rp-img-wrapper {
     width: 100%;
-    height: 180px;
+    height: auto;
     border-radius: 8px;
     overflow: hidden;
   }
 
   .rp-img-wrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+    display: block;
     transition: transform 0.3s ease;
   }
   

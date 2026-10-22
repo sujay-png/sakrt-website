@@ -1,14 +1,15 @@
 ---
 // src/components/Header.astro
-const pathname = Astro.url.pathname;
+const rawPathname = Astro.url.pathname;
+const pathname = rawPathname.endsWith("/") ? rawPathname : `${rawPathname}/`;
 const isProductsActive =
-  pathname.startsWith("/compostable-product") ||
+  pathname.startsWith("/compostable-product/") ||
   [
-    "/compostable-product/tableware",
-    "/compostable-product/compostable-films",
-    "/compostable-product/compostable-pouches",
-    "/compostable-product/compostable-bags",
-    "/compostable-product/eco-water-bottles",
+    "/compostable-product/tableware/",
+    "/compostable-product/compostable-films/",
+    "/compostable-product/compostable-pouches/",
+    "/compostable-product/compostable-bags/",
+    "/compostable-product/eco-water-bottles/",
   ].includes(pathname);
 ---
 
@@ -32,12 +33,12 @@ const isProductsActive =
     <!-- Center: Navigation Links -->
     <nav class="nav-menu">
       <a href="/" class={pathname === "/" ? "active" : ""}>Home</a>
-      <a href="/about" class={pathname === "/about" ? "active" : ""}>About</a>
+      <a href="/about/" class={pathname === "/about/" ? "active" : ""}>About</a>
 
       <!-- Products Dropdown Wrapper -->
       <div class="dropdown-container">
         <a
-          href="/compostable-product"
+          href="/compostable-product/"
           class={`dropdown-trigger ${isProductsActive ? "active" : ""}`}
         >
           Products
@@ -59,23 +60,23 @@ const isProductsActive =
         <!-- Dropdown Menu -->
         <ul class="dropdown-menu">
           <li>
-            <a href="/compostable-product/food-packaging-boxes">Table Ware</a>
+            <a href="/compostable-product/food-packaging-boxes/">Table Ware</a>
           </li>
           <li>
-            <a href="/compostable-product/compostable-films"
+            <a href="/compostable-product/compostable-films/"
               >Compostable Films</a
             >
           </li>
           <li>
-            <a href="/compostable-product/compostable-pouches"
+            <a href="/compostable-product/compostable-pouches/"
               >Compostable Pouches</a
             >
           </li>
           <li>
-            <a href="/compostable-product/carry-bags">Compostable Bags</a>
+            <a href="/compostable-product/carry-bags/">Compostable Bags</a>
           </li>
           <li>
-            <a href="/compostable-product/biodegradable-water-bottles"
+            <a href="/compostable-product/biodegradable-water-bottles/"
               >Eco Friendly Water Bottles</a
             >
           </li>
@@ -83,22 +84,22 @@ const isProductsActive =
       </div>
 
       <a
-        href="/our-certifications"
-        class={pathname === "/our-certifications" ? "active" : ""}
+        href="/our-certifications/"
+        class={pathname === "/our-certifications/" ? "active" : ""}
         >Certifications</a
       >
-      <a href="/blog" class={pathname.startsWith("/blog") ? "active" : ""}
+      <a href="/blog/" class={pathname.startsWith("/blog/") ? "active" : ""}
         >Blogs</a
       >
-      <a href="/media" class={pathname === "/media" ? "active" : ""}>Media</a>
+      <a href="/media/" class={pathname === "/media/" ? "active" : ""}>Media</a>
 
       <!-- Mobile-only CTA -->
-      <a href="/contact-us" class="enquire-btn mobile-btn">Enquire</a>
+      <a href="/contact-us/" class="enquire-btn mobile-btn">Enquire</a>
     </nav>
 
     <!-- Right: Desktop Enquire Button -->
     <div class="nav-right desktop-btn">
-      <a href="/contact-us" class="enquire-btn">Enquire</a>
+      <a href="/contact-us/" class="enquire-btn">Enquire</a>
     </div>
   </div>
 </header>
@@ -471,7 +472,7 @@ const isProductsActive =
     }
 
     /* Section divider before Certifications */
-    a[href="/our-certifications"] {
+    a[href^="/our-certifications"] {
       margin-top: 10px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 16px;
