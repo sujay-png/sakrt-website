@@ -7,34 +7,34 @@ import { getProductUrl } from '../../lib/products';
 // Centralized catalog of all products using images from the public directory
 const products = [
   { title: "Biodegradable Water Bottle", slug: "biodegradable-water-bottles", image: biodegradableWaterImg.src },
-  { title: "Compostable Bag", slug: "compostable-bag", image: "/compostable-bags/new-compostable-bag.webp" },
-  { title: "Compostable Nursery Bags", slug: "compostable-nursery-bags", image: "/compostable-bags/imgi_7_Compostable-grow-bags-e1780576071172.webp" },
-  { title: "Compostable Grocery Bag", slug: "compostable-grocery-bag", image: "/compostable-bags/imgi_12_biodegradable-bags-compostable-products-eco-products-3.webp" },
+  { title: "Compostable Bag", slug: "carry-bag", image: "/compostable-bags/new-compostable-bag.webp" },
+  { title: "Compostable Nursery Bags", slug: "nursery-bag", image: "/compostable-bags/imgi_7_Compostable-grow-bags-e1780576071172.webp" },
+  { title: "Compostable Grocery Bag", slug: "grocery-bag", image: "/compostable-bags/imgi_12_biodegradable-bags-compostable-products-eco-products-3.webp" },
   
-  { title: "Bio Compostable Garbage Bags", slug: "bio-compostable-garbage-bags", image: "/compostable-bags/imgi_10_biodegradable-bags-compostable-products-ecofriendly-bags-1-2.webp" },
-  { title: "Compostable Mailer Bags", slug: "compostable-mailer-bags", image: "/compostable-bags/imgi_11_courier-bags.webp" },
-  { title: "Stand-up Pouches", slug: "stand-up-pouch", image: greyBagsImg.src },
-  { title: "Compostable Garment Bags", slug: "compostable-garment-bags", image: "/compostable-bags/imgi_9_biodegradable-bags-compostable-products-ecofriendly-bags-2-1.webp" },
+  { title: "Bio Compostable Garbage Bags", slug: "garbage-bag", image: "/compostable-bags/imgi_10_biodegradable-bags-compostable-products-ecofriendly-bags-1-2.webp" },
+  { title: "Compostable Mailer Bags", slug: "courier-bags", image: "/compostable-bags/imgi_11_courier-bags.webp" },
+  { title: "Stand-up Pouches", slug: "packaging-pouches", image: greyBagsImg.src },
+  { title: "Compostable Garment Bags", slug: "garment-bags", image: "/compostable-bags/imgi_9_biodegradable-bags-compostable-products-ecofriendly-bags-2-1.webp" },
   
-  { title: "Compostable Medical Waste Bags", slug: "compostable-medical-waste-bags", image: "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp" },
-  { title: "Compostable Pet Poop Bags", slug: "compostable-pet-poop-bags", image: "/compostable-bags/imgi_5_compostable-table-wares-Biodegradable-bag-biodegradable-bag-carry-bags-2.webp" },
-  { title: "Compostable Custom Made Bag", slug: "compostable-custom-made-bag", image: "/compostable-bags/imgi_6_biodegradable-bags-compostable-products-eco-product.-3.webp" },
-  { title: "Compostable Wrapping Films", slug: "compostable-wrapping-film", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
+  { title: "Compostable Medical Waste Bags", slug: "compostable-bio-medical-waste-bags", image: "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp" },
+  { title: "Compostable Pet Poop Bags", slug: "pet-poop-bags", image: "/compostable-bags/imgi_5_compostable-table-wares-Biodegradable-bag-biodegradable-bag-carry-bags-2.webp" },
+  { title: "Compostable Custom Made Bag", slug: "bag-pouches", image: "/compostable-bags/imgi_6_biodegradable-bags-compostable-products-eco-product.-3.webp" },
+  { title: "Compostable Wrapping Films", slug: "wrapping-film", image: "/compostable-films/imgi_4_compostable-strecth-films.webp" },
   
-  { title: "Compostable Mulch Films", slug: "compostable-mulch-films", image: "/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp" },
-  { title: "Compostable Heat Shrink Films", slug: "compostable-heat-shrink-films", image: "/compostable-films/imgi_6_Shirnk-films.webp" },
-  { title: "Compostable Food Plates", slug: "compostable-food-plates", image: "/tableware/imgi_4_biodegradable-bags-compostable-products-eco-product-1-2.webp" },
-  { title: "Compostable Square Plate", slug: "compostable-square-plate", image: "/tableware/imgi_7_biodegradable-bags-compostable-products-eco-product.-1.webp" },
+  { title: "Compostable Mulch Films", slug: "agriculture-mulch-films", image: "/compostable-films/imgi_5_biodegradable-bags-compostable-products-ecofriendly-bags-1.webp" },
+  { title: "Compostable Heat Shrink Films", slug: "heat-shrink-films", image: "/compostable-films/imgi_6_Shirnk-films.webp" },
+  { title: "Compostable Food Plates", slug: "eco-friendly-round-plate", image: "/tableware/imgi_4_biodegradable-bags-compostable-products-eco-product-1-2.webp" },
+  { title: "Compostable Square Plate", slug: "compostable-plates", image: "/tableware/imgi_7_biodegradable-bags-compostable-products-eco-product.-1.webp" },
   
-  { title: "Compostable Dona Bowl", slug: "compostable-dona-bowl", image: "/tableware/imgi_12_biodegradable-bags-compostable-products-eco-product-1.webp" },
-  { title: "Compostable Bowls", slug: "compostable-bowl", image: "/tableware/imgi_6_biodegradable-bags-compostable-products-eco-product.webp" },
-  { title: "Compostable Round Cup", slug: "compostable-round-cup", image: "/tableware/imgi_5_biodegradable-bags-compostable-products-eco-products.webp" },
-  { title: "Compostable Compartment Trays", slug: "compostable-compartment-plate", image: "/tableware/imgi_13_biodegradable-bags-compostable-products-eco-products-1.webp" },
+  { title: "Compostable Dona Bowl", slug: "dona-bowls", image: "/tableware/imgi_12_biodegradable-bags-compostable-products-eco-product-1.webp" },
+  { title: "Compostable Bowls", slug: "bowls", image: "/tableware/imgi_6_biodegradable-bags-compostable-products-eco-product.webp" },
+  { title: "Compostable Round Cup", slug: "disposable-cups", image: "/tableware/imgi_5_biodegradable-bags-compostable-products-eco-products.webp" },
+  { title: "Compostable Compartment Trays", slug: "meal-plates", image: "/tableware/imgi_13_biodegradable-bags-compostable-products-eco-products-1.webp" },
   
-  { title: "Compostable Cutlery", slug: "compostable-cutleries", image: "/tableware/imgi_10_biodegradable-bags-compostable-products-eco-product.-2.webp" },
-  { title: "Compostable Drinking Straws", slug: "compostable-drinking-straws", image: "/tableware/drinking-straws.jpg" },
-  { title: "Compostable Clam Shell", slug: "compostable-clam-shell", image: "/tableware/imgi_9_biodegradable-bags-compostable-products-eco-product-2-1.webp" },
-  { title: "Compostable Packaging", slug: "compostable-packaging", image: "/tableware/imgi_11_biodegradable-bags-compostable-products-ecofriendly-bags-2.webp" }
+  { title: "Compostable Cutlery", slug: "spoons", image: "/tableware/imgi_10_biodegradable-bags-compostable-products-eco-product.-2.webp" },
+  { title: "Compostable Drinking Straws", slug: "eco-friendly-straws", image: "/tableware/drinking-straws.jpg" },
+  { title: "Compostable Clam Shell", slug: "clamshell-box", image: "/tableware/imgi_9_biodegradable-bags-compostable-products-eco-product-2-1.webp" },
+  { title: "Compostable Packaging", slug: "food-container-box", image: "/tableware/imgi_11_biodegradable-bags-compostable-products-ecofriendly-bags-2.webp" }
 ];
 ---
 

@@ -1001,6 +1001,11 @@ export const allProducts = [
 ];
 
 export const productSEOMap: Record<string, { title: string; desc: string; h1: string }> = {
+  "biodegradable-water-bottles": {
+    title: "Best Eco friendly biodegradable bottles | Disposable in 8 months",
+    desc: "Choose eco friendly biodegradable bottles made from plant-based materials. Alternative to plastics bottles choose sustainable.",
+    h1: "Best Eco friendly biodegradable bottles",
+  },
   "carry-bag": {
     title: "Carry Bags | 100% Disposable Bag | Eco Carry Bags",
     desc: "Compostable carry bags- CPCB certified fully non plastic carry bags perfect for eco-sustainable retailers & enterprises.",

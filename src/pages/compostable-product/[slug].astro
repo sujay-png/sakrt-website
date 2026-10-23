@@ -2,12 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import GenericProductDetail from "../../components/Product Details/GenericProductDetail.astro";
 import { allProducts, productSEOMap } from "../../data/productsData";
+import { officialProductSlugMap } from "../../lib/products";
 
 export const prerender = true;
 
 export function getStaticPaths() {
   const slugAliases: Record<string, string> = {
-    "carry-bag": "Carry-Bag",
+    "carry-bag": "compostable-bag",
     "agriculture-mulch-films": "compostable-mulch-films",
     "nursery-bag": "compostable-nursery-bags",
     "wrapping-film": "compostable-wrapping-film",
@@ -66,7 +67,9 @@ export function getStaticPaths() {
 const { product, relatedProducts = [], currentSlug } = Astro.props;
 
 const slugKey = currentSlug || product.slug;
-const seoData = productSEOMap[slugKey] || productSEOMap[product.slug];
+const officialSlug = officialProductSlugMap[slugKey] || slugKey;
+const canonicalUrl = `https://www.sakrt.in/compostable-product/${officialSlug}/`;
+const seoData = productSEOMap[slugKey] || productSEOMap[officialSlug] || productSEOMap[product.slug];
 const pageTitle = seoData?.title || `${product.name} | Certified Compostable | SAKRT`;
 const pageDesc = seoData?.desc || `High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`;
 const pageH1 = seoData?.h1 || product.longTitle || product.name;
@@ -88,6 +91,7 @@ const productSchema = {
   title={pageTitle}
   description={pageDesc}
   image={product.image}
+  canonical={canonicalUrl}
   ogType="product"
   schema={productSchema}
 >
