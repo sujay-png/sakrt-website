@@ -312,6 +312,7 @@
 
         const payload = {
             post_id: "8587",
+            form_id: "9d710be",
             form_type: "popup",
             name: fullName,
             fullName,
@@ -343,7 +344,7 @@
 
         try {
             await Promise.all([
-                fetch("/api/enquiry", {
+                fetch("/api/enquiry/", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload),
