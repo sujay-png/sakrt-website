@@ -152,7 +152,9 @@ export async function submitToWordPressElementor(data: Record<string, any>) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      return { success: response.ok, status: response.status };
+      const resText = await response.text();
+      console.log("[WordPress Webhook Response]:", response.status, resText);
+      return { success: response.ok, status: response.status, data: resText };
     } catch (err: any) {
       console.error("[WordPress Webhook Sync Error]:", err);
       return { success: false, error: err?.message || "Webhook error" };
@@ -164,7 +166,15 @@ export async function submitToWordPressElementor(data: Record<string, any>) {
 
   const params = new URLSearchParams();
   params.append("action", "elementor_pro_forms_send_form");
-  params.append("form_id", "contactus");
+  
+  // Page ID: 385 for Contact Us, 8587 for Popup Enquiry
+  const wpPostId = data.post_id || (data.form_type === "popup" ? "8587" : "385");
+  const wpFormId = data.form_id || "contactus";
+  
+  params.append("post_id", String(wpPostId));
+  params.append("queried_id", String(wpPostId));
+  params.append("form_id", String(wpFormId));
+  params.append("referer_title", data.form_type === "popup" ? "Product Popup Enquiry" : "Contact Us");
 
   const name = data.name || data.fullName || "";
   const phone = data.phone || data.phoneNumber || "";
@@ -192,6 +202,11 @@ export async function submitToWordPressElementor(data: Record<string, any>) {
     });
 
     const resultText = await response.text();
+    console.log("[WordPress Elementor Response]:", {
+      status: response.status,
+      body: resultText,
+    });
+
     return { success: response.ok, data: resultText };
   } catch (error: any) {
     console.error("[WordPress Elementor Form Sync Error]:", error);
