@@ -139,4 +139,62 @@ export function getBlogUrl(postOrCategory: any, maybeSlug?: string): string {
   const categorySlug = slugifyCategory(categoryName);
   const postSlug = (post.slug || '').replace(/^\/+|\/+$/g, '');
   return `/blog/${categorySlug}/${postSlug}/`;
-}
+}
+
+// 5. ELEMENTOR FORM SUBMISSION HELPER
+export async function submitToWordPressElementor(data: Record<string, any>) {
+  // If a dedicated webhook URL is set in environment, use it
+  const webhookUrl = import.meta.env.WORDPRESS_FORM_WEBHOOK_URL;
+  if (webhookUrl) {
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      return { success: response.ok, status: response.status };
+    } catch (err: any) {
+      console.error("[WordPress Webhook Sync Error]:", err);
+      return { success: false, error: err?.message || "Webhook error" };
+    }
+  }
+
+  // Native Elementor Form Submission via admin-ajax.php
+  const wpAjaxUrl = "https://sakrt.in/wp-admin/admin-ajax.php";
+
+  const params = new URLSearchParams();
+  params.append("action", "elementor_pro_forms_send_form");
+  params.append("form_id", "contactus");
+
+  const name = data.name || data.fullName || "";
+  const phone = data.phone || data.phoneNumber || "";
+  const company = data.company || data.companyName || "";
+  const email = data.email || data.businessEmail || "";
+  const productName = data.product_name || data.productName || "";
+  const itemQuantity = data.item_quantity || data.itemQuantity || "";
+  const message = data.message || "";
+
+  if (name) params.append("form_fields[name]", String(name));
+  if (phone) params.append("form_fields[phone]", String(phone));
+  if (company) params.append("form_fields[company]", String(company));
+  if (email) params.append("form_fields[email]", String(email));
+  if (productName) params.append("form_fields[product_name]", String(productName));
+  if (itemQuantity) params.append("form_fields[item_quantity]", String(itemQuantity));
+  if (message) params.append("form_fields[message]", String(message));
+
+  try {
+    const response = await fetch(wpAjaxUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      },
+      body: params.toString(),
+    });
+
+    const resultText = await response.text();
+    return { success: response.ok, data: resultText };
+  } catch (error: any) {
+    console.error("[WordPress Elementor Form Sync Error]:", error);
+    return { success: false, error: error?.message || "Unknown error" };
+  }
+}

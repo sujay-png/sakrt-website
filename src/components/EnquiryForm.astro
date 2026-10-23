@@ -1,11 +1,12 @@
 <div class="inquiry-card">
-    <h3 class="inquiry-title">Enquire for Bulk Supply</h3>
+    <h3 class="inquiry-title">Enquire for Orders</h3>
 
     <form class="inquiry-form" id="inquiryForm">
         <div class="input-group">
             <input
                 type="text"
                 id="fullName"
+                name="name"
                 placeholder="Full Name"
                 required
                 class="form-input"
@@ -15,6 +16,7 @@
             <input
                 type="text"
                 id="phoneNumber"
+                name="phone"
                 placeholder="Phone Number"
                 required
                 class="form-input"
@@ -24,6 +26,7 @@
             <input
                 type="text"
                 id="companyName"
+                name="company"
                 placeholder="Company Name"
                 required
                 class="form-input"
@@ -34,6 +37,7 @@
             <input
                 type="email"
                 id="businessEmail"
+                name="email"
                 placeholder="Business Email"
                 required
                 class="form-input"
@@ -43,16 +47,8 @@
         <div class="input-group">
             <input
                 type="text"
-                id="productCategory"
-                placeholder="Product Type / Category"
-                required
-                class="form-input"
-            />
-        </div>
-        <div class="input-group">
-            <input
-                type="text"
                 id="productName"
+                name="product_name"
                 placeholder="Product Name"
                 required
                 class="form-input"
@@ -64,6 +60,7 @@
                 <input
                     type="number"
                     id="itemQuantity"
+                    name="item_quantity"
                     placeholder="Item Quantity"
                     required
                     class="form-input no-spin"
@@ -109,13 +106,14 @@
         <div class="input-group full-width">
             <textarea
                 id="message"
+                name="message"
                 placeholder="Message"
                 required
                 class="form-input"></textarea>
         </div>
 
         <div class="full-width">
-            <button type="submit" class="submit-btn"> SUBMIT INQUIRY </button>
+            <button type="submit" class="submit-btn"> SUBMIT ENQUIRY </button>
         </div>
     </form>
 </div>
@@ -302,9 +300,6 @@
         const businessEmail = (
             document.getElementById("businessEmail") as HTMLInputElement
         ).value;
-        const productCategory = (
-            document.getElementById("productCategory") as HTMLInputElement
-        ).value;
         const productName = (
             document.getElementById("productName") as HTMLInputElement
         ).value;
@@ -316,12 +311,17 @@
         ).value;
 
         const payload = {
+            name: fullName,
             fullName,
+            phone: phoneNumber,
             phoneNumber,
+            company: companyName,
             companyName,
+            email: businessEmail,
             businessEmail,
-            productCategory,
+            product_name: productName,
             productName,
+            item_quantity: itemQuantity,
             itemQuantity,
             message,
         };
@@ -332,7 +332,6 @@
             `*Phone:* ${phoneNumber}%0A` +
             `*Company:* ${companyName}%0A` +
             `*Email:* ${businessEmail}%0A` +
-            `*Category:* ${productCategory}%0A` +
             `*Product:* ${productName}%0A` +
             `*Quantity:* ${itemQuantity}%0A` +
             `*Message:* ${message}`;
@@ -341,7 +340,6 @@
         const url = `https://wa.me/${whatsappNumber}?text=${text}`;
 
         try {
-            // Option B: Run both API call (Sheets) and WhatsApp popup in parallel
             await Promise.all([
                 fetch("/api/enquiry", {
                     method: "POST",
