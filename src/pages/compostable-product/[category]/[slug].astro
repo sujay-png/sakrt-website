@@ -1020,6 +1020,244 @@ export function getStaticPaths() {
 
 const { product, relatedProducts = [] } = Astro.props;
 
+const productSEOMap: Record<string, { title: string; desc: string; h1: string }> = {
+  "carry-bag": {
+    title: "Carry Bags | 100% Disposable Bag | Eco Carry Bags",
+    desc: "Compostable carry bags- CPCB certified fully non plastic carry bags perfect for eco-sustainable retailers & enterprises.",
+    h1: "Eco-Friendly carry bag for Shopping, Food, and Everyday Use",
+  },
+  "compostable-bag": {
+    title: "Carry Bags | 100% Disposable Bag | Eco Carry Bags",
+    desc: "Compostable carry bags- CPCB certified fully non plastic carry bags perfect for eco-sustainable retailers & enterprises.",
+    h1: "Eco-Friendly carry bag for Shopping, Food, and Everyday Use",
+  },
+  "agriculture-mulch-films": {
+    title: "mulch film roll | Mulch Rolling Films | 100% Compostable",
+    desc: "Biodegradable mulch film roll that break down naturally, improving crop yields while protecting the environment.",
+    h1: "Eco-Friendly Mulch Film Rolls for High-Yield Farming",
+  },
+  "compostable-mulch-films": {
+    title: "mulch film roll | Mulch Rolling Films | 100% Compostable",
+    desc: "Biodegradable mulch film roll that break down naturally, improving crop yields while protecting the environment.",
+    h1: "Eco-Friendly Mulch Film Rolls for High-Yield Farming",
+  },
+  "nursery-bag": {
+    title: "Grow bags | Garden Bags | 100% Compostable",
+    desc: "Compostable grow bags for sustainable gardening. Biodegradable, eco-safe, and perfect for home gardening. Shop now !",
+    h1: "Compostable Grow Bags for Healthy Roots and Plant Growth",
+  },
+  "compostable-nursery-bags": {
+    title: "Grow bags | Garden Bags | 100% Compostable",
+    desc: "Compostable grow bags for sustainable gardening. Biodegradable, eco-safe, and perfect for home gardening. Shop now !",
+    h1: "Compostable Grow Bags for Healthy Roots and Plant Growth",
+  },
+  "wrapping-film": {
+    title: "Compostable Wrapping Films | 100% compostable",
+    desc: "SAKRT is the reliable manufacturer & supplier of compostable wrapping films for sustainable and eco-friendly focused enterprises",
+    h1: "Compostable Wrapping Films– 100% Home Compostable, Eco-Friendly, Tear-Resistant & High-Stretch",
+  },
+  "compostable-wrapping-film": {
+    title: "Compostable Wrapping Films | 100% compostable",
+    desc: "SAKRT is the reliable manufacturer & supplier of compostable wrapping films for sustainable and eco-friendly focused enterprises",
+    h1: "Compostable Wrapping Films– 100% Home Compostable, Eco-Friendly, Tear-Resistant & High-Stretch",
+  },
+  "packaging-pouches": {
+    title: "Biodegradable Pouches | 100% Eco-friendly",
+    desc: "Biodegradable Pouches are available in a wide range of sizes, designed to meet the packaging needs of eco-conscious brands and events",
+    h1: "Eco Friendly Pouches",
+  },
+  "stand-up-pouch": {
+    title: "Biodegradable Pouches | 100% Eco-friendly",
+    desc: "Biodegradable Pouches are available in a wide range of sizes, designed to meet the packaging needs of eco-conscious brands and events",
+    h1: "Eco Friendly Pouches",
+  },
+  "disposable-cups": {
+    title: "Disposable Cups | 100% compostable | sakrt",
+    desc: "Disposable Cups manufactured for environmental safety. Ideal for cafes and events wanting to reduce plastic waste. Shop now",
+    h1: "Disposable Cups, Eco-Friendly Beverage Solutions",
+  },
+  "compostable-round-cup": {
+    title: "Disposable Cups | 100% compostable | sakrt",
+    desc: "Disposable Cups manufactured for environmental safety. Ideal for cafes and events wanting to reduce plastic waste. Shop now",
+    h1: "Disposable Cups, Eco-Friendly Beverage Solutions",
+  },
+  "bowls": {
+    title: "Eco friendly Disposable Bowls | 100% Compostable Bowls",
+    desc: "Eco friendly disposable bowls from plant-based materials are perfect for eco-conscious homes, parties, or businesses.",
+    h1: "Eco Friendly Disposable Bowls For Plastic-Free Dining",
+  },
+  "compostable-bowl": {
+    title: "Eco friendly Disposable Bowls | 100% Compostable Bowls",
+    desc: "Eco friendly disposable bowls from plant-based materials are perfect for eco-conscious homes, parties, or businesses.",
+    h1: "Eco Friendly Disposable Bowls For Plastic-Free Dining",
+  },
+  "pet-poop-bags": {
+    title: "Pet poop bags | 100% Compostable Product | Poop bags",
+    desc: "SAKRT's Pet poop bags are 100% biodegradable. Disposable within 6 months of time made from plant based materials | Ask for samples.",
+    h1: "Pet Poop Bags For Clean, Green, Responsible Pet Care",
+  },
+  "compostable-pet-poop-bags": {
+    title: "Pet poop bags | 100% Compostable Product | Poop bags",
+    desc: "SAKRT's Pet poop bags are 100% biodegradable. Disposable within 6 months of time made from plant based materials | Ask for samples.",
+    h1: "Pet Poop Bags For Clean, Green, Responsible Pet Care",
+  },
+  "compostable-plates": {
+    title: "compostable plates | 100% compostable",
+    desc: "compostable plates made from natural materials. Perfect for eco-conscious parties, events, business & everyday use.",
+    h1: "Compostable Plates Made From 100% Sugarcane Fiber",
+  },
+  "compostable-square-plate": {
+    title: "compostable plates | 100% compostable",
+    desc: "compostable plates made from natural materials. Perfect for eco-conscious parties, events, business & everyday use.",
+    h1: "Compostable Plates Made From 100% Sugarcane Fiber",
+  },
+  "dona-bowls": {
+    title: "biodegradable bowl | 100% Eco-friendly Product",
+    desc: "Biodegradable bowl perfect for eco-conscious dining. Made from natural materials, ideal for serving hot and cold foods.",
+    h1: "Eco-Friendly biodegradable bowl",
+  },
+  "compostable-dona-bowl": {
+    title: "biodegradable bowl | 100% Eco-friendly Product",
+    desc: "Biodegradable bowl perfect for eco-conscious dining. Made from natural materials, ideal for serving hot and cold foods.",
+    h1: "Eco-Friendly biodegradable bowl",
+  },
+  "spoons": {
+    title: "Biodegradable spoons | 100% compostable | Ask for samples",
+    desc: "SAKRT's e biodegradable spoons, spoons and fork. Disposable within 6 months which are made from plant based cornstarch.",
+    h1: "Biodegradable Spoons",
+  },
+  "compostable-cutleries": {
+    title: "Biodegradable spoons | 100% compostable | Ask for samples",
+    desc: "SAKRT's e biodegradable spoons, spoons and fork. Disposable within 6 months which are made from plant based cornstarch.",
+    h1: "Biodegradable Spoons",
+  },
+  "bag-pouches": {
+    title: "Compostable PLA Bags | Custom bags & pouches",
+    desc: "Compostable PLA Bags designed for eco-conscious brands. 100% biodegradable, stylish, and sustainable for the future sustainability",
+    h1: "Compostable PLA Bags For Safe & Hygienic",
+  },
+  "compostable-custom-made-bag": {
+    title: "Compostable PLA Bags | Custom bags & pouches",
+    desc: "Compostable PLA Bags designed for eco-conscious brands. 100% biodegradable, stylish, and sustainable for the future sustainability",
+    h1: "Compostable PLA Bags For Safe & Hygienic",
+  },
+  "meal-plates": {
+    title: "Meal plates | Compartment Plates | 100% Eco-friendly",
+    desc: "Compostable meal plate, Meal plates, compostable food trays are the great choice for a cleaner and greener future. Ask for samples.",
+    h1: "Compostable Paper Plates Made From Sugarcane Fiber For Every Occasion",
+  },
+  "compostable-compartment-plate": {
+    title: "Meal plates | Compartment Plates | 100% Eco-friendly",
+    desc: "Compostable meal plate, Meal plates, compostable food trays are the great choice for a cleaner and greener future. Ask for samples.",
+    h1: "Compostable Paper Plates Made From Sugarcane Fiber For Every Occasion",
+  },
+  "food-container-box": {
+    title: "food container box | food packaging container",
+    desc: "Eco-friendly, food container box, tableware and cups. Designed to meet the needs of operators and protect meal presentation.",
+    h1: "Eco-Friendly Compostable Food Packaging Containers for Safe Sustainable Food Storage",
+  },
+  "compostable-packaging": {
+    title: "food container box | food packaging container",
+    desc: "Eco-friendly, food container box, tableware and cups. Designed to meet the needs of operators and protect meal presentation.",
+    h1: "Eco-Friendly Compostable Food Packaging Containers for Safe Sustainable Food Storage",
+  },
+  "clamshell-box": {
+    title: "compostable clam shells 100%Compostable Eco friendly Product",
+    desc: "compostable clam shells containers, biodegradable food containers, green clam shells, compostable food packaging",
+    h1: "Compostable Clam Shell",
+  },
+  "compostable-clam-shell": {
+    title: "compostable clam shells 100%Compostable Eco friendly Product",
+    desc: "compostable clam shells containers, biodegradable food containers, green clam shells, compostable food packaging",
+    h1: "Compostable Clam Shell",
+  },
+  "compostable-bio-medical-waste-bags": {
+    title: "bio medical waste bag | 100% Compostable | Ask for Samples",
+    desc: "Switch to 100% eco friendly bio medical waste bag. Eco-safe, regulation-compliant, and ideal for hospitals, labs.",
+    h1: "Compostable Bio Medical Waste Bags For Safe, Leak-Proof Disposal",
+  },
+  "compostable-medical-waste-bags": {
+    title: "bio medical waste bag | 100% Compostable | Ask for Samples",
+    desc: "Switch to 100% eco friendly bio medical waste bag. Eco-safe, regulation-compliant, and ideal for hospitals, labs.",
+    h1: "Compostable Bio Medical Waste Bags For Safe, Leak-Proof Disposal",
+  },
+  "garment-bags": {
+    title: "Garment Bag | 100% Eco-friendly Product",
+    desc: "100% compostable garment bags for eco-friendly, plastic-free fashion packaging. Ideal for conscious brands and retailers.",
+    h1: "Compostable Garment Bags For, Plastic-Free Clothing",
+  },
+  "compostable-garment-bags": {
+    title: "Garment Bag | 100% Eco-friendly Product",
+    desc: "100% compostable garment bags for eco-friendly, plastic-free fashion packaging. Ideal for conscious brands and retailers.",
+    h1: "Compostable Garment Bags For, Plastic-Free Clothing",
+  },
+  "garbage-bag": {
+    title: "Garbage bag | Dustbin bags | 100% Compostable",
+    desc: "Shop garbage bag made from plant-based materials. Tear-resistant, leak-proof, and ideal for sustainable living",
+    h1: "Biodegradable Garbage Bag, Strong, Leak-Proof For Clean, Easy Waste Disposal",
+  },
+  "bio-compostable-garbage-bags": {
+    title: "Garbage bag | Dustbin bags | 100% Compostable",
+    desc: "Shop garbage bag made from plant-based materials. Tear-resistant, leak-proof, and ideal for sustainable living",
+    h1: "Biodegradable Garbage Bag, Strong, Leak-Proof For Clean, Easy Waste Disposal",
+  },
+  "eco-friendly-straws": {
+    title: "eco friendly straws | 100% Disposable | Eco-friendly",
+    desc: "Switch to sustainable sipping with our eco friendly straws, perfect for any beverage without harming the planet.",
+    h1: "Eco Friendly Straws",
+  },
+  "compostable-drinking-straws": {
+    title: "eco friendly straws | 100% Disposable | Eco-friendly",
+    desc: "Switch to sustainable sipping with our eco friendly straws, perfect for any beverage without harming the planet.",
+    h1: "Eco Friendly Straws",
+  },
+  "heat-shrink-films": {
+    title: "Shrink Films | Eco-friendly Product | Learn more",
+    desc: "Discover eco-friendly compostable heat shrink films at Sakrt. Durable, food-safe & sustainable packaging designed to reduce plastic waste.",
+    h1: "Compostable Heat Shrink Films",
+  },
+  "compostable-heat-shrink-films": {
+    title: "Shrink Films | Eco-friendly Product | Learn more",
+    desc: "Discover eco-friendly compostable heat shrink films at Sakrt. Durable, food-safe & sustainable packaging designed to reduce plastic waste.",
+    h1: "Compostable Heat Shrink Films",
+  },
+  "courier-bags": {
+    title: "courier bag | Plant-based Product | 100% Compostable",
+    desc: "Switch to compostable courier bag that break down naturally. Ideal for environmentally friendly shipping and packaging.",
+    h1: "Compostable Courier Bag",
+  },
+  "compostable-mailer-bags": {
+    title: "courier bag | Plant-based Product | 100% Compostable",
+    desc: "Switch to compostable courier bag that break down naturally. Ideal for environmentally friendly shipping and packaging.",
+    h1: "Compostable Courier Bag",
+  },
+  "grocery-bag": {
+    title: "Grocery Bag | carry bags | shopping bags | big carry bag | eco bags",
+    desc: "Shop our compostable grocery bag made from plant-based materials. Strong, leak-proof, and certified biodegradable.",
+    h1: "Compostable Grocery Bag",
+  },
+  "compostable-grocery-bag": {
+    title: "Grocery Bag | carry bags | shopping bags | big carry bag | eco bags",
+    desc: "Shop our compostable grocery bag made from plant-based materials. Strong, leak-proof, and certified biodegradable.",
+    h1: "Compostable Grocery Bag",
+  },
+  "eco-friendly-round-plate": {
+    title: "Eco-Friendly Round Plate | Round Plates | Ask for Samples",
+    desc: "compostable round plates made from natural materials. Perfect for eco-conscious events, durable, biodegradable, and 100% plastic-free.",
+    h1: "Eco-Friendly Compostable Round Plates For Sustainable Everyday",
+  },
+  "compostable-food-plates": {
+    title: "Eco-Friendly Round Plate | Round Plates | Ask for Samples",
+    desc: "compostable round plates made from natural materials. Perfect for eco-conscious events, durable, biodegradable, and 100% plastic-free.",
+    h1: "Eco-Friendly Compostable Round Plates For Sustainable Everyday",
+  },
+};
+
+const seoData = productSEOMap[product.slug];
+const pageTitle = seoData?.title || `${product.name} | Certified Compostable | SAKRT`;
+const pageDesc = seoData?.desc || `High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`;
+const pageH1 = seoData?.h1 || product.longTitle || product.name;
+
 const productSchema = {
   "@context": "https://schema.org/",
   "@type": "Product",
@@ -1034,8 +1272,8 @@ const productSchema = {
 ---
 
 <Layout
-  title={`${product.name} | Certified Compostable | SAKRT`}
-  description={`High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`}
+  title={pageTitle}
+  description={pageDesc}
   image={product.image}
   ogType="product"
   schema={productSchema}
@@ -1043,7 +1281,7 @@ const productSchema = {
   <main>
     <section class="product-page-header">
       <div class="header-container">
-        <h1 class="main-title">{product.name}</h1>
+        <h1 class="main-title">{pageH1}</h1>
         <p class="subtitle">
           SAKRT is one of India, Bangalore's fastest-growing Supplier in
           Products Compostable in Nature and Premium quality distribution.
@@ -1052,10 +1290,10 @@ const productSchema = {
     </section>
 
     <GenericProductDetail
-      productName={product.name}
+      productName={pageH1}
       productImage={product.image}
       relatedProducts={relatedProducts}
-      productData={product}
+      productData={{ ...product, longTitle: pageH1 }}
     />
   </main>
 </Layout>

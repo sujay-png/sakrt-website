@@ -3,7 +3,7 @@
 // src/components/Home/Journal.astro
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
-import { wpquery } from '../../lib/wordpress.ts';
+import { wpquery, getBlogUrl } from '../../lib/wordpress.ts';
 
 const data = await wpquery({
   query: `
@@ -56,7 +56,7 @@ const formatDate = (dateString: string) => {
         const catSlug = encodeURIComponent(catName.toLowerCase().replace(/\s+/g, '-'));
         return (
         <div class="journal-card">
-          <a href={`/blog/${post.slug}`} class="journal-card-content">
+          <a href={getBlogUrl(post)} class="journal-card-content">
           <div class="image-wrapper">
             {post.featuredImage?.node?.sourceUrl ? (
               <div class="card-bg" style={`background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url('${post.featuredImage.node.sourceUrl}');`}></div>
@@ -71,7 +71,7 @@ const formatDate = (dateString: string) => {
             <h3 set:html={post.title}></h3>
           </div>
           </a>
-          <a href={`/blog/${post.slug}`} class="journal-read-more" aria-label={`Read more about ${post.title.replace(/<[^>]*>/g, '')}`}>
+          <a href={getBlogUrl(post)} class="journal-read-more" aria-label={`Read more about ${post.title.replace(/<[^>]*>/g, '')}`}>
             Read More <span class="journal-read-more__arrow" aria-hidden="true">&raquo;</span>
           </a>
         </div>
@@ -80,7 +80,7 @@ const formatDate = (dateString: string) => {
     </div>
 
     <div class="journal-actions">
-      <a href="/blog" class="see-all-link">See All Blogs</a>
+      <a href="/blog/" class="see-all-link">See All Blogs</a>
     </div>
 
   </div>

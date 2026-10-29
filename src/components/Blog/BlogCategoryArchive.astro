@@ -5,6 +5,8 @@ interface Props {
   allCategories: string[];
 }
 
+import { getBlogUrl } from '../../lib/wordpress.ts'; // automatic label maker and import means "bring in a tool" from '../../lib/wordpress.ts' tells Astro where the tool lives.
+
 const { categoryName, posts, allCategories } = Astro.props as Props;
 const slugify = (text: string) =>
   text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
@@ -27,7 +29,7 @@ const formatDate = (dateString: string) => {
   </header>
 
   <div class="filters">
-    <a href="/blog" class="filter-btn">All</a>
+    <a href="/blog/" class="filter-btn">All</a>
     {allCategories.map((cat: any) => (
       <a href={`/blog/${slugify(cat)}/`} class={`filter-btn ${cat === categoryName ? 'active' : ''}`}>{cat}</a>
     ))}
@@ -38,7 +40,7 @@ const formatDate = (dateString: string) => {
       const { day, monthYear } = formatDate(post.date);
       const mainCategory = post.categories?.nodes?.[0]?.name || "general";
       const categorySlug = slugify(mainCategory);
-      const postUrl = `/blog/${post.slug}`;
+      const postUrl = getBlogUrl(post);
       return (
         <article class="post-card" data-categories={post.categories?.nodes.map((c:any) => c.name).join(',') || ''}>
           <div class="post-image-wrapper">

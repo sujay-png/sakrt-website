@@ -5,6 +5,7 @@ import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   site: "https://sakrt.in",
+  trailingSlash: "always",
   integrations: [sitemap()],
   output: "server",
   adapter: vercel(),

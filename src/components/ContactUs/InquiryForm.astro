@@ -11,7 +11,7 @@
     <div class="form-row">
       <div class="form-group">
         <label for="name">NAME</label>
-        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="text" id="name" name="name" placeholder="Full Name" required />
       </div>
 
       <div class="form-group">
@@ -19,6 +19,7 @@
         <input
           type="tel"
           id="phone"
+          name="phone"
           placeholder="Phone Number"
           pattern="[0-9+\s-]{7,15}"
           required
@@ -29,43 +30,33 @@
     <div class="form-row">
       <div class="form-group">
         <label for="company">COMPANY NAME</label>
-        <input type="text" id="company" placeholder="Company Name" required />
+        <input type="text" id="company" name="company" placeholder="Company Name" required />
       </div>
 
       <div class="form-group">
         <label for="email">EMAIL ADDRESS</label>
-        <input type="email" id="email" placeholder="Email" required />
+        <input type="email" id="email" name="email" placeholder="Email" required />
       </div>
     </div>
 
     <div class="form-row">
-      <div class="form-group">
-        <label for="product_category">PRODUCT TYPE / CATEGORY</label>
-        <input
-          type="text"
-          id="product_category"
-          placeholder="Product Type / Category"
-          required
-        />
-      </div>
-
       <div class="form-group">
         <label for="product_name">PRODUCT NAME</label>
         <input
           type="text"
           id="product_name"
+          name="product_name"
           placeholder="Product Name"
           required
         />
       </div>
-    </div>
 
-    <div class="form-row">
       <div class="form-group">
         <label for="item_quantity">ITEM QUANTITY</label>
         <input
           type="number"
           id="item_quantity"
+          name="item_quantity"
           placeholder="Item Quantity (e.g., 100)"
           min="1"
           required
@@ -77,6 +68,7 @@
       <label for="message">YOUR MESSAGE</label>
       <textarea
         id="message"
+        name="message"
         rows="3"
         placeholder="How can we advance together?"
         required></textarea>
@@ -323,9 +315,6 @@
           .value;
         const email = (document.getElementById("email") as HTMLInputElement)
           .value;
-        const product_category = (
-          document.getElementById("product_category") as HTMLInputElement
-        ).value;
         const product_name = (
           document.getElementById("product_name") as HTMLInputElement
         ).value;
@@ -337,11 +326,13 @@
         ).value;
 
         const payload = {
+          post_id: "385",
+          form_id: "334df9c",
+          form_type: "contact_us",
           name,
           phone,
           company,
           email,
-          product_category,
           product_name,
           item_quantity,
           message,
@@ -353,7 +344,6 @@
           `*Phone:* ${phone}%0A` +
           `*Company:* ${company}%0A` +
           `*Email:* ${email}%0A` +
-          `*Category:* ${product_category}%0A` +
           `*Product:* ${product_name}%0A` +
           `*Quantity:* ${item_quantity}%0A` +
           `*Message:* ${message}`;
@@ -363,7 +353,7 @@
 
         try {
           await Promise.all([
-            fetch("/api/enquiry", {
+            fetch("/api/enquiry/", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(payload),
