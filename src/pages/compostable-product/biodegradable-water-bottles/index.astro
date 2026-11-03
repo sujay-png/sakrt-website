@@ -1,12 +1,33 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import BiodegradableWaterBottle from '../../../components/Product Details/BiodegradableWaterBottle.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Eco Water Bottles",
+  "image": "https://www.sakrt.in/logo/footer-logo.webp",
+  "description": "Certified plant-based eco water bottles. 100% biodegradable and compostable alternative to single-use plastic bottles.",
+  "keywords": "plastic bottles biodegradable, Eco water Bottles",
+  "brand": {
+    "@type": "Brand",
+    "name": "SAKRT"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "INR",
+    "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/"
+  }
+};
 ---
 
 <Layout 
-  title="Best Eco friendly biodegradable bottles | Disposable in 8 months"
+  title="Eco Water Bottles | Plastic Bottles Biodegradable Alternative | SAKRT"
   canonical="https://www.sakrt.in/compostable-product/biodegradable-water-bottles/"
-  description="Choose eco friendly biodegradable bottles made from plant-based materials. Alternative to plastics bottles choose sustainable."
+  description="Choose certified eco water bottles made from plant-based materials. The sustainable alternative to plastic bottles: biodegradable, eco-friendly, and compostable."
+  keywords="plastic bottles biodegradable, Eco water Bottles"
+  schema={schema}
 >
   <main>
     <BiodegradableWaterBottle/>

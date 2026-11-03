@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
   image?: string;
   canonical?: string;
   ogType?: string;
@@ -14,8 +15,9 @@ interface Props {
 }
 
 const { 
-  title = "SAKRT | Govt Approved & Certified Compostable Products Manufacturer",
-  description = "SAKRT is a leading manufacturer of certified compostable packaging, bags, and tableware in India. Eco-friendly, sustainable alternatives to plastic.",
+  title = "Wholesale Compostable Carry Bags & Shopping Bags | SAKRT",
+  description = "Buy 100% plant-based, CPCB-approved compostable carry bags directly from the manufacturer. We offer custom-printed D-cut and W-cut shopping bags for retail bulk orders.",
+  keywords,
   image = "/logo/footer-logo.webp",
   canonical,
   ogType = "website",
@@ -41,6 +43,7 @@ const canonicalURL = new URL(rawPath, Astro.site || Astro.url);
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />

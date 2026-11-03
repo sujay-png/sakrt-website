@@ -9,4 +9,7 @@ export default defineConfig({
   integrations: [sitemap()],
   output: "server",
   adapter: vercel(),
+  redirects: {
+    "/biodegradable-water-bottles-mangalore": "/",
+  },
 });
