@@ -1,4 +1,5 @@
 // src/lib/wordpress.ts
+import blogKeywordsMap from '../data/blog-keywords.json';
 
 interface WPGraphQLParams {
   query: string;
@@ -141,7 +142,30 @@ export function getBlogUrl(postOrCategory: any, maybeSlug?: string): string {
   return `/blog/${categorySlug}/${postSlug}/`;
 }
 
-// 5. ELEMENTOR FORM SUBMISSION HELPER
+// 5. WORDPRESS BLOG KEYWORD HELPER
+export function getWordPressBlogKeywords(post: any): string | undefined {
+  if (!post) return undefined;
+
+  // 1. Check mapped focus keywords fetched directly from WordPress Rank Math
+  if (post.slug && post.slug in blogKeywordsMap) {
+    const kw = (blogKeywordsMap as Record<string, string>)[post.slug];
+    if (kw && kw.trim()) {
+      return kw.trim();
+    }
+  }
+
+  // 2. Check embedded schema in WordPress post content
+  if (post.content) {
+    const contentMatch = post.content.match(/"keywords"\s*:\s*"([^"]+)"/i);
+    if (contentMatch && contentMatch[1]?.trim()) {
+      return contentMatch[1].trim();
+    }
+  }
+
+  return undefined;
+}
+
+// 6. ELEMENTOR FORM SUBMISSION HELPER
 export async function submitToWordPressElementor(data: Record<string, any>) {
   // If a dedicated webhook URL is set in environment, use it
   const webhookUrl = import.meta.env.WORDPRESS_FORM_WEBHOOK_URL;

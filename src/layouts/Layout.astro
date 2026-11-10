@@ -7,6 +7,7 @@ interface Props {
   title?: string;
   description?: string;
   keywords?: string;
+  keyword?: string;
   image?: string;
   canonical?: string;
   ogType?: string;
@@ -17,13 +18,16 @@ interface Props {
 const { 
   title = "Wholesale Compostable Carry Bags & Shopping Bags | SAKRT",
   description = "Buy 100% plant-based, CPCB-approved compostable carry bags directly from the manufacturer. We offer custom-printed D-cut and W-cut shopping bags for retail bulk orders.",
-  keywords,
+  keywords: keywordsProp,
+  keyword,
   image = "/logo/footer-logo.webp",
   canonical,
   ogType = "website",
   schema,
   hideHeader = false
 } = Astro.props;
+
+const keywords = keywordsProp || keyword;
 
 let rawPath = canonical ? canonical : Astro.url.pathname;
 if (!rawPath.endsWith('/') && !rawPath.split('/').pop()?.includes('.')) {

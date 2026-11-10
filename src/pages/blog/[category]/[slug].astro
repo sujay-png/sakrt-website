@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/Layout.astro';
-import { wpquery, getBlogUrl, slugifyCategory } from '../../../lib/wordpress';
+import { wpquery, getBlogUrl, slugifyCategory, getWordPressBlogKeywords } from '../../../lib/wordpress';
 import CallToAction from '../../../components/Home/CallToAction.astro';
 
 export const prerender = true;
@@ -119,11 +119,14 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   // By default, point to /blog/[slug]/ which redirects to the category URL
   return `href="/blog/${linkSlug}/"`;
 });
+
+const postKeywords = getWordPressBlogKeywords(post);
 ---
 
 <BaseLayout
   title={`${post.title} | Sakrt`}
   description={cleanExcerpt}
+  keywords={postKeywords}
   image={post.featuredImage?.node?.sourceUrl}
   ogType="article"
 >

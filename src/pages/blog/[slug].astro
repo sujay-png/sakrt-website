@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/Layout.astro';
-import { wpquery, getBlogUrl } from '../../lib/wordpress';
+import { wpquery, getBlogUrl, getWordPressBlogKeywords } from '../../lib/wordpress';
 import CallToAction from '../../components/Home/CallToAction.astro';
 import BlogCategoryArchive from '../../components/Blog/BlogCategoryArchive.astro';
 
@@ -135,11 +135,14 @@ processedContent = processedContent.replace(/href="([^"]+)"/gi, (match: string, 
   // By default, assume it's a blog post and point to /blog/[slug]/
   return `href="/blog/${slug}/"`;
 });
+
+const postKeywords = !isCategory && post ? getWordPressBlogKeywords(post) : undefined;
 ---
 
 <BaseLayout
   title={isCategory ? `${categoryName} Blog Articles | SAKRT Journals` : `${post.title} | Sakrt`}
   description={isCategory ? `Read SAKRT's latest journals and articles on ${categoryName}. Explore how biodegradable products can transform your lifestyle.` : cleanExcerpt}
+  keywords={postKeywords}
   image={!isCategory ? post.featuredImage?.node?.sourceUrl : undefined}
   ogType={!isCategory ? 'article' : undefined}
 >
