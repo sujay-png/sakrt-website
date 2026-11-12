@@ -13,15 +13,67 @@ import WhyChooseUs from '../components/Home/WhyChooseUs.astro';
 
 const schema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "SAKRT",
-  "url": "https://www.sakrt.in",
-  "logo": "https://www.sakrt.in/logo/footer-logo.webp",
-  "description": "SAKRT is a leading manufacturer of certified compostable packaging, bags, and tableware in India.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "IN"
-  }
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "url": "https://www.sakrt.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.sakrt.in/logo/footer-logo.webp"
+      },
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "description": "CPCB-certified compostable products including carry bags, bio-films, and cutlery engineered from 100% eco-friendly, renewable materials.",
+      "email": "contact@sakrt.in",
+      "hasMap": "https://share.google/RsRnI7qwqeBXrtp6z",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.0645,
+        "longitude": 74.8465
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mangaluru"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Dakshina Kannada"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Udupi"
+        },
+        {
+          "@type": "State",
+          "name": "Karnataka"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sakrt.in/#webpage",
+      "url": "https://www.sakrt.in/",
+      "name": "Mangalore compostable bags manufacturer | SAKRT",
+      "description": "CPCB-certified compostable products including carry bags, bio-films, and cutlery engineered from 100% eco-friendly, renewable materials.",
+      "about": {
+        "@id": "https://www.sakrt.in/#organization"
+      }
+    }
+  ]
 };
 ---
 

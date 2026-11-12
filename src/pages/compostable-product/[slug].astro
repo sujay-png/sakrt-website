@@ -73,8 +73,9 @@ const seoData = productSEOMap[slugKey] || productSEOMap[officialSlug] || product
 const pageTitle = seoData?.title || `${product.name} | Certified Compostable | SAKRT`;
 const pageDesc = seoData?.desc || `High-quality, eco-friendly ${product.name} manufactured by SAKRT. Certified compostable, strong, and sustainable alternative to plastic.`;
 const pageH1 = seoData?.h1 || product.longTitle || product.name;
+const pageKeywords = seoData?.keywords;
 
-const productSchema = {
+const productSchema = seoData?.schema || {
   "@context": "https://schema.org/",
   "@type": "Product",
   name: product.name,
@@ -90,6 +91,7 @@ const productSchema = {
 <Layout
   title={pageTitle}
   description={pageDesc}
+  keywords={pageKeywords}
   image={product.image}
   canonical={canonicalUrl}
   ogType="product"

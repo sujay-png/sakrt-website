@@ -1000,7 +1000,319 @@ export const allProducts = [
   ...pouchProducts,
 ];
 
-export const productSEOMap: Record<string, { title: string; desc: string; h1: string }> = {
+const nurseryBagSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Compostable Nursery Grow Bags",
+  "alternateName": "Eco friendly Grow bags",
+  "url": "https://www.sakrt.in/compostable-product/nursery-bag/",
+  "description": "Manufacturer and distributor of Compostable grow bags for sustainable gardening, eco-safe and perfect for home gardening. Sakrt, your local partner. Shop now!",
+  "brand": {
+    "@type": "Brand",
+    "name": "SAKRT"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "SAKRT",
+    "@id": "https://www.sakrt.in/#organization"
+  },
+  "category": "Agricultural & Nursery Packaging",
+  "offers": {
+    "@type": "AggregateOffer",
+    "offerCount": "1",
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "SAKRT"
+    }
+  }
+};
+
+const groceryBagSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sakrt.in/compostable-product/grocery-bag/#webpage",
+      "url": "https://www.sakrt.in/compostable-product/grocery-bag/",
+      "name": "Best eco-friendly shopping bags | 100% Compostable",
+      "description": "Shop our compostable grocery bag made from plant-based materials with no BPA elements. Strong, leak-proof, and certified biodegradable.",
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@id": "https://www.sakrt.in/#website"
+      },
+      "mainEntity": {
+        "@id": "https://www.sakrt.in/compostable-product/grocery-bag/#product"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://www.sakrt.in/compostable-product/grocery-bag/#product",
+      "name": "Eco-Friendly Grocery Bag",
+      "description": "Shop our compostable grocery bag made from plant-based materials with no BPA elements. Strong, leak-proof, and certified biodegradable.",
+      "category": "eco-friendly products",
+      "brand": {
+        "@type": "Brand",
+        "name": "SAKRT"
+      }
+    }
+  ]
+};
+
+const garbageBagSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "url": "https://www.sakrt.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.sakrt.in/logo/footer-logo.webp"
+      },
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "telephone": "+91-7338166802",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.0645,
+        "longitude": 74.8465
+      },
+      "areaServed": [
+        "Mangaluru",
+        "Dakshina Kannada",
+        "Udupi",
+        "Karnataka",
+        "India"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sakrt.in/compostable-product/garbage-bag/#webpage",
+      "url": "https://www.sakrt.in/compostable-product/garbage-bag/",
+      "name": "Bioplastic garbage bags in mangalore | sakrt",
+      "description": "Shop Bioplastic garbage bags made from plant-based materials. Tear-resistant, leak-proof, and ideal for sustainable living.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://www.sakrt.in/#website",
+        "url": "https://www.sakrt.in/",
+        "name": "SAKRT"
+      },
+      "about": {
+        "@id": "https://www.sakrt.in/#organization"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://www.sakrt.in/compostable-product/garbage-bag/#product",
+      "name": "Bioplastic Garbage Bags",
+      "description": "Shop Bioplastic garbage bags made from plant-based materials. Tear-resistant, leak-proof, and ideal for sustainable living.",
+      "url": "https://www.sakrt.in/compostable-product/garbage-bag/",
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "brand": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "manufacturer": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.sakrt.in/compostable-product/garbage-bag/",
+        "priceCurrency": "INR",
+        "price": "0.00",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@id": "https://www.sakrt.in/#organization"
+        }
+      }
+    }
+  ]
+};
+
+const courierBagsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sakrt.in/compostable-product/courier-bags/#webpage",
+      "url": "https://www.sakrt.in/compostable-product/courier-bags/",
+      "name": "Best wholesale courier bag in Mangalore | 100% Compostable",
+      "description": "Wholesale courier bag that break down naturally. Ideal for environmentally friendly shipping and packaging.",
+      "isPartOf": {
+        "@id": "https://www.sakrt.in/#website"
+      },
+      "about": {
+        "@id": "https://www.sakrt.in/#organization"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://www.sakrt.in/compostable-product/courier-bags/#product",
+      "name": "100% Compostable Courier Bags",
+      "description": "Wholesale courier bag that break down naturally. Ideal for environmentally friendly shipping and packaging.",
+      "url": "https://www.sakrt.in/compostable-product/courier-bags/",
+      "brand": {
+        "@type": "Brand",
+        "name": "SAKRT"
+      },
+      "manufacturer": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.sakrt.in/compostable-product/courier-bags/#webpage"
+      }
+    },
+    {
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "url": "https://www.sakrt.in/",
+      "logo": "https://www.sakrt.in/logo/footer-logo.webp",
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "description": "CPCB-certified manufacturer and wholesale supplier of 100% compostable and biodegradable bags, garbage liners, and bioplastic packaging solutions based in Kinnigoli, Mangalore.",
+      "hasMap": "https://share.google/RsRnI7qwqeBXrtp6z",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mangaluru"
+        },
+        {
+          "@type": "State",
+          "name": "Karnataka"
+        }
+      ]
+    }
+  ]
+};
+
+const packagingPouchesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sakrt.in/compostable-product/packaging-pouches/#webpage",
+      "url": "https://www.sakrt.in/compostable-product/packaging-pouches/",
+      "name": "Biodegradable standup Pouches | 100% Eco-friendly",
+      "description": "Biodegradable Pouches are available in a wide range of sizes, designed to meet the packaging needs of eco-conscious brands and events.",
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@id": "https://www.sakrt.in/#website"
+      },
+      "about": {
+        "@id": "https://www.sakrt.in/#organization"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://www.sakrt.in/compostable-product/packaging-pouches/#product",
+      "name": "Biodegradable Standup Pouches",
+      "description": "Biodegradable Pouches are available in a wide range of sizes, designed to meet the packaging needs of eco-conscious brands and events.",
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "brand": {
+        "@type": "Brand",
+        "name": "SAKRT"
+      },
+      "manufacturer": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "url": "https://www.sakrt.in/compostable-product/packaging-pouches/",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@id": "https://www.sakrt.in/#organization"
+        }
+      }
+    },
+    {
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "alternateName": "SAKRT Compostable Packaging",
+      "url": "https://www.sakrt.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.sakrt.in/logo/footer-logo.webp"
+      },
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "description": "CPCB-certified manufacturer and wholesale supplier of 100% compostable and biodegradable packaging solutions based in Kinnigoli, Mangalore.",
+      "email": "contact@sakrt.in",
+      "telephone": "+91-7338166802",
+      "hasMap": "https://share.google/RsRnI7qwqeBXrtp6z",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.0645,
+        "longitude": 74.8465
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mangaluru"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Dakshina Kannada"
+        },
+        {
+          "@type": "State",
+          "name": "Karnataka"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ],
+      "priceRange": "₹₹"
+    }
+  ]
+};
+
+const garmentBagsSchema = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "Compostable Garment Bags",
+  "image": "https://www.sakrt.in/logo/footer-logo.webp",
+  "description": "100% compostable garment bags for eco-friendly, plastic-free fashion packaging. Contact us for wholesale orders | sakrt.",
+  "brand": {
+    "@type": "Brand",
+    "name": "SAKRT"
+  },
+  "url": "https://www.sakrt.in/compostable-product/garment-bags/",
+  "category": "Garment Bags",
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "SAKRT",
+    "url": "https://www.sakrt.in/"
+  }
+};
+
+export const productSEOMap: Record<string, { title: string; desc: string; h1: string; keywords?: string; schema?: Record<string, any> }> = {
   "biodegradable-water-bottles": {
     title: "Best Eco friendly biodegradable bottles | Disposable in 8 months",
     desc: "Choose eco friendly biodegradable bottles made from plant-based materials. Alternative to plastics bottles choose sustainable.",
@@ -1030,11 +1342,15 @@ export const productSEOMap: Record<string, { title: string; desc: string; h1: st
     title: "Grow bags | Garden Bags | 100% Compostable",
     desc: "Compostable grow bags for sustainable gardening. Biodegradable, eco-safe, and perfect for home gardening. Shop now !",
     h1: "Compostable Grow Bags for Healthy Roots and Plant Growth",
+    keywords: "grow bags manufacturers mangalore",
+    schema: nurseryBagSchema,
   },
   "compostable-nursery-bags": {
     title: "Grow bags | Garden Bags | 100% Compostable",
     desc: "Compostable grow bags for sustainable gardening. Biodegradable, eco-safe, and perfect for home gardening. Shop now !",
     h1: "Compostable Grow Bags for Healthy Roots and Plant Growth",
+    keywords: "grow bags manufacturers mangalore",
+    schema: nurseryBagSchema,
   },
   "wrapping-film": {
     title: "Compostable Wrapping Films | 100% compostable",
@@ -1050,11 +1366,13 @@ export const productSEOMap: Record<string, { title: string; desc: string; h1: st
     title: "Biodegradable Pouches | 100% Eco-friendly",
     desc: "Biodegradable Pouches are available in a wide range of sizes, designed to meet the packaging needs of eco-conscious brands and events",
     h1: "Eco Friendly Pouches",
+    schema: packagingPouchesSchema,
   },
   "stand-up-pouch": {
     title: "Biodegradable Pouches | 100% Eco-friendly",
     desc: "Biodegradable Pouches are available in a wide range of sizes, designed to meet the packaging needs of eco-conscious brands and events",
     h1: "Eco Friendly Pouches",
+    schema: packagingPouchesSchema,
   },
   "disposable-cups": {
     title: "Disposable Cups | 100% compostable | sakrt",
@@ -1170,21 +1488,25 @@ export const productSEOMap: Record<string, { title: string; desc: string; h1: st
     title: "Garment Bag | 100% Eco-friendly Product",
     desc: "100% compostable garment bags for eco-friendly, plastic-free fashion packaging. Ideal for conscious brands and retailers.",
     h1: "Compostable Garment Bags For, Plastic-Free Clothing",
+    schema: garmentBagsSchema,
   },
   "compostable-garment-bags": {
     title: "Garment Bag | 100% Eco-friendly Product",
     desc: "100% compostable garment bags for eco-friendly, plastic-free fashion packaging. Ideal for conscious brands and retailers.",
     h1: "Compostable Garment Bags For, Plastic-Free Clothing",
+    schema: garmentBagsSchema,
   },
   "garbage-bag": {
     title: "Garbage bag | Dustbin bags | 100% Compostable",
     desc: "Shop garbage bag made from plant-based materials. Tear-resistant, leak-proof, and ideal for sustainable living",
     h1: "Biodegradable Garbage Bag, Strong, Leak-Proof For Clean, Easy Waste Disposal",
+    schema: garbageBagSchema,
   },
   "bio-compostable-garbage-bags": {
     title: "Garbage bag | Dustbin bags | 100% Compostable",
     desc: "Shop garbage bag made from plant-based materials. Tear-resistant, leak-proof, and ideal for sustainable living",
     h1: "Biodegradable Garbage Bag, Strong, Leak-Proof For Clean, Easy Waste Disposal",
+    schema: garbageBagSchema,
   },
   "eco-friendly-straws": {
     title: "eco friendly straws | 100% Disposable | Eco-friendly",
@@ -1210,21 +1532,25 @@ export const productSEOMap: Record<string, { title: string; desc: string; h1: st
     title: "courier bag | Plant-based Product | 100% Compostable",
     desc: "Switch to compostable courier bag that break down naturally. Ideal for environmentally friendly shipping and packaging.",
     h1: "Compostable Courier Bag",
+    schema: courierBagsSchema,
   },
   "compostable-mailer-bags": {
     title: "courier bag | Plant-based Product | 100% Compostable",
     desc: "Switch to compostable courier bag that break down naturally. Ideal for environmentally friendly shipping and packaging.",
     h1: "Compostable Courier Bag",
+    schema: courierBagsSchema,
   },
   "grocery-bag": {
     title: "Grocery Bag | carry bags | shopping bags | big carry bag | eco bags",
     desc: "Shop our compostable grocery bag made from plant-based materials. Strong, leak-proof, and certified biodegradable.",
     h1: "Compostable Grocery Bag",
+    schema: groceryBagSchema,
   },
   "compostable-grocery-bag": {
     title: "Grocery Bag | carry bags | shopping bags | big carry bag | eco bags",
     desc: "Shop our compostable grocery bag made from plant-based materials. Strong, leak-proof, and certified biodegradable.",
     h1: "Compostable Grocery Bag",
+    schema: groceryBagSchema,
   },
   "eco-friendly-round-plate": {
     title: "Eco-Friendly Round Plate | Round Plates | Ask for Samples",

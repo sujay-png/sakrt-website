@@ -3,12 +3,74 @@
 import Layout from '../../layouts/Layout.astro';
 import About from '../../components/About/about.astro';
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://www.sakrt.in/about/#webpage",
+      "url": "https://www.sakrt.in/about/",
+      "name": "Bioplastic manufacturers in India | SAKRT",
+      "description": "SAKRT is a leading manufacturer and distributor of bioplastic manufacturers in India, offering eco-friendly packaging solutions.",
+      "keywords": "mangalore bioplastic manufacturers, Biodegradable packaging solutions",
+      "inLanguage": "en-IN",
+      "publisher": {
+        "@id": "https://www.sakrt.in/#organization"
+      }
+    },
+    {
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "alternateName": "SAKRT Compostable Packaging",
+      "url": "https://www.sakrt.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.sakrt.in/logo/footer-logo.webp"
+      },
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "description": "SAKRT is a leading manufacturer and distributor of bioplastic manufacturers in India, offering eco-friendly packaging solutions. CPCB-certified wholesale supplier based in Kinnigoli, Mangaluru.",
+      "email": "contact@sakrt.in",
+      "sameAs": [
+        "https://share.google/RsRnI7qwqeBXrtp6z"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.0645,
+        "longitude": 74.8465
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mangaluru"
+        },
+        {
+          "@type": "State",
+          "name": "Karnataka"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <Layout 
   title="Bioplastic manufacturers in India | SAKRT"
   description="SAKRT is a leading manufacturer and distributor of bioplastic manufacturers in India, offering eco-friendly packaging solutions."
   keywords="mangalore bioplastic manufacturers, Biodegradable packaging solutions, "
+  schema={schema}
 >
   <main>
     <About/>

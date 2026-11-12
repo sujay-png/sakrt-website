@@ -97,12 +97,91 @@ const faqs = [
       "Most bioplastic that is labeled as home compostable is made partly from plants, but not entirely. The plant–based part can be as low as 0% and as high as 50%, while the rest is made from plastic that comes from petroleum.",
   },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "alternateName": "SAKRT Compostable Packaging",
+      "url": "https://www.sakrt.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.sakrt.in/logo/footer-logo.webp"
+      },
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "description": "CPCB-certified manufacturer and wholesale supplier of 100% compostable and biodegradable packaging solutions based in Kinnigoli, Mangaluru.",
+      "email": "contact@sakrt.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.0645,
+        "longitude": 74.8465
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Mangaluru" },
+        { "@type": "AdministrativeArea", "name": "Dakshina Kannada" },
+        { "@type": "AdministrativeArea", "name": "Udupi" },
+        { "@type": "State", "name": "Karnataka" },
+        { "@type": "Country", "name": "India" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sakrt.in/compostable-product/carry-bag/#webpage",
+      "url": "https://www.sakrt.in/compostable-product/carry-bag/",
+      "name": "Compostable Carry Bags Wholesale Manufacturer | Ask for Samples",
+      "description": "Buy CPCB-approved compostable carry bags in bulk directly from manufacturer. Ideal for retail, grocery, & e-commerce businesses. Request a free sample now!",
+      "isPartOf": {
+        "@id": "https://www.sakrt.in/#website"
+      },
+      "about": {
+        "@id": "https://www.sakrt.in/#organization"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://www.sakrt.in/compostable-product/carry-bag/#product",
+      "name": "Compostable Carry Bags",
+      "description": "Buy CPCB-approved compostable carry bags in bulk directly from manufacturer. Ideal for retail, grocery, & e-commerce businesses. Request a free sample now!",
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "url": "https://www.sakrt.in/compostable-product/carry-bag/",
+      "brand": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "manufacturer": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "keywords": "Wholesale carry bags mangalore, Biodegradable carry bags, bioplastic bags",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.sakrt.in/compostable-product/carry-bag/",
+        "priceCurrency": "INR",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@id": "https://www.sakrt.in/#organization"
+        }
+      }
+    }
+  ]
+};
 ---
 
 <Layout 
-  title="Best compostable bags | Carry Bags | Ask for Samples"
-  description="SAKRT's 100% Best compostable bags that blend modern design with everyday use. Disposable with 6 months of time."
-  keywords="Compostable carry bags, Biodegradable carry bags, carry bags"
+  title="Compostable Carry Bags Wholesale Manufacturer | Ask for Samples"
+  description="Buy CPCB-approved compostable carry bags in bulk directly from manufacturer. Ideal for retail, grocery, & e-commerce businesses. Request a free sample now!"
+  keywords="Wholesale carry bags mangalore, Biodegradable carry bags, bioplastic bags"
+  schema={schema}
 >
   <main class="category-page">
     <div class="category-header">

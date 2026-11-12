@@ -6,39 +6,52 @@ import CallToAction from '../../components/Home/CallToAction.astro';
 
 const schema = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Compostable Products Catalog",
-  "description": "Explore our full catalog of certified compostable products, including carry bags, pouches, films, and eco-friendly tableware.",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Compostable Food Packaging Boxes",
-      "url": "https://www.sakrt.in/compostable-product/food-packaging-boxes/"
+      "@type": "CollectionPage",
+      "@id": "https://www.sakrt.in/compostable-product/#webpage",
+      "url": "https://www.sakrt.in/compostable-product/",
+      "name": "Shop biodegradable bags, eco-friendly customised packaging on Sakrt",
+      "description": "Shop compostable carry bag, D-CUT BAG, Courier bag, garment Films, Grocery Pouches, Prasadam bags, Garbage bags, Pet Poop Bags, Nursery grow Bags, medical Bags",
+      "keywords": "Mangalore compostable bags, biodegradable packaging, sustainable products",
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@id": "https://www.sakrt.in/#website"
+      },
+      "about": {
+        "@id": "https://www.sakrt.in/#organization"
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Compostable Films",
-      "url": "https://www.sakrt.in/compostable-product/compostable-films/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Compostable Pouches",
-      "url": "https://www.sakrt.in/compostable-product/compostable-pouches/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "Compostable Carry Bags",
-      "url": "https://www.sakrt.in/compostable-product/carry-bags/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "name": "Biodegradable Water Bottles",
-      "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/"
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "url": "https://www.sakrt.in/",
+      "logo": "https://www.sakrt.in/logo/footer-logo.webp",
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "description": "CPCB-certified manufacturer and wholesale supplier of 100% compostable and biodegradable packaging solutions based in Mangaluru.",
+      "email": "contact@sakrt.in",
+      "hasMap": "https://share.google/RsRnI7qwqeBXrtp6z",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.0645,
+        "longitude": 74.8465
+      },
+      "areaServed": [
+        "Mangaluru",
+        "Dakshina Kannada",
+        "Udupi",
+        "Karnataka",
+        "India"
+      ]
     }
   ]
 };

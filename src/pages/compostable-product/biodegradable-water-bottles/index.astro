@@ -3,21 +3,30 @@ import Layout from '../../../layouts/Layout.astro';
 import BiodegradableWaterBottle from '../../../components/Product Details/BiodegradableWaterBottle.astro';
 
 const schema = {
-  "@context": "https://schema.org",
+  "@context": "https://schema.org/",
   "@type": "Product",
   "name": "Eco Water Bottles",
   "image": "https://www.sakrt.in/logo/footer-logo.webp",
-  "description": "Certified plant-based eco water bottles. 100% biodegradable and compostable alternative to single-use plastic bottles.",
-  "keywords": "plastic bottles biodegradable, Eco water Bottles",
+  "description": "Choose certified eco water bottles made from plant-based materials. The sustainable alternative to plastic bottles: biodegradable, eco-friendly, and compostable.",
   "brand": {
     "@type": "Brand",
     "name": "SAKRT"
   },
   "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
+    "@type": "AggregateOffer",
+    "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/",
     "priceCurrency": "INR",
-    "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/"
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "SAKRT"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/",
+    "name": "Eco Water Bottles | Plastic Bottles Biodegradable Alternative | SAKRT",
+    "description": "Choose certified eco water bottles made from plant-based materials. The sustainable alternative to plastic bottles: biodegradable, eco-friendly, and compostable."
   }
 };
 ---
