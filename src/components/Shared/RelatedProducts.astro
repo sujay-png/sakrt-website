@@ -35,8 +35,8 @@ const { products } = Astro.props;
   }
 
   .section-title {
-    font-family: var(--font-serif, "Cormorant Garamond", serif);
-    font-size: 2rem;
+    font-family: var("Cormorant Garamond", serif);
+    font-size: rem;
     color: #0d3d26;
     margin-bottom: 2rem;
   }
@@ -71,7 +71,7 @@ const { products } = Astro.props;
     width: 100%;
     aspect-ratio: 1;
     background-color: #f9f9f9;
-    border-radius: 8px;
+    border-radius: 2%;
     overflow: hidden;
     margin-bottom: 1rem;
     display: flex;
@@ -107,17 +107,18 @@ const { products } = Astro.props;
   }
 
   .view-details-btn {
-    background-color: #2b7a4b;
+    background-color: #1f462e;
     color: white;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.975rem;
     font-weight: 600;
     padding: 0.6rem 1.5rem;
-    border-radius: 20px;
+    border-radius: 10px;
     transition: background-color 0.2s;
   }
 
   .view-details-btn:hover {
-    background-color: #1e5c37;
+    background-color: #d6d6d6;
+    color: #0e0a0a;
   }
 </style>

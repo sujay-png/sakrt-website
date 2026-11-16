@@ -55,10 +55,9 @@ const { items } = Astro.props;
 <style>
   .shadcn-accordion {
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 0px;
     background-color: #ffffff;
     margin-bottom: 4rem;
-    overflow: hidden;
   }
 
   .accordion-item {
@@ -74,7 +73,7 @@ const { items } = Astro.props;
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 0.5rem;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 600;
@@ -121,7 +120,7 @@ const { items } = Astro.props;
 
   .accordion-inner {
     overflow: hidden;
-    padding: 0 2rem;
+    padding: 0 0.5rem;
   }
 
   .accordion-item.is-open .accordion-inner {
@@ -129,7 +128,7 @@ const { items } = Astro.props;
   }
 
   .accordion-inner :global(p) {
-    color: #475569;
+    color: #050505;
     line-height: 1.7;
     margin-bottom: 1rem;
   }
@@ -147,7 +146,7 @@ const { items } = Astro.props;
   .accordion-inner :global(.bullet-list li) {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: #555;
+    color: #000000;
     margin-bottom: 0.5rem;
   }
 

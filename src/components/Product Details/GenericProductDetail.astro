@@ -8,6 +8,8 @@ export interface ProductData {
   longTitle?: string;
   aboutTitle?: string;
   aboutBullets?: string[];
+  specificationsTitle?: string;
+  specifications?: { label: string; value: string }[];
   ratingText?: string;
   whyChooseTitle?: string;
   whyChooseText?: string[];
@@ -43,6 +45,8 @@ const accordionOnRight = accordionPlacement === "right";
 const longTitle = productData?.longTitle || productName;
 const aboutTitle = productData?.aboutTitle || "About This Item";
 const aboutBullets = productData?.aboutBullets || [];
+const specificationsTitle = productData?.specificationsTitle || "Technical Specifications";
+const specifications = productData?.specifications || [];
 const ratingText = productData?.ratingText || "";
 const whyChooseTitle = productData?.whyChooseTitle || `Why Choose ${productName}?`;
 const whyChooseText = productData?.whyChooseText || [];
@@ -137,6 +141,30 @@ const accordionItems = Astro.props.accordionItems || [
           </>
         )}
 
+        {specifications && specifications.length > 0 && (
+          <div class="specs-section">
+            <h4 class="specs-table-title">{specificationsTitle}</h4>
+            <div class="specs-table-wrapper">
+              <table class="specs-table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="spec-th-name">Specification</th>
+                    <th scope="col" class="spec-th-detail">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {specifications.map((item: any) => (
+                    <tr>
+                      <td class="spec-td-name">{item.label || item.spec}</td>
+                      <td class="spec-td-detail">{item.value || item.details}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
         {(!hideCpcbBadge || ratingText) && (
           <div class="certification-block">
             {!hideCpcbBadge && (
@@ -208,16 +236,16 @@ const accordionItems = Astro.props.accordionItems || [
       <Accordion items={accordionItems} />
     )}
 
+    {relatedProducts && relatedProducts.length > 0 && (
+      <RelatedProducts products={relatedProducts} />
+    )}
+
     {faqs && faqs.length > 0 && (
       <div class="faqs-wrapper" style="margin-top: 3.5rem;">
         <ModernFAQ title="Frequently Asked Questions" faqs={faqs} />
       </div>
     )}
-
-    {relatedProducts && relatedProducts.length > 0 && (
-      <RelatedProducts products={relatedProducts} />
-    )}
-
+    
     <!-- Enquiry Form Section -->
     <div class="enquiry-section" id="bulk-order-form">
       <h2 class="section-title text-center">Ready to Go Green?</h2>
@@ -303,14 +331,14 @@ const accordionItems = Astro.props.accordionItems || [
 
   @media (min-width: 1025px) {
     .product-title {
-      font-size: 2.5rem;
+      font-size: 2.0rem;
       margin-bottom: 2rem;
     }
   }
 
   @media (max-width: 480px) {
     .product-title {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       line-height: 1.25;
       margin-bottom: 1.25rem;
     }
@@ -491,13 +519,11 @@ const accordionItems = Astro.props.accordionItems || [
     height: 56px;
     min-width: 56px;
     min-height: 56px;
-    border-radius: 50% !important;
-    background-color: #eef7f2 !important;
-    border: 1px solid #cce8d5 !important;
+    border: 0.5px none #cce8d5 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    color: #0d3d26;
+    color: #385547;
     margin-bottom: 0.65rem;
     box-sizing: border-box;
     transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
@@ -511,7 +537,7 @@ const accordionItems = Astro.props.accordionItems || [
     min-width: 28px !important;
     min-height: 28px !important;
     stroke: currentColor !important;
-    color: #0d3d26;
+    color: #06351f;
     display: block !important;
     flex-shrink: 0;
     transition: transform 0.25s ease, stroke 0.25s ease;
@@ -529,21 +555,15 @@ const accordionItems = Astro.props.accordionItems || [
     text-align: center;
   }
 
-  /* Hover on laptop: circle fills with dark green, icon turns white, lifts with soft shadow */
-  @media (hover: hover) and (pointer: fine) {
-    .badges-row .badge-item:hover {
-      transform: translateY(-3px);
-    }
-
     .badges-row .badge-item:hover .badge-icon-circle {
-      background-color: #0d3d26 !important;
+      background-color: #ffffff !important;
       border-color: #0d3d26 !important;
       color: #ffffff !important;
       box-shadow: 0 6px 16px rgba(13, 61, 38, 0.2) !important;
     }
 
     .badges-row .badge-item:hover :global(svg) {
-      stroke: #ffffff !important;
+      stroke: #095213 !important;
       color: #ffffff !important;
     }
   }
@@ -575,14 +595,14 @@ const accordionItems = Astro.props.accordionItems || [
     }
 
     .badges-row .badge-label {
-      font-size: 0.74rem;
+      font-size: 0.94rem;
     }
   }
 
-  /* Mobile: 2x2 grid with equal spacing, no divider lines */
-  @media (max-width: 640px) {
+  /* Mobile: all 4 in one row, no divider lines */
+  @media (max-width: 540px) {
     .badges-row {
-      grid-template-columns: repeat(2, 1fr) !important;
+      grid-template-columns: repeat(4, 1fr) !important;
       gap: 16px 12px;
       margin-bottom: 1.75rem;
     }
@@ -612,7 +632,7 @@ const accordionItems = Astro.props.accordionItems || [
     }
 
     .badges-row .badge-label {
-      font-size: 0.74rem;
+      font-size: 0.64rem;
     }
   }
 
@@ -663,7 +683,7 @@ const accordionItems = Astro.props.accordionItems || [
   .feature-list li {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: #555;
+    color: #050505;
     margin-bottom: 0.5rem;
   }
 
@@ -674,16 +694,95 @@ const accordionItems = Astro.props.accordionItems || [
     }
   }
 
+  /* Technical Specifications Table */
+  .specs-section {
+    margin-top: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .specs-table-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.75rem;
+  }
+
+  .specs-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .specs-table thead tr {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .spec-th-name,
+  .spec-th-detail {
+    padding: 0.75rem 1rem 0.75rem 0;
+    font-weight: 500;
+    color: #4b5563;
+    font-size: 0.95rem;
+  }
+
+  .spec-th-detail {
+    padding-left: 0.75rem;
+  }
+
+  .specs-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .spec-td-name {
+    padding: 0.95rem 1rem 0.95rem 0;
+    font-weight: 700;
+    color: #111827;
+    vertical-align: top;
+    width: 32%;
+  }
+
+  .spec-td-detail {
+    padding: 0.95rem 0 0.95rem 0.75rem;
+    color: #374151;
+    vertical-align: top;
+    width: 68%;
+  }
+
+  @media (max-width: 640px) {
+    .specs-table {
+      font-size: 0.875rem;
+    }
+
+    .spec-td-name {
+      width: 36%;
+      padding: 0.85rem 0.5rem 0.85rem 0;
+    }
+
+    .spec-td-detail {
+      width: 64%;
+      padding: 0.85rem 0 0.85rem 0.5rem;
+    }
+  }
+
   /* CPCB Certification Block */
   .certification-block {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: flex-start;
     gap: 0.65rem;
     padding-top: 1.75rem;
-    border-top: 2px solid  #000;
+    border-top: 1px solid  #004109;
     box-sizing: border-box;
     margin-top: 2rem;
     margin-bottom: 1.75rem;
@@ -692,30 +791,30 @@ const accordionItems = Astro.props.accordionItems || [
 
   .cpcb-tag {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 0.5rem;
-    color: #4da674;
+    color: #1d4e32;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     letter-spacing: 0.05em;
   }
 
   .rating-text {
-    font-size: 0.85rem;
-    color: #666;
+    font-size: 0.95rem;
+    color: #000000;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    text-align: center;
+    text-align: flex-start;
     gap: 0.35rem;
     width: 100%;
   }
 
   .stars {
-    color: #fbbf24;
-    font-size: 1rem;
+    color: #fcb501;
+    font-size: 1.25rem;
     margin-left: 0.25rem;
     white-space: nowrap;
     display: inline-block;
@@ -725,8 +824,8 @@ const accordionItems = Astro.props.accordionItems || [
   .product-action-buttons {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 16px;
     margin-top: 0;
     margin-bottom: 24px;
@@ -744,23 +843,19 @@ const accordionItems = Astro.props.accordionItems || [
     text-transform: uppercase;
     letter-spacing: 1.5px;
     padding: 14px 28px;
-    border-radius: 50px;
+    border-radius: 1px;
     text-decoration: none;
-    transition: all 0.3s ease;
     min-height: 48px;
-    box-sizing: border-box;
-    touch-action: manipulation;
   }
 
   .btn-primary {
-    background-color: var(--color-accent-lime, #8ce02c);
+    background-color: var(--color-accent-lime, #0e571a);
     color: var(--color-primary-dark, #0d3d26);
     box-shadow: 0 8px 20px rgba(140, 224, 44, 0.2);
   }
 
   .btn-primary:hover {
-    background-color: var(--color-accent-lime-bright, #CFF737);
-    transform: translateY(-2px);
+    background-color: var(--color-accent-lime-bright, #6e927a);
     box-shadow: 0 12px 25px rgba(140, 224, 44, 0.3);
   }
 
@@ -820,12 +915,10 @@ const accordionItems = Astro.props.accordionItems || [
     margin-top: 0;
     margin-bottom: 24px;
     padding: 16px 0;
-    border-top: 1px solid var(--color-border-subtle, #e3e5e0);
-    border-bottom: 1px solid var(--color-border-subtle, #e3e5e0);
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     gap: clamp(14px, 2.5vw, 28px);
   }
@@ -902,16 +995,16 @@ const accordionItems = Astro.props.accordionItems || [
   @media (max-width: 600px) {
     .product-trust-badges {
       padding: 14px 8px;
-      gap: 12px 18px;
+      gap: 22px 25px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .trust-badge {
       display: inline-flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 16px;
     }
 
     .trust-badge-circle {

@@ -8,6 +8,9 @@ interface Props {
   description?: string;
   keywords?: string;
   keyword?: string;
+  robots?: string;
+  publisher?: string;
+  author?: string;
   image?: string;
   canonical?: string;
   ogType?: string;
@@ -20,6 +23,9 @@ const {
   description = "Buy 100% plant-based, CPCB-approved compostable carry bags directly from the manufacturer. We offer custom-printed D-cut and W-cut shopping bags for retail bulk orders.",
   keywords: keywordsProp,
   keyword,
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  publisher = "SAKRT",
+  author = "SAKRT",
   image = "/logo/footer-logo.webp",
   canonical,
   ogType = "website",
@@ -48,6 +54,16 @@ const canonicalURL = new URL(rawPath, Astro.site || Astro.url);
     <title>{title}</title>
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
+    
+    <!-- Robots and Indexing -->
+    <meta name="robots" content={robots} />
+    <meta http-equiv="X-Robots-Tag" content={robots} />
+    
+    <!-- Publisher and Author -->
+    <meta name="publisher" content={publisher} />
+    <meta name="author" content={author} />
+    <link rel="publisher" href="https://www.sakrt.in/" />
+    <meta property="article:publisher" content="https://www.sakrt.in/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
