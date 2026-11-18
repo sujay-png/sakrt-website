@@ -186,7 +186,7 @@ export async function submitToWordPressElementor(data: Record<string, any>) {
   }
 
   // Native Elementor Form Submission via admin-ajax.php
-  const wpAjaxUrl = "https://sakrt.in/wp-admin/admin-ajax.php";
+  const wpAjaxUrl = "https://dashboard.sakrt.in/wp-admin/admin-ajax.php";
 
   const isPopup = data.form_type === "popup" || String(data.post_id) === "8587";
   const wpPostId = data.post_id || (isPopup ? "8587" : "385");
@@ -200,6 +200,7 @@ export async function submitToWordPressElementor(data: Record<string, any>) {
   params.append("queried_id", String(wpPostId));
   params.append("form_id", String(wpFormId));
   params.append("referer_title", isPopup ? "Product Popup Enquiry" : "Contact Us");
+  params.append("page_url", isPopup ? "https://sakrt.in/" : "https://sakrt.in/contact-us/");
 
   const name = data.name || data.fullName || "";
   const phone = data.phone || data.phoneNumber || "";
@@ -231,6 +232,10 @@ export async function submitToWordPressElementor(data: Record<string, any>) {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Referer": isPopup ? "https://dashboard.sakrt.in/" : "https://dashboard.sakrt.in/contact-us/",
+        "Origin": "https://dashboard.sakrt.in",
+        "X-Requested-With": "XMLHttpRequest",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       },
       body: params.toString(),
     });

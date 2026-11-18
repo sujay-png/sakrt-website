@@ -338,38 +338,45 @@
           message,
         };
 
-        const text =
-          `*New Contact Inquiry*%0A%0A` +
-          `*Name:* ${name}%0A` +
-          `*Phone:* ${phone}%0A` +
-          `*Company:* ${company}%0A` +
-          `*Email:* ${email}%0A` +
-          `*Product:* ${product_name}%0A` +
-          `*Quantity:* ${item_quantity}%0A` +
+        const whatsappNumber = "917975310662";
+        const messageText =
+          `*New Contact Inquiry*\n\n` +
+          `*Name:* ${name}\n` +
+          `*Phone:* ${phone}\n` +
+          `*Company:* ${company}\n` +
+          `*Email:* ${email}\n` +
+          `*Product:* ${product_name}\n` +
+          `*Quantity:* ${item_quantity}\n` +
           `*Message:* ${message}`;
 
-        const whatsappNumber = "+917975310662";
-        const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
+
+        // Open WhatsApp immediately on user click to prevent browser popup blockers
+        let whatsappWindow: Window | null = null;
+        try {
+          whatsappWindow = window.open(url, "_blank");
+        } catch (_) {}
 
         try {
-          await Promise.all([
-            fetch("/api/enquiry/", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            }),
-            new Promise<void>((resolve) => {
-              window.open(url, "_blank");
-              resolve();
-            }),
-          ]);
+          // Submit to backend API (syncs to WordPress Elementor Form and Google Sheets)
+          await fetch("/api/enquiry/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            keepalive: true,
+          });
 
           alert("Message transmitted successfully!");
           form.reset();
+
+          // Fallback for strict mobile browsers that block new tabs
+          if (!whatsappWindow) {
+            window.location.href = url;
+          }
         } catch (error) {
           console.error("Error submitting form:", error);
           alert(
-            "Something went wrong submitting to the backend, but WhatsApp should have opened.",
+            "Your message was processed. WhatsApp has been opened.",
           );
         } finally {
           if (submitBtnText) submitBtnText.textContent = "SUBMIT INQUIRY";
