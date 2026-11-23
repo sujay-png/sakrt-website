@@ -15,6 +15,7 @@ export interface ProductData {
   whyChooseText?: string[];
   additionalDetailsTitle?: string;
   additionalDetails?: string[];
+  usageApplicationsTitle?: string;
   usageApplications?: string[];
   badges?: { id?: string; title: string; subtitle: string; svg: string }[];
   faqs?: { question: string; answer: string }[];
@@ -45,13 +46,14 @@ const accordionOnRight = accordionPlacement === "right";
 const longTitle = productData?.longTitle || productName;
 const aboutTitle = productData?.aboutTitle || "About This Item";
 const aboutBullets = productData?.aboutBullets || [];
-const specificationsTitle = productData?.specificationsTitle || "Technical Specifications";
+const specificationsTitle = productData?.specificationsTitle || (aboutBullets.length === 0 ? aboutTitle : "Technical Specifications");
 const specifications = productData?.specifications || [];
 const ratingText = productData?.ratingText || "";
 const whyChooseTitle = productData?.whyChooseTitle || `Why Choose ${productName}?`;
 const whyChooseText = productData?.whyChooseText || [];
 const additionalDetailsTitle = productData?.additionalDetailsTitle || "Additional Product Details";
 const additionalDetails = productData?.additionalDetails || [];
+const usageApplicationsTitle = productData?.usageApplicationsTitle || "Usage Applications";
 const usageApplications = productData?.usageApplications || [];
 const hideCpcbBadge = productData?.hideCpcbBadge === true;
 
@@ -99,7 +101,7 @@ const accordionItems = Astro.props.accordionItems || [
   },
   usageApplications && usageApplications.length > 0 && {
     value: "usage-applications",
-    trigger: "Usage Applications",
+    trigger: usageApplicationsTitle,
     content: `<ul class="bullet-list">` + usageApplications.map((app: string) => `<li>${app}</li>`).join("") + `</ul>`
   }
 ].filter(Boolean);

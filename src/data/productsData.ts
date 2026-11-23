@@ -40,7 +40,7 @@ export const tablewareProducts = [
       "Lightweight and stackable design.",
       "Suitable for home and commercial use.",
     ],
-    usageApplications: [
+   usageApplications : [
       "Serving meals at parties, weddings, and functions.",
       "Use in cafes, restaurants, and food trucks.",
       "Ideal for takeaways and food delivery services.",
