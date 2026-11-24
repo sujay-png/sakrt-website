@@ -1,5 +1,5 @@
 ---
-// src/components/About.astro
+// src/components/About/about.astro
 import CallToAction from "../Home/CallToAction.astro";
 import biodegradableWaterImg from "../../images/biodegradable_water.png";
 import greyBagsImg from "../../images/biodegradable_greybags.png";
@@ -7,947 +7,1778 @@ import greyBagsImg from "../../images/biodegradable_greybags.png";
 const products = [
   {
     title: "Biodegradable Water Bottle",
+    category: "Hospitality & Corporate",
     url: "/compostable-product/biodegradable-water-bottles/",
     image: biodegradableWaterImg.src,
   },
   {
-    title: "Compostable Bag",
+    title: "Compostable Carry Bag",
+    category: "Retail & Shopping",
     url: "/compostable-product/carry-bags/compostable-bag/",
     image: "/compostable-bags/new-compostable-bag.webp",
   },
   {
     title: "Compostable Nursery Bags",
+    category: "Agriculture & Horticulture",
     url: "/compostable-product/carry-bags/compostable-nursery-bags/",
     image: "/compostable-bags/imgi_7_Compostable-grow-bags-e1780576071172.webp",
   },
   {
     title: "Compostable Grocery Bag",
+    category: "Supermarkets & Produce",
     url: "/compostable-product/carry-bags/compostable-grocery-bag/",
     image:
       "/compostable-bags/imgi_12_biodegradable-bags-compostable-products-eco-products-3.webp",
   },
-
-  {
-    title: "Compostable Medical Waste Bags",
-    url: "/compostable-product/carry-bags/compostable-medical-waste-bags/",
-    image:
-      "/compostable-bags/imgi_8_biodegradable-bags-compostable-products-ecofriendly-bags-1-3.webp",
-  },
   {
     title: "Compostable Mailer Bags",
+    category: "E-Commerce Logistics",
     url: "/compostable-product/carry-bags/compostable-mailer-bags/",
     image: "/compostable-bags/imgi_11_courier-bags.webp",
   },
   {
-    title: "Stand-up Pouches",
+    title: "Stand-Up Pouches",
+    category: "Food & Dry Packaging",
     url: "/compostable-product/compostable-pouches/stand-up-pouch/",
     image: greyBagsImg.src,
   },
   {
     title: "Compostable Garment Bags",
+    category: "Apparel & Textiles",
     url: "/compostable-product/carry-bags/compostable-garment-bags/",
     image:
       "/compostable-bags/imgi_9_biodegradable-bags-compostable-products-ecofriendly-bags-2-1.webp",
   },
-
   {
-    title: "Compostable Dona Bowl",
-    url: "/compostable-product/food-packaging-boxes/compostable-dona-bowl/",
-    image:
-      "/tableware/imgi_12_biodegradable-bags-compostable-products-eco-product-1.webp",
-  },
-  {
-    title: "Compostable Plates",
+    title: "Compostable Food Plates",
+    category: "Dining & Events",
     url: "/compostable-product/food-packaging-boxes/compostable-food-plates/",
     image:
       "/tableware/imgi_7_biodegradable-bags-compostable-products-eco-product.-1.webp",
   },
-  {
-    title: "Compostable Bowls",
-    url: "/compostable-product/food-packaging-boxes/compostable-bowl/",
-    image:
-      "/tableware/imgi_6_biodegradable-bags-compostable-products-eco-product.webp",
-  },
-  {
-    title: "Compostable Round Cup",
-    url: "/compostable-product/food-packaging-boxes/compostable-round-cup/",
-    image:
-      "/tableware/imgi_5_biodegradable-bags-compostable-products-eco-products.webp",
-  },
 ];
 
-const whyChoose = [
+const industries = [
   {
-    title: "Customised Solutions",
-    desc: "Only globally certified compostable products make it into our catalog (EN 13432, ASTM D6400, OK Compost).",
-    icon: "/about/imgi_4_biodegradable_carry_bags-biodegradable_bags__compostable-products-ecofriendly-bags.-1.webp",
+    num: "01",
+    title: "Retail & supermarkets",
+    content:
+      "Carry and shopping bags for supermarkets, apparel outlets, neighbourhood stores, and local vendors. Practical GSM options and W-cut or D-cut styles for everyday customer loads.",
+    open: true,
   },
   {
-    title: "Fast Fulfillment",
-    desc: "We stock and deliver in bulk perfect for retailers, supermarkets, restaurants, and event suppliers.",
-    icon: "/about/imgi_5_biodegradable_carry_bags_biodegradable_bags-compostable-products-ecofriendly-bags.webp",
+    num: "02",
+    title: "E-commerce brands",
+    content:
+      "Compostable courier mailer bags and tamper-evident shipping pouches engineered for high tear resistance, waterproof protection, and smooth logistics handling.",
+    open: false,
   },
   {
-    title: "Personalized B2B Support",
-    desc: "A dedicated account manager ensures smooth ordering, consistent supply, and custom packaging options.",
-    icon: "/about/imgi_6_biodegradable_carry_bags-biodegradable_bags_compostable-products-ecofriendly-bags.webp",
+    num: "03",
+    title: "Hospitality & food service",
+    content:
+      "Biodegradable water bottles, food plates, bowls, dona bowls, and food-grade packaging designed for hotels, restaurants, cafes, and catering.",
+    open: false,
   },
   {
-    title: "Full Transparency",
-    desc: "We provide full material traceability, product certifications, and eco-impact documentation.",
-    icon: "/about/imgi_7_biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly_bags.webp",
+    num: "04",
+    title: "Corporates & institutions",
+    content:
+      "Eco-friendly giveaway bottles, event hydration kits, and campus packaging helping companies and colleges reduce single-use plastic mandates.",
+    open: false,
   },
   {
-    title: "Eco-Conscious Partnerships",
-    desc: "We work only with manufacturers committed to sustainable agriculture, fair labor, and carbon neutrality.",
-    icon: "/about/imgi_8_Biodegradable_carry_bags-biodegradable_bags-compostable-products-ecofriendly-bags.webp",
-  },
-  {
-    title: "Field-Tested Quality",
-    desc: "We provide full material traceability, product certifications, and eco-impact documentation.",
-    icon: "/about/imgi_9_server-check.png",
-  },
-  {
-    title: "Scalable Supply Chain",
-    desc: "From local shops to national distributors, our inventory and logistics are built to grow with you.",
-    icon: "/about/imgi_10_supply-chain.png",
+    num: "05",
+    title: "Municipal & waste management",
+    content:
+      "Certified biodegradable garbage bags and medical waste liners with leak-proof seals for hygienic organic and segregated waste processing.",
+    open: false,
   },
 ];
 ---
 
-<section class="about-hero" id="about-section">
-  <!-- Interactive Ambient Glow Backdrop -->
-  <div class="ambient-glow" id="ambient-glow"></div>
+<div class="about-page-redesign">
+  <!-- ==============================================
+       HERO SECTION
+       ============================================== -->
+  <section class="about-hero-section">
+    <div class="content-container">
+      <div class="hero-top-grid">
+        <!-- Left: Text & Actions -->
+        <div class="hero-left-col">
+          <div class="meta-kicker">
+            <span class="kicker-dot"></span>
+                    <div class="science-panel-divider"></div>
+          <span>ABOUT SAKRT · ENVIRLY INNOVATIONS PVT LTD</span>
+          </div>
 
-  <div class="container">
-    <!-- Hero Banner -->
-    <div class="hero-header animate-header">
-      <h1 class="hero-title">
-        ABOUT US <br /><span class="italic-highlight"
-          >Leading CPCB-Certified Bioplastic Manufacturer in India</span>
-      </h1>
-    </div>
+          <h1 class="hero-headline">
+            Trusted Corn Starch<br />
+            Bags Manufacturers<br />
+            <span class="serif-italic">in Karnataka.</span>
+          </h1>
 
-    <!-- Editorial Split Layout -->
-    <div class="split-narrative">
-      <!-- Left: Story Box -->
-      <div class="story-card animate-card" data-tilt>
-        <div class="card-spotlight"></div>
-        <h2 class="section-heading">About SAKRT</h2>
-        <p class="lead-text">
-          SAKRT is a trusted bioplastic manufacturer and distributor. We help
-          retailers, food service providers, and eco-conscious brands replace
-          plastic with sustainable alternatives.
-        </p>
-        <div class="about-text-more">
-          <p>
-            SAKRT delivers 100% bioplastic manufacturers, plates, and tableware.
-            We are the trusted partner for modern businesses committed to
-            protecting the environment. More than just a supplier, SAKRT is your
-            trusted partner in sustainability. Together, we can reduce plastic
-            pollution, safeguard our oceans, and create a future where
-            bioplastic manufacturers’ choices are the norm.
+          <p class="hero-lead">
+            Strong on performance. Lighter on tomorrow. SAKRT helps the businesses to
+            replace single-use plastics with corn starch bags and certified
+            compostable packaging, manufactured in Mangalore, Karnataka.
           </p>
-          <p>
-            As one of India’s leading bioplastic manufacturers, SAKRT combines
-            quality, compliance, and innovation to help businesses transition
-            away from single-use plastics with confidence. Our manufacturing
-            process adheres to CPCB certification standards, ensuring every
-            product meets India’s regulatory requirements for compostability and
-            environmental safety.
+
+          <div class="hero-actions">
+            <a href="/contact/" class="btn-primary-pill">
+              Request a wholesale quote
+              <span class="action-icon">↗</span>
+            </a>
+            <a href="#science" class="link-secondary">
+              Explore the science
+              <span class="action-icon">↓</span>
+            </a>
+          </div>
+
+          <p class="hero-subline">
+            LOCAL ROOTS · FACTORY-DIRECT · PAN-INDIA SUPPLY
           </p>
         </div>
-        <button
-          id="about-text-toggle"
-          class="products-toggle-link text-toggle-link"
-          >View More <span class="arrow">↓</span></button
-        >
-      </div>
 
-      <!-- Right: Target Sectors -->
-      <div class="sectors-card animate-card" data-tilt>
-        <div class="card-spotlight"></div>
-        <h2 class="section-heading">What We Do?</h2>
-        <p class="sub-label">We offer certified compostable packaging for:</p>
-
-        <div class="sector-pills">
-          <div class="sector-pill stagger-pill">
-            <span class="pill-num">01</span>
-            <span class="pill-text">Retail Stores</span>
-          </div>
-          <div class="sector-pill stagger-pill">
-            <span class="pill-num">02</span>
-            <span class="pill-text">E-commerce Brands</span>
-          </div>
-          <div class="sector-pill stagger-pill">
-            <span class="pill-num">03</span>
-            <span class="pill-text">Hospitality & Food Service</span>
-          </div>
-          <div class="sector-pill stagger-pill">
-            <span class="pill-num">04</span>
-            <span class="pill-text">Corporates & Institutions</span>
-          </div>
-          <div class="sector-pill stagger-pill">
-            <span class="pill-num">05</span>
-            <span class="pill-text">Municipal & Waste Management</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Features Section -->
-    <div class="pillars-wrapper animate-section">
-      <div class="section-center-head">
-        <h2 class="why-title">Why Choose SAKRT?</h2>
-        <div class="gold-accent-line"></div>
-      </div>
-
-      <div class="pillars-grid">
-        {
-          whyChoose.map((item, index) => (
-            <div
-              class="pillar-card stagger-pillar"
-              style={`--delay: ${index * 0.07}s`}
-              data-tilt
-            >
-              <div class="pillar-icon-wrap">
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  class="pillar-icon"
-                  loading="lazy"
-                />
-              </div>
-              <div class="pillar-body">
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
+        <!-- Right: Arch Plant Image & Floating Card -->
+        <div class="hero-right-col">
+          <div class="hero-visual-arch-wrap">
+            <div class="hero-arch-frame">
+              <img
+                src="/about/hero-arch.webp"
+                alt="Plant growing from earth globe representing sustainable compostable packaging"
+                class="hero-arch-img"
+                loading="eager"
+              />
             </div>
-          ))
-        }
+
+            <!-- Floating Badge Card -->
+            <div class="hero-floating-card">
+              <span class="floating-tag">A BETTER MATERIAL MINDSET</span>
+              <p class="floating-title">
+                Built for business.<br />
+                <span class="serif-italic">Designed for a better future.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges Strip -->
+      <div class="hero-badges-strip">
+        <div class="badge-item">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+          <span class="badge-text">CPCB certified</span>
+        </div>
+
+        <div class="badge-divider"></div>
+
+        <div class="badge-item">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+          </svg>
+          <span class="badge-text">Compostable alternatives</span>
+        </div>
+
+        <div class="badge-divider"></div>
+
+        <div class="badge-item">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+          <span class="badge-text">Customised B2B solutions</span>
+        </div>
+
+        <div class="badge-divider"></div>
+
+        <div class="badge-item">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span class="badge-text">Made in Mangaluru</span>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- Product Showcase Grid -->
-    <div class="products-showcase animate-section">
-      <div class="section-center-head">
-        <h2 class="why-title">Most Enquired Products</h2>
-        <p class="products-subtitle">
-          Browse Our Preferred Eco-Friendly Catalog Options
+  <!-- ==============================================
+       SUB-NAVIGATION BAR
+       ============================================== -->
+  <nav class="about-subnav-bar" id="about-subnav">
+    <div class="content-container subnav-inner">
+      <a href="#story" class="subnav-link active">Our story</a>
+      <a href="#mission" class="subnav-link">Mission & vision</a>
+      <a href="#science" class="subnav-link">Material science</a>
+      <a href="#certifications" class="subnav-link">Certifications</a>
+      <a href="#products" class="subnav-link">Products</a>
+      <a href="#why-sakrt" class="subnav-link">Why SAKRT</a>
+    </div>
+  </nav>
+
+  <!-- ==============================================
+       SECTION 01: OUR STORY
+       ============================================== -->
+  <section class="page-section section-story" id="story">
+    <div class="content-container">
+      <div class="split-section-grid">
+        <!-- Left Title -->
+        <div class="section-heading-col">
+          <span class="section-kicker">01 — OUR STORY</span>
+          <h2 class="section-title-large">
+            Bio Degradable Plastic Manufacturer, <br />
+            <span class="serif-italic">and Suppliers.</span>
+          </h2>
+        </div>
+
+        <!-- Right Content -->
+        <div class="section-body-col">
+          <h2 class="section-title-large">
+            Leading Manufacturer and Distributor of Sugarcane Bagasse & Corn Starch Bags in Karnataka.
+          </h2>
+
+          <div class="two-col-text-grid">
+            <p>
+              SAKRT - a brand of Envirly Innovations Pvt Ltd - is part of Mangalore's
+              bioplastic manufacturing community. From our Kinnigoli facility,
+              we manufacture and distribute corn starch bags and compostable
+              packaging alternatives designed for strength, reliability, and
+              cost-effective commercial use.
+            </p>
+            <p>
+              From neighbourhood stores in Mangalore and Udupi to hospitality
+              chains, hospitals, and e-commerce brands in Bengaluru and across
+              India, we help organisations make a practical transition.
+              Conventional plastics can persist for centuries and shed microplastics
+              into soil and waterways. Better packaging should fit your operations—not
+              add complexity.
+            </p>
+          </div>
+
+          <div class="section-link-wrapper">
+            <a href="#certifications" class="underlined-action-link">
+              Our commitment, certified
+              <span class="action-icon">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 02: OUR MISSION & VISION
+       ============================================== -->
+  <section class="page-section section-mission" id="mission">
+    <div class="content-container">
+      <div class="section-header-block">
+        <span class="section-kicker">02 — OUR MISSION & VISION</span>
+        <h2 class="section-title-large">
+          A practical mission.<br />
+          <span class="serif-italic">A circular vision.</span>
+        </h2>
+      </div>
+
+      <div class="cards-two-col-grid">
+        <!-- Mission Card -->
+        <div class="sage-card">
+          <span class="card-kicker">OUR MISSION</span>
+          <h3 class="card-headline">Make Better Packaging Accessible.</h3>
+          <p class="card-copy">
+            Make sustainable, legally compliant packaging durable, affordable,
+            and accessible for Indian businesses. A factory-direct alternative
+            to conventional polythene should fit seamlessly into existing supply
+            chains.
+          </p>
+        </div>
+
+        <!-- Vision Card -->
+        <div class="sage-card">
+          <span class="card-kicker">OUR VISION</span>
+          <h3 class="card-headline">Choose Sustainable for a Better Tomorrow.</h3>
+          <p class="card-copy">
+            Accelerate the transition towards a circular economy with less
+            single-use plastic. By combining local manufacturing agility with
+            environmental standards, we help brands turn sustainability from an
+            obligation into a business advantage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 03: THE SCIENCE BEHIND CORN STARCH BAGS
+       ============================================== -->
+  <section class="page-section section-science" id="science">
+    <div class="content-container">
+      <div class="science-split-container">
+        <!-- Left Panel: Light Sage -->
+        <div class="science-left-panel">
+          <span class="section-kicker">03 — THE SCIENCE BEHIND CORN STARCH BAGS</span>
+          <h2 class="science-headline">
+            Plant starch.<br />
+            <span class="serif-italic">Purposeful Engineering.</span>
+          </h2>
+
+          <p class="science-para">
+            Corn starch bags blend renewable plant-derived starch with compostable
+            polymers such as PBAT. Unlike oxo-degradable plastics that fragment,
+            certified compostable formulations are evaluated for biodegradation,
+            disintegration, and compost safety.
+          </p>
+
+          <p class="science-para">
+            Made from bagasse and PLA  plant-based fibers that fully decompose within 
+            6 months of disposal. Zero petroleum, zero microplastics.
+
+
+          </p>
+
+          <div class="pills-tag-row">
+            <span class="science-pill">Tensile strength</span>
+            <span class="science-pill">Load-bearing capacity</span>
+            <span class="science-pill">Puncture resistance</span>
+            <span class="science-pill">Moisture protection</span>
+          </div>
+        </div>
+
+        <!-- Right Panel: Deep Forest Green -->
+        <div class="science-right-panel">
+          <div class="science-panel-top">
+            <svg class="science-leaf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+            </svg>
+            <span class="timeline-kicker">UNDERSTANDING COMPOSTING TIMELINES</span>
+          </div>
+
+          <div class="stat-highlight-block">
+            <div class="stat-large">60–180 <span class="stat-unit sarief-italic">days*</span></div>
+            <p class="stat-caption">
+              An indicative range requiring product-specific test evidence - not a
+              guarantee for open soil, landfill, oceans, or home compost.
+            </p>
+          </div>
+
+          <div class="science-panel-divider"></div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 04: CERTIFICATIONS & REGULATORY COMPLIANCE
+       ============================================== -->
+  <section class="page-section section-certifications" id="certifications">
+    <div class="content-container">
+      <div class="section-header-block">
+        <span class="section-kicker">04 — CERTIFIED QUALITY & REGULATORY COMPLIANCE</span>
+        <h2 class="section-title-large">
+          Confidence In Every Order.<br />
+          <span class="sarief-italic">Clarity In Every Claim.</span>
+        </h2>
+        <p class="section-lead-muted">
+          Each compostable product we create comes with verified lab reports, transparent material sourcing, 
+          and government certifications - giving your business a fully compliant, 
+          worry-free alternative to conventional plastic.
         </p>
       </div>
 
-      <div class="product-grid">
-        {
-          products.map((product, index) => (
-            <div
-              class="product-card stagger-product"
-              style={`--delay: ${index * 0.05}s`}
-              data-index={index}
-            >
-              <a href={product.url} class="card-image-box">
-                <img src={product.image} alt={product.title} loading="lazy" />
-                <div class="card-hover-overlay">
-                  <span class="quick-view-badge">Explore Item →</span>
+      <div class="cert-cards-grid">
+        <!-- Card 01 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg class="cert-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+            <span class="cert-card-num">01</span>
+          </div>
+          <h3 class="cert-card-title">CPCB certification</h3>
+          <p class="cert-card-desc">
+            Approved By Government/CPCB Confirming “Compostable” Standards.
+          </p>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg class="cert-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+            </svg>
+            <span class="cert-card-num">02</span>
+          </div>
+          <h3 class="cert-card-title">CIPET & IS/ISO 17088</h3>
+          <p class="cert-card-desc">
+            CIPET certified test reports and IS/ISO 17088
+            compostability documentation to support procurement and compliance
+            reviews.
+          </p>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg class="cert-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span class="cert-card-num">03</span>
+          </div>
+          <h3 class="cert-card-title">Global benchmarks</h3>
+          <p class="cert-card-desc">
+            EN 13432 and ASTM D6400 are internationally recognised compostability
+            standards. Confirm which test evidence applies to each product.
+          </p>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg class="cert-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            <span class="cert-card-num">04</span>
+          </div>
+          <h3 class="cert-card-title">Full traceability</h3>
+          <p class="cert-card-desc">
+            Applicable for CPCB compliance details, and
+            supporting documentation help your team prepare for audits with
+            confidence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 05: SERVING KARNATAKA & BEYOND (ACCORDION)
+       ============================================== -->
+  <section class="page-section section-industries" id="industries">
+    <div class="content-container">
+      <div class="split-section-grid">
+        <!-- Left: Intro -->
+        <div class="section-heading-col">
+          <span class="section-kicker">SERVING KARNATAKA & BEYOND</span>
+          <h2 class="section-title-large">
+            Different Businesses.<br />
+            <span class="serif-italic">One shared planet.</span>
+          </h2>
+          <p class="section-lead-muted" style="margin-top: 1.25rem;">
+            A neighbourhood shop in Mangaluru or a hospitality group in Udupi or an
+            online brand in Bengaluru shipping across India - Packaging should fit
+            the way you work.
+          </p>
+          <div class="section-link-wrapper" style="margin-top: 2rem;">
+            <a href="/contact/" class="underlined-action-link">
+              Find your solution
+              <span class="action-icon">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Accordion Items -->
+        <div class="section-body-col">
+          <div class="industries-accordion" id="industries-accordion">
+            {
+              industries.map((ind) => (
+                <div class={`accordion-row ${ind.open ? "is-open" : ""}`} data-accordion-item>
+                  <button class="accordion-trigger" type="button" aria-expanded={ind.open ? "true" : "false"}>
+                    <span class="trigger-num">{ind.num}</span>
+                    <span class="trigger-title">{ind.title}</span>
+                    <span class="trigger-symbol">{ind.open ? "−" : "+"}</span>
+                  </button>
+                  <div class="accordion-panel" style={ind.open ? "display: block;" : "display: none;"}>
+                    <p class="panel-text">{ind.content}</p>
+                  </div>
                 </div>
-              </a>
-              <div class="card-content">
-                <h3 class="product-title">{product.title}</h3>
-                <a href={product.url} class="view-details-btn">
-                  View Details
-                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 06: WHY BUSINESSES PARTNER WITH SAKRT
+       ============================================== -->
+  <section class="page-section section-why-sakrt" id="why-sakrt">
+    <div class="content-container">
+      <div class="split-section-grid">
+        <!-- Left: Heading -->
+        <div class="section-heading-col">
+          <span class="section-kicker">06 — WHY BUSINESSES PARTNER WITH SAKRT</span>
+          <h2 class="section-title-large">
+            Your Packaging.<br />
+            Your Brand.<br />
+            <span class="serif-italic">Our Commitment.</span>
+          </h2>
+          <p class="section-lead-muted" style="margin-top: 1.25rem;">
+            A manufacturing partner should support your reputation and your bottom
+            line. We work with procurement teams across South India to make the
+            switch practical.
+          </p>
+        </div>
+
+        <!-- Right: 2x2 Grid -->
+        <div class="section-body-col">
+          <div class="why-reasons-grid">
+            <!-- 01 -->
+            <div class="why-reason-item">
+              <span class="reason-num">01</span>
+              <h3 class="reason-headline">Factory-direct advantage</h3>
+              <p class="reason-para">
+                Local manufacturing in Kinnigoli, Mangalore reduces middlemen and
+                supports competitive wholesale pricing and responsive dispatch
+                across Karnataka.
+              </p>
+            </div>
+
+            <!-- 02 -->
+            <div class="why-reason-item">
+              <span class="reason-num">02</span>
+              <h3 class="reason-headline">Custom branding & specifications</h3>
+              <p class="reason-para">
+                Discuss flexible MOQs, custom sizes, GSM or micron thickness,
+                gusset styles, and suitable ink printing to reflect your brand
+                identity.
+              </p>
+            </div>
+
+            <!-- 03 -->
+            <div class="why-reason-item">
+              <span class="reason-num">03</span>
+              <h3 class="reason-headline">Scalable B2B fulfilment</h3>
+              <p class="reason-para">
+                From local retailers to national distributors, plan bulk volumes,
+                inventory requirements, and delivery schedules with our team.
+              </p>
+            </div>
+
+            <!-- 04 -->
+            <div class="why-reason-item">
+              <span class="reason-num">04</span>
+              <h3 class="reason-headline">Dedicated account support</h3>
+              <p class="reason-para">
+                Get practical guidance on the right gauge, format, and compliance
+                documents for your application and procurement process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 07: LOCAL ROOTS. CIRCULAR THINKING.
+       ============================================== -->
+  <section class="page-section section-roots" id="roots">
+    <div class="content-container">
+      <div class="split-section-grid">
+        <!-- Left: Story & Quote CTA -->
+        <div class="section-heading-col">
+          <span class="section-kicker">LOCAL ROOTS. CIRCULAR THINKING.</span>
+          <h2 class="section-title-large">
+            Best Compostable Product Dealer<br>
+            <span class="serif-italic">In Mangaluru</span>
+          </h2>
+
+          <div class="roots-body-paragraphs">
+            <p>
+              Local manufacturing in Mangaluru keeps us close to customers and
+              our supply chain. It supports factory-direct pricing, flexible
+              minimum order quantities, and responsive turnaround for bulk and
+              custom-branded orders.
+            </p>
+            <p>
+              Our team works with B2B buyers, distributors, and institutions on
+              consistent inventory, practical product selection, and certification
+              documentation. Share your format, volume, and branding needs for a
+              tailored quote.
+            </p>
+          </div>
+
+          <div class="section-link-wrapper" style="margin-top: 2rem;">
+            <a href="/contact/" class="underlined-action-link">
+              Discuss a bulk or custom order
+              <span class="action-icon">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Circular Vision Card -->
+        <div class="section-body-col">
+          <div class="circular-vision-card">
+            <span class="card-kicker">OUR CIRCULAR VISION</span>
+            <h3 class="vision-headline">
+              A better ending starts<br />with a better system.
+            </h3>
+            <p class="vision-para">
+              Compostable packaging only fulfils its purpose when it reaches an
+              appropriate collection and composting system. Closing the loop
+              means connecting production, responsible consumption, and renewal.
+            </p>
+
+            <div class="vision-steps-list">
+              <div class="vision-step-item">
+                <span class="step-badge">01</span>
+                <div class="step-content">
+                  <h4 class="step-title">Thoughtful production</h4>
+                  <p class="step-text">Choose materials and formats suited to the application.</p>
+                </div>
+              </div>
+
+              <div class="vision-step-item">
+                <span class="step-badge">02</span>
+                <div class="step-content">
+                  <h4 class="step-title">Responsible collection</h4>
+                  <p class="step-text">Separate waste and check local facility acceptance.</p>
+                </div>
+              </div>
+
+              <div class="vision-step-item">
+                <span class="step-badge">03</span>
+                <div class="step-content">
+                  <h4 class="step-title">Managed composting</h4>
+                  <p class="step-text">Return suitable materials through verified composting pathways.</p>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       PRODUCTS CATALOG SHOWCASE (#products)
+       ============================================== -->
+  <section class="page-section section-products" id="products">
+    <div class="content-container">
+      <div class="products-header-flex">
+        <div>
+          <span class="section-kicker">CERTIFIED PRODUCT RANGE</span>
+          <h2 class="section-title-large">
+            Certified compostable products,<br />
+            <span class="serif-italic">engineered for commercial scale.</span>
+          </h2>
+        </div>
+        <a href="/products/" class="underlined-action-link view-all-link">
+          Browse complete catalog
+          <span class="action-icon">→</span>
+        </a>
+      </div>
+
+      <div class="products-showcase-grid">
+        {
+          products.map((item) => (
+            <a href={item.url} class="product-modern-card">
+              <div class="card-img-box">
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <span class="product-category-tag">{item.category}</span>
+              </div>
+              <div class="card-text-box">
+                <h3 class="product-name">{item.title}</h3>
+                <span class="card-arrow-link">
+                  View specs <span class="action-icon">→</span>
+                </span>
+              </div>
+            </a>
           ))
         }
       </div>
-
-      <button id="about-products-toggle" class="products-toggle-link"
-        >View More <span class="arrow">↓</span></button
-      >
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- CTA Component -->
+<!-- ==============================================
+     CTA SECTION
+     ============================================== -->
 <CallToAction />
 
 <style>
+  /* Base Color Palette & Tokens */
+  .about-page-redesign {
+    --bg-page: #FAFBF7;
+    --bg-card-light: #F4F6EE;
+    --bg-sage: #E8EDE1;
+    --bg-sage-light: #EEF2E8;
+    --color-forest: #143323;
+    --color-forest-dark: #0D2619;
+    --color-forest-deep: #0A1C12;
+    --color-text-main: #132B1F;
+    --color-text-body: #42584C;
+    --color-text-muted: #647B6F;
+    --color-border: #DFE5D8;
+    --color-border-dark: #C9D4C2;
+    --font-serif: "Cormorant Garamond", "Bodoni Moda", "Playfair Display", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 
-  :root {
-    --color-bg-light: #f9faf8;
-    --color-card-bg: #ffffff;
-    --color-text-dark: #0b2218;
-    --color-text-muted: #52675e;
-    --color-btn-green: #0b2218;
-    --color-gold: #ebb13b;
-    --ease-fluid: cubic-bezier(0.25, 1, 0.3, 1);
-    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: var(--bg-page);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  .about-hero {
-    position: relative;
-    width: 100%;
-    padding: 7rem 2rem 5rem;
-    background: var(--color-bg-light);
-    color: var(--color-text-dark);
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  /* Ambient Spotlight */
-  .ambient-glow {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(235, 177, 59, 0.12) 0%,
-      rgba(249, 250, 248, 0) 70%
-    );
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition:
-      left 0.2s ease-out,
-      top 0.2s ease-out;
-  }
-
-  .container {
+  .content-container {
     max-width: 1240px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 4.5rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  /* HEADER */
-  .hero-header {
-    text-align: center;
-    max-width: 850px;
     margin: 0 auto;
-    opacity: 0;
-    transform: translateY(30px);
-    transition:
-      opacity 0.8s var(--ease-spring),
-      transform 0.8s var(--ease-spring);
+    padding: 0 1.5rem;
   }
 
-  .hero-header.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+  /* Typography Utilities */
+  .serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
   }
 
-  .badge-tag {
+  .meta-kicker {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-family: "Space Mono", monospace;
+    gap: 0.5rem;
     font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: #0b2218;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-forest);
     text-transform: uppercase;
-    background: rgba(11, 34, 24, 0.05);
-    border: 1px solid rgba(11, 34, 24, 0.12);
-    padding: 6px 18px;
-    border-radius: 30px;
-    margin-bottom: 1.5rem;
-  }
-
-  .pulsing-dot {
-    width: 7px;
-    height: 7px;
-    background-color: var(--color-gold);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--color-gold);
-    animation: pulseGlow 2s infinite ease-in-out;
-  }
-
-  @keyframes pulseGlow {
-    0%,
-    100% {
-      opacity: 0.6;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.4);
-    }
-  }
-
-  .hero-title {
-    font-family: var(--font-serif, "Instrument Serif", serif);
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    line-height: 1.05;
-    font-weight: 300;
-    color: var(--color-text-dark);
-    margin: 0;
-  }
-
-  .italic-highlight {
-    font-style: italic;
-    color: #1a523a;
-  }
-
-  /* NARRATIVE SPLIT */
-  .split-narrative {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 2rem;
-    perspective: 1000px;
-  }
-
-  .story-card,
-  .sectors-card {
-    position: relative;
-    background: var(--color-card-bg);
-    border: 1px solid rgba(11, 34, 24, 0.08);
-    box-shadow: 0 10px 30px rgba(11, 34, 24, 0.03);
-    border-radius: 24px;
-    padding: 3rem;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    opacity: 0;
-    transform: translateY(40px) scale(0.97);
-    transition:
-      opacity 0.8s var(--ease-spring),
-      transform 0.8s var(--ease-spring),
-      box-shadow 0.4s ease;
-  }
-
-  .animate-card.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .card-spotlight {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(235, 177, 59, 0.15) 0%,
-      rgba(255, 255, 255, 0) 70%
-    );
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .story-card:hover .card-spotlight,
-  .sectors-card:hover .card-spotlight {
-    opacity: 1;
-  }
-
-  .section-heading {
-    font-family: var(--font-serif, "Instrument Serif", serif);
-    font-size: 2.2rem;
-    color: var(--color-text-dark);
-    margin-top: 0;
     margin-bottom: 1.25rem;
-    font-weight: 300;
   }
 
-  .lead-text {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #31423a;
+  .kicker-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-forest);
+    display: inline-block;
+  }
+
+  .section-kicker {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
     margin-bottom: 1rem;
   }
 
-  .about-text-more p {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--color-text-muted);
+  .section-title-large {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.15;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    margin: 0;
   }
 
-  .sub-label {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 1rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
+  .section-lead-muted {
+    font-size: 1.05rem;
+    color: var(--color-text-body);
+    max-width: 680px;
+    line-height: 1.65;
+    margin: 0;
   }
 
-  /* SECTOR PILLS CASCADE */
-  .sector-pills {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  /* Shared Page Section */
+  .page-section {
+    padding: 5.5rem 0;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .sector-pill {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: #f3f5f2;
-    border: 1px solid rgba(11, 34, 24, 0.05);
-    padding: 14px 20px;
-    border-radius: 14px;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition:
-      opacity 0.6s var(--ease-spring),
-      transform 0.6s var(--ease-spring),
-      border-color 0.3s ease,
-      background 0.3s ease;
+  /* ==============================================
+     HERO SECTION STYLES
+     ============================================== */
+  .about-hero-section {
+    padding: 5.5rem 0 3.5rem;
+    background-color: var(--bg-page);
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .sectors-card.is-visible .stagger-pill:nth-child(1) {
-    transition-delay: 0.15s;
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .sectors-card.is-visible .stagger-pill:nth-child(2) {
-    transition-delay: 0.25s;
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .sectors-card.is-visible .stagger-pill:nth-child(3) {
-    transition-delay: 0.35s;
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .sectors-card.is-visible .stagger-pill:nth-child(4) {
-    transition-delay: 0.45s;
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .sectors-card.is-visible .stagger-pill:nth-child(5) {
-    transition-delay: 0.55s;
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .sector-pill:hover {
-    transform: translateX(8px) !important;
-    border-color: rgba(11, 34, 24, 0.2);
-    background: #ffffff;
-    box-shadow: 0 6px 18px rgba(11, 34, 24, 0.06);
-  }
-
-  .pill-num {
-    font-family: "Space Mono", monospace;
-    font-size: 0.85rem;
-    color: var(--color-gold);
-    font-weight: 700;
-  }
-
-  .pill-text {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text-dark);
-  }
-
-  /* WHY CHOOSE US PILLARS */
-  .section-center-head {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .why-title {
-    font-family: var(--font-serif, "Instrument Serif", serif);
-    font-size: clamp(2.2rem, 3.5vw, 3rem);
-    font-weight: 300;
-    color: var(--color-text-dark);
-    margin: 0 0 0.5rem;
-  }
-
-  .gold-accent-line {
-    width: 60px;
-    height: 3px;
-    background: var(--color-gold);
-    margin: 0 auto;
-    border-radius: 2px;
-  }
-
-  .pillars-grid {
+  .hero-top-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    perspective: 1000px;
-  }
-
-  .pillar-card {
-    background: var(--color-card-bg);
-    border: 1px solid rgba(11, 34, 24, 0.08);
-    border-radius: 20px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    transition:
-      opacity 0.6s var(--ease-spring) var(--delay, 0s),
-      transform 0.6s var(--ease-spring) var(--delay, 0s),
-      border-color 0.4s ease,
-      box-shadow 0.4s ease;
-  }
-
-  .animate-section.is-visible .pillar-card {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .pillar-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: rgba(11, 34, 24, 0.2);
-    box-shadow: 0 16px 36px rgba(11, 34, 24, 0.08);
-  }
-
-  .pillar-icon-wrap {
-    width: 56px;
-    height: 56px;
-    background: #f0f4f1;
-    border-radius: 14px;
-    display: flex;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
     align-items: center;
-    justify-content: center;
-    padding: 10px;
-    transition: transform 0.4s var(--ease-spring);
   }
 
-  .pillar-card:hover .pillar-icon-wrap {
-    transform: scale(1.1) rotate(-4deg);
+  .hero-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(2.75rem, 5.2vw, 4.25rem);
+    line-height: 1.1;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    margin: 0 0 1.75rem;
+    letter-spacing: -0.01em;
   }
 
-  .pillar-icon {
+  .hero-lead {
+    font-size: 1.1rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    max-width: 540px;
+    margin: 0 0 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .btn-primary-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--color-forest);
+    color: #ffffff;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.85rem 1.65rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .btn-primary-pill:hover {
+    background-color: var(--color-forest-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(13, 38, 25, 0.15);
+  }
+
+  .btn-primary-pill .action-icon {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-primary-pill:hover .action-icon {
+    transform: translate(2px, -2px);
+  }
+
+  .link-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-forest);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .link-secondary:hover {
+    color: var(--color-forest-deep);
+    text-decoration: underline;
+  }
+
+  .hero-subline {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  /* Hero Arch & Floating Card */
+  .hero-visual-arch-wrap {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .hero-arch-frame {
+    width: 100%;
+    height: 480px;
+    border-top-left-radius: 210px;
+    border-top-right-radius: 210px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    overflow: hidden;
+    background-color: #e4e8dc;
+    box-shadow: 0 12px 36px rgba(19, 43, 31, 0.08);
+  }
+
+  .hero-arch-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    display: block;
   }
 
-  .pillar-body h3 {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 1.1rem;
+  .hero-floating-card {
+    position: absolute;
+    bottom: -1.25rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    background-color: var(--bg-card-light);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(8px);
+  }
+
+  .floating-tag {
+    display: block;
+    font-size: 0.68rem;
     font-weight: 700;
-    color: var(--color-text-dark);
-    margin: 0 0 0.5rem;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
   }
 
-  .pillar-body p {
-    font-family: "Plus Jakarta Sans", sans-serif;
+  .floating-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    line-height: 1.25;
+    color: var(--color-forest-dark);
+    margin: 0;
+  }
+
+  /* Badges Strip */
+  .hero-badges-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 0 0;
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-text-main);
+  }
+
+  .badge-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-forest);
+    flex-shrink: 0;
+  }
+
+  .badge-text {
     font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--color-text-muted);
-    margin: 0;
+    font-weight: 500;
   }
 
-  /* PRODUCTS SECTION */
-  .products-subtitle {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    color: var(--color-text-muted);
-    margin: 0;
+  .badge-divider {
+    width: 1px;
+    height: 24px;
+    background-color: var(--color-border);
   }
 
-  .product-grid {
+  /* ==============================================
+       SUB-NAVIGATION BAR
+       ============================================== */
+  .about-subnav-bar {
+    position: sticky;
+    top: 70px;
+    z-index: 40;
+    background-color: rgba(250, 251, 247, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+    overflow-x: auto;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+    scrollbar-width: none;
+  }
+
+  .subnav-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .subnav-link {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--color-text-body);
+    text-decoration: none;
+    white-space: nowrap;
+    padding-bottom: 0.25rem;
+    transition: color 0.2s ease;
+    border-bottom: 2px solid transparent;
+  }
+
+  .subnav-link:hover,
+  .subnav-link.active {
+    color: var(--color-forest-dark);
+    font-weight: 500;
+    border-bottom-color: var(--color-forest);
+  }
+
+  /* ==============================================
+       COMMON SPLIT GRID
+       ============================================== */
+  .split-section-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1.35fr;
+    gap: 4.5rem;
+    align-items: start;
+  }
+
+  .section-heading-col {
+    position: sticky;
+    top: 130px;
+  }
+
+  .underlined-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-forest);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-forest);
+    padding-bottom: 2px;
+    transition: all 0.2s ease;
+  }
+
+  .underlined-action-link:hover {
+    color: var(--color-forest-deep);
+    border-bottom-color: transparent;
+  }
+
+  .underlined-action-link .action-icon {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .underlined-action-link:hover .action-icon {
+    transform: translate(2px, -2px);
+  }
+
+  /* ==============================================
+       SECTION 01: OUR STORY
+       ============================================== */
+  .story-lead-quote {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    line-height: 3.35;
+    color: var(--color-forest-dark);
+    margin: 0 0 2rem;
+  }
+
+  .two-col-text-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    font-size: 0.97rem;
+    color: var(--color-text-body);
+    line-height: 1.7;
+    margin-bottom: 2.25rem;
+  }
+
+  .two-col-text-grid p {
+    margin: 0;
+  }
+
+  /* ==============================================
+       SECTION 02: MISSION & VISION
+       ============================================== */
+  .section-header-block {
+    margin-bottom: 3.5rem;
+  }
+
+  .cards-two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
 
-  .product-card {
+  .sage-card {
+    background-color: var(--bg-sage);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    border: 1px solid var(--color-border);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .sage-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(19, 43, 31, 0.05);
+  }
+
+  .card-kicker {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-headline {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    line-height: 1.25;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    margin: 0 0 1.25rem;
+  }
+
+  .card-copy {
+    font-size: 0.98rem;
+    color: var(--color-text-body);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ==============================================
+       SECTION 03: SCIENCE SPLIT
+       ============================================== */
+  .science-split-container {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(19, 43, 31, 0.05);
+  }
+
+  .science-left-panel {
+    background-color: var(--bg-sage);
+    padding: 3.5rem 3rem;
+  }
+
+  .science-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    line-height: 1.18;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    margin: 0 0 1.5rem;
+  }
+
+  .science-para {
+    font-size: 0.96rem;
+    color: var(--color-text-body);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .pills-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 2rem;
+  }
+
+  .science-pill {
+    font-size: 0.8rem;
+    color: var(--color-forest-dark);
+    border: 1px solid var(--color-border-dark);
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+  }
+
+  .science-right-panel {
+    background-color: var(--color-forest);
+    color: #ffffff;
+    padding: 3.5rem 2.75rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(30px);
-    transition:
-      opacity 0.6s var(--ease-spring) var(--delay, 0s),
-      transform 0.6s var(--ease-spring) var(--delay, 0s);
+    justify-content: space-between;
   }
 
-  .animate-section.is-visible .product-card {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .card-image-box {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #ffffff;
-    border-radius: 20px;
+  .science-panel-top {
     display: flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-bottom: 1.25rem;
-    border: 1px solid rgba(11, 34, 24, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    transition:
-      box-shadow 0.4s ease,
-      border-color 0.4s ease,
-      transform 0.4s var(--ease-spring);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
   }
 
-  .card-image-box img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-    transition: transform 0.5s var(--ease-spring);
+  .science-leaf-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #c9e0c7;
   }
 
-  .card-hover-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(11, 34, 24, 0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card-image-box:hover {
-    box-shadow: 0 14px 30px rgba(11, 34, 24, 0.12);
-    border-color: rgba(11, 34, 24, 0.2);
-    transform: translateY(-4px);
-  }
-
-  .card-image-box:hover .card-hover-overlay {
-    opacity: 1;
-  }
-
-  .card-image-box:hover img {
-    transform: scale(1.12);
-  }
-
-  .quick-view-badge {
-    font-family: "Space Mono", monospace;
-    font-size: 0.8rem;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-    padding: 8px 16px;
-    border-radius: 30px;
-  }
-
-  .product-title {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text-dark);
-    margin: 0 0 1rem;
-    min-height: 48px;
-  }
-
-  .view-details-btn {
-    display: inline-block;
-    background: var(--color-btn-green);
-    color: #ffffff;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 0.85rem;
+  .timeline-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
     font-weight: 700;
-    text-decoration: none;
-    padding: 10px 24px;
-    border-radius: 30px;
-    transition:
-      transform 0.3s var(--ease-spring),
-      background-color 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .view-details-btn:hover {
-    background-color: #16402f;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(11, 34, 24, 0.25);
-  }
-
-  /* TOGGLE LINK BUTTONS */
-  .products-toggle-link {
-    display: none;
-    margin: 2rem auto 0;
-    background: transparent;
-    color: var(--color-btn-green);
-    font-family: "Space Mono", monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    align-items: center;
-    gap: 8px;
+    color: #c9e0c7;
     text-transform: uppercase;
   }
 
-  .products-toggle-link.text-toggle-link {
-    margin: 1rem 0 0 0;
-    padding-left: 0;
+  .stat-large {
+    font-family: var(--font-serif);
+    font-size: clamp(3.2rem, 5vw, 4.25rem);
+    line-height: 1;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 1rem;
   }
 
-  /* RESPONSIVE DESIGN */
+  .stat-unit {
+    font-size: 0.6em;
+  }
+
+  .stat-caption {
+    font-size: 0.95rem;
+    color: #d8e5dc;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .science-panel-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.18);
+    margin: 2.25rem 0 1.5rem;
+  }
+
+  .stat-footnote {
+    font-size: 0.76rem;
+    color: #a8c4b2;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ==============================================
+       SECTION 04: CERTIFICATIONS CARDS
+       ============================================== */
+  .cert-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cert-card {
+    background-color: var(--bg-card-light);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2.25rem 1.75rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(19, 43, 31, 0.05);
+  }
+
+  .cert-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .cert-card-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-forest);
+  }
+
+  .cert-card-num {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .cert-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    line-height: 1.25;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .cert-card-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ==============================================
+       SECTION 05: ACCORDION (INDUSTRIES)
+       ============================================== */
+  .industries-accordion {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .accordion-row {
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.2s ease;
+  }
+
+  .accordion-row.is-open {
+    background-color: rgba(232, 237, 225, 0.4);
+    border: 1px solid var(--color-forest);
+    border-radius: 6px;
+    margin: 0.5rem 0;
+  }
+
+  .accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+  }
+
+  .trigger-num {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    width: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .trigger-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-forest-dark);
+    flex-grow: 1;
+  }
+
+  .trigger-symbol {
+    font-size: 1.35rem;
+    color: var(--color-forest);
+    font-weight: 400;
+    line-height: 1;
+    margin-left: 1rem;
+  }
+
+  .accordion-panel {
+    padding: 0 1.25rem 1.5rem 3.75rem;
+  }
+
+  .panel-text {
+    font-size: 0.94rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ==============================================
+       SECTION 06: WHY SAKRT 2x2
+       ============================================== */
+  .why-reasons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 2.5rem;
+  }
+
+  .why-reason-item {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  .reason-num {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .reason-headline {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    line-height: 1.25;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    margin: 0 0 0.85rem;
+  }
+
+  .reason-para {
+    font-size: 0.92rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ==============================================
+       SECTION 07: LOCAL ROOTS & CIRCULAR SYSTEM
+       ============================================== */
+  .roots-body-paragraphs {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    font-size: 0.98rem;
+    color: var(--color-text-body);
+    line-height: 1.7;
+  }
+
+  .roots-body-paragraphs p {
+    margin: 0;
+  }
+
+  .circular-vision-card {
+    background-color: var(--bg-sage);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .vision-headline {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    line-height: 1.25;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    margin: 0 0 1.25rem;
+  }
+
+  .vision-para {
+    font-size: 0.95rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .vision-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-top: 1px solid var(--color-border-dark);
+    padding-top: 1.75rem;
+  }
+
+  .vision-step-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .step-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--color-forest);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-forest);
+    flex-shrink: 0;
+  }
+
+  .step-content {
+    flex-grow: 1;
+  }
+
+  .step-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-forest-dark);
+    margin: 0 0 0.25rem;
+  }
+
+  .step-text {
+    font-size: 0.88rem;
+    color: var(--color-text-body);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ==============================================
+       SECTION: PRODUCTS SHOWCASE
+       ============================================== */
+  .section-products {
+    background-color: var(--bg-page);
+  }
+
+  .products-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .view-all-link {
+    white-space: nowrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .products-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+  }
+
+  .product-modern-card {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .product-modern-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(19, 43, 31, 0.08);
+  }
+
+  .card-img-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f7f9f4;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-img-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .product-modern-card:hover .card-img-box img {
+    transform: scale(1.05);
+  }
+
+  .product-category-tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--color-forest);
+    padding: 0.25rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+  }
+
+  .card-text-box {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .product-name {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: var(--color-forest-dark);
+    font-weight: 500;
+    margin: 0 0 0.75rem;
+  }
+
+  .card-arrow-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-forest);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  /* ==============================================
+       RESPONSIVE BREAKPOINTS
+       ============================================== */
   @media (max-width: 1024px) {
-    .split-narrative {
+    .hero-top-grid {
       grid-template-columns: 1fr;
+      gap: 3rem;
     }
-    .product-grid {
-      grid-template-columns: repeat(3, 1fr);
+
+    .hero-visual-arch-wrap {
+      max-width: 380px;
+    }
+
+    .split-section-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .section-heading-col {
+      position: static;
+    }
+
+    .cert-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-showcase-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .science-split-container {
+      grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 768px) {
-    .about-hero {
-      padding: 5rem 1.5rem 4rem;
+    .page-section {
+      padding: 4rem 0;
     }
-    .story-card,
-    .sectors-card {
-      padding: 2rem;
+
+    .about-hero-section {
+      padding: 4rem 0 2.5rem;
     }
-    .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+
+    .cards-two-col-grid {
+      grid-template-columns: 1fr;
     }
-    .product-card.mobile-hidden,
-    .about-text-more.mobile-hidden {
-      display: none !important;
+
+    .why-reasons-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .two-col-text-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .hero-badges-strip {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .badge-divider {
+      display: none;
+    }
+
+    .products-header-flex {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
     }
   }
 
-  @media (max-width: 500px) {
-    .product-grid {
+  @media (max-width: 480px) {
+    .cert-cards-grid {
       grid-template-columns: 1fr;
+    }
+
+    .products-showcase-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .btn-primary-pill {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>
 
 <script>
-  function initAboutInteractiveDesign() {
-    const section = document.getElementById("about-section");
-    const glow = document.getElementById("ambient-glow");
-    const isMobile = window.innerWidth <= 768;
+  function initAboutPageInteractions() {
+    // 1. Accordion Toggle
+    const accordionRows = document.querySelectorAll("#industries-accordion .accordion-row");
 
-    // 1. Mouse Ambient Spotlight Tracking
-    if (section && glow) {
-      section.addEventListener("mousemove", (e: MouseEvent) => {
-        const rect = section.getBoundingClientRect();
-        glow.style.left = `${e.clientX - rect.left}px`;
-        glow.style.top = `${e.clientY - rect.top}px`;
-      });
-    }
+    accordionRows.forEach((row) => {
+      const trigger = row.querySelector(".accordion-trigger");
+      const panel = row.querySelector(".accordion-panel") as HTMLElement;
+      const symbol = row.querySelector(".trigger-symbol");
 
-    // 2. 3D Tilt Effect on Desktop for Cards
-    if (!isMobile) {
-      document.querySelectorAll("[data-tilt]").forEach((card) => {
-        const el = card as HTMLElement;
-        const spotlight = el.querySelector(".card-spotlight") as HTMLElement;
+      if (trigger && panel && symbol) {
+        trigger.addEventListener("click", () => {
+          const isOpen = row.classList.contains("is-open");
 
-        el.addEventListener("mouseenter", () => {
-          el.style.setProperty("--delay", "0s");
-        });
+          // Close all other rows
+          accordionRows.forEach((otherRow) => {
+            otherRow.classList.remove("is-open");
+            const otherPanel = otherRow.querySelector(".accordion-panel") as HTMLElement;
+            const otherSymbol = otherRow.querySelector(".trigger-symbol");
+            const otherTrigger = otherRow.querySelector(".accordion-trigger");
+            if (otherPanel) otherPanel.style.display = "none";
+            if (otherSymbol) otherSymbol.textContent = "+";
+            if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+          });
 
-        el.addEventListener("mousemove", (e: MouseEvent) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          if (spotlight) {
-            spotlight.style.left = `${x}px`;
-            spotlight.style.top = `${y}px`;
-          }
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = ((y - centerY) / centerY) * -2;
-          const rotateY = ((x - centerX) / centerX) * 2;
-
-          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-        });
-
-        el.addEventListener("mouseleave", () => {
-          el.style.transform = "";
-        });
-      });
-    }
-
-    // 3. Scroll Intersection Observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+          // Toggle current row
+          if (!isOpen) {
+            row.classList.add("is-open");
+            panel.style.display = "block";
+            symbol.textContent = "−";
+            trigger.setAttribute("aria-expanded", "true");
           }
         });
-      },
-      { threshold: 0.12 },
-    );
+      }
+    });
 
-    document
-      .querySelectorAll(".hero-header, .animate-card, .animate-section")
-      .forEach((el) => observer.observe(el));
+    // 2. Subnav Scrollspy Active State
+    const subnavLinks = document.querySelectorAll(".about-subnav-bar .subnav-link");
+    const sections = document.querySelectorAll("section[id]");
 
-    // 4. Products Toggle Logic
-    const toggleProductsBtn = document.getElementById("about-products-toggle");
-    const cards = document.querySelectorAll(".product-grid .product-card");
-    let isProductsExpanded = false;
+    if (subnavLinks.length > 0 && sections.length > 0) {
+      window.addEventListener("scroll", () => {
+        let currentId = "";
+        const scrollPosition = window.scrollY + 160;
 
-    const updateProductsVisibility = () => {
-      cards.forEach((card, index) => {
-        if (isMobile && !isProductsExpanded && index >= 4) {
-          card.classList.add("mobile-hidden");
-        } else {
-          card.classList.remove("mobile-hidden");
+        sections.forEach((section) => {
+          const el = section as HTMLElement;
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            currentId = el.getAttribute("id") || "";
+          }
+        });
+
+        if (currentId) {
+          subnavLinks.forEach((link) => {
+            const href = link.getAttribute("href")?.replace("#", "");
+            if (href === currentId) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
         }
-      });
-      if (toggleProductsBtn) {
-        toggleProductsBtn.style.display = isMobile ? "inline-flex" : "none";
-        toggleProductsBtn.innerHTML = isProductsExpanded
-          ? 'View Less <span class="arrow">↑</span>'
-          : 'View More <span class="arrow">↓</span>';
-      }
-    };
-
-    updateProductsVisibility();
-
-    if (toggleProductsBtn) {
-      toggleProductsBtn.addEventListener("click", () => {
-        isProductsExpanded = !isProductsExpanded;
-        updateProductsVisibility();
-      });
-    }
-
-    // 5. Text Toggle Logic
-    const toggleTextBtn = document.getElementById("about-text-toggle");
-    const textMoreContent = document.querySelector(".about-text-more");
-    let isTextExpanded = false;
-
-    const updateTextVisibility = () => {
-      if (isMobile && !isTextExpanded) {
-        textMoreContent?.classList.add("mobile-hidden");
-      } else {
-        textMoreContent?.classList.remove("mobile-hidden");
-      }
-      if (toggleTextBtn) {
-        toggleTextBtn.style.display = isMobile ? "inline-flex" : "none";
-        toggleTextBtn.innerHTML = isTextExpanded
-          ? 'View Less <span class="arrow">↑</span>'
-          : 'View More <span class="arrow">↓</span>';
-      }
-    };
-
-    updateTextVisibility();
-
-    if (toggleTextBtn) {
-      toggleTextBtn.addEventListener("click", () => {
-        isTextExpanded = !isTextExpanded;
-        updateTextVisibility();
       });
     }
   }
 
-  document.addEventListener("DOMContentLoaded", initAboutInteractiveDesign);
-  document.addEventListener("astro:page-load", initAboutInteractiveDesign);
+  document.addEventListener("DOMContentLoaded", initAboutPageInteractions);
+  document.addEventListener("astro:page-load", initAboutPageInteractions);
 </script>
