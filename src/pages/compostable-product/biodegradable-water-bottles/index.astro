@@ -3,39 +3,206 @@ import Layout from '../../../layouts/Layout.astro';
 import BiodegradableWaterBottle from '../../../components/Product Details/BiodegradableWaterBottle.astro';
 
 const schema = {
-  "@context": "https://schema.org/",
-  "@type": "Product",
-  "name": "Eco Water Bottles",
-  "image": "https://www.sakrt.in/logo/footer-logo.webp",
-  "description": "Choose certified eco water bottles made from plant-based materials. The sustainable alternative to plastic bottles: biodegradable, eco-friendly, and compostable.",
-  "brand": {
-    "@type": "Brand",
-    "name": "SAKRT"
-  },
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/",
-    "priceCurrency": "INR",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "SAKRT"
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "Manufacturer"],
+      "@id": "https://www.sakrt.in/#organization",
+      "name": "SAKRT",
+      "url": "https://www.sakrt.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://www.sakrt.in/#logo",
+        "url": "https://www.sakrt.in/logo/footer-logo.webp",
+        "contentUrl": "https://www.sakrt.in/logo/footer-logo.webp",
+        "caption": "SAKRT Logo"
+      },
+      "image": "https://www.sakrt.in/logo/footer-logo.webp",
+      "telephone": "+91-7975310662",
+      "email": "hello@sakrt.in",
+      "hasMap": "https://share.google/RsRnI7qwqeBXrtp6z",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "2-43(1), Kripam, Padmanoor, Kinnigoli",
+        "addressLocality": "Mangaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "574150",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.0645,
+        "longitude": 74.8465
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mangaluru"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Dakshina Kannada"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Udupi"
+        },
+        {
+          "@type": "State",
+          "name": "Karnataka"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ],
+      "sameAs": [
+        "https://share.google/RsRnI7qwqeBXrtp6z"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.sakrt.in/#website",
+      "url": "https://www.sakrt.in/",
+      "name": "SAKRT",
+      "publisher": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/#webpage",
+      "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/",
+      "name": "Biodegradable Water Bottles Manufacturer & Supplier | SAKRT",
+      "description": "Source CPCB-certified, 100% plant-based biodegradable water bottles in bulk from SAKRT, Mangaluru. BPA-free, IS 17088-compliant PLA alternatives to plastic.",
+      "isPartOf": {
+        "@id": "https://www.sakrt.in/#website"
+      },
+      "about": {
+        "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/#product"
+      },
+      "mainEntity": {
+        "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/#product"
+      },
+      "breadcrumb": {
+        "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/#breadcrumb"
+      },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.sakrt.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Compostable Products",
+          "item": "https://www.sakrt.in/compostable-product/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Biodegradable Water Bottles",
+          "item": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/"
+        }
+      ]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/#product",
+      "name": "Biodegradable Water Bottles",
+      "alternateName": [
+        "Plastic Bottles Biodegradable Alternative",
+        "Eco Water Bottles Mangalore",
+        "CPCB-Certified PLA Water Bottles"
+      ],
+      "description": "Source CPCB-certified, 100% plant-based biodegradable water bottles in bulk from SAKRT, Mangaluru. BPA-free, IS 17088-compliant PLA alternatives to plastic.",
+      "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/",
+      "image": [
+        "https://www.sakrt.in/logo/footer-logo.webp"
+      ],
+      "category": "Compostable & Biodegradable Packaging > Biodegradable Water Bottles",
+      "material": "100% Plant-Based Food-Grade Biopolymer (PLA)",
+      "keywords": "biodegradable water bottles, plastic bottles biodegradable, Eco water Bottles Mangalore, PLA water bottles, IS 17088 compliant bottles, CPCB certified biodegradable bottles",
+      "brand": {
+        "@type": "Brand",
+        "name": "SAKRT"
+      },
+      "manufacturer": {
+        "@id": "https://www.sakrt.in/#organization"
+      },
+      "countryOfOrigin": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Hotels, Corporate Events, Hospitals, Educational Institutions, Offices, and Eco-Conscious Beverage Brands"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Certifications",
+          "value": "CPCB Approved, CIPET Tested, IS 17088, EN 13432, ASTM D6400 Compliant"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Available Capacities",
+          "value": "250 ml, 500 ml, 750 ml, 1000 ml (Custom sizes available on bulk order)"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Composting Timeline",
+          "value": "90 to 180 days under industrial composting conditions"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Temperature Suitability",
+          "value": "Cold and ambient-temperature beverages (up to 45°C)"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Safety",
+          "value": "100% BPA-Free, Non-Toxic, Zero PET or Microplastics"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Customization",
+          "value": "Custom bottle embossing, eco-friendly label printing, standard neck-ring compatibility, flexible B2B MOQs"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
+        "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+        "seller": {
+          "@id": "https://www.sakrt.in/#organization"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "India"
+        }
+      }
     }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://www.sakrt.in/compostable-product/biodegradable-water-bottles/",
-    "name": "CPCB-Certified Biodegradable & Compostable Water Bottles | SAKRT",
-    "description": "Source CPCB-certified, 100% plant-based biodegradable water bottles in bulk from SAKRT, Mangaluru. Durable, BPA-free, and IS 17088 compliant alternatives to single-use plastic bottles."
-  }
+  ]
 };
 ---
 
 <Layout 
   title="Biodegradable Water Bottles Manufacturer & Supplier | SAKRT"
   canonical="https://www.sakrt.in/compostable-product/biodegradable-water-bottles/"
-  description="Source CPCB-certified, 100% plant-based biodegradable water bottles in bulk from SAKRT, Mangaluru. BPA-free, IS 17088 compliant PLA alternatives to plastic."
-  keywords="biodegradable water bottles, plastic bottles biodegradable, Eco water Bottles mangalore"
+  description="Source CPCB-certified, 100% plant-based biodegradable water bottles in bulk from SAKRT, Mangaluru. BPA-free, IS 17088-compliant PLA alternatives to plastic."
+  keywords="biodegradable water bottles, plastic bottles biodegradable, Eco water Bottles Mangalore, PLA water bottles, IS 17088 compliant bottles, CPCB certified biodegradable bottles"
   schema={schema}
 >
   <main>
